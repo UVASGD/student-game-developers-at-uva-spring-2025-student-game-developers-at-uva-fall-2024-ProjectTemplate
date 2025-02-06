@@ -1,28 +1,46 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int money;
+    [SerializeField]
+    private int money; 
 
-    public bool[] biomeAccess = new bool[3];
+    //All Ingredients, Equipment, Recipes, and Biome scriptable objects get placed in their respective lists
+    public List<IngredientData> allIngredient = new List<IngredientData>();
+    public List<ActionData> allEquipment = new List<ActionData>();
+    public List<RecipeData> allRecipe = new List<RecipeData>();
+    public List<BiomeData> allBiome = new List<BiomeData>();
 
-    /*
-     * first way to manage unlocking equip/recipes/biomes that comes to mind is adding objects to a list
-     * that would require a more robust system + time, so bools will do for now
-     */
-
-    //TEMPORARY
-    public bool equip1;
-    public bool equip2;
-    public bool equip3;
-    public bool recipe1;
-    public bool recipe2;
-    public bool recipe3;
+    //All the scriptable objects get placed into their correct dictionaries, all bools are initially set to false
+    private Dictionary<IngredientData, bool> IngredientUnlocked = new Dictionary<IngredientData, bool>();
+    private Dictionary<ActionData, bool> ActionUnlocked = new Dictionary<ActionData, bool>();
+    private Dictionary<RecipeData, bool> RecipeUnlocked = new Dictionary<RecipeData, bool>();
+    private Dictionary<BiomeData, bool> BiomeUnlocked = new Dictionary<BiomeData, bool>();
 
     void Start()
     {
-        
+        //Enter the Ingredients
+        for (int i = 0; i < allIngredient.Count; i++)
+        {
+            IngredientUnlocked.Add(allIngredient[i], false);
+        }
+        //Enter the Equipment/Actions
+        for (int i = 0; i < allEquipment.Count; i++)
+        {
+            ActionUnlocked.Add(allEquipment[i], false);
+        }
+        //Enter the Recipes
+        for (int i = 0; i < allRecipe.Count; i++)
+        {
+            RecipeUnlocked.Add(allRecipe[i], false);
+        }
+        //Enter the Biomes
+        for (int i = 0; i < allBiome.Count; i++)
+        {
+            BiomeUnlocked.Add(allBiome[i], false);
+        }
     }
 
     void Update()
@@ -39,16 +57,6 @@ public class PlayerManager : MonoBehaviour
         else
         {
             money += deltaMoney;
-        }
-    }
-    public void unlockNextBiome()
-    {
-        for (int i = 0; i < biomeAccess.Length; i++)
-        {
-            if (!biomeAccess[i])
-            {
-                biomeAccess[i] = false;
-            }
         }
     }
 }
