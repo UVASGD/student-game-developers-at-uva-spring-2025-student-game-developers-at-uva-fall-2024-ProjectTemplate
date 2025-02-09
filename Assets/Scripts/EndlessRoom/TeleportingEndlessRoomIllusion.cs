@@ -2,9 +2,7 @@ using UnityEngine;
 
 public enum PortalNumber
 {
-    A1,
-    A2,
-    A3
+    A1, A2, A3, A4, A5, A6, A7, A8, A9, A10
 }
 
 public class TeleportingEndlessRoomIllusion : TeleportingIllusion {
@@ -23,7 +21,9 @@ public class TeleportingEndlessRoomIllusion : TeleportingIllusion {
 
     public new void teleportObject(GameObject go)
     {
+        Debug.Log(go.transform.position - transform.position);
         Vector3 positionOffset = Quaternion.FromToRotation(destination.forward, direction) * (go.transform.position - transform.position);
+        Debug.Log(positionOffset);
         go.transform.position = destination.position + positionOffset;
         if (portalNumber == PortalNumber.A2) EndlessRoomManager.Instance.numA3Triggered = 0;
         if (portalNumber == PortalNumber.A3) EndlessRoomManager.Instance.A3Triggered();
