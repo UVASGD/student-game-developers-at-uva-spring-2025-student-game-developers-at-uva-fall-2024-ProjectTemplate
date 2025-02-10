@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public abstract class DataButton : Button {
-    
-    public Label Label = new();
 
+    public Label Label = new();
+    public Image Icon;
     public ScriptableObject Data { get; set; }
 
     // This delegate is used to forward OnClick to StationView, where unique logic is applied via subscription
@@ -19,6 +19,10 @@ public abstract class DataButton : Button {
 
     protected void AttachLabel(){
         this.Add(Label);
+    }
+
+    protected void AttachIcon(){
+        this.Add(Icon);
     }
 
     private void OnClick(){

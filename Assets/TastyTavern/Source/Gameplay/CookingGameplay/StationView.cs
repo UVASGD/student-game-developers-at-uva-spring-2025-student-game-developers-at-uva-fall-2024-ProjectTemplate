@@ -68,12 +68,12 @@ public class StationView : MonoBehaviour {
         Debug.Log("Initializing Station view");
 
         actionSlotContainer.Clear();
-        ActionSlot actionSlot = new(actionData);
-        Debug.Log($"Slot created for {actionSlot.ActionData.Name}");
-        actionSlot.AddToClassList("action-slot");
-        actionSlot.AddToClassList("slot");
-        actionSlotContainer.Add(actionSlot);
-        actionSlot.OnClickAction += OnAddProperty;
+        ActionButton actionButton = new(actionData);
+        // Debug.Log($"Slot created for {actionButton.Data.Name}");
+        actionButton.AddToClassList("action-slot");
+        actionButton.AddToClassList("slot");
+        actionSlotContainer.Add(actionButton);
+        actionButton.OnClickButton += OnAddProperty;
         // actionSlot.visible = false;
 
         ingredientSlotContainer.Clear();
@@ -85,8 +85,6 @@ public class StationView : MonoBehaviour {
             ingredientSlotContainer.Add(slot);
             slot.OnClickIngredient += OnAddIngredient;
         }
-
-        // bring back stationWorkspaceContainer
         // if (stationWorkspaceContainer.visible == false){
         //     stationWorkspaceContainer.visible = true;
         // }
@@ -106,8 +104,8 @@ public class StationView : MonoBehaviour {
         slot.RemoveFromClassList("slot");
     }
 
-    private void OnAddProperty(ActionSlot actionSlot){
-        cookingUIEventChannel.RaiseOnAddProperty(actionSlot.ActionData.Property); // Property enum actionProperty
+    private void OnAddProperty(DataButton actionButton){//is this casting okay? or too jank?
+        cookingUIEventChannel.RaiseOnAddProperty(((ActionData)actionButton.Data).Property); // Property enum actionProperty
     }
 
     private void AddToStationWorkspace(Ingredient ingredient){
