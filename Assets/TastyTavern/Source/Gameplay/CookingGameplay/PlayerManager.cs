@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
-    private int money; 
+    private float money;
+
+    [SerializeField]
+    private CookingUIEventChannel cookingUIEventChannel;
 
     //All Ingredients, Equipment, Recipes, and Biome scriptable objects get placed in their respective lists
     public List<IngredientData> allIngredient = new List<IngredientData>();
@@ -48,7 +51,17 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    public void changeMoney(int deltaMoney)
+    private void OnEnable()
+    {
+        cookingUIEventChannel.OnChangePlayerMoney += changeMoney;
+    }
+
+    private void OnDisable()
+    {
+        cookingUIEventChannel.OnChangePlayerMoney -= changeMoney;
+    }
+
+    public void changeMoney(float deltaMoney)
     {
         if (deltaMoney < 0 && deltaMoney > money)
         {
