@@ -69,5 +69,6 @@ public class OrderManager : MonoBehaviour
         if (order.isCorrect())
             Debug.Log("Order is correct");
             // other things can happen here like money? etc. like playerMoney += order.Recipe.Price; or something like that
+
     }
 }
