@@ -58,6 +58,7 @@ public class StationController : MonoBehaviour
     {
         Debug.Log("Loading Station " + station.Data.StationType);
         cookingUIEventChannel.RaiseOnLoadStationView(station);
+        station.SwitchStation(station.Data, station.StockIngredients);
     }
 
 }
