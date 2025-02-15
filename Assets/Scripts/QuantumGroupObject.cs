@@ -1,7 +1,7 @@
 using UnityEngine;
 public class QuantumGroupObject : QuantumObjectBase
 {
-    private QuantumGroup group;
+    private QuantumGroupBase group;
     private Collider coll;
     private bool isActive;
 
@@ -25,7 +25,7 @@ public class QuantumGroupObject : QuantumObjectBase
         group.switchObject();
     }
 
-    public void attachToGroup(QuantumGroup newGroup)
+    public void attachToGroup(QuantumGroupBase newGroup)
     {
         group = newGroup;
     }

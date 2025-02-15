@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 
-public class QuantumGroup : QuantumGroupBase
+public class QuantumGroupBase : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private List<QuantumGroupObject> objects = new List<QuantumGroupObject>();
@@ -36,24 +36,25 @@ public class QuantumGroup : QuantumGroupBase
         
     }
 
-
     public void switchObject()
     {
-        int n = objects.Count;
-        List<int> indicies = Enumerable.Range(0, n).ToList();
-        indicies.Remove(curActiveIndex);
-            
-        for (int i = 0; i < n - 1; i++)
-        {
-            int r = Random.Range(i, n - 1);
-            int temp = indicies[i];
-            indicies[i] = indicies[r];
-            indicies[r] = temp;
-        }
 
-        for (int i = 0; i < n - 1; i++)
+    }
+    public bool trySwitchObject(int newIndex)
+    {
+        QuantumGroupObject newActive = objects[newIndex];
+        QuantumGroupObject curActive = objects[curActiveIndex];
+
+        if (newActive.isVisible() || curActive.isVisible())
+        {   
+            return false;
+        }
+        else
         {
-            if (trySwitchObject(indicies[i])) break;
+            curActive.setInvisible();
+            newActive.setVisible();
+            curActiveIndex = newIndex;
+            return true;
         }
     }
 }

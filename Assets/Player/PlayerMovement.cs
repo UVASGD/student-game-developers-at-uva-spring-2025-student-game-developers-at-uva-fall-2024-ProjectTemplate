@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private InputAction move;
     private Rigidbody rb;
+    public bool canMove = true;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(move.ReadValue<Vector2>() != Vector2.zero)  
+        if (canMove)
         {
-            Vector2 inputVec = move.ReadValue<Vector2>();
-            rb.linearVelocity = transform.rotation * new Vector3 (inputVec.x, 0, inputVec.y) * speed;
+            if (move.ReadValue<Vector2>() != Vector2.zero)
+            {
+                Vector2 inputVec = move.ReadValue<Vector2>();
+                rb.linearVelocity = transform.rotation * new Vector3(inputVec.x, 0, inputVec.y) * speed;
+            }
         }
     }
 }
