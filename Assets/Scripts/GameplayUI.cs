@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-[RequireComponent(typeof(Image))]
 public class GameplayUI : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
@@ -8,13 +7,18 @@ public class GameplayUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void setPlayer(GameObject go)
+    {
+        player = go;
     }
 
     public void activate()
@@ -24,6 +28,8 @@ public class GameplayUI : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().canMove = false;
             player.GetComponent<PlayerCameraMovement>().canPan = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
     public void deactivate()
@@ -33,6 +39,8 @@ public class GameplayUI : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().canMove = true;
             player.GetComponent<PlayerCameraMovement>().canPan = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
