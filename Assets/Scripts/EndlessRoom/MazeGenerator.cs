@@ -15,13 +15,13 @@ public class MazeGenerator : MonoBehaviour
     void Start()
     {
         _prefabLocalScale = mazeCellPrefab.transform.localScale.x;
-        foreach (Transform child in transform){
-            Destroy(child.gameObject);
-        }
         CreateMaze();
     }
 
-    void CreateMaze(){
+    public void CreateMaze(){
+        foreach (Transform child in transform){
+            Destroy(child.gameObject);
+        }
         mazeGrid = new MazeCell[mazeWidth][];
         for (int x = 0; x < mazeWidth; x++)
         {

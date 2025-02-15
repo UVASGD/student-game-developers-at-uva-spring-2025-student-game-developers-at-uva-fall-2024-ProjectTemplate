@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EndlessRoomManager : MonoBehaviour {
@@ -7,6 +8,7 @@ public class EndlessRoomManager : MonoBehaviour {
     public TeleportingEndlessRoomIllusion teleportingA3EndlessRoomIllusion;
     public TeleportingEndlessRoomIllusion teleportingA4EndlessRoomIllusion;
     public int numA3Triggered = 0;
+    public List<MazeGenerator> mazeGenerators;
     public GameObject player;
 
     void Awake() {

@@ -23,9 +23,15 @@ public class TeleportingEndlessRoomIllusion : TeleportingIllusion {
     {
         Debug.Log(go.transform.position - transform.position);
         Vector3 positionOffset = Quaternion.FromToRotation(destination.forward, direction) * (go.transform.position - transform.position);
-        Debug.Log(positionOffset);
         go.transform.position = destination.position + positionOffset;
+        Quaternion rotationOffset = go.transform.rotation * Quaternion.Inverse(transform.rotation);
+        go.transform.rotation = destination.rotation * rotationOffset;
         if (portalNumber == PortalNumber.A2) EndlessRoomManager.Instance.numA3Triggered = 0;
         if (portalNumber == PortalNumber.A3) EndlessRoomManager.Instance.A3Triggered();
+        if (portalNumber == PortalNumber.A5) {
+            foreach (MazeGenerator mazeGenerator in EndlessRoomManager.Instance.mazeGenerators){
+                mazeGenerator.CreateMaze();
+            }
+        }
     }
 }

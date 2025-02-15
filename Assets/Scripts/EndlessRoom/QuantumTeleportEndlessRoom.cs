@@ -15,5 +15,8 @@ public class QuantumTeleportEndlessRoom : QuantumObjectBase
     {
         Vector3 positionOffset = go.transform.position - transform.position;
         go.transform.position = destination.position + positionOffset;
+        // Make an offset from go's rotation and the destination's rotation
+        Quaternion rotationOffset = go.transform.rotation * Quaternion.Inverse(transform.rotation);
+        go.transform.rotation = destination.rotation * rotationOffset;
     }
 }
