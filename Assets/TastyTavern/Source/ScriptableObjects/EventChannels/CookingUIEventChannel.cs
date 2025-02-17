@@ -24,6 +24,9 @@ public class CookingUIEventChannel : ScriptableObject {
     /// Callback when an order is submitted in the UI by the player
     public Action<Order> OnSubmitOrder;
 
+    /// Callback when player wants to go to the next station
+    public Action OnChangeNextStation;
+
     public void RaiseOnAddIngredient(Ingredient ingredient){
         Debug.Log("Raise adding " + ingredient.Data.Name + " ingredient broadcasted from event channel.");
         OnAddIngredient?.Invoke(ingredient);
@@ -50,6 +53,10 @@ public class CookingUIEventChannel : ScriptableObject {
 
     public void RaiseOnRefreshStationView(Station station){
         OnRefreshStationView?.Invoke(station);
+    }
+
+    public void RaiseOnChangeNextStation(){
+        OnChangeNextStation?.Invoke();
     }
 
 }

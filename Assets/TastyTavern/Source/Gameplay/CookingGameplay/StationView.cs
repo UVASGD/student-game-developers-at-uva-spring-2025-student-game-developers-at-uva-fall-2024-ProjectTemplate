@@ -80,6 +80,12 @@ public class StationView : MonoBehaviour {
         // make visible the parent elements for station menus (everything except order tabs)
     }
 
+    private void GenerateNextStationButton(){
+        Button nextButton = new(); //add styles, etc
+        // add to container
+        nextButton.clicked += OnNextStation;
+    }
+
     private void GenerateActionButton(ActionData actionData){
         ActionButton actionButton = new(actionData);
         Debug.Log($"Slot created for {actionButton.Data.Name}");
@@ -110,6 +116,10 @@ public class StationView : MonoBehaviour {
 
     private void OnAddProperty(ActionButton actionButton){
         cookingUIEventChannel.RaiseOnAddProperty(actionButton.Data.Property); // Property enum actionProperty
+    }
+
+    private void OnNextStation(){
+        cookingUIEventChannel.RaiseOnChangeNextStation();
     }
 
     private void AddToStationWorkspace(Ingredient ingredient){

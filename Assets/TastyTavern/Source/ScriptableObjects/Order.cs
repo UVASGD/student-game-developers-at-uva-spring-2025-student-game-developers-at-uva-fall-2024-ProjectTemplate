@@ -25,12 +25,10 @@ public class Order : MonoBehaviour
     public bool Served { get; set; }
 
     [field: SerializeField]
-    public Station CurrentStation { get; set; }
+    public Station Station { get; set; }
 
     [field: SerializeField]
     public int StationIdx { get; set; }
-    
-    public Action<Station> ;
 
     public Order(Customer Customer, RecipeData recipe, Dictionary<IngredientData, List<Property>> SelectedIngredients)
     {
@@ -39,17 +37,19 @@ public class Order : MonoBehaviour
         Recipe = recipe;
         this.SelectedIngredients = SelectedIngredients;
         StationIdx = 0;
-        CurrentStation = Recipe.StationSequence[0].Create(//starting stock)
+        Station = Recipe.StationSequence[0].Create(Recipe.InitialStockSequence[StationIdx].InitialStock);
     }
 
-    //later add event channel? I want to rearrange Order creation, for now directly invoke
-    public void LoadStation(){
-        OnLoadStationView?.Invoke(CurrentStation.Data, Recipe.InitialStockSequence[StationIdx].InitialStock);
+    // Order manager triggers station change
+    // for now assuming button is not present at last station
+    public void ChangeNextStation(){
+        StationIdx++;
+        Station.ChangeStation(Recipe.StationSequence[StationIdx],Recipe.InitialStockSequence[StationIdx].InitialStock);
     }
 
     public bool isCorrect()
     {
-        foreach (Ingredient ingredient in CurrentStation.ActiveIngredients)
+        foreach (Ingredient ingredient in Station.ActiveIngredients)
         {
             if (SelectedIngredients.Keys.Contains(ingredient.Data) && AreListsEqual(SelectedIngredients[ingredient.Data], ingredient.Properties)) return false;
         }
