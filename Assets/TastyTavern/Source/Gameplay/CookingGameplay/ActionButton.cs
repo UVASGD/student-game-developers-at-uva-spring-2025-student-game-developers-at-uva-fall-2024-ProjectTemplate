@@ -27,8 +27,8 @@ public class ActionButton : DataButton {
     protected override void AddStyles(){
         Icon.AddToClassList("action-icon");
         Label.AddToClassList("action-label");
-        this.AddToClassList("action-slot");
-        this.AddToClassList("slot");
+        this.AddToClassList("action-button");
+        this.AddToClassList("button");
     }
 
 }

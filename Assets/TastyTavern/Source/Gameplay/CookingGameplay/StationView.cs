@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 
 // TODO: Organize references and use Event Channels
 public class StationView : MonoBehaviour {
-    public Slot[] Slots;
 
     [SerializeField] string PanelName { get; set; }
 
@@ -111,7 +110,7 @@ public class StationView : MonoBehaviour {
     private void OnAddIngredient(IngredientButton ingredientButton ) {
         cookingUIEventChannel.RaiseOnAddIngredient(ingredientButton.Ingredient); // adds ingredient, calls refresh
         ingredientButton.SetEnabled(false);
-        ingredientButton.RemoveFromClassList("slot");
+        ingredientButton.RemoveFromClassList("button");
     }
 
     private void OnAddProperty(ActionButton actionButton){

@@ -28,8 +28,8 @@ public class IngredientButton : DataButton {
     protected override void AddStyles(){
         Icon.AddToClassList("ingredient-icon");
         Label.AddToClassList("ingredient-label");
-        this.AddToClassList("ingredient-slot"); // move to button class?
-        this.AddToClassList("slot");
+        this.AddToClassList("ingredient-button"); // move to button class?
+        this.AddToClassList("button");
     }
 
 }
