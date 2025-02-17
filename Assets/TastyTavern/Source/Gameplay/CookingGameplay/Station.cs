@@ -41,8 +41,8 @@ public class Station {
         this.Data = data;
 
         StockIngredients.Clear();
-        foreach (var ingredientData in stock){
-            StockIngredients.Add(ingredientData.Create());
+        foreach (var ingredient in stock){
+            StockIngredients.Add(ingredient);
         }
         StockIngredients.AddRange(StoredIngredients);
         StockIngredients.AddRange(ActiveIngredients);
