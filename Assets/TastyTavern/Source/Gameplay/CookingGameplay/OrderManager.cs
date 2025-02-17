@@ -22,7 +22,7 @@ public class OrderManager : MonoBehaviour
     void Start()
     {
         // ASSUMING SET ORDER AND STATION FOR NOW
-        foreach( var i in currentOrder.CurrentStation.ActiveIngredients)
+        foreach( var i in currentOrder.Station.ActiveIngredients)
         {
             Debug.Log("station has " + i.Data.Name);
         }
@@ -49,15 +49,14 @@ public class OrderManager : MonoBehaviour
     {
         Debug.Log("Selected Order " + selectedOrder);
         currentOrder = selectedOrder;
-        LoadStation(currentOrder.CurrentStation.Data);
     }
 
-    private void LoadStation(StationData station)
-    {
-        Debug.Log("Loading Station " + station.StationType);
-        // all station logic is updated on station object
-        // update menu where? how does it know the data
-    }
+    // private void LoadStation(StationData station)
+    // {
+    //     Debug.Log("Loading Station " + station.StationType);
+    //     // all station logic is updated on station object
+    //     // update menu where? how does it know the data
+    // }
 
     public void CreateOrder(Order order)
     {
@@ -70,5 +69,10 @@ public class OrderManager : MonoBehaviour
             Debug.Log("Order is correct");
             // other things can happen here like money? etc. like playerMoney += order.Recipe.Price; or something like that
 
+    }
+
+    // Pass event channel trigger to order
+    public void OnChangeStation(){
+        currentOrder.ChangeNextStation();
     }
 }

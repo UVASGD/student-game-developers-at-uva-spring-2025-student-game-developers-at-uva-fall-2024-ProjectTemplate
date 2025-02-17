@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 
 // TODO: Organize references and use Event Channels
 public class StationView : MonoBehaviour {
-    public Slot[] Slots;
 
     [SerializeField] string PanelName { get; set; }
 
@@ -20,6 +19,9 @@ public class StationView : MonoBehaviour {
     public VisualElement ingredientSlotContainer;
     public VisualElement actionSlotContainer;
     public VisualElement stationWorkspaceContainer;
+    public VisualElement nextStationContainer;
+    public VisualElement orderContainer;
+
     public VisualElement stationTop;
 
     public Image stationBG;
@@ -49,6 +51,8 @@ public class StationView : MonoBehaviour {
         ingredientSlotContainer = root.Q<VisualElement>("IngredientSlotContainer"); //already style?
         actionSlotContainer = root.Q<VisualElement>("ActionSlotContainer");
         stationWorkspaceContainer = root.Q<VisualElement>("StationWorkspaceContainer");
+        nextStationContainer = root.Q<VisualElement>("BottomContainer");
+        orderContainer = root.Q<VisualElement>("TopContainer");
     }
 
     private void Start(){
@@ -60,7 +64,7 @@ public class StationView : MonoBehaviour {
         // InitializeView(dummyIngredients);
         // stationWorkspaceContainer.Clear();
     }
-
+    // ***May be easier to have a simple button instead, not attached to station data, go back up to order
     // combine with initialize?
     private void LoadStationView(Station station){
         Debug.Log("View recieved loading request from event channel");
@@ -74,10 +78,20 @@ public class StationView : MonoBehaviour {
         actionSlotContainer.Clear();
         ingredientSlotContainer.Clear();
         stationWorkspaceContainer.Clear();
+        nextStationContainer.Clear(); // may not have to clear anymore when hiding station panels, station button stays constant.
+        GenerateNextStationButton();
         GenerateActionButton(actionData);
         GenerateIngredientButtons(ingredients);
         GenerateStationBackground(station);
         // make visible the parent elements for station menus (everything except order tabs)
+    }
+
+    // A simple styled button with 
+    private void GenerateNextStationButton(){
+        Button nextButton = new();
+        nextButton.AddToClassList("button");
+        nextStationContainer.Add(nextButton);
+        nextButton.clicked += OnNextStation;
     }
 
     private void GenerateActionButton(ActionData actionData){
@@ -105,11 +119,15 @@ public class StationView : MonoBehaviour {
     private void OnAddIngredient(IngredientButton ingredientButton ) {
         cookingUIEventChannel.RaiseOnAddIngredient(ingredientButton.Ingredient); // adds ingredient, calls refresh
         ingredientButton.SetEnabled(false);
-        ingredientButton.RemoveFromClassList("slot");
+        ingredientButton.RemoveFromClassList("button");
     }
 
     private void OnAddProperty(ActionButton actionButton){
         cookingUIEventChannel.RaiseOnAddProperty(actionButton.Data.Property); // Property enum actionProperty
+    }
+
+    private void OnNextStation(){
+        cookingUIEventChannel.RaiseOnChangeNextStation();
     }
 
     private void AddToStationWorkspace(Ingredient ingredient){

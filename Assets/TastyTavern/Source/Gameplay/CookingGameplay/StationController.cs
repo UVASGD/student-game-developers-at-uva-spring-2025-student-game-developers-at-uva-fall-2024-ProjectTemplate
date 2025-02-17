@@ -20,7 +20,7 @@ public class StationController : MonoBehaviour
     private void Awake(){
         // open stay on order awake
         this.station = new(stationData,testStock);
-        LoadStation();
+        cookingUIEventChannel.RaiseOnLoadStationView(this.station);
     }
 
     private void OnEnable()
@@ -54,11 +54,11 @@ public class StationController : MonoBehaviour
         cookingUIEventChannel.RaiseOnRefreshStationView(station);
     }
 
+  /**
     private void LoadStation()
     {
         Debug.Log("Loading Station " + station.Data.StationType);
         cookingUIEventChannel.RaiseOnLoadStationView(station);
         station.SwitchStation(station.Data, station.StockIngredients);
-    }
-
+    }**/
 }

@@ -27,6 +27,9 @@ public class CookingUIEventChannel : ScriptableObject {
     /// </summary> Callback when the player's money is changed, either by being paid or paying for items </summary>
     public Action<float> OnChangePlayerMoney;
 
+    /// Callback when player wants to go to the next station
+    public Action OnChangeNextStation;
+
     public void RaiseOnAddIngredient(Ingredient ingredient){
         Debug.Log("Raise adding " + ingredient.Data.Name + " ingredient broadcasted from event channel.");
         OnAddIngredient?.Invoke(ingredient);
@@ -53,6 +56,10 @@ public class CookingUIEventChannel : ScriptableObject {
 
     public void RaiseOnRefreshStationView(Station station){
         OnRefreshStationView?.Invoke(station);
+    }
+
+    public void RaiseOnChangeNextStation(){
+        OnChangeNextStation?.Invoke();
     }
 
     public void RaiseOnChangePlayerMoney(float money)
