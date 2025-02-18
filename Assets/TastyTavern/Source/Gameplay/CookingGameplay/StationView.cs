@@ -121,11 +121,12 @@ public class StationView : MonoBehaviour {
         ingredientButton.SetEnabled(false);
         ingredientButton.RemoveFromClassList("button");
     }
-
+    
     private void OnAddProperty(ActionButton actionButton){
-        cookingUIEventChannel.RaiseOnAddProperty(actionButton.Data.Property); // Property enum actionProperty
-    }
 
+        cookingUIEventChannel.RaiseOnAddProperty(actionButton.Data); // Property enum actionProperty
+    }
+    
     private void OnNextStation(){
         cookingUIEventChannel.RaiseOnChangeNextStation();
     }

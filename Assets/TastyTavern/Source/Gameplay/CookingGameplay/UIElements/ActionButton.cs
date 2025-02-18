@@ -5,14 +5,24 @@ using UnityEngine.UIElements;
 // Inherits helper classes and returns itself on OnClick() with OnClickButton delegate
 public class ActionButton : DataButton {
 
-    public ActionData Data { get; set; }
+    public ActionData Data { get; private set; }
 
     public event Action<ActionButton> OnClickButton = delegate { };
 
     public ActionButton(ActionData data) 
     {
-        Data = data;
-        Icon = new(){ image = Data.Sprite.texture };
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+
+    if (Data.Sprite != null){
+        Icon = new() { image = Data.Sprite.texture };
+    }
+    else{
+        Debug.LogWarning("ActionButton: Data.Sprite is null!");
+    }
+
+
+
+
         Label.text = Data.Name;
 
         AddStyles();

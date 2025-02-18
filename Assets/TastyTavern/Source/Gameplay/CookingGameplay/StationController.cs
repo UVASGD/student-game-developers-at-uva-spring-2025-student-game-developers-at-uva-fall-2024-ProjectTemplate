@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class StationController : MonoBehaviour
 {
@@ -26,13 +27,13 @@ public class StationController : MonoBehaviour
     private void OnEnable()
     {
         cookingUIEventChannel.OnAddIngredient += AddIngredient;
-        cookingUIEventChannel.OnAddProperty += AddProperty;
+        cookingUIEventChannel.OnAddProperty += StartAddProperty;
     }
 
     private void OnDisable() 
     {
         cookingUIEventChannel.OnAddIngredient -= AddIngredient;
-        cookingUIEventChannel.OnAddProperty -= AddProperty;
+        cookingUIEventChannel.OnAddProperty -= StartAddProperty;
     }
 
     /// Adds ingredient to current active workspace (from stock)
@@ -42,13 +43,34 @@ public class StationController : MonoBehaviour
         cookingUIEventChannel.RaiseOnRefreshStationView(station);
     }
 
+    private void StartAddProperty(ActionData actionData){
+        StartCoroutine(ExecuteAddProperty(actionData));
+    }
+
+    private IEnumerator ExecuteAddProperty(ActionData actionData){
+        yield return StartCoroutine(WaitBeforeApplying(2.0f));
+
+        yield return StartCoroutine(ApplyProperty(actionData));
+    }
+
+
+    private IEnumerator WaitBeforeApplying(float waitTime){
+        yield return new WaitForSeconds(waitTime);
+    }
+    
     /// Applies a property to all active ingredients on the station if they don't already have it
-    private void AddProperty(Property actionProperty)
+    
+    private IEnumerator ApplyProperty(ActionData actionData)
+
+    
     {
+        yield return new WaitForSeconds(2f);
+
+
         foreach (var ingredient in station.ActiveIngredients)
         {
-            if(!ingredient.Properties.Contains(actionProperty)){
-                ingredient.Properties.Add(actionProperty);
+            if(!ingredient.Properties.Contains(actionData.Property)){
+                ingredient.Properties.Add(actionData.Property);
             }
         }
         cookingUIEventChannel.RaiseOnRefreshStationView(station);
