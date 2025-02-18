@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private void Start() 
     {
-        townHall = GameObject.Find("Townhall");
+        townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
         townHallScript = townHall.GetComponent<Townhall>();
         target = townHall.transform;
