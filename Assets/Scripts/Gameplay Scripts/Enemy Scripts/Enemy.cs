@@ -92,6 +92,9 @@ public class Enemy : MonoBehaviour
             freezeTimer = freezeTime;
             speed = 0f;
             townHallScript.RemoveFromEnemiesList(this);
+        } else {
+
+            freezeTimer = freezeTime;
         }
     }
 
