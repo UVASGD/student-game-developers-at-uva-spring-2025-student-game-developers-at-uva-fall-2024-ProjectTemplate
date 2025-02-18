@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float health = 100f;
-    private const float DEFAULT_SPEED = 5f;
+    private const float DEFAULT_SPEED = 3f;
     private const float BASE_DAMAGE = 10f;
     private float speed = DEFAULT_SPEED;
     private float damage;
@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     private bool isFrozen = false;
     private float freezeTimer = 0f;
     private bool isDoingDamage = false;
+
+    private bool isSlowed = false;
+    private float slowTimer = 0f;
     private GameObject townHall;
     private Townhall townHallScript;
 
@@ -29,10 +32,9 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (isFrozen)
-        {
-            HandleFreeze();
-        }
+        if (isFrozen){HandleFreeze();}
+        if (isSlowed){HandleSlow();}
+
         Move();
     }
 
@@ -103,6 +105,27 @@ public class Enemy : MonoBehaviour
             isDoingDamage = true;
             ResetSpeed();
             townHallScript.AddToEnemiesList(this);
+        }
+    }
+
+    public void ApplySlow(float slowTime, float slowMangitude)
+    {
+        if (!isSlowed)
+        {
+            isSlowed = true;
+            slowTimer = slowTime;
+            speed *= slowMangitude;
+        }
+    }
+
+    private void HandleSlow()
+    {
+        slowTimer -= Time.deltaTime;
+        
+        if (slowTimer <= 0)
+        {
+            isSlowed = false;
+            ResetSpeed();
         }
     }
 
