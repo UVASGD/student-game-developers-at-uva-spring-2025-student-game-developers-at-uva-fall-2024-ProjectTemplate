@@ -16,4 +16,7 @@ public class  Equiptment : ScriptableObject
     [field: SerializeField]
     public Sprite[] Sprites { get; set; }  
 
+    [field: SerializeField]
+    public int Price { get; set; }
+
 }
