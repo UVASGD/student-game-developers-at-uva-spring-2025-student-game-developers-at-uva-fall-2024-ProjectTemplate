@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     {
         if (isFrozen) {HandleFreeze();}
         if (isPoisoned) {HandlePoison();}
+        if (isDefenseDown) {HandleDefenseDown();}
 
         Move();
     }
@@ -125,11 +126,32 @@ public class Enemy : MonoBehaviour
         
         if (poisonTimer <= 0)
         {
-            isPoisoned = true;
+            isPoisoned = false;
             damage /= damageWeakness;
         }
     }
-    private void 
+
+    public void ApplyDefenseDown(float defenseTime)
+    {
+        if (!isDefenseDown)
+        {
+            isDefenseDown = true;
+            defenseTimer = defenseTime;
+            health *= healthWeakness;
+        }
+    }
+
+    private void HandleDefenseDown()
+    {
+        defenseTimer -= Time.deltaTime;
+        
+        if (defenseTimer <= 0)
+        {
+            isDefenseDown = false;
+            health /= healthWeakness;
+        }
+    }
+
 
     public void SetDoingDamage(bool doingDamage)
     {
