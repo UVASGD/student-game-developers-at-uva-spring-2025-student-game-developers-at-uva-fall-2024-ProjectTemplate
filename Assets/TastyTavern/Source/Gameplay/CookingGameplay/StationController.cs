@@ -48,7 +48,7 @@ public class StationController : MonoBehaviour
     }
 
     private IEnumerator ExecuteAddProperty(ActionData actionData){
-        yield return StartCoroutine(WaitBeforeApplying(2.0f));
+        yield return StartCoroutine(WaitBeforeApplying(actionData.ActionTime));
 
         yield return StartCoroutine(ApplyProperty(actionData));
     }
