@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     private int burnTick = 0;
     private float tickDuration = 0f; // for burn
     private float burnDamage = 0f;
+    private bool isVulnerable = false;
+    private float vulnerableHealth = 0f;
+    private float vulnerableTimer = 0f;
     private bool isDoingDamage = false;
     private GameObject townHall;
     private Townhall townHallScript;
@@ -42,6 +45,10 @@ public class Enemy : MonoBehaviour
         if (isBurned)
         {
             HandleBurn();
+        }
+        if (isVulnerable)
+        {
+            HandleVulnerable();
         }
         Move();
     }
@@ -88,6 +95,15 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+
+        if (isVulnerable)
+        {
+            vulnerableHealth -= amount;
+            if(vulnerableHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -143,6 +159,27 @@ public class Enemy : MonoBehaviour
             {
                 isBurned = false;
             }
+        }
+    }
+
+    public void ApplyVulnerable(float vulnerableTime, float vulnerablePercentage)
+    {
+        if (!isVulnerable)
+        {
+            isVulnerable = true;
+            vulnerableHealth = health * vulnerablePercentage;
+            vulnerableTimer = vulnerableTime;
+        }
+    }
+
+    private void HandleVulnerable()
+    {
+        vulnerableTimer -= Time.deltaTime;
+
+        if (vulnerableTimer <= 0)
+        {
+            isVulnerable = false;
+            Debug.Log("Vulnerability end. Current Health equals " + health);
         }
     }
 
