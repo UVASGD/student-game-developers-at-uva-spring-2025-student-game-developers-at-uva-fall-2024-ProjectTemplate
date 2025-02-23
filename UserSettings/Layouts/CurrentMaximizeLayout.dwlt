@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 2833
+  controlID: 3828
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 2790
+  controlID: 3829
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 2774
+  controlID: 3830
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -246,7 +246,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8cf0ffff20fbffff
+      m_ExpandedIDs: 20fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -860,9 +860,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.074082635, y: 0.92471546, z: -0.28737584, w: 0.2383868}
   m_Size:
-    m_Target: 10.437331
+    m_Target: 9.764723
     speed: 2
-    m_Value: 10.437331
+    m_Value: 9.764723
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -935,7 +935,7 @@ MonoBehaviour:
     m_CachedPref: -151
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 43762
+  m_LastInspectedObjectInstanceID: 20918
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -1016,7 +1016,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/Gameplay Scripts/Ability Scripts/Prototype 1 Ability
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1026,16 +1026,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/Gameplay Scripts/Ability Scripts/Prototype 1 Ability
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\pwa5xq\Documents\GitHub\spring-2025-cosaint
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 188.00018}
-    m_SelectedIDs: 88a90000
-    m_LastClickedID: 43400
-    m_ExpandedIDs: 0000000086a9000088a900008aa900008ca9000000ca9a3b
+    scrollPos: {x: 0, y: 156.00174}
+    m_SelectedIDs: 72aa0000
+    m_LastClickedID: 43634
+    m_ExpandedIDs: 0000000086a9000088a900008aa900008ca9000004aa000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1090,8 +1090,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f2aa0000
-    m_LastClickedInstanceID: 43762
+    m_SelectedInstanceIDs: b6510000
+    m_LastClickedInstanceID: 20918
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300001e5e0000ba61000056620000586200005c620000606200006662000062620000886a0000686200005268000050680000ee5c0000ec5c0000e85c0000e65c0000ea5c0000485d0000445d000000000000
     m_RenameOverlay:
@@ -1226,7 +1226,7 @@ MonoBehaviour:
     m_CachedPref: -151
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 43762
+  m_LastInspectedObjectInstanceID: 20918
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

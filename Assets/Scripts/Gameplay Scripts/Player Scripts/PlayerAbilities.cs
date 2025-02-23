@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public GameObject prototype1Prefab;
     public GameObject prototype2Prefab;
     public GameObject prototypeBurnPrefab;
+    public GameObject prototypeVulnerablePrefab;
 
     public Transform orientation;
 
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
         abilityManager.AddAbility(new PrototypeAbility(prototype1Prefab, orientation));
         abilityManager.AddAbility(new Prototype2Ability(prototype2Prefab, orientation));
         abilityManager.AddAbility(new PrototypeBurnAbility(prototypeBurnPrefab, orientation));
+        abilityManager.AddAbility(new PrototypeVulnerableAbility(prototypeVulnerablePrefab, orientation));
     }
 
     public void AwardWisdomPoints(int points)
