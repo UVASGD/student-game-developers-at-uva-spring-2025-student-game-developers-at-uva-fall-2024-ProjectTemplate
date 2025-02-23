@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Shop", menuName = "ScriptableObjects/Shop")]
-public class Shop : ScriptableObject 
+public class ShopData : ScriptableObject 
 {
 
     [field: SerializeField]

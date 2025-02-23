@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "Equiptment", menuName = "ScriptableObjects/Equiptment", order = 0)]
-public class  Equiptment : ScriptableObject 
+public class  Equipment : ScriptableObject 
 {
 
     [field: SerializeField]
