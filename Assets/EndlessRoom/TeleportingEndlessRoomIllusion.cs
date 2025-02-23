@@ -21,11 +21,11 @@ public class TeleportingEndlessRoomIllusion : TeleportingIllusion {
 
     public new void teleportObject(GameObject go)
     {
-        Debug.Log(go.transform.position - transform.position);
+        Debug.Log("Teleported player");
         Vector3 positionOffset = go.transform.position - transform.position;
         go.transform.position = destination.position + positionOffset;
-        Quaternion rotationOffset = go.transform.rotation * Quaternion.Inverse(transform.rotation);
-        go.transform.rotation = destination.rotation * rotationOffset;
+        Quaternion rotationOffset = destination.rotation * Quaternion.Inverse(transform.rotation);
+        go.transform.rotation = go.transform.rotation * rotationOffset;
         if (portalNumber == PortalNumber.A2) EndlessRoomManager.Instance.numA3Triggered = 0;
         if (portalNumber == PortalNumber.A3) EndlessRoomManager.Instance.A3Triggered();
         if (portalNumber == PortalNumber.A6) EndlessRoomManager.Instance.mazeGenerator.CreateMaze();

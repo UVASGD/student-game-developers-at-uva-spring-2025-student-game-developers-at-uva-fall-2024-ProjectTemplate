@@ -11,7 +11,7 @@ public class DuplicateExactPosition : MonoBehaviour
     {
         foreach (Transform child in objectsToDuplicateParent)
         {
-            GameObject newObj = Instantiate(child.gameObject, child.position - transform.position + newLocationTransform.position - new Vector3(0f,0.02f,0f), child.rotation * Quaternion.Inverse(transform.rotation) * newLocationTransform.rotation, newParent);
+            GameObject newObj = Instantiate(child.gameObject, child.position - transform.position + newLocationTransform.position - new Vector3(0f,0.02f,0f), newLocationTransform.rotation * Quaternion.Inverse(transform.rotation) * child.rotation, newParent);
             newObj.transform.localScale = child.localScale;
         }
     }
