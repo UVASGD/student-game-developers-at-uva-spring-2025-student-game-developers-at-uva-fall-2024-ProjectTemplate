@@ -28,6 +28,9 @@ public class ShopItem : ScriptableObject
         Recipe,
         Equipment,
         Biome
+    } 
+    
+    [field: SerializeField]
+    public ItemType Type { get; set; }
     }
-
 }
