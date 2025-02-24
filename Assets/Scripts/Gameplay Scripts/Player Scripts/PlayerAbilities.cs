@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 
     public GameObject prototype1Prefab;
     public GameObject prototype2Prefab;
+    public GameObject prototypeBurnPrefab;
 
     public Transform orientation;
 
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
         abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
         abilityManager.AddAbility(new PrototypeAbility(prototype1Prefab, orientation));
         abilityManager.AddAbility(new Prototype2Ability(prototype2Prefab, orientation));
+        abilityManager.AddAbility(new PrototypeBurnAbility(prototypeBurnPrefab, orientation));
     }
 
     public void AwardWisdomPoints(int points)

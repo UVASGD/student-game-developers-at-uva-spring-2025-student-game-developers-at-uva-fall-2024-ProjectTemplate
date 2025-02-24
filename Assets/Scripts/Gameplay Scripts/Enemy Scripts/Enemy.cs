@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework.Internal;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private bool isFrozen = false;
     private float freezeTimer = 0f;
+    private bool isBurned = false;
+    private float burnTimer = 0f;
+    private int burnTick = 0;
+    private float tickDuration = 0f; // for burn
+    private float burnDamage = 0f;
     private bool isDoingDamage = false;
 
     private bool isSlowed = false;
@@ -34,6 +40,7 @@ public class Enemy : MonoBehaviour
     {
         if (isFrozen){HandleFreeze();}
         if (isSlowed){HandleSlow();}
+        if (isBurned){HandleBurn();}
 
         Move();
     }
@@ -129,6 +136,33 @@ public class Enemy : MonoBehaviour
         {
             isSlowed = false;
             ResetSpeed();
+    public void ApplyBurn(float tickDur, float burnDmg, int numTicks)
+    {
+        if (!isBurned)
+        {
+            isBurned = true;
+            burnTick = numTicks;
+            tickDuration = tickDur;
+            burnTimer = tickDuration;
+            burnDamage = burnDmg;
+        }
+    }
+
+    private void HandleBurn()
+    {
+        burnTimer -= Time.deltaTime;
+
+        if (burnTimer <= 0)
+        {
+            TakeDamage(burnDamage);
+            
+            burnTimer += tickDuration;
+            burnTick--;
+
+            if(burnTick <= 0)
+            {
+                isBurned = false;
+            }
         }
     }
 
