@@ -40,13 +40,11 @@ public class Station {
     private void OnEnable()
     {
         cookingUIEventChannel.OnAddIngredient += AddIngredient;
-        cookingUIEventChannel.OnAddProperty += StartAddProperty;
     }
 
     private void OnDisable() 
     {
         cookingUIEventChannel.OnAddIngredient -= AddIngredient;
-        cookingUIEventChannel.OnAddProperty -= StartAddProperty;
     }
 
     /// Adds ingredient to current active workspace (from stock)
@@ -55,24 +53,10 @@ public class Station {
         AddToActive(ingredient);
         cookingUIEventChannel.RaiseOnRefreshStationView(this);
     }
-
-    private void StartAddProperty(ActionData actionData){
-        ExecuteAddProperty(ExecuteAddProperty(actionData)).MoveNext();
-    }
-
-    private IEnumerator ExecuteAddProperty(ActionData actionData){
-        yield return StartCoroutine(WaitBeforeApplying(actionData.ActionTime));
-
-        ApplyProperty(actionData);
-    }
-
-    private IEnumerator WaitBeforeApplying(float waitTime){
-        yield return new WaitForSeconds(waitTime);
-    }
     
     /// Applies a property to all active ingredients on the station if they don't already have it
     
-    private void ApplyProperty(ActionData actionData)
+    public void ApplyProperty(ActionData actionData)
     {
         foreach (var ingredient in ActiveIngredients)
         {

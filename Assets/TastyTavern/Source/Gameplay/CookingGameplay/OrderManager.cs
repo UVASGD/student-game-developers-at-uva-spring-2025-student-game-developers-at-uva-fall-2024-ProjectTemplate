@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Collections;
 
 public class OrderManager : MonoBehaviour
 {
@@ -34,14 +35,32 @@ public class OrderManager : MonoBehaviour
     {
         cookingUIEventChannel.OnOpenOrder += AddOrder;
         cookingUIEventChannel.OnSubmitOrder += SubmitOrder;
+        cookingUIEventChannel.OnAddProperty += StartAddProperty;
     }
 
     private void OnDisable()
     {
         cookingUIEventChannel.OnOpenOrder -= AddOrder;
         cookingUIEventChannel.OnSubmitOrder -= SubmitOrder;
+        cookingUIEventChannel.OnAddProperty -= StartAddProperty;
     }
 
+    private void StartAddProperty(ActionData actionData)
+    {
+        StartCoroutine(ExecuteAddProperty(actionData));
+    }
+
+    private IEnumerator ExecuteAddProperty(ActionData actionData)
+    {
+        yield return StartCoroutine(WaitBeforeApplying(actionData.ActionTime));
+
+        currentOrder.Station.ApplyProperty(actionData);
+    }
+
+    private IEnumerator WaitBeforeApplying(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+    }
 
     /// <summary>
     /// Changes the current order to the newly selected order.
