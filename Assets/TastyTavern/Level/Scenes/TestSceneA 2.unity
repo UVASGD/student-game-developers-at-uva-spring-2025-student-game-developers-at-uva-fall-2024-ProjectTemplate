@@ -315,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &694973455
 Transform:
   m_ObjectHideFlags: 0
@@ -345,8 +345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookingUIEventChannel: {fileID: 11400000, guid: 98faadf6e98d87049badef501f757299, type: 2}
   customerController: {fileID: 835449716}
-  currentOrder: {fileID: 0}
-  allOrders: []
 --- !u!1 &835449714
 GameObject:
   m_ObjectHideFlags: 0

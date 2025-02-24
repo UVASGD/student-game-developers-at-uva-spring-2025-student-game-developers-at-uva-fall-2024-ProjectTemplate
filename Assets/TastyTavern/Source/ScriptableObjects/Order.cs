@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Order : MonoBehaviour
+public class Order
 {
     // [field: SerializeField]
     // public int OrderSlot { get; set; }

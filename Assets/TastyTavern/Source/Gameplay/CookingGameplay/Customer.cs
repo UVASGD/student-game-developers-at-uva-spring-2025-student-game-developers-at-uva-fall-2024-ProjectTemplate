@@ -35,10 +35,10 @@ public class Customer : MonoBehaviour
             selectedIngredients.Add(recipe.Ingredients[i], recipe.Properties[i].Properties);
         }
 
-        if (rand.Next(0, 4) == 3) // 1/4 chance
+        /**if (rand.Next(0, 4) == 3) // 1/4 chance
         {
             selectedIngredients.Remove(selectedIngredients.ElementAt(rand.Next(0, selectedIngredients.Count - 1)).Key);
-        }
+        }**/
 
         return new Order(this, recipe, selectedIngredients);
     }
