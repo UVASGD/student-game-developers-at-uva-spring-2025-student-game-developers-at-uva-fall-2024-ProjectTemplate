@@ -13,6 +13,19 @@ public class Customer : MonoBehaviour
     [field: SerializeField]
     public MenuManager MenuManager { get; set; }
 
+
+    // ONLY FOR DEBUGGING PURPOSES
+    [field: SerializeField]
+    public string orderName;
+
+    private void Update()
+    {
+        if (Data.Order != null)
+        {
+            orderName = Data.Order.Recipe.Name;
+        }
+    }
+
     public void Initialize(CustomerData data)
     {
         Data = data;
