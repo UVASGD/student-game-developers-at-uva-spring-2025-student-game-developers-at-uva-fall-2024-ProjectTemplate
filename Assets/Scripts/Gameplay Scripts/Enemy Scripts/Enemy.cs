@@ -12,6 +12,13 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private bool isFrozen = false;
     private float freezeTimer = 0f;
+    
+    private bool isBurned = false;
+    private float burnTimer = 0f;
+    private int burnTick = 0;
+    private float tickDuration = 0f; // for burn
+    private float burnDamage = 0f;
+
     private bool isDoingDamage = false;
 
     private bool isPoisoned = false;
@@ -40,7 +47,7 @@ public class Enemy : MonoBehaviour
         if (isFrozen) {HandleFreeze();}
         if (isPoisoned) {HandlePoison();}
         if (isDefenseDown) {HandleDefenseDown();}
-
+        if(isBurned) {HandleBurn();}
         Move();
     }
 
@@ -113,7 +120,7 @@ public class Enemy : MonoBehaviour
             townHallScript.AddToEnemiesList(this);
         }
     }
-    private void ApplyPoison(float poisonTime, float damageWeak) {
+    public void ApplyPoison(float poisonTime, float damageWeak) {
         if(!isPoisoned) {
             isPoisoned = true;
             damageWeakness = damageWeak;
@@ -129,6 +136,35 @@ public class Enemy : MonoBehaviour
         {
             isPoisoned = false;
             damage /= damageWeakness;
+        }
+    }
+    public void ApplyBurn(float tickDur, float burnDmg, int numTicks)
+    {
+        if (!isBurned)
+        {
+            isBurned = true;
+            burnTick = numTicks;
+            tickDuration = tickDur;
+            burnTimer = tickDuration;
+            burnDamage = burnDmg;
+        }
+    }
+
+    private void HandleBurn()
+    {
+        burnTimer -= Time.deltaTime;
+
+        if (burnTimer <= 0)
+        {
+            TakeDamage(burnDamage);
+
+            burnTimer += tickDuration;
+            burnTick--;
+
+            if (burnTick <= 0)
+            {
+                isBurned = false;
+            }
         }
     }
 
