@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     private bool isSlowed = false;
     private float slowTimer = 0f;
     private GameObject townHall;
-    private Townhall townHallScript;
+    private Lighthouse lighthouse;
 
     private EnemySpawnManager enemySpawnManager;
 
@@ -31,8 +31,8 @@ public class Enemy : MonoBehaviour
     {
         townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
-        townHallScript = townHall.GetComponent<Townhall>();
-        target = townHall.transform;
+        lighthouse = lighthouse.GetComponent<Lighthouse>();
+        target = lighthouse.transform;
         SetRoundDamage();
     }
 
@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
         if (isFrozen){HandleFreeze();}
         if (isSlowed){HandleSlow();}
         if (isBurned){HandleBurn();}
-
         Move();
     }
 
@@ -98,7 +97,8 @@ public class Enemy : MonoBehaviour
             isDoingDamage = false;
             freezeTimer = freezeTime;
             speed = 0f;
-            townHallScript.RemoveFromEnemiesList(this);
+            lighthouse.RemoveFromEnemiesList(this);
+
         } else {
 
             freezeTimer = freezeTime;
@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
             isFrozen = false;
             isDoingDamage = true;
             ResetSpeed();
-            townHallScript.AddToEnemiesList(this);
+            lighthouse.AddToEnemiesList(this);
         }
     }
 
@@ -136,6 +136,8 @@ public class Enemy : MonoBehaviour
         {
             isSlowed = false;
             ResetSpeed();
+        }
+    }
     public void ApplyBurn(float tickDur, float burnDmg, int numTicks)
     {
         if (!isBurned)
@@ -184,7 +186,7 @@ public class Enemy : MonoBehaviour
         // Ensures out of townhall range do not effect enemiesInRange set
         if (isDoingDamage)
         {
-            townHallScript.RemoveFromEnemiesList(this);
+            lighthouse.RemoveFromEnemiesList(this);
         }
         
         enemySpawnManager.DecrementEnemyCount();
