@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
         lighthouse = townHall.GetComponent<Lighthouse>();
         target = lighthouse.transform;
         SetRoundDamage();
-        healthText.text = health.ToString("#.0") + " / " + maxHealth;
+        healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
     }
 
     private void Update()
@@ -123,7 +123,7 @@ public class Enemy : MonoBehaviour
                 Die();
             }
             healthBar.value = vulnerableHealth / maxHealth;
-            healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth;
+            healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth.ToString("#.0");
         }
         else
         {
@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour
                 Die();
             }
             healthBar.value = health / maxHealth;
-            healthText.text = health.ToString("#.0") + " / " + maxHealth;
+            healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
         }
     }
 
@@ -242,7 +242,7 @@ public class Enemy : MonoBehaviour
             vulnerableTimer = vulnerableTime;
             sliderBar.color = Color.green;
             healthBar.value = vulnerableHealth / maxHealth;
-            healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth;
+            healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth.ToString("#.0");
         }
     }
 
@@ -255,7 +255,7 @@ public class Enemy : MonoBehaviour
             isVulnerable = false;
             sliderBar.color = Color.red;
             healthBar.value = health / maxHealth;
-            healthText.text = health.ToString("#.0") + " / " + maxHealth;
+            healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
         }
     }
 
