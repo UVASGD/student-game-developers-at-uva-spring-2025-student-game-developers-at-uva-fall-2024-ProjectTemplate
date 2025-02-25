@@ -113,9 +113,10 @@ public class Enemy : MonoBehaviour
             townHallScript.AddToEnemiesList(this);
         }
     }
-    private void ApplyPoison(float poisonTime) {
+    private void ApplyPoison(float poisonTime, float damageWeak) {
         if(!isPoisoned) {
             isPoisoned = true;
+            damageWeakness = damageWeak;
             damage *= damageWeakness;
             poisonTimer = poisonTime;
         }

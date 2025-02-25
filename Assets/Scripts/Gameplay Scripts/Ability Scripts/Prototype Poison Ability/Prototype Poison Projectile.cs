@@ -4,6 +4,7 @@ public class ProtopyeBurnProjectile : MonoBehaviour
 {
 
     private float poisonTime = 5f;
+    private float poisonWeakness = 0.8f; //loses 20% damage (multiplicative)
 
     public void Start()
     {
@@ -15,7 +16,7 @@ public class ProtopyeBurnProjectile : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
-            other.gameObject.GetComponent<Enemy>().ApplyPoison(poisonTime)
+            other.gameObject.GetComponent<Enemy>().ApplyPoison(poisonTime, poisonWeakness)
         }
         else if (other.gameObject.tag == "Ground" ||
                    other.gameObject.tag == "Townhall")
