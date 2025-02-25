@@ -6,7 +6,7 @@ public class PrototypePoisonAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypeBurnAbility(GameObject prefab, Transform player) 
+    public PrototypePoisonAbility(GameObject prefab, Transform player) 
         : base("Prototype Poison Ability", KeyCode.T, 2f)
     {
         projectilePrefab = prefab;
