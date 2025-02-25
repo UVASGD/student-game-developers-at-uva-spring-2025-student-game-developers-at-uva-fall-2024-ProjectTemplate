@@ -8,6 +8,8 @@ public class ProtopyeVulnerableProjectile : MonoBehaviour
 
     public float selfDestructTime = 4f;
 
+    public float Duration { get => duration; set => duration = value; }
+
     public void Start() 
     {
         Destroy(this.gameObject, selfDestructTime);
