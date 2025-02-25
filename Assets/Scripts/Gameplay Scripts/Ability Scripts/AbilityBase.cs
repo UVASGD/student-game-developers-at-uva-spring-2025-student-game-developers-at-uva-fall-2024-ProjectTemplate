@@ -8,7 +8,8 @@ public abstract class AbilityBase
     public float cooldownTime { get; private set; }
 
     public float level { get; set; }
-    private float lastActivatedTime;
+    public Sprite AbilityIcon { get; protected set; }
+    public float lastActivatedTime { get; protected set; }
 
     public AbilityBase(string name, KeyCode key, float cTime)
     {
