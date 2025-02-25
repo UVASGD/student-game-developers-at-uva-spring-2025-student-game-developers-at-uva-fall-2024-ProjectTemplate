@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     {
         townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
-        lighthouse = lighthouse.GetComponent<Lighthouse>();
+        lighthouse = townHall.GetComponent<Lighthouse>();
         target = lighthouse.transform;
         SetRoundDamage();
     }
