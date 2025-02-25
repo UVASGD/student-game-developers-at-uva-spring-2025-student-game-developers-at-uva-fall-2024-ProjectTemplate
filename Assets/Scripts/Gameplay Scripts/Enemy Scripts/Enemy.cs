@@ -1,10 +1,13 @@
 using System;
 using NUnit.Framework.Internal;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    private float maxHealth = 100f;
     private float health = 100f;
     private const float DEFAULT_SPEED = 3f;
     private const float BASE_DAMAGE = 10f;
@@ -27,6 +30,10 @@ public class Enemy : MonoBehaviour
     private float slowTimer = 0f;
     private GameObject townHall;
     private Lighthouse lighthouse;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private Image sliderBar;
+    [SerializeField] private Transform healthBarTransform;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     private EnemySpawnManager enemySpawnManager;
 
@@ -37,6 +44,7 @@ public class Enemy : MonoBehaviour
         lighthouse = townHall.GetComponent<Lighthouse>();
         target = lighthouse.transform;
         SetRoundDamage();
+        healthText.text = health.ToString("#.0") + " / " + maxHealth;
     }
 
     private void Update()
@@ -46,6 +54,11 @@ public class Enemy : MonoBehaviour
         if (isBurned){HandleBurn();}
         if (isVulnerable){HandleVulnerable();}
         Move();
+    }
+
+    private void LateUpdate()
+    {
+        healthBarTransform.LookAt(Camera.main.transform);
     }
 
     // Basic movement logic shared by all enemies
@@ -87,10 +100,6 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(float amount)
     {
         health -= amount;
-        if (health <= 0)
-        {
-            Die();
-        }
 
         if (isVulnerable)
         {
@@ -99,6 +108,17 @@ public class Enemy : MonoBehaviour
             {
                 Die();
             }
+            healthBar.value = vulnerableHealth / maxHealth;
+            healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth;
+        }
+        else
+        {
+            if (health <= 0)
+            {
+                Die();
+            }
+            healthBar.value = health / maxHealth;
+            healthText.text = health.ToString("#.0") + " / " + maxHealth;
         }
     }
 
@@ -188,6 +208,9 @@ public class Enemy : MonoBehaviour
             isVulnerable = true;
             vulnerableHealth = health * vulnerablePercentage;
             vulnerableTimer = vulnerableTime;
+            sliderBar.color = Color.green;
+            healthBar.value = vulnerableHealth / maxHealth;
+            healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth;
         }
     }
 
@@ -198,7 +221,9 @@ public class Enemy : MonoBehaviour
         if (vulnerableTimer <= 0)
         {
             isVulnerable = false;
-            Debug.Log("Vulnerability end. Current Health equals " + health);
+            sliderBar.color = Color.red;
+            healthBar.value = health / maxHealth;
+            healthText.text = health.ToString("#.0") + " / " + maxHealth;
         }
     }
 
