@@ -1,7 +1,6 @@
 using System;
 using NUnit.Framework.Internal;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,11 +12,13 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private bool isFrozen = false;
     private float freezeTimer = 0f;
+    
     private bool isBurned = false;
     private float burnTimer = 0f;
     private int burnTick = 0;
     private float tickDuration = 0f; // for burn
     private float burnDamage = 0f;
+
     private bool isVulnerable = false;
     private float vulnerableHealth = 0f;
     private float vulnerableTimer = 0f;
@@ -25,6 +26,14 @@ public class Enemy : MonoBehaviour
 
     private bool isSlowed = false;
     private float slowTimer = 0f;
+
+    private bool isPoisoned = false;
+    private float poisonTimer = 0f;
+    private float damageWeakness = 0.8f; //loses 20% damage when weak
+
+    private bool isDefenseDown = false;
+    private float defenseTimer = 0f;
+    private float healthWeakness = 0.8f;
     private GameObject townHall;
     private Lighthouse lighthouse;
 
@@ -41,6 +50,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (isFrozen) {HandleFreeze();}
+        if (isPoisoned) {HandlePoison();}
+        if (isDefenseDown) {HandleDefenseDown();}
+        if(isBurned) {HandleBurn();}
         if (isFrozen){HandleFreeze();}
         if (isSlowed){HandleSlow();}
         if (isBurned){HandleBurn();}
@@ -130,6 +143,24 @@ public class Enemy : MonoBehaviour
             lighthouse.AddToEnemiesList(this);
         }
     }
+    public void ApplyPoison(float poisonTime, float damageWeak) {
+        if(!isPoisoned) {
+            isPoisoned = true;
+            damageWeakness = damageWeak;
+            damage *= damageWeakness;
+            poisonTimer = poisonTime;
+        }
+    }
+    private void HandlePoison()
+    {
+        poisonTimer -= Time.deltaTime;
+        
+        if (poisonTimer <= 0)
+        {
+            isPoisoned = false;
+            damage /= damageWeakness;
+        }
+    }
 
     public void ApplySlow(float slowTime, float slowMangitude)
     {
@@ -170,11 +201,11 @@ public class Enemy : MonoBehaviour
         if (burnTimer <= 0)
         {
             TakeDamage(burnDamage);
-            
+
             burnTimer += tickDuration;
             burnTick--;
 
-            if(burnTick <= 0)
+            if (burnTick <= 0)
             {
                 isBurned = false;
             }
@@ -201,6 +232,28 @@ public class Enemy : MonoBehaviour
             Debug.Log("Vulnerability end. Current Health equals " + health);
         }
     }
+
+    public void ApplyDefenseDown(float defenseTime)
+    {
+        if (!isDefenseDown)
+        {
+            isDefenseDown = true;
+            defenseTimer = defenseTime;
+            health *= healthWeakness;
+        }
+    }
+
+    private void HandleDefenseDown()
+    {
+        defenseTimer -= Time.deltaTime;
+        
+        if (defenseTimer <= 0)
+        {
+            isDefenseDown = false;
+            health /= healthWeakness;
+        }
+    }
+
 
     public void SetDoingDamage(bool doingDamage)
     {
