@@ -7,6 +7,8 @@ public class Protopye2Projectile : MonoBehaviour
 
     public float selfDestructTime = 4f;
 
+    public float FreezeTime { get => freezeTime; set => freezeTime = value; }
+
     public void Start() 
     {
         Destroy(this.gameObject, selfDestructTime);
