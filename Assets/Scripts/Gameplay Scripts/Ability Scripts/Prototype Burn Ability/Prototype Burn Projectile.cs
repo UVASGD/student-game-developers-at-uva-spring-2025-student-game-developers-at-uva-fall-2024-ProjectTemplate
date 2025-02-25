@@ -10,6 +10,10 @@ public class ProtopyeBurnProjectile : MonoBehaviour
 
     public float selfDestructTime = 4f;
 
+    public float TickDuration { get => tickDuration; set => tickDuration = value; }
+    public float BurnDamage { get => burnDamage; set => burnDamage = value; }
+    public int NumTicks { get => numTicks; set => numTicks = value; }
+
     public void Start() 
     {
         Destroy(this.gameObject, selfDestructTime);

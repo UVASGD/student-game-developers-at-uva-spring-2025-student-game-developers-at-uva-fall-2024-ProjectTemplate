@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Prototype2Ability : AbilityBase
+public class PrototypePoisonAbility : AbilityBase
 {
     private GameObject projectilePrefab; // Reference to the prefab for the projectile
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public Prototype2Ability(GameObject prefab, Transform player) 
-        : base("Prototype 2 Ability", KeyCode.F, 2f)
+    public PrototypePoisonAbility(GameObject prefab, Transform player) 
+        : base("Prototype Poison Ability", KeyCode.T, 2f)
     {
         projectilePrefab = prefab;
         orientationTransform = player;
@@ -34,7 +34,6 @@ public class Prototype2Ability : AbilityBase
 
     public override void UpgradeAbility()
     {
-        Protopye2Projectile freezeProjectile = projectilePrefab.GetComponent<Protopye2Projectile>();
-        freezeProjectile.FreezeTime = freezeProjectile.FreezeTime * 1.1f;
+
     }
 }
