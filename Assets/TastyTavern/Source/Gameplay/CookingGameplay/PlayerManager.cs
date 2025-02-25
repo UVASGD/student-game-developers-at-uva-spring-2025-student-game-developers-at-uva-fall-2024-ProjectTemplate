@@ -17,10 +17,10 @@ public class PlayerManager : MonoBehaviour
     public List<BiomeData> allBiome = new List<BiomeData>();
 
     //All the scriptable objects get placed into their correct dictionaries, all bools are initially set to false
-    private Dictionary<IngredientData, bool> IngredientUnlocked = new Dictionary<IngredientData, bool>();
-    private Dictionary<ActionData, bool> ActionUnlocked = new Dictionary<ActionData, bool>();
-    private Dictionary<RecipeData, bool> RecipeUnlocked = new Dictionary<RecipeData, bool>();
-    private Dictionary<BiomeData, bool> BiomeUnlocked = new Dictionary<BiomeData, bool>();
+    public Dictionary<IngredientData, bool> IngredientUnlocked = new Dictionary<IngredientData, bool>();
+    public Dictionary<ActionData, bool> ActionUnlocked = new Dictionary<ActionData, bool>();
+    public Dictionary<RecipeData, bool> RecipeUnlocked = new Dictionary<RecipeData, bool>();
+    public Dictionary<BiomeData, bool> BiomeUnlocked = new Dictionary<BiomeData, bool>();
 
     void Start()
     {

@@ -26,6 +26,8 @@ public class ShopManager
     /* Player can buy an item under the following conditions
         1. They have enough gold
         2. The item is not already purchased
+        3. Display only stuff for biome chosen
+        4. Recipies cannot be bought unless all ingredients are unlocked
     If the player meets these conditions, the item is marked as purchased and the player's gold is reduced by the item's price
     public bool BuyItem(ShopItem item, ref int playerGold) 
     */
@@ -41,9 +43,11 @@ public class ShopManager
             } else {
                 playerGold -= item.Price;
                 item.Purchased = true;
+                playerManager.
                 Debug.Log($"You bought {item.Name} for {item.Price} gold!");
                 //how to update information in player?
-
+                // add item to respective dictionaries for player inventory
+                    // allIngredient or IngredientUnlocked?
                 return true;
             }
         }
@@ -53,6 +57,9 @@ public class ShopManager
             return false;
         }
     }
+
+    /* Player can onl
+
 
     // public void DisplayInventory()
     // {
