@@ -34,6 +34,8 @@ public class PrototypeBurnAbility : AbilityBase
 
     public override void UpgradeAbility()
     {
+        ProtopyeBurnProjectile burnProjectile = projectilePrefab.GetComponent<ProtopyeBurnProjectile>();
+        //burnProjectile.se
 
     }
 }
