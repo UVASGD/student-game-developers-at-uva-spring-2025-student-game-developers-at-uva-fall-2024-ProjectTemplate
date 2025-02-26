@@ -18,9 +18,12 @@ using System.Collections.Generic;
 public class ShopManager
 {
     private List<ShopItem> inventory;
-    public ShopManager()
+    private ShopData shopData;
+
+    public ShopManager(ShopData shopData)
     {
-        inventory = ShopData.ShopItems;
+        this.shopData = shopData;
+        inventory = shopData.ShopItems;
     }
 
     /* Player can buy an item under the following conditions
@@ -33,7 +36,7 @@ public class ShopManager
     */
     public bool BuyItem(ShopItem item, ref int playerGold)
     {
-        playerGold = PlayerManager.Money;
+        playerGold = PlayerManager.money;
         if (playerGold >= item.Price)
         {
             if (item.Purchased = true)
@@ -43,7 +46,10 @@ public class ShopManager
             } else {
                 playerGold -= item.Price;
                 item.Purchased = true;
-                playerManager.
+                if (item.Type = ShopItem.ItemType.Ingredient)
+                {
+                    
+                }
                 Debug.Log($"You bought {item.Name} for {item.Price} gold!");
                 //how to update information in player?
                 // add item to respective dictionaries for player inventory

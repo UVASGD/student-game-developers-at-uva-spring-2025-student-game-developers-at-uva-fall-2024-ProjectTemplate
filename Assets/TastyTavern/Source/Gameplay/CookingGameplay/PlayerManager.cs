@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
-    private float money;
+    public float money;
 
     [SerializeField]
     private CookingUIEventChannel cookingUIEventChannel;
