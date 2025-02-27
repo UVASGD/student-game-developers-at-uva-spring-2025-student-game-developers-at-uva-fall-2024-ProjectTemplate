@@ -14,15 +14,18 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ShopManager
 {
     private List<ShopItem> inventory;
     private ShopData shopData;
+    private PlayerManager playerManager;
 
-    public ShopManager(ShopData shopData)
+    public ShopManager(ShopData shopData, PlayerManager playerManager)
     {
         this.shopData = shopData;
+        this.playerManager = playerManager;
         inventory = shopData.ShopItems;
     }
 
@@ -34,19 +37,19 @@ public class ShopManager
     If the player meets these conditions, the item is marked as purchased and the player's gold is reduced by the item's price
     public bool BuyItem(ShopItem item, ref int playerGold) 
     */
-    public bool BuyItem(ShopItem item, ref int playerGold)
+    public bool BuyItem(ShopItem item, ref float playerGold)
     {
-        playerGold = PlayerManager.money;
+        playerGold = playerManager.money;
         if (playerGold >= item.Price)
         {
-            if (item.Purchased = true)
+            if (item.Purchased == true)
             {
                 Debug.Log("You already bought that item!");
                 return false;
             } else {
                 playerGold -= item.Price;
                 item.Purchased = true;
-                if (item.Type = ShopItem.ItemType.Ingredient)
+                if (item.Type == ShopItem.ItemType.Ingredient) // will this work idk
                 {
                     
                 }
@@ -63,8 +66,9 @@ public class ShopManager
             return false;
         }
     }
+}
 
-    /* Player can onl
+/* Player can onl
 
 
     // public void DisplayInventory()
@@ -75,4 +79,4 @@ public class ShopManager
     //         Debug.Log($"{item.Name}: {item.Description}, {item.Price} gold, Purchased: {item.Purchased}");
     //     }
     // }
-}
+}*/
