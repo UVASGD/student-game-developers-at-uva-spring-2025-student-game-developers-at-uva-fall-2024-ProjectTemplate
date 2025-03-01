@@ -32,7 +32,7 @@ public class InteractableUI : MonoBehaviour {
 
     void HandleInteract(){
         // Raycast from player position in direction of mouse to screen and see if it hits any objects with the layer "Interactable"
-        if (Camera.main.isActiveAndEnabled){
+        if (Camera.main != null){
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.SphereCast(ray, 0.5f, out hit, interactDistance, LayerMask.GetMask("Interactable"))){

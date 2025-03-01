@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : Interactable {    
     public override void Interact() {
+        base.Interact();
         gameObject.SetActive(false);
         canInteract = false;
         Debug.Log("Replace with door animation later.");

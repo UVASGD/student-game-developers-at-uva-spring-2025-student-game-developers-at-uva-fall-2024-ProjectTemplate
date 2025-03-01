@@ -8,8 +8,10 @@ public class EndlessRoomManager : MonoBehaviour {
     public TeleportingEndlessRoomIllusion teleportingA3EndlessRoomIllusion;
     public TeleportingEndlessRoomIllusion teleportingA4EndlessRoomIllusion;
     public int numA3Triggered = 0;
+    public GameObject mazeBoard;
     public MazeGenerator mazeGenerator;
     [HideInInspector] public GameObject player;
+    public float cameraMoveZoomTime = 1f;
 
     void Awake() {
         if (Instance == null) {
@@ -33,5 +35,9 @@ public class EndlessRoomManager : MonoBehaviour {
 
     public void MakeA4Active() {
         teleportingA4EndlessRoomIllusion.isActive = true;
+    }
+
+    public void ActivateMazeBoard() {
+        mazeBoard.SetActive(true);
     }
 }

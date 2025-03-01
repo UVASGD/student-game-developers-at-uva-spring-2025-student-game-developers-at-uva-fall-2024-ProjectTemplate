@@ -10,3 +10,6 @@ iv bag: https://www.turbosquid.com/3d-models/iv-bag-3d-model-1563614
 syringes: https://www.turbosquid.com/3d-models/3d-syringe-medical-1645623
 pills: https://www.turbosquid.com/3d-models/bottle-pills-max-free/938419
 doors: https://www.turbosquid.com/3d-models/door-asset-3d-model-1711004
+
+fonts:
+https://www.1001fonts.com/jakobs-handwriting-2-font.html
