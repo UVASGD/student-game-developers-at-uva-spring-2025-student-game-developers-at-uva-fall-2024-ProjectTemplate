@@ -1,11 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))] 
-public class TeleportingIllusion : MonoBehaviour
+public class TeleportingIllusion : TeleportingIllusionBase
 {
-    [SerializeField] protected Transform destination;
-
-    [SerializeField] private Vector3 direction;
+    [SerializeField] protected Vector3 direction;
     [SerializeField] private float angleTolerance;
 
     protected Collider coll;
@@ -28,10 +26,8 @@ public class TeleportingIllusion : MonoBehaviour
             }
         }
     }
-
-    protected void teleportObject(GameObject go)
+    public override void teleportObject(GameObject go)
     {
-        
         Vector3 positionOffset = Quaternion.FromToRotation(destination.forward, direction) * (go.transform.position - transform.position);
         go.transform.position = destination.position + positionOffset;
         Debug.Log("offset" + positionOffset + "final pos" + (destination.position + positionOffset));

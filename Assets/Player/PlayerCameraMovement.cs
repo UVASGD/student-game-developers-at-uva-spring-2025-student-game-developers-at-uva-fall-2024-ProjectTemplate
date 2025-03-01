@@ -8,6 +8,7 @@ public class PlayerCameraMovement : MonoBehaviour
     [SerializeField] private InputAction mouseX;
     [SerializeField] private InputAction mouseY;
     [SerializeField] private float mouseSense;
+    public bool canPan = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,16 +21,19 @@ public class PlayerCameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float inputValueX = mouseX.ReadValue<float>();
-        float inputValueY = -mouseY.ReadValue<float>();
-        if (inputValueX != 0)
+        if(canPan)
         {
-            gameObject.transform.rotation *= Quaternion.Euler(0, inputValueX * Time.deltaTime * mouseSense, 0);
-        }
-        if(inputValueY != 0)
-        {
-            head.transform.localRotation *= Quaternion.Euler(inputValueY * Time.deltaTime * mouseSense, 0, 0);
-            head.transform.localRotation = Quaternion.Euler(head.transform.localEulerAngles.x, 0, 0);
+            float inputValueX = mouseX.ReadValue<float>();
+            float inputValueY = -mouseY.ReadValue<float>();
+            if (inputValueX != 0)
+            {
+                gameObject.transform.rotation *= Quaternion.Euler(0, inputValueX * Time.deltaTime * mouseSense, 0);
+            }
+            if (inputValueY != 0)
+            {
+                head.transform.localRotation *= Quaternion.Euler(inputValueY * Time.deltaTime * mouseSense, 0, 0);
+                head.transform.localRotation = Quaternion.Euler(head.transform.localEulerAngles.x, 0, 0);
+            }
         }
     }
 }
