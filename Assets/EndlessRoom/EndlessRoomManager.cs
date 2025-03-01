@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class EndlessRoomManager : MonoBehaviour {
@@ -14,6 +16,8 @@ public class EndlessRoomManager : MonoBehaviour {
     public DoorTriggerMovingWalls doorTriggerMovingWalls;
     [HideInInspector] public GameObject player;
     public float cameraMoveZoomTime = 1f;
+    public float delayBetweenFlickers = 7f;
+    private Light[] _lights;
 
     void Awake() {
         if (Instance == null) {
@@ -21,8 +25,27 @@ public class EndlessRoomManager : MonoBehaviour {
             teleportingA3EndlessRoomIllusion.isActive = true;
             teleportingA4EndlessRoomIllusion.isActive = false;
             player = GameObject.FindGameObjectWithTag("Player");
+            _lights = GameObject.FindObjectsByType<Light>(FindObjectsSortMode.None);
+            StartCoroutine(StartFlickering());
         } else {
             Destroy(gameObject);
+        }
+    }
+
+    IEnumerator StartFlickering()
+    {
+        while (true)
+        {
+            foreach (Light light in _lights)
+            {
+                light.transform.parent.gameObject.SetActive(!light.transform.parent.gameObject.activeSelf);
+            }
+            yield return new WaitForSeconds(0.1f);
+            foreach (Light light in _lights)
+            {
+                light.transform.parent.gameObject.SetActive(!light.transform.parent.gameObject.activeSelf);
+            }
+            yield return new WaitForSeconds(delayBetweenFlickers);
         }
     }
 
