@@ -21,6 +21,8 @@ public class StationView : MonoBehaviour {
     public VisualElement stationWorkspaceContainer;
     public VisualElement nextStationContainer;
     public VisualElement orderContainer;
+    public VisualElement barAndStationContainer;
+    public VisualElement sidePanelContainer;
 
     public VisualElement stationTop;
 
@@ -53,10 +55,14 @@ public class StationView : MonoBehaviour {
         stationWorkspaceContainer = root.Q<VisualElement>("StationWorkspaceContainer");
         nextStationContainer = root.Q<VisualElement>("BottomContainer");
         orderContainer = root.Q<VisualElement>("TopContainer");
+        barAndStationContainer = root.Q<VisualElement>("BarAndStation");
+        sidePanelContainer = root.Q<VisualElement>("SidePanel");
         actionSlotContainer.Clear();
         ingredientSlotContainer.Clear();
         stationWorkspaceContainer.Clear();
         nextStationContainer.Clear();
+        sidePanelContainer.visible = false;
+        barAndStationContainer.visible = false;
     }
 
     private void Start(){
@@ -137,7 +143,7 @@ public class StationView : MonoBehaviour {
 
     private void AddToStationWorkspace(Ingredient ingredient){
         Sprite sprite;
-        if( ingredient.Properties.Contains(Property.Cut) && ingredient.Properties.Contains(Property.Cooked) ){
+        if( ingredient.Properties.Contains(Property.Cut) && ingredient.Properties.Contains(Property.Cooked)){
             sprite = ingredient.Data.Sprites[3];
         } else if (ingredient.Properties.Contains(Property.Cut)){
             sprite = ingredient.Data.Sprites[2];
