@@ -45,6 +45,7 @@ public class OrderManager : MonoBehaviour
         cookingUIEventChannel.OnAddProperty -= StartAddProperty;
     }
 
+    // Add Property starts here because it needs to kick off a coroutine
     private void StartAddProperty(ActionData actionData)
     {
         StartCoroutine(ExecuteAddProperty(actionData));
@@ -52,14 +53,9 @@ public class OrderManager : MonoBehaviour
 
     private IEnumerator ExecuteAddProperty(ActionData actionData)
     {
-        yield return StartCoroutine(WaitBeforeApplying(actionData.ActionTime));
+        yield return new WaitForSeconds(actionData.ActionTime);
 
         currentOrder.Station.ApplyProperty(actionData);
-    }
-
-    private IEnumerator WaitBeforeApplying(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
     }
 
     /// <summary>

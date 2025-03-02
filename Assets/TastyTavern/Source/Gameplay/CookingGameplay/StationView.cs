@@ -30,7 +30,7 @@ public class StationView : MonoBehaviour {
     private CookingUIEventChannel cookingUIEventChannel;
 
     public IngredientData basilisk;
-    public IngredientData punchPepper;
+    public IngredientData mushroom;
 
     private void OnEnable()
     {
@@ -47,12 +47,16 @@ public class StationView : MonoBehaviour {
     private void Awake(){
         document = GetComponent<UIDocument>();
         root = document.rootVisualElement;
-        Debug.Log("root is" + ingredientSlotContainer);
+        Debug.Log("root is" + root);
         ingredientSlotContainer = root.Q<VisualElement>("IngredientSlotContainer"); //already style?
         actionSlotContainer = root.Q<VisualElement>("ActionSlotContainer");
         stationWorkspaceContainer = root.Q<VisualElement>("StationWorkspaceContainer");
         nextStationContainer = root.Q<VisualElement>("BottomContainer");
         orderContainer = root.Q<VisualElement>("TopContainer");
+        actionSlotContainer.Clear();
+        ingredientSlotContainer.Clear();
+        stationWorkspaceContainer.Clear();
+        nextStationContainer.Clear();
     }
 
     private void Start(){
