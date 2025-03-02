@@ -76,7 +76,7 @@ public class CustomerController : MonoBehaviour
     {
         // Inefficiency: For loop will always be running. Technically it's O(1) every frame since the length of the customers list is a constant 3, but still. 
         // Could be optimized to only run when a spot in customers is null, but I can't use customers.Length b/c it is always 3 since I set it that way. 
-        for (int i = 0; i < CustomerSpots.Count; i++)
+        for (int i = 0; i < 1; i++)//CustomerSpots.Count; i++)
         {
             if (customers[i] == null)
             {
