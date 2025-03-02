@@ -16,15 +16,9 @@ public abstract class AbilityBase
         cooldownTime = cTime;
         level = 1;
         
-        // Add null check for ability name
-        if (string.IsNullOrEmpty(abilityName))
-        {
-            Debug.LogError("Ability name cannot be null or empty!");
-            return;
-        }
 
-        LoadIcon();
-        ValidateIcon();
+        //LoadIcon();
+        //ValidateIcon();
     }
 
     private void LoadIcon()
