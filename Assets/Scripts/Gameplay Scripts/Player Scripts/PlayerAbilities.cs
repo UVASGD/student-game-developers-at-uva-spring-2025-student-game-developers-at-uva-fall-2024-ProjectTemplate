@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public Transform orientation;
 
     private int wisdomPoints = 2;
-    private static bool abilitiesRegistered = false;
+    //private static bool abilitiesRegistered = false;
 
     void Awake()
     {
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         abilityManager.AddAbility(new PrototypeVulnerableAbility(prototypeVulnerablePrefab, orientation));
         abilityManager.AddAbility(new PrototypeSlowAbility(prototypeSlowPrefab, orientation));
         abilityManager.AddAbility(new PrototypePoisonAbility(prototypePoisonPrefab, orientation));
-        abilitiesRegistered = true;
+        //abilitiesRegistered = true;
     }
 
     public void AwardWisdomPoints(int points)
