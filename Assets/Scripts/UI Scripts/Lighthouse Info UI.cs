@@ -4,14 +4,9 @@ using UnityEngine;
 public class LighthouseInfoUI : MonoBehaviour
 {
 
-    Lighthouse lighthouse;
-    TextMeshProUGUI lighthouseHealthText;
+    [SerializeField] Lighthouse lighthouse;
+    [SerializeField] TextMeshProUGUI lighthouseHealthText;
     
-    void Start()
-    {
-        lighthouse = GameObject.Find("Lighthouse").GetComponent<Lighthouse>();
-        lighthouseHealthText = GameObject.Find("Lighthouse Health Text").GetComponent<TextMeshProUGUI>();
-    }
 
     void Update()
     {

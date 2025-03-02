@@ -10,7 +10,7 @@ public class LibraryUI : MonoBehaviour
     private AbilityManager abilityManager;
     private Player player;
 
-    private LibraryUIInteraction libraryUIInteraction;
+    [SerializeField] private LibraryUIInteraction libraryUIInteraction;
 
     private int wisdomPoints;
 
