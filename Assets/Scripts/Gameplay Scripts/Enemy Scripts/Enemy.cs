@@ -60,10 +60,9 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (isFrozen) {HandleFreeze();}
+        //if (isDefenseDown) { HandleDefenseDown(); }
+
         if (isPoisoned) {HandlePoison();}
-        if (isDefenseDown) {HandleDefenseDown();}
-        if(isBurned) {HandleBurn();}
         if (isFrozen){HandleFreeze();}
         if (isSlowed){HandleSlow();}
         if (isBurned){HandleBurn();}
