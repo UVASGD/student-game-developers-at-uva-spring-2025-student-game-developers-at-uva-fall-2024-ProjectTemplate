@@ -30,7 +30,7 @@ public class ProtopyeProjectile : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             
         } else if (other.gameObject.tag == "Ground" ||
-                   other.gameObject.tag == "Townhall")
+                   other.gameObject.tag == "Lighthouse")
         {
             Destroy(this.gameObject);
         }
