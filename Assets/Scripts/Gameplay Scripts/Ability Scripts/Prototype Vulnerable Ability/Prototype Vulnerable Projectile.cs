@@ -22,7 +22,7 @@ public class ProtopyeVulnerableProjectile : MonoBehaviour
             Destroy(this.gameObject);
             other.gameObject.GetComponent<Enemy>().ApplyVulnerable(duration, reductionPercentage);
         } else if (other.gameObject.tag == "Ground" ||
-                   other.gameObject.tag == "Townhall")
+                   other.gameObject.tag == "Lighthouse")
         {
             Destroy(this.gameObject);
         }
