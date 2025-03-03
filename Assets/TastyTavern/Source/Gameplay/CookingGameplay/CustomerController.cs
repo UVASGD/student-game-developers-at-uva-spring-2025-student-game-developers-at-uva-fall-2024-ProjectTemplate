@@ -27,8 +27,8 @@ public class CustomerController : MonoBehaviour
     [SerializeField]
     private int Difficulty;
     private double nextSpawnTime = 0.0;
-    public float baseDelay = 0f; // Base delay in seconds for difficulty = 1.
-    public float randomOffset = 0f; // Maximum random offset added or subtracted from the delay.;
+    public float baseDelay; // Base delay in seconds for difficulty = 1.
+    public float randomOffset; // Maximum random offset added or subtracted from the delay.;
     public GameObject customerPrefab;
 
     [SerializeField]
@@ -69,7 +69,7 @@ public class CustomerController : MonoBehaviour
         float randomDelay = adjustedDelay + Random.Range(-randomOffset, randomOffset);
 
         // Schedule the next spawn time.
-        nextSpawnTime = Time.time + randomDelay;
+        nextSpawnTime = Time.time;// + randomDelay;
     }
 
     public bool CreateCustomer()
@@ -88,7 +88,8 @@ public class CustomerController : MonoBehaviour
                     faces: new List<Sprite>(), // Replace with actual face sprites
                     dialogue: new List<string> { "Hello!", "Thanks!", "Oh no!" },
                     patience: Random.Range(50, 100),
-                    biome: selectedBiome // Replace with the current biome
+                    biome: selectedBiome, // Replace with the current biome
+                    customerSpotIdx: i
                 );
 
                 // Instantiate prefab and initialize
@@ -108,15 +109,10 @@ public class CustomerController : MonoBehaviour
         return false;
     }
 
-    public void RemoveCustomer(Customer c)
+    public void RemoveCustomer(int customeridx)
     {
-        for (int i = 0; i < customers.Length; i++) 
-        {
-            if (customers[i].Equals(c))
-            {
-                customers[i] = null;
-                Destroy(customers[i]);
-            }
-        }
+        customers[customeridx].SetActive(false);
+        Destroy(customers[customeridx]);
+        customers[customeridx] = null;
     }
 }

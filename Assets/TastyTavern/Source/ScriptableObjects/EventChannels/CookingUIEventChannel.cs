@@ -31,7 +31,7 @@ public class CookingUIEventChannel : ScriptableObject {
     public Action OnSubmitOrder;
 
     /// <summary> Callback when a customer is removed </summary>
-    public Action<Customer> OnRemoveCustomer;
+    public Action<int> OnRemoveCustomer;
 
     /// </summary> Callback when the player's money is changed, either by being paid or paying for items </summary>
     public Action<float> OnChangePlayerMoney;
@@ -59,10 +59,10 @@ public class CookingUIEventChannel : ScriptableObject {
         OnSubmitOrder?.Invoke();
     }
 
-    public void RaiseOnRemoveCustomer(Customer customer)
+    public void RaiseOnRemoveCustomer(int idx)
     {
-        Debug.Log("Raise removing " + customer + " broadcasted from event channel.");
-        OnRemoveCustomer?.Invoke(customer);
+        Debug.Log("Raise removing customer at spot " + idx + " broadcasted from event channel.");
+        OnRemoveCustomer?.Invoke(idx);
     }
 
     public void RaiseOnLoadStationView(Station station){

@@ -392,7 +392,7 @@ MonoBehaviour:
   cookingUIEventChannel: {fileID: 11400000, guid: 98faadf6e98d87049badef501f757299, type: 2}
   selectedBiome: {fileID: 0}
   Difficulty: 1
-  baseDelay: 0
+  baseDelay: 2
   randomOffset: 0
   customerPrefab: {fileID: 6330402158794385807, guid: f757c88ac6cd8cb41aee001271e1b24c, type: 3}
   CustomerSpots:
