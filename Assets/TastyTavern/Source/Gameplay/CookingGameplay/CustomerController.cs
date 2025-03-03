@@ -54,12 +54,12 @@ public class CustomerController : MonoBehaviour
 
     private void OnEnable()
     {
-        cookingUIEventChannel.OnSubmitOrder += RemoveCustomer;
+        cookingUIEventChannel.OnRemoveCustomer += RemoveCustomer;
     }
 
     private void OnDisable()
     {
-        cookingUIEventChannel.OnSubmitOrder -= RemoveCustomer;
+        cookingUIEventChannel.OnRemoveCustomer -= RemoveCustomer;
     }
 
     private void ScheduleNextCustomer()

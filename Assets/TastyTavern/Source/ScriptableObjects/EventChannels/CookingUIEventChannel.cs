@@ -28,7 +28,10 @@ public class CookingUIEventChannel : ScriptableObject {
     public Action<Order> OnGenerateOrderButton;
 
     /// Callback when an order is submitted in the UI by the player
-    public Action<Customer> OnSubmitOrder;
+    public Action OnSubmitOrder;
+
+    /// <summary> Callback when a customer is removed </summary>
+    public Action<Customer> OnRemoveCustomer;
 
     /// </summary> Callback when the player's money is changed, either by being paid or paying for items </summary>
     public Action<float> OnChangePlayerMoney;
@@ -51,9 +54,15 @@ public class CookingUIEventChannel : ScriptableObject {
         OnCreateOrder?.Invoke(Order);
     }
 
-    public void RaiseOnSubmitOrder(Customer Customer)
+    public void RaiseOnSubmitOrder()
     {
-        OnSubmitOrder?.Invoke(Customer);
+        OnSubmitOrder?.Invoke();
+    }
+
+    public void RaiseOnRemoveCustomer(Customer customer)
+    {
+        Debug.Log("Raise removing " + customer + " broadcasted from event channel.");
+        OnRemoveCustomer?.Invoke(customer);
     }
 
     public void RaiseOnLoadStationView(Station station){

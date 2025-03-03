@@ -80,11 +80,15 @@ public class OrderManager : MonoBehaviour
         cookingUIEventChannel.RaiseOnGenerateOrderButton(order);
     }
 
-    public void SubmitOrder(Customer customer)
+    public void SubmitOrder()
     {
-        allOrders.Remove(customer.Data.Order);
-        if (customer.Data.Order.isCorrect())
+        allOrders.Remove(currentOrder);
+        cookingUIEventChannel.RaiseOnRemoveCustomer(currentOrder.Customer);
+        if (currentOrder.isCorrect()){
             Debug.Log("Order is correct");
+        } else {
+            Debug.Log("Order is incorrect");
+        }
             // other things can happen here like money? etc. like playerMoney += order.Recipe.Price; or something like that
     }
 

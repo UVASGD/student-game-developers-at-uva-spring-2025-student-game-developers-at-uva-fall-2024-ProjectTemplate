@@ -93,8 +93,13 @@ public class StationView : MonoBehaviour {
         ingredientSlotContainer.Clear();
         stationWorkspaceContainer.Clear();
         orderInstructionsContainer.Clear();
-        // GenerateNextStationButton();
-        GenerateActionButton(station.Data.ActionData);
+        nextStationContainer.Clear();
+        if (station.Data.StationType == StationType.Serving){
+            GenerateServeButton(); // last station only generates serve button
+        } else {
+            GenerateNextStationButton();
+            GenerateActionButton(station.Data.ActionData); 
+        }
         GenerateIngredientButtons(station.StockIngredients);
         GenerateStationBackground(station);
         GenerateOrderInstructions(station.StockIngredients);
@@ -129,6 +134,15 @@ public class StationView : MonoBehaviour {
         nextButton.text = "Next Station";
         nextStationContainer.Add(nextButton);
         nextButton.clicked += OnNextStation;
+    }
+
+    private void GenerateServeButton(){
+        Button serveButton = new();
+        serveButton.AddToClassList("button");
+        serveButton.AddToClassList("next-station-button"); // TODO: consolidate generic styles
+        serveButton.text = "Serve Order";
+        nextStationContainer.Add(serveButton); // change container name
+        serveButton.clicked += OnServeOrder;
     }
 
     private void GenerateActionButton(ActionData actionData){
@@ -174,6 +188,10 @@ public class StationView : MonoBehaviour {
     // This button is not DataButton, does not pass button data
     private void OnNextStation(){
         cookingUIEventChannel.RaiseOnChangeNextStation();
+    }
+
+    private void OnServeOrder(){
+        cookingUIEventChannel.RaiseOnSubmitOrder();
     }
 
     private void OnSelectOrder(OrderButton orderButton){
