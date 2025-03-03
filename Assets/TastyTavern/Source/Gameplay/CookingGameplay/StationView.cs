@@ -42,6 +42,7 @@ public class StationView : MonoBehaviour {
         cookingUIEventChannel.OnRefreshStationWorkspace += RefreshStationWorkspace;
         cookingUIEventChannel.OnRefreshIngredientsPanel += RefreshIngredientsPanel;
         cookingUIEventChannel.OnGenerateOrderButton += GenerateOrderButton;
+        cookingUIEventChannel.OnDeselectOrder += DeselectOrder;
     }
 
     private void OnDisable() 
@@ -50,6 +51,7 @@ public class StationView : MonoBehaviour {
         cookingUIEventChannel.OnRefreshStationWorkspace -= RefreshStationWorkspace;
         cookingUIEventChannel.OnRefreshIngredientsPanel -= RefreshIngredientsPanel;
         cookingUIEventChannel.OnGenerateOrderButton -= GenerateOrderButton;
+        cookingUIEventChannel.OnDeselectOrder -= DeselectOrder;
     }
 
     private void Awake(){
@@ -61,7 +63,9 @@ public class StationView : MonoBehaviour {
         stationWorkspaceContainer = root.Q<VisualElement>("StationWorkspaceContainer");
         nextStationContainer = root.Q<VisualElement>("BottomContainer");
         orderContainer = root.Q<VisualElement>("TopContainer");
+        orderSlot0 = root.Q<VisualElement>("OrderSlot0");
         orderSlot1 = root.Q<VisualElement>("OrderSlot1");
+        orderSlot2 = root.Q<VisualElement>("OrderSlot2");
         barAndStationContainer = root.Q<VisualElement>("BarAndStation");
         sidePanelContainer = root.Q<VisualElement>("SidePanel");
         orderInstructionsContainer = root.Q<VisualElement>("OrderInstructionsPanel");
@@ -77,11 +81,6 @@ public class StationView : MonoBehaviour {
     }
 
     private void Start(){
-        // List<Ingredient> dummyIngredients = new()
-        // {
-        //     basilisk.Create(),
-        //     punchPepper.Create()
-        // };
     }
 
     // ***May be easier to have a simple button instead, not attached to station data, go back up to order
@@ -155,7 +154,13 @@ public class StationView : MonoBehaviour {
     // ONLY happens when new order is added to order manager
     private void GenerateOrderButton(Order order){
         OrderButton orderButton = new(order);
-        orderSlot1.Add(orderButton);
+        if (order.Customer.Data.CustomerSpotIdx == 0){
+            orderSlot0.Add(orderButton);
+        } elif (order.Customer.Data.CustomerSpotIdx == 1){
+            orderSlot1.Add(orderButton);
+        } else {
+            orderSlot2.Add(orderButton);
+        }
         orderButton.OnClickButton += OnSelectOrder;
     }
 
@@ -197,6 +202,12 @@ public class StationView : MonoBehaviour {
     private void OnSelectOrder(OrderButton orderButton){
         cookingUIEventChannel.RaiseOnSelectOrder(orderButton.Order);
         LoadStationView(orderButton.Order.Station);
+    }
+
+    // could consolidate into helper, hiding and showing station elements
+    private void DeselectOrder(){
+        sidePanelContainer.visible = false;
+        barAndStationContainer.visible = false;
     }
 
     // TODO: change method of determining sprites

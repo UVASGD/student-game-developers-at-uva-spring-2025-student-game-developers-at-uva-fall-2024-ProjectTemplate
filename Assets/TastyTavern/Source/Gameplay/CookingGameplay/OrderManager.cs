@@ -68,9 +68,20 @@ public class OrderManager : MonoBehaviour
     /// <param name="orderData"></param>
     private void SelectOrder(Order selectedOrder)
     {
+        if (selectedOrder == currentOrder){ // for now, click again to deselect TODO: close X button
+            DeselectOrder();
+            return;
+        }
         Debug.Log("Selected Order " + selectedOrder);
         if (currentOrder != null) currentOrder.Station.Unsubscribe();
         currentOrder = selectedOrder;
+    }
+
+    private void DeselectOrder()
+    {
+        if (currentOrder != null) currentOrder.Station.Unsubscribe();
+        currentOrder = null;
+        cookingUIEventChannel.Raise
     }
 
     public void AddOrder(Order order)
