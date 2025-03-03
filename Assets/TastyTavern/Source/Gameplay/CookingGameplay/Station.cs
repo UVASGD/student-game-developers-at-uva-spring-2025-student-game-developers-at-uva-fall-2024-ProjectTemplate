@@ -76,8 +76,7 @@ public class Station {
         StockIngredients.AddRange(ActiveIngredients);
         ActiveIngredients.Clear();
         StoredIngredients.Clear();
-        cookingUIEventChannel.RaiseOnRefreshStationWorkspace(this);
-        cookingUIEventChannel.RaiseOnRefreshIngredientsPanel(this);
+        cookingUIEventChannel.RaiseOnLoadStationView(this); // refreshes all panels
         // also refresh order instructions
     }
 
