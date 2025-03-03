@@ -36,24 +36,12 @@ public class Customer : MonoBehaviour
     }
 
     private Order GenerateOrder()
-    {
-        System.Random rand = new System.Random();
-        RecipeData recipe = MenuManager.GetRandomRecipeFromMenu();
-
-        // Customization logic
-        Dictionary<IngredientData, List<Property>> selectedIngredients = new Dictionary<IngredientData, List<Property>>();
-
-        for (int i = 0; i < recipe.Ingredients.Count; i++)
-        {
-            selectedIngredients.Add(recipe.Ingredients[i], recipe.Properties[i].Properties);
-        }
-
-        /**if (rand.Next(0, 4) == 3) // 1/4 chance
-        {
-            selectedIngredients.Remove(selectedIngredients.ElementAt(rand.Next(0, selectedIngredients.Count - 1)).Key);
-        }**/
-
-        return new Order(this, recipe, selectedIngredients, cookingUIEventChannel);
+    { 
+        // recipe.CorrectStockSequence[^1].CorrectIngredients -> list of all ingredients in the recipe
+        // recipe.CorrectStockSequence[^1].CorrectPropertiesPerIngredient[0->n].Properties -> all the properties that each ingredient(0 to n) needs to have by the end of the order; Sort of a 3D array.
+        // CorrectStockSequence -> The correct stocks of ingredients & properties for each station; CorrectPropertiesPerIngredient -> Each ingredient has a list of properties that it needs to have by the end (cut, etc.)
+        // Properties -> the list of properties of one ingredient
+        return new Order(this, MenuManager.GetRandomRecipeFromMenu(), cookingUIEventChannel);
     }
 
     private void PlaceCustomerOrder(Order order)

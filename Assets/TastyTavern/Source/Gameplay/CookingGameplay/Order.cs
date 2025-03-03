@@ -33,12 +33,11 @@ public class Order
     [field: SerializeField]
     public CookingUIEventChannel cookingUIEventChannel { get; set; }
 
-    public Order(Customer Customer, RecipeData recipe, Dictionary<IngredientData, List<Property>> SelectedIngredients, CookingUIEventChannel cookingUIEventChannel)
+    public Order(Customer Customer, RecipeData recipe, CookingUIEventChannel cookingUIEventChannel)
     {
         Served = false;
         this.Customer = Customer;
         Recipe = recipe;
-        this.SelectedIngredients = SelectedIngredients;
         StationIdx = 0;
         this.cookingUIEventChannel = cookingUIEventChannel;
         Station = Recipe.StationSequence[0].Create(Recipe.InitialStockSequence[StationIdx].InitialStock, cookingUIEventChannel);
@@ -51,13 +50,21 @@ public class Order
         StationIdx++;
         Station.ProgressStation(Recipe.StationSequence[StationIdx],Recipe.InitialStockSequence[StationIdx].InitialStock);
     }
-
+    
+    // recipe.CorrectStockSequence[^1].CorrectIngredients -> list of all ingredients in the recipe
+    // recipe.CorrectStockSequence[^1].CorrectPropertiesPerIngredient[0->n].Properties -> all the properties that each ingredient(0 to n) needs to have by the end of the order; Sort of a 3D array.
+    // CorrectStockSequence -> The correct stocks of ingredients & properties for each station; CorrectPropertiesPerIngredient -> Each ingredient has a list of properties that it needs to have by the end (cut, etc.)
+    // Properties -> the list of properties of one ingredient
+    /// <summary>
+    /// Determines whether the current state of the order matches the expected recipe's requirements, including
+    /// ingredients and their associated properties.
+    /// </summary>
+    /// <returns>
+    /// True if the order is correct and meets the recipe's final requirements, including correct ingredients
+    /// and their properties; otherwise, false.
+    /// </returns>
     public bool isCorrect()
     {
-        foreach (Ingredient ingredient in Station.ActiveIngredients)
-        {
-            if (SelectedIngredients.Keys.Contains(ingredient.Data) && AreListsEqual(SelectedIngredients[ingredient.Data], ingredient.Properties)) return false;
-        }
         return true;
     }
 
