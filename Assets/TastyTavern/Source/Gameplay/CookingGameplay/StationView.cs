@@ -7,7 +7,6 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-// TODO: Organize references and use Event Channels
 public class StationView : MonoBehaviour {
 
     [SerializeField] string PanelName { get; set; }
@@ -45,7 +44,7 @@ public class StationView : MonoBehaviour {
         cookingUIEventChannel.OnRefreshStationWorkspace += RefreshStationWorkspace;
         cookingUIEventChannel.OnRefreshIngredientsPanel += RefreshIngredientsPanel;
         cookingUIEventChannel.OnGenerateOrderButton += GenerateOrderButton;
-        cookingUIEventChannel.OnDeselectOrder += DeselectOrder;
+        cookingUIEventChannel.OnDeselectOrder += CloseStationPanels;
         cookingUIEventChannel.OnDeleteOrderButton += DeleteOrderButton;
     }
 
@@ -55,7 +54,7 @@ public class StationView : MonoBehaviour {
         cookingUIEventChannel.OnRefreshStationWorkspace -= RefreshStationWorkspace;
         cookingUIEventChannel.OnRefreshIngredientsPanel -= RefreshIngredientsPanel;
         cookingUIEventChannel.OnGenerateOrderButton -= GenerateOrderButton;
-        cookingUIEventChannel.OnDeselectOrder -= DeselectOrder;
+        cookingUIEventChannel.OnDeselectOrder -= CloseStationPanels;
         cookingUIEventChannel.OnDeleteOrderButton -= DeleteOrderButton;
     }
 
@@ -79,7 +78,6 @@ public class StationView : MonoBehaviour {
         stationWorkspaceContainer.Clear();
         nextStationContainer.Clear();
         orderInstructionsContainer.Clear(); 
-        GenerateNextStationButton(); // this button is always thre (except for serving station)
         orderSlot0.Clear(); // Probably just want slots, not order container
         orderSlot1.Clear();
         orderSlot2.Clear();
@@ -215,6 +213,7 @@ public class StationView : MonoBehaviour {
 
     private void OnServeOrder(){
         cookingUIEventChannel.RaiseOnSubmitOrder();
+        CloseStationPanels();
     }
 
     private void OnSelectOrder(OrderButton orderButton){
@@ -223,7 +222,7 @@ public class StationView : MonoBehaviour {
     }
 
     // could consolidate into helper, hiding and showing station elements
-    private void DeselectOrder(){
+    private void CloseStationPanels(){
         sidePanelContainer.visible = false;
         barAndStationContainer.visible = false;
     }
