@@ -32,6 +32,9 @@ public class CustomerController : MonoBehaviour
     public float randomOffset; // Maximum random offset added or subtracted from the delay.;
     public GameObject customerPrefab;
 
+    //TEMPORARY until customer sprites corrected
+    public List<Sprite> customerSprites;
+
     [SerializeField]
     private List<Transform> CustomerSpots;
 
@@ -110,7 +113,8 @@ public class CustomerController : MonoBehaviour
 
                 // Instantiate prefab and initialize
                 GameObject customerObj = Instantiate(customerPrefab, CustomerSpots[i].position, Quaternion.identity);
-                
+                customerObj.GetComponent<SpriteRenderer>().sprite = customerSprites[Random.Range(0, 2)];
+
                 Customer customerScript = customerObj.GetComponent<Customer>();
                 customerScript.MenuManager = MenuManager;
                 customerScript.Initialize(data);

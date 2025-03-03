@@ -395,6 +395,10 @@ MonoBehaviour:
   baseDelay: 2
   randomOffset: 0
   customerPrefab: {fileID: 6330402158794385807, guid: f757c88ac6cd8cb41aee001271e1b24c, type: 3}
+  customerSprites:
+  - {fileID: 667455983226642150, guid: e8401f791d8f55d4cb772f8bcd53a37e, type: 3}
+  - {fileID: 107909794284205028, guid: daad98cf6ca460c49932680d565141ed, type: 3}
+  - {fileID: 1872567538823083923, guid: 57c89df98f3b8144f9d3088cc1dd73db, type: 3}
   CustomerSpots:
   - {fileID: 670271784}
   - {fileID: 1489347291}
@@ -513,7 +517,7 @@ Transform:
   m_GameObject: {fileID: 897288701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.03, y: -2.3, z: 0}
   m_LocalScale: {x: 0.6061581, y: 0.6061581, z: 0.6061581}
   m_ConstrainProportionsScale: 0
   m_Children: []
