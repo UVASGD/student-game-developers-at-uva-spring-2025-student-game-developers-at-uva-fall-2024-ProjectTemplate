@@ -43,6 +43,7 @@ public class StationView : MonoBehaviour {
         cookingUIEventChannel.OnRefreshIngredientsPanel += RefreshIngredientsPanel;
         cookingUIEventChannel.OnGenerateOrderButton += GenerateOrderButton;
         cookingUIEventChannel.OnDeselectOrder += DeselectOrder;
+        cookingUIEventChannel.OnDeleteOrderButton += DeleteOrderButton;
     }
 
     private void OnDisable() 
@@ -52,6 +53,7 @@ public class StationView : MonoBehaviour {
         cookingUIEventChannel.OnRefreshIngredientsPanel -= RefreshIngredientsPanel;
         cookingUIEventChannel.OnGenerateOrderButton -= GenerateOrderButton;
         cookingUIEventChannel.OnDeselectOrder -= DeselectOrder;
+        cookingUIEventChannel.OnDeleteOrderButton -= DeleteOrderButton;
     }
 
     private void Awake(){
@@ -177,6 +179,16 @@ public class StationView : MonoBehaviour {
         stationBG = new(){ image = station.Data.Background.texture }; // change this to just equipment, not counter
         stationWorkspaceContainer.Add(stationBG);
         stationTop = stationBG;
+    }
+
+    private void DeleteOrderButton(int orderIdx){
+        if (orderIdx == 0){
+            orderSlot0.Clear();
+        } elif (orderIdx == 1){
+            orderSlot1.Clear();
+        } else {
+            orderSlot2.Clear();
+        }
     }
 
     private void OnAddIngredient(IngredientButton ingredientButton ) {
