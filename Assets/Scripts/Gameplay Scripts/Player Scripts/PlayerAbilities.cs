@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public GameObject prototypeVulnerablePrefab;
     public GameObject prototypeSlowPrefab;
     public GameObject prototypePoisonPrefab;
+    public GameObject prototypeBeguilePrefab;
 
     public Transform orientation;
 
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         abilityManager.AddAbility(new PrototypeVulnerableAbility(prototypeVulnerablePrefab, orientation));
         abilityManager.AddAbility(new PrototypeSlowAbility(prototypeSlowPrefab, orientation));
         abilityManager.AddAbility(new PrototypePoisonAbility(prototypePoisonPrefab, orientation));
+        abilityManager.AddAbility(new PrototypeBeguileAbility(prototypeBeguilePrefab, orientation));
         //abilitiesRegistered = true;
     }
 

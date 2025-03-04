@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Linq;
 using NUnit.Framework.Internal;
 using TMPro;
 using UnityEngine;
@@ -16,7 +18,6 @@ public class Enemy : MonoBehaviour
     private Transform target;
 
     private bool isFrozen = false;
-    private float freezeTimer = 0f;
     
     private bool isBurned = false;
     private float burnTimer = 0f;
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
     private float vulnerableHealth = 0f;
     private float vulnerableTimer = 0f;
     private bool isDoingDamage = false;
-
+    private bool isBeguiled = false;
     private bool isSlowed = false;
     private float slowTimer = 0f;
 
@@ -60,14 +61,19 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+         // If the enemy is beguiled, BeguileTimer() will run MoveTo()
+        if (!isBeguiled)
+        {
+            Move();
+        }
+
         //if (isDefenseDown) { HandleDefenseDown(); }
 
         if (isPoisoned) {HandlePoison();}
-        if (isFrozen){HandleFreeze();}
+        // if (isFrozen){HandleFreeze();}
         if (isSlowed){HandleSlow();}
         if (isBurned){HandleBurn();}
         if (isVulnerable){HandleVulnerable();}
-        Move();
     }
 
     private void LateUpdate()
@@ -86,6 +92,18 @@ public class Enemy : MonoBehaviour
 
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
+    }
+    protected virtual void MoveToEnemy(Enemy enemy)
+    {
+        // If the enemy its chasing is killed it'll return back to normal
+        if (enemy == null)
+        {
+            isBeguiled = false;
+            return;
+        }
+
+        Vector3 directionToEnemy = enemy.transform.position - transform.position;
+        transform.position += directionToEnemy.normalized * speed * Time.deltaTime;
     }
 
     private void SetRoundDamage()
@@ -136,34 +154,87 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Beguile(float beguileTime)
+    {
+        Debug.Log("Beguiled!");
+        if (isBeguiled)
+        {
+            return;
+        }
+
+        // If no enemies to chase
+        if (enemySpawnManager.GetAliveEnemiesCount() == 0)
+        {
+            return;
+        }
+
+        StartCoroutine(BeguileTimer(beguileTime));
+    }
+
+    private IEnumerator BeguileTimer(float beguileTime)
+    {
+        isBeguiled = true;
+        Enemy closestEnemy = FindClosestEnemy();
+        if (closestEnemy == null)
+        {
+            yield break;
+        }
+
+        float beguileTimer = 0f;
+        while (isBeguiled)
+        {
+            MoveToEnemy(closestEnemy);
+            beguileTimer += Time.deltaTime;
+            if (beguileTimer > beguileTime)
+            {
+                isBeguiled = false;
+            }
+            yield return null;
+        }
+    }
+
+    public Enemy FindClosestEnemy()
+    {
+        Enemy closestEnemy = enemySpawnManager.GetEnemies()
+            .Where(enemy => enemy != this)
+            .OrderBy(enemy => (enemy.transform.position - this.transform.position).sqrMagnitude)
+            .FirstOrDefault();
+
+        return closestEnemy;
+    }
+
     public void ApplyFreeze(float freezeTime)
     {
         if (!isFrozen)
         {
-            isFrozen = true;
-            isDoingDamage = false;
-            freezeTimer = freezeTime;
-            speed = 0f;
-            lighthouse.RemoveFromEnemiesList(this);
-
-        } else {
-
-            freezeTimer = freezeTime;
+            StartCoroutine(HandleFreeze(freezeTime));
         }
     }
 
-    private void HandleFreeze()
+    private IEnumerator HandleFreeze(float freezeTime)
     {
-        freezeTimer -= Time.deltaTime;
-        
-        if (freezeTimer <= 0)
-        {
-            isFrozen = false;
-            isDoingDamage = true;
-            ResetSpeed();
-            lighthouse.AddToEnemiesList(this);
-        }
+        isFrozen = true;
+        isDoingDamage = false;
+        SetSpeed(0f);
+        lighthouse.RemoveFromEnemiesList(this);
+
+        yield return new WaitForSeconds(freezeTime);
+        isFrozen = false;
+        isDoingDamage = true;
+        ResetSpeed();
+        lighthouse.AddToEnemiesList(this);
     }
+
+    private void SetSpeed(float speed)
+    {
+        if (speed < 0f)
+        {
+            speed = 0f;
+        }
+            
+        this.speed = speed;
+    }
+    
     public void ApplyPoison(float poisonTime, float damageWeak) {
         if(!isPoisoned) {
             isPoisoned = true;
@@ -301,8 +372,8 @@ public class Enemy : MonoBehaviour
         {
             lighthouse.RemoveFromEnemiesList(this);
         }
-        
-        enemySpawnManager.DecrementEnemyCount();
+
+        enemySpawnManager.RemoveEnemyFromList(this);
         Debug.Log($"{name} has died!");
         Destroy(gameObject);
     }

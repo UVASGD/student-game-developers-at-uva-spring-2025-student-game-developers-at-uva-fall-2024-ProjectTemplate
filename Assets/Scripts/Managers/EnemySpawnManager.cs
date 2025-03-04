@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
@@ -15,8 +16,8 @@ public class EnemySpawnManager : MonoBehaviour
     
     private bool allEnemiesDefeated;          // Timer for delay between spawns
     private RoundManager roundManager;       // Reference to the round manager
+    private HashSet<Enemy> aliveEnemies = new HashSet<Enemy>();
 
-    private int currentEnemyCount = 0;
     private void Start()
     {
         Debug.Log($"Spawn Diameter: {spawnDiameter}");
@@ -66,9 +67,12 @@ public class EnemySpawnManager : MonoBehaviour
         // Get a random spawn position on the circumference of the circle
         Vector3 spawnPosition = GetRandomPositionOnCircle(spawnDiameter);
 
-        // Spawn the enemy
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        currentEnemyCount++;
+
+
+        // Spawn the enemy and track it in aliveEnemies
+        Enemy spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+        aliveEnemies.Add(spawnedEnemy);
+
         enemiesSpawned++;
         Debug.Log($"Enemy spawned at {spawnPosition}! Total: {enemiesSpawned}/{enemiesPerRound}");
     }
@@ -90,10 +94,27 @@ public class EnemySpawnManager : MonoBehaviour
         return new Vector3(x, 3, z);
     }
 
+    public void RemoveEnemyFromList(Enemy enemy)
+    {
+        aliveEnemies.Remove(enemy);
+    }
+
     private void ResetSpawnedCount()
     {
         enemiesSpawned = 0;
         Debug.Log("Enemy spawn count reset for the next round.");
+    }
+
+    public int GetAliveEnemiesCount()
+    {
+        return aliveEnemies.Count;
+    }
+
+    public Enemy[] GetEnemies()
+    {
+        Enemy[] enemies = new Enemy[aliveEnemies.Count];
+        aliveEnemies.CopyTo(enemies);
+        return enemies;
     }
 
     private bool AreAllEnemiesDefeated()
@@ -111,18 +132,8 @@ public class EnemySpawnManager : MonoBehaviour
             Gizmos.DrawWireSphere(areaCenter.position, spawnDiameter / 2);
         }
     }
-
-    public void DecrementEnemyCount()
-    {
-        currentEnemyCount--;
-    }
-
-    public int GetCurrentEnemyCount()
-    {
-        return currentEnemyCount;
-    }    
     
-    public void updateEnemyCount()
+    public void UpdateEnemyCount()
     {
         enemiesPerRound = (int)(enemiesPerRound * enemiesMultiplier);
         Debug.Log($"Enemies Per Round: {enemiesPerRound}");
