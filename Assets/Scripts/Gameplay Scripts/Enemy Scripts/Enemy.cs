@@ -17,29 +17,23 @@ public class Enemy : MonoBehaviour
     private float damage;
     private Transform target;
 
+    // Status Effects ---------------------
     private bool isFrozen = false;
-    
+
     private bool isBurned = false;
-    private float burnTimer = 0f;
-    private int burnTick = 0;
-    private float tickDuration = 0f; // for burn
-    private float burnDamage = 0f;
 
     private bool isVulnerable = false;
-    private float vulnerableHealth = 0f;
-    private float vulnerableTimer = 0f;
     private bool isDoingDamage = false;
     private bool isBeguiled = false;
     private bool isSlowed = false;
-    private float slowTimer = 0f;
-
     private bool isPoisoned = false;
-    private float poisonTimer = 0f;
-    private float damageWeakness = 0.8f; //loses 20% damage when weak
-
     private bool isDefenseDown = false;
-    private float defenseTimer = 0f;
-    private float healthWeakness = 0.8f;
+    // -------------------------------------
+
+    private float vulnerableHealth = 0f;
+
+    private const float HEALTH_WEAKNESS = 0.8f;
+
     private GameObject townHall;
     private Lighthouse lighthouse;
     [SerializeField] private Slider healthBar;
@@ -49,7 +43,7 @@ public class Enemy : MonoBehaviour
 
     private EnemySpawnManager enemySpawnManager;
 
-    private void Start() 
+    private void Start()
     {
         townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
@@ -61,19 +55,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-         // If the enemy is beguiled, BeguileTimer() will run MoveTo()
+        // If the enemy is beguiled, BeguileTimer() will run MoveTo()
         if (!isBeguiled)
         {
             Move();
         }
-
-        //if (isDefenseDown) { HandleDefenseDown(); }
-
-        if (isPoisoned) {HandlePoison();}
-        // if (isFrozen){HandleFreeze();}
-        if (isSlowed){HandleSlow();}
-        if (isBurned){HandleBurn();}
-        if (isVulnerable){HandleVulnerable();}
     }
 
     private void LateUpdate()
@@ -113,7 +99,7 @@ public class Enemy : MonoBehaviour
 
         if (currentRound >= 20)
         {
-            damageMultiplier = (float) (Math.Log10(currentRound - 19) + 4);
+            damageMultiplier = (float)(Math.Log10(currentRound - 19) + 4);
         }
         else if (currentRound >= 10)
         {
@@ -121,9 +107,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            damageMultiplier = (float) (Math.Log10(currentRound + 1) + .7);
+            damageMultiplier = (float)(Math.Log10(currentRound + 1) + .7);
         }
-        
+
         damage = BASE_DAMAGE * damageMultiplier;
         Debug.Log($"Doing {damage} damage");
     }
@@ -136,7 +122,7 @@ public class Enemy : MonoBehaviour
         if (isVulnerable)
         {
             vulnerableHealth -= amount;
-            if(vulnerableHealth <= 0)
+            if (vulnerableHealth <= 0)
             {
                 Die();
             }
@@ -177,6 +163,7 @@ public class Enemy : MonoBehaviour
         Enemy closestEnemy = FindClosestEnemy();
         if (closestEnemy == null)
         {
+            isBeguiled = false;
             yield break;
         }
 
@@ -231,124 +218,112 @@ public class Enemy : MonoBehaviour
         {
             speed = 0f;
         }
-            
+
         this.speed = speed;
     }
-    
-    public void ApplyPoison(float poisonTime, float damageWeak) {
-        if(!isPoisoned) {
-            isPoisoned = true;
-            damageWeakness = damageWeak;
-            damage *= damageWeakness;
-            poisonTimer = poisonTime;
+
+    public void ApplyPoison(float poisonTime, float poisionWeakness)
+    {
+        if (!isPoisoned)
+        {
+            StartCoroutine(HandlePoison(poisonTime, poisionWeakness));
         }
     }
-    private void HandlePoison()
+    private IEnumerator HandlePoison(float poisonTime, float poisonWeakness)
     {
-        poisonTimer -= Time.deltaTime;
-        
-        if (poisonTimer <= 0)
-        {
-            isPoisoned = false;
-            damage /= damageWeakness;
-        }
+        isPoisoned = true;
+        damage *= poisonWeakness;
+
+        yield return new WaitForSeconds(poisonTime);
+        isPoisoned = false;
+        damage /= poisonWeakness;
     }
 
     public void ApplySlow(float slowTime, float slowMangitude)
     {
         if (!isSlowed)
         {
-            isSlowed = true;
-            slowTimer = slowTime;
-            speed *= slowMangitude;
+            StartCoroutine(HandleSlow(slowTime, slowMangitude));
         }
     }
 
-    private void HandleSlow()
+    private IEnumerator HandleSlow(float slowTime, float slowMangitude)
     {
-        slowTimer -= Time.deltaTime;
-        
-        if (slowTimer <= 0)
-        {
-            isSlowed = false;
-            ResetSpeed();
-        }
+        isSlowed = true;
+        speed *= slowMangitude;
+
+        yield return new WaitForSeconds(slowTime);
+        isSlowed = false;
+        ResetSpeed();
     }
-    public void ApplyBurn(float tickDur, float burnDmg, int numTicks)
+
+    public void ApplyBurn(float tickDur, float burnDamage, int numTicks)
     {
         if (!isBurned)
         {
-            isBurned = true;
-            burnTick = numTicks;
-            tickDuration = tickDur;
-            burnTimer = tickDuration;
-            burnDamage = burnDmg;
+            StartCoroutine(HandleBurn(tickDur, burnDamage, numTicks));
         }
     }
 
-    private void HandleBurn()
+    private IEnumerator HandleBurn(float tickDur, float burnDamage, int numTicks)
     {
-        burnTimer -= Time.deltaTime;
 
-        if (burnTimer <= 0)
+        isBurned = true;
+        int ticksLeft = numTicks;
+        while (ticksLeft > 0)
         {
-            TakeDamage(burnDamage);
-
-            burnTimer += tickDuration;
-            burnTick--;
-
-            if (burnTick <= 0)
+            if (health <= 0)
             {
-                isBurned = false;
+                yield break;
             }
+
+            TakeDamage(burnDamage);
+            yield return new WaitForSeconds(tickDur);
+            ticksLeft--;
         }
+
+        isBurned = false;
     }
 
     public void ApplyVulnerable(float vulnerableTime, float vulnerablePercentage)
     {
         if (!isVulnerable)
         {
-            isVulnerable = true;
-            vulnerableHealth = health * vulnerablePercentage;
-            vulnerableTimer = vulnerableTime;
-            sliderBar.color = Color.green;
-            healthBar.value = vulnerableHealth / maxHealth;
-            //healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth.ToString("#.0");
+            StartCoroutine(HandleVulnerable(vulnerableTime, vulnerablePercentage));
         }
     }
 
-    private void HandleVulnerable()
+    private IEnumerator HandleVulnerable(float vulnerableTime, float vulnerablePercentage)
     {
-        vulnerableTimer -= Time.deltaTime;
+        isVulnerable = true;
+        vulnerableHealth = health * vulnerablePercentage;
+        sliderBar.color = Color.green;
+        healthBar.value = vulnerableHealth / maxHealth;
+        //healthText.text = vulnerableHealth.ToString("#.0") + " / " + maxHealth.ToString("#.0");
 
-        if (vulnerableTimer <= 0)
-        {
-            isVulnerable = false;
-            sliderBar.color = Color.red;
-            healthBar.value = health / maxHealth;
-            //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
-        }
+        yield return new WaitForSeconds(vulnerableTime);
+        isVulnerable = false;
+        sliderBar.color = Color.red;
+        healthBar.value = health / maxHealth;
+        //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
     }
 
     public void ApplyDefenseDown(float defenseTime)
     {
         if (!isDefenseDown)
         {
-            isDefenseDown = true;
-            defenseTimer = defenseTime;
-            health *= healthWeakness;
+            StartCoroutine(HandleDefenseDown(defenseTime));
         }
     }
 
-    private void HandleDefenseDown()
+    private IEnumerator HandleDefenseDown(float defenseTime)
     {
-        defenseTimer -= Time.deltaTime;
-        
-        if (defenseTimer <= 0)
-        {
-            isDefenseDown = false;
-            health /= healthWeakness;
-        }
+        isDefenseDown = true;
+        health *= HEALTH_WEAKNESS;
+
+        yield return new WaitForSeconds(defenseTime);
+        isDefenseDown = false;
+        health /= HEALTH_WEAKNESS;
     }
 
 
