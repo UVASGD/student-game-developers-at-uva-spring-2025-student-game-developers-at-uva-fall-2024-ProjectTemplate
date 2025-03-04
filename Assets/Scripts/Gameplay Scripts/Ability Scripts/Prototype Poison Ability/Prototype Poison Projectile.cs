@@ -7,6 +7,9 @@ public class ProtopyePoisonProjectile : MonoBehaviour
     private float poisonWeakness = 0.8f; //loses 20% damage (multiplicative)
     private float selfDestructTime = 10f;
 
+    public float PoisonTime { get => poisonTime; set => poisonTime = value; }
+    public float PoisonWeakness { get => poisonWeakness; set => poisonWeakness = value; }
+
     public void Start()
     {
         Destroy(this.gameObject, selfDestructTime);
@@ -17,7 +20,7 @@ public class ProtopyePoisonProjectile : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
-            other.gameObject.GetComponent<Enemy>().ApplyPoison(poisonTime, poisonWeakness);
+            other.gameObject.GetComponent<Enemy>().ApplyPoison(PoisonTime, poisonWeakness);
         }
         else if (other.gameObject.tag == "Ground" ||
                    other.gameObject.tag == "Lighthouse")

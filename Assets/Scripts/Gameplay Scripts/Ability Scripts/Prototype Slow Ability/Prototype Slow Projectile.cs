@@ -8,6 +8,9 @@ public class ProtopyeSlowProjectile : MonoBehaviour
 
     public float selfDestructTime = 4f;
 
+    public float SlowTime { get => slowTime; set => slowTime = value; }
+    public float SlowMagnitude { get => slowMagnitude; set => slowMagnitude = value; }
+
     public void Start() 
     {
         Destroy(this.gameObject, selfDestructTime);
