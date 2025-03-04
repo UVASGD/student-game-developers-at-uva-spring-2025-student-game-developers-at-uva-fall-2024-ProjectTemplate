@@ -49,6 +49,8 @@ public class Lighthouse : MonoBehaviour
 
     }
  
+    public float GetStartingHealth() => STARTING_HEALTH;
+
     public float GetHealth() => health;
 
     public void SetHealth(float newHealth)
