@@ -34,6 +34,8 @@ public class PrototypeSlowAbility : AbilityBase
 
     public override void UpgradeAbility()
     {
-
+        ProtopyeSlowProjectile slowProjectile = projectilePrefab.GetComponent<ProtopyeSlowProjectile>();
+        slowProjectile.setSlowTime(slowProjectile.getSlowTime() * 1.1f);
+        slowProjectile.SlowMagnitude *= .90f; //10 percent slower
     }
 }

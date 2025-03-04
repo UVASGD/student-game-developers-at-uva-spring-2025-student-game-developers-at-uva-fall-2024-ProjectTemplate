@@ -34,6 +34,8 @@ public class PrototypePoisonAbility : AbilityBase
 
     public override void UpgradeAbility()
     {
-
+        ProtopyePoisonProjectile poisonProjectile = projectilePrefab.GetComponent<ProtopyePoisonProjectile>();
+        poisonProjectile.PoisonTime = poisonProjectile.PoisonTime * 1.1f;
+        poisonProjectile.PoisonWeakness = poisonProjectile.PoisonWeakness * .9f;
     }
 }

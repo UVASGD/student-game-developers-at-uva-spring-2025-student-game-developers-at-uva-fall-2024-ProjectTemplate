@@ -22,6 +22,7 @@ public class ProtopyeProjectile : MonoBehaviour
     {
         this.damage = damage;
     }
+    
     private void OnCollisionEnter(Collision other) 
     {
         if (other.gameObject.tag == "Enemy")

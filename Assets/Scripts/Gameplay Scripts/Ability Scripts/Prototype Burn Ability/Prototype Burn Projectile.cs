@@ -4,8 +4,8 @@ public class ProtopyeBurnProjectile : MonoBehaviour
 {
 
     private float tickDuration = 1;
-    private float burnDamage = 25;
-    private int numTicks = 2;
+    private float burnDamage = 3;
+    private int numTicks = 5;
     private float aoeRadius = 10;
 
     public float selfDestructTime = 4f;
