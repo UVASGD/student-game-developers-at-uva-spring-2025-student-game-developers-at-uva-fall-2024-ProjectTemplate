@@ -4,7 +4,8 @@ public class ProtopyeBeguileProjectile : MonoBehaviour
 {
 
     private float beguileTime = 10f;
-    private const float BEGUILE_TIME = 10f;
+    private float beguileDamage = 5f;
+    private const float DEFAULT_TIME = 10f;
 
     public float selfDestructTime = 4f;
 
@@ -23,7 +24,7 @@ public class ProtopyeBeguileProjectile : MonoBehaviour
         // Default beguile time if input is invalid
         if (beguileTime < 0)
         {
-            beguileTime = BEGUILE_TIME;
+            beguileTime = DEFAULT_TIME;
         }
 
         this.beguileTime = beguileTime;
@@ -32,7 +33,7 @@ public class ProtopyeBeguileProjectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<Enemy>().Beguile(beguileTime);
+            other.gameObject.GetComponent<Enemy>().ApplyBeguile(beguileTime, beguileDamage);
             Destroy(this.gameObject);
         }
         else if (other.gameObject.tag == "Ground" ||

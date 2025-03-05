@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Linq;
-using NUnit.Framework.Internal;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
@@ -31,6 +29,7 @@ public class Enemy : MonoBehaviour
     // -------------------------------------
 
     private float vulnerableHealth = 0f;
+    private float beguileDamage = 10f;
 
     private const float HEALTH_WEAKNESS = 0.8f;
 
@@ -140,9 +139,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Beguile(float beguileTime)
+    public void ApplyBeguile(float beguileTime, float beguileDamage)
     {
-        Debug.Log("Beguiled!");
         if (isBeguiled)
         {
             return;
@@ -154,29 +152,55 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        StartCoroutine(BeguileTimer(beguileTime));
+        this.beguileDamage = beguileDamage;
+        StartCoroutine(HandleBeguile(beguileTime));
     }
 
-    private IEnumerator BeguileTimer(float beguileTime)
+    private IEnumerator HandleBeguile(float beguileTime)
     {
+        
         isBeguiled = true;
         Enemy closestEnemy = FindClosestEnemy();
-        if (closestEnemy == null)
-        {
-            isBeguiled = false;
-            yield break;
-        }
 
         float beguileTimer = 0f;
         while (isBeguiled)
         {
+            if (closestEnemy == null)
+            {
+                if (enemySpawnManager.GetAliveEnemiesCount() > 1)
+                {
+                    closestEnemy = FindClosestEnemy();
+                }
+                else
+                {
+                    isBeguiled = false;
+                    yield break;
+                }
+            }
+
             MoveToEnemy(closestEnemy);
             beguileTimer += Time.deltaTime;
+
             if (beguileTimer > beguileTime)
             {
                 isBeguiled = false;
             }
             yield return null;
+        }
+    }
+
+    float beguileTimer = 0f;
+    void OnCollisionStay(Collision other)
+    {
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (isBeguiled && enemy == FindClosestEnemy())
+        {
+            beguileTimer += Time.deltaTime;
+            if (beguileTimer > 1f)
+            {
+                enemy.TakeDamage(beguileDamage);
+                beguileTimer = 0f;
+            }
         }
     }
 
