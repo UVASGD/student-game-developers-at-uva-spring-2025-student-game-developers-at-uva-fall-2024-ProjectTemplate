@@ -29,6 +29,7 @@ public class Station {
         this.Data = data;
         cookingUIEventChannel = ev;
         cookingUIEventChannel.OnAddIngredient += AddIngredient;
+        cookingUIEventChannel.OnStoreIngredient += StoreActiveIngredients;
         foreach (var ingredientData in stock){
             StockIngredients.Add(ingredientData.Create());
         }
@@ -41,6 +42,7 @@ public class Station {
 
     public void Unsubscribe(){
         cookingUIEventChannel.OnAddIngredient -= AddIngredient;
+        cookingUIEventChannel.OnStoreIngredient -= StoreActiveIngredients;
     }
 
     /// Adds ingredient to current active workspace (from stock)

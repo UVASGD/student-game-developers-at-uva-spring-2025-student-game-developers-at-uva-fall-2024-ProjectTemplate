@@ -26,6 +26,7 @@ public class StationView : MonoBehaviour {
     public VisualElement barAndStationContainer;
     public VisualElement sidePanelContainer;
     public VisualElement orderInstructionsContainer;
+    public VisualElement storeButtonContainer;
 
 
     public VisualElement stationTop;
@@ -73,6 +74,7 @@ public class StationView : MonoBehaviour {
         barAndStationContainer = root.Q<VisualElement>("BarAndStation");
         sidePanelContainer = root.Q<VisualElement>("SidePanel");
         orderInstructionsContainer = root.Q<VisualElement>("OrderInstructionsPanel");
+        storeButtonContainer = root.Q<VisualElement>("StoreButton");
         actionSlotContainer.Clear();
         ingredientSlotContainer.Clear();
         stationWorkspaceContainer.Clear();
@@ -185,6 +187,15 @@ public class StationView : MonoBehaviour {
         stationTop = stationBG;
     }
 
+    private void GenerateStoreButton(Station station){
+        Button storeButton = new();
+        storeButton.AddToClassList("button");
+        storeButton.AddToClassList("store-button");
+        storeButton.text = "Store";
+        nextStationContainer.Add(storeButton);
+        storeButton.clicked += OnStoreIngredient;
+    }
+
     private void DeleteOrderButton(int orderIdx){
         if (orderIdx == 0){
             orderSlot0.Clear();
@@ -201,6 +212,10 @@ public class StationView : MonoBehaviour {
         ingredientButton.RemoveFromClassList("button");
     }
     
+    private void OnStoreIngredient() {
+        cookingUIEventChannel.RaiseOnStoreIngredient();
+    }
+
     private void OnAddProperty(ActionButton actionButton){
 
         cookingUIEventChannel.RaiseOnAddProperty(actionButton.Data); // Property enum actionProperty

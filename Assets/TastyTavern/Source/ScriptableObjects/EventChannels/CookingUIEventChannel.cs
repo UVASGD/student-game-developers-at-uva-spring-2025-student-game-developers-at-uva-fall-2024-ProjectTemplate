@@ -42,6 +42,8 @@ public class CookingUIEventChannel : ScriptableObject {
     public event Action<int> OnDeleteOrderButton;
     
     public event Action OnDeselectOrder;
+
+    public Action OnStoreIngredient;
     
     public void RaiseOnAddIngredient(Ingredient ingredient){
         Debug.Log("Raise adding " + ingredient.Data.Name + " ingredient broadcasted from event channel.");
@@ -109,5 +111,10 @@ public class CookingUIEventChannel : ScriptableObject {
     public void RaiseOnDeleteOrderButton(int obj)
     {
         OnDeleteOrderButton?.Invoke(obj);
+    }
+
+    public void RaiseOnStoreIngredient() 
+    {
+        OnStoreIngredient?.Invoke();
     }
 }
