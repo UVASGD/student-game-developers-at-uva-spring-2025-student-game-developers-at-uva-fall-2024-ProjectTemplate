@@ -25,7 +25,7 @@ public class StationView : MonoBehaviour {
     public VisualElement orderSlot2;
     public VisualElement barAndStationContainer;
     public VisualElement sidePanelContainer;
-    public VisualElement orderInstructionsContainer;
+    public VisualElement RecipeContainer;
     public VisualElement storeButtonContainer;
 
 
@@ -35,9 +35,6 @@ public class StationView : MonoBehaviour {
 
     [SerializeField]
     private CookingUIEventChannel cookingUIEventChannel;
-
-    public IngredientData basilisk;
-    public IngredientData mushroom;
 
     private void OnEnable()
     {
@@ -73,13 +70,13 @@ public class StationView : MonoBehaviour {
         orderSlot2 = root.Q<VisualElement>("OrderSlot2");
         barAndStationContainer = root.Q<VisualElement>("BarAndStation");
         sidePanelContainer = root.Q<VisualElement>("SidePanel");
-        orderInstructionsContainer = root.Q<VisualElement>("OrderInstructionsPanel");
+        RecipeContainer = root.Q<VisualElement>("RecipePanel");
         storeButtonContainer = root.Q<VisualElement>("StoreButton");
         actionSlotContainer.Clear();
         ingredientSlotContainer.Clear();
         stationWorkspaceContainer.Clear();
         nextStationContainer.Clear();
-        orderInstructionsContainer.Clear(); 
+        RecipeContainer.Clear(); 
         orderSlot0.Clear(); // Probably just want slots, not order container
         orderSlot1.Clear();
         orderSlot2.Clear();
@@ -98,7 +95,7 @@ public class StationView : MonoBehaviour {
         actionSlotContainer.Clear();
         ingredientSlotContainer.Clear();
         stationWorkspaceContainer.Clear();
-        orderInstructionsContainer.Clear();
+        RecipeContainer.Clear();
         nextStationContainer.Clear();
         if (station.Data.StationType == StationType.Serving){
             GenerateServeButton(); // last station only generates serve button
@@ -129,7 +126,7 @@ public class StationView : MonoBehaviour {
 
         orderInstructions.text = instructions;
         orderInstructions.AddToClassList("action-label");
-        orderInstructionsContainer.Add(orderInstructions);
+        RecipeContainer.Add(orderInstructions);
     }
 
     // A simple styled button with 
