@@ -95,7 +95,7 @@ public class OrderManager : MonoBehaviour
     {
         allOrders.Remove(currentOrder);
         cookingUIEventChannel.RaiseOnRemoveCustomer(currentOrder.Customer.Data.CustomerSpotIdx);
-        if (currentOrder.isCorrect()){
+        if (currentOrder.IsCorrect()){
             Debug.Log("Order is correct");
         } else {
             Debug.Log("Order is incorrect");
