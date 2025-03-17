@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour
         }
 
         // If no enemies to chase
-        if (enemySpawnManager.GetAliveEnemiesCount() == 0)
+        if (enemySpawnManager.GetAliveEnemiesCount() <= 1)
         {
             return;
         }
