@@ -4,7 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     private float maxHealth = 100f;
@@ -42,12 +42,15 @@ public class Enemy : MonoBehaviour
 
     private EnemySpawnManager enemySpawnManager;
 
+    private NavMeshAgent agent;
+
     private void Start()
     {
         townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
         lighthouse = townHall.GetComponent<Lighthouse>();
         target = lighthouse.transform;
+        agent = GetComponent<NavMeshAgent>();
         SetRoundDamage();
         //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
     }
@@ -75,8 +78,9 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        Vector3 direction = (target.position - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
+        // Vector3 direction = (target.position - transform.position).normalized;
+        // transform.position += direction * speed * Time.deltaTime;
+        agent.destination = target.position;
     }
     protected virtual void MoveToEnemy(Enemy enemy)
     {
