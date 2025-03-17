@@ -126,4 +126,12 @@ public class Lighthouse : MonoBehaviour
         RoundManager.SetRoundPhase(RoundManager.RoundPhase.GameOver);
         SceneManager.LoadScene("Game Over");
     }
+
+    public void HealLighthouse (float amount) {
+        if (amount < 0) {
+            amount = 0;
+        }
+        
+        health += amount;
+    }
 }
