@@ -16,16 +16,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopManager
+public class ShopManager : MonoBehaviour
 {
     private List<ShopItem> inventory;
     private ShopData shopData;
     private PlayerManager playerManager;
+    public List<ShopItem> ShopItems { get; } = new List<ShopItem>();
 
-    public ShopManager(ShopData shopData, PlayerManager playerManager)
+    void Start()
     {
-        this.shopData = shopData;
-        this.playerManager = playerManager;
         inventory = shopData.ShopItems;
     }
 
@@ -37,26 +36,19 @@ public class ShopManager
     If the player meets these conditions, the item is marked as purchased and the player's gold is reduced by the item's price
     public bool BuyItem(ShopItem item, ref int playerGold) 
     */
-    public bool BuyItem(ShopItem item, ref float playerGold)
+    public bool BuyItem(ShopItem item)
     {
-        playerGold = playerManager.money;
-        if (playerGold >= item.Price)
+        if (playerManager.money >= item.Price)
         {
             if (item.Purchased == true)
             {
                 Debug.Log("You already bought that item!");
                 return false;
             } else {
-                playerGold -= item.Price;
+                playerManager.money -= item.Price;
                 item.Purchased = true;
-                if (item.Type == ShopItem.ItemType.Ingredient) // will this work idk
-                {
-                    
-                }
                 Debug.Log($"You bought {item.Name} for {item.Price} gold!");
-                //how to update information in player?
-                // add item to respective dictionaries for player inventory
-                    // allIngredient or IngredientUnlocked?
+                playerManager.addItemToInventory(item);
                 return true;
             }
         }
@@ -67,16 +59,3 @@ public class ShopManager
         }
     }
 }
-
-/* Player can onl
-
-
-    // public void DisplayInventory()
-    // {
-    //     Debug.Log("Shop Inventory:");
-    //     foreach (var item in inventory)
-    //     {
-    //         Debug.Log($"{item.Name}: {item.Description}, {item.Price} gold, Purchased: {item.Purchased}");
-    //     }
-    // }
-}*/

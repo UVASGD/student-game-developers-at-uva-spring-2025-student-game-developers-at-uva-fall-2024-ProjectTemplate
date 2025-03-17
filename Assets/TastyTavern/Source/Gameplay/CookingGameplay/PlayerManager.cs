@@ -8,6 +8,9 @@ public class PlayerManager : MonoBehaviour
     public float money;
 
     [SerializeField]
+    public BiomeData currentBiome;
+
+    [SerializeField]
     private CookingUIEventChannel cookingUIEventChannel;
 
     //All Ingredients, Equipment, Recipes, and Biome scriptable objects get placed in their respective lists
@@ -71,5 +74,38 @@ public class PlayerManager : MonoBehaviour
         {
             money += deltaMoney;
         }
+    }
+
+    public void addItemToInventory(ShopItem item) {
+        if (item.Type == ShopItem.ItemType.Ingredient) {
+            for (int i = 0; i < allIngredient.Count; i++) {
+                if (allIngredient[i].Name == item.Name) {
+                    IngredientUnlocked[allIngredient[i]] = true;
+                    break;
+                }
+            }
+        } else if (item.Type == ShopItem.ItemType.Equipment) {
+            for (int i = 0; i < allEquipment.Count; i++) {
+                if (allEquipment[i].Name == item.Name) {
+                    ActionUnlocked[allEquipment[i]] = true;
+                    break;
+                }
+            }
+        } else if (item.Type == ShopItem.ItemType.Recipe) {
+            for (int i = 0; i < allRecipe.Count; i++) {
+                if (allRecipe[i].Name == item.Name) {
+                    RecipeUnlocked[allRecipe[i]] = true;
+                    break;
+                }
+            }
+        } else if (item.Type == ShopItem.ItemType.Biome) {
+            for (int i = 0; i < allBiome.Count; i++) {
+                if (allBiome[i].Name == item.Name) {
+                    BiomeUnlocked[allBiome[i]] = true;
+                    break;
+                }
+            }
+        }
+
     }
 }
