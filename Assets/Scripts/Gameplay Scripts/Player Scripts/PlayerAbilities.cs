@@ -11,8 +11,6 @@ public class Player : MonoBehaviour
     public GameObject prototypeSlowPrefab;
     public GameObject prototypePoisonPrefab;
 
-    public Transform orientation;
-
     private int wisdomPoints = 2;
     //private static bool abilitiesRegistered = false;
 
