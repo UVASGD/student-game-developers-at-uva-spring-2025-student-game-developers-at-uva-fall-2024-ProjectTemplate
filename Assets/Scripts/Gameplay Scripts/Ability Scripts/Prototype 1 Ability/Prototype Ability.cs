@@ -6,30 +6,28 @@ public class PrototypeAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypeAbility(GameObject prefab, Transform player) 
+    public PrototypeAbility(GameObject prefab) 
         : base("Prototype Ability", KeyCode.E, 3f)
     {
         projectilePrefab = prefab;
-        orientationTransform = player;
     }
 
     protected override void Execute()
     {
         Debug.Log($"{abilityName} activated!");
 
-
+        Transform cameraTransform = Camera.main.transform;
         // Instantiate the projectile
         GameObject projectile = GameObject.Instantiate(
-            projectilePrefab, 
-            orientationTransform.position + orientationTransform.forward, // Spawn in front of player
-            Quaternion.LookRotation(orientationTransform.forward)    // Orient forward
+            projectilePrefab,
+            cameraTransform.position + cameraTransform.forward, // Spawn in front of player
+            Quaternion.LookRotation(cameraTransform.forward)    // Orient forward
         );
 
         // Add velocity to the projectile
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.useGravity = false;
-        rb.linearVelocity = orientationTransform.forward * 10f;
-        
+        rb.linearVelocity = cameraTransform.forward * 10f;
     }
 
     public override void UpgradeAbility()
