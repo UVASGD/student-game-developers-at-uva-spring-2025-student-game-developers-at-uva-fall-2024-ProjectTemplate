@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public GameObject prototypeVulnerablePrefab;
     public GameObject prototypeSlowPrefab;
     public GameObject prototypePoisonPrefab;
+    public GameObject prototypeBeguilePrefab;
 
     private int wisdomPoints = 2;
     //private static bool abilitiesRegistered = false;
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
         abilityManager.AddAbility(new PrototypeVulnerableAbility(prototypeVulnerablePrefab));
         abilityManager.AddAbility(new PrototypeSlowAbility(prototypeSlowPrefab));
         abilityManager.AddAbility(new PrototypePoisonAbility(prototypePoisonPrefab));
-        //abilitiesRegistered = true;
+        abilityManager.AddAbility(new PrototypeBeguileAbility(prototypeBeguilePrefab));
     }
 
     public void AwardWisdomPoints(int points)
