@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class EndlessRoomManager : MonoBehaviour {
@@ -17,6 +16,7 @@ public class EndlessRoomManager : MonoBehaviour {
     [HideInInspector] public GameObject player;
     public float cameraMoveZoomTime = 1f;
     public float delayBetweenFlickers = 7f;
+    public Image scaryFace;
     private Light[] _lights;
 
     void Awake() {
@@ -39,11 +39,13 @@ public class EndlessRoomManager : MonoBehaviour {
             foreach (Light light in _lights)
             {
                 light.transform.parent.gameObject.SetActive(!light.transform.parent.gameObject.activeSelf);
+                scaryFace.enabled = !scaryFace.enabled;
             }
             yield return new WaitForSeconds(0.1f);
             foreach (Light light in _lights)
             {
                 light.transform.parent.gameObject.SetActive(!light.transform.parent.gameObject.activeSelf);
+                scaryFace.enabled = !scaryFace.enabled;
             }
             yield return new WaitForSeconds(delayBetweenFlickers);
         }
