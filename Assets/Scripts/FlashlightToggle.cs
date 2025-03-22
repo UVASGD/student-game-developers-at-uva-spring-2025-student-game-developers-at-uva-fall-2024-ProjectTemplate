@@ -25,16 +25,19 @@ public class Flashlight : MonoBehaviour
         // raycasting
         if (flashlightActive)
         {
+            int flashlightLayer = LayerMask.GetMask("FlashlightCast");
             bool ray = Physics.SphereCast(
                 transform.position,
                 1f,
                 transform.TransformDirection(Vector3.forward),
                 out RaycastHit hitInfo,
-                8f
+                8f,
+                flashlightLayer
             );
             if (ray)
             {
                 Debug.Log("hit something");
+                Debug.Log(hitInfo.collider.GetComponent<QuantumGroupObject>());
             }
             else
             {

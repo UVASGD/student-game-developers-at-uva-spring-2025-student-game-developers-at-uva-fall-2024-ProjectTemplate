@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 109184887}
   - component: {fileID: 109184886}
   - component: {fileID: 109184885}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,6 +387,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7454520226903220025, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990483
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454520226903220025, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.043619405
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454520226903220025, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454520226903220025, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454520226903220025, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 8155628844378172113, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
       propertyPath: m_Name
       value: Player
@@ -418,7 +438,7 @@ GameObject:
   - component: {fileID: 203811690}
   - component: {fileID: 203811689}
   - component: {fileID: 203811688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestCube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +822,7 @@ GameObject:
   - component: {fileID: 905629645}
   - component: {fileID: 905629644}
   - component: {fileID: 905629643}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestCube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
