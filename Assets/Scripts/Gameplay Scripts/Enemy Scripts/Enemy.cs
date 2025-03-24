@@ -52,6 +52,9 @@ public class Enemy : MonoBehaviour
         target = lighthouse.transform;
         agent = GetComponent<NavMeshAgent>();
         SetRoundDamage();
+        agent.speed = speed;
+        agent.acceleration = 8f; // Optional, tweak as needed
+        agent.angularSpeed = 120f;
         //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
     }
 
@@ -81,6 +84,7 @@ public class Enemy : MonoBehaviour
         // Vector3 direction = (target.position - transform.position).normalized;
         // transform.position += direction * speed * Time.deltaTime;
         agent.destination = target.position;
+        Debug.DrawLine(transform.position, agent.destination, Color.red);
     }
     protected virtual void MoveToEnemy(Enemy enemy)
     {

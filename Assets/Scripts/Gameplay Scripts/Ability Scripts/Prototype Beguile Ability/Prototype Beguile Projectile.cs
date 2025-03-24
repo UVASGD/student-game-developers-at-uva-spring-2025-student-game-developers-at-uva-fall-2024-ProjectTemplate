@@ -31,7 +31,7 @@ public class ProtopyeBeguileProjectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) 
     {
-        if (other.gameObject.tag == "Enemy")
+        if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             other.gameObject.GetComponent<Enemy>().ApplyBeguile(beguileTime, beguileDamage);
             Destroy(this.gameObject);

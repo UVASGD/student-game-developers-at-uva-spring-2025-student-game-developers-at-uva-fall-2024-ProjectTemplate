@@ -17,7 +17,7 @@ public class ProtopyeVulnerableProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        if (other.gameObject.tag == "Enemy")
+        if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             Destroy(this.gameObject);
             other.gameObject.GetComponent<Enemy>().ApplyVulnerable(duration, reductionPercentage);

@@ -18,7 +18,7 @@ public class ProtopyePoisonProjectile : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log("outside Poision");
-        if (other.gameObject.tag == "Enemy")
+        if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             Destroy(this.gameObject);
             other.gameObject.GetComponent<Enemy>().ApplyPoison(PoisonTime, poisonWeakness);

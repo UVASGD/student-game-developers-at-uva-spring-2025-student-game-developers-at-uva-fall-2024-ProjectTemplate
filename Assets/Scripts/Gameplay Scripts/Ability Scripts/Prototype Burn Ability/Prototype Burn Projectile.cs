@@ -41,7 +41,7 @@ public class ProtopyeBurnProjectile : MonoBehaviour
             Collider[] hitColliders = Physics.OverlapSphere(pos, aoeRadius);
             foreach (var hitCollider in hitColliders)
             {
-                if(hitCollider.gameObject.tag == "Enemy"){
+                if(EnemyTags.IsEnemyTag(other.gameObject.tag)){
                     hitCollider.gameObject.GetComponent<Enemy>().ApplyBurn(tickDuration, burnDamage, numTicks);
                 }
             }
