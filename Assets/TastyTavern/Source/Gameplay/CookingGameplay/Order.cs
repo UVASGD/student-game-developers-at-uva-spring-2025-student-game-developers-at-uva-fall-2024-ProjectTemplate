@@ -50,6 +50,13 @@ public class Order
         StationIdx++;
         Station.ProgressStation(Recipe.StationSequence[StationIdx],Recipe.InitialStockSequence[StationIdx].InitialStock);
     }
+
+    public void ResetStation()
+    {
+        StationIdx = 0;
+        Station = Recipe.StationSequence[0]
+            .Create(Recipe.InitialStockSequence[StationIdx].InitialStock, cookingUIEventChannel);
+    }
     
     // recipe.CorrectStockSequence[^1].CorrectIngredients -> list of all ingredients in the recipe
     // recipe.CorrectStockSequence[^1].CorrectPropertiesPerIngredient[0->n].Properties -> all the properties that each ingredient(0 to n) needs to have by the end of the order; Sort of a 3D array.

@@ -89,7 +89,10 @@ public class OrderManager : MonoBehaviour
     
     private void OnTrashCurrentOrderFood()
     {
-        // order trash please
+        int index = currentOrder.StationIdx;
+        currentOrder.ResetStation();
+        DeselectOrder();
+        allOrders[index] = currentOrder;
     }
     
     public void AddOrder(Order order)

@@ -66,14 +66,17 @@ public class Station {
     }
 
     // Change data, move new Stock and ingredients in Active and Stored to Stock
-    public void ProgressStation(StationData data, List<IngredientData> stock){
-        Debug.Log("Station changed to "+ data.StationType + "in Station.cs");
+    public void ProgressStation(StationData data, List<IngredientData> stock)
+    {
+        Debug.Log("Station changed to " + data.StationType + "in Station.cs");
         this.Data = data;
 
         StockIngredients.Clear();
-        foreach (var ingredient in stock){
+        foreach (var ingredient in stock)
+        {
             StockIngredients.Add(ingredient.Create());
         }
+
         StockIngredients.AddRange(StoredIngredients);
         StockIngredients.AddRange(ActiveIngredients);
         ActiveIngredients.Clear();
