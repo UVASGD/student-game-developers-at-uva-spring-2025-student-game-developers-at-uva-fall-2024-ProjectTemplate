@@ -123,13 +123,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18f4d7b5ee5a414c93ec781b70b5860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDistToDoorTriggerCreak: 2.5
-  playerDistToDoorTriggerKill: 1
-  doorAnimator: {fileID: 0}
-  doorCreakAnimationName: DoorCreak
-  doorOpenAnimationName: DoorOpen
+  playerDistToDoorTriggerCreak: 3.5
+  playerDistToDoorTriggerKill: 2.5
+  doorRotatorTransform: {fileID: 0}
   doorCreakSFX: {fileID: 3228806322667691259}
   doorKillSFX: {fileID: 0}
+  cameraPointToTransform: {fileID: 0}
+  _startYRotation: 0
 --- !u!82 &3228806322667691259
 AudioSource:
   m_ObjectHideFlags: 0

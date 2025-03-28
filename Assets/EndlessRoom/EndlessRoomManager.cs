@@ -17,6 +17,8 @@ public class EndlessRoomManager : MonoBehaviour {
     public float cameraMoveZoomTime = 1f;
     public float delayBetweenFlickers = 7f;
     public Image scaryFace;
+    public Image fader;
+    public Transform spawnTransformSection2;
     private Light[] _lights;
 
     void Awake() {
