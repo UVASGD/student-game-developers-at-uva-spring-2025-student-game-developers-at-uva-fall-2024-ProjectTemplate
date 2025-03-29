@@ -7,7 +7,7 @@ public class DuplicateExactPosition : MonoBehaviour
     public Transform newLocationTransform;
     public Transform newParent;
 
-    void Start()
+    void Awake()
     {
         foreach (Transform child in objectsToDuplicateParent)
         {

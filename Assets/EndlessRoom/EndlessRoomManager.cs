@@ -24,14 +24,18 @@ public class EndlessRoomManager : MonoBehaviour {
     void Awake() {
         if (Instance == null) {
             Instance = this;
-            teleportingA3EndlessRoomIllusion.isActive = true;
-            teleportingA4EndlessRoomIllusion.isActive = false;
-            player = GameObject.FindGameObjectWithTag("Player");
-            _lights = GameObject.FindObjectsByType<Light>(FindObjectsSortMode.None);
-            StartCoroutine(StartFlickering());
         } else {
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        teleportingA3EndlessRoomIllusion.isActive = true;
+        teleportingA4EndlessRoomIllusion.isActive = false;
+        player = GameObject.FindGameObjectWithTag("Player");
+        _lights = GameObject.FindObjectsByType<Light>(FindObjectsSortMode.None);
+        StartCoroutine(StartFlickering());
     }
 
     IEnumerator StartFlickering()
