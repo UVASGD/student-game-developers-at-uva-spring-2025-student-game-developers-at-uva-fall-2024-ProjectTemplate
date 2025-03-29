@@ -7,28 +7,6 @@ public class QuantumGroup : QuantumGroupBase
 {
     private bool considerLight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        InitializeQuantumObjects();
-    }
-
-    private void InitializeQuantumObjects()
-    {
-        foreach (Transform child in transform)
-        {
-            objects.Add(child.AddComponent<QuantumGroupObject>());
-        }
-        foreach (QuantumGroupObject q in objects)
-        {
-            q.attachToGroup(this);
-            q.setInvisible();
-        }
-        if (objects.Count >= 1)
-        {
-            objects[0].setVisible();
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {

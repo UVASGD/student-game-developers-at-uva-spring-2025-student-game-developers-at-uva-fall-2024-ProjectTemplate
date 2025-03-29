@@ -15,10 +15,8 @@ public class QuantumGroupBase : MonoBehaviour
 
     private void InitializeQuantumObjects()
     {
-        foreach (Transform child in transform)
-        {
-            objects.Add(child.AddComponent<QuantumGroupObject>());
-        }
+        addComponentToChildren();
+
         foreach (QuantumGroupObject q in objects)
         {
             q.attachToGroup(this);
@@ -29,7 +27,13 @@ public class QuantumGroupBase : MonoBehaviour
             objects[0].setVisible();
         }
     }
-
+    protected void addComponentToChildren()
+    {
+        foreach (Transform child in transform)
+        {
+            objects.Add(child.AddComponent<QuantumGroupObject>());
+        }
+    }
     // Update is called once per frame
     void Update()
     {
