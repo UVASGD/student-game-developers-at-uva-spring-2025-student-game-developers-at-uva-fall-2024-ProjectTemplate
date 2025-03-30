@@ -25,7 +25,9 @@ public class Protopye2Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) 
     {
-        if (other.gameObject.tag == "Enemy")
+        string tag = other.gameObject.tag;
+    
+        if (EnemyTags.IsEnemyTag(tag))
         {
             Destroy(this.gameObject);
             other.gameObject.GetComponent<Enemy>().ApplyFreeze(freezeTime);
