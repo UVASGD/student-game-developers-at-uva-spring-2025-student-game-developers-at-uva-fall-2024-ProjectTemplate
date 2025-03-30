@@ -5,7 +5,7 @@ public abstract class AbilityBase
     public string abilityName { get; private set; }
     public KeyCode activationKey { get; private set; }
     public float cooldownTime { get; private set; }
-    public float level { get; set; }
+    public int level { get; set; }
     public Sprite AbilityIcon { get; protected set; }
     public float lastActivatedTime { get; protected set; }
 
