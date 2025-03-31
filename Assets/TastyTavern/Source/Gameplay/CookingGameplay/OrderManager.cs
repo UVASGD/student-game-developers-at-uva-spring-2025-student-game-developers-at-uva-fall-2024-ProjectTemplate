@@ -76,8 +76,8 @@ public class OrderManager : MonoBehaviour
             return;
         }
         Debug.Log("Selected Order " + selectedOrder);
-        if (currentOrder != null) currentOrder.Station.Unsubscribe();
         currentOrder = selectedOrder;
+        currentOrder.Station.Subscribe();
     }
 
     private void DeselectOrder()
@@ -89,7 +89,11 @@ public class OrderManager : MonoBehaviour
     
     private void OnTrashCurrentOrderFood()
     {
-        // order trash please
+        int index = currentOrder.StationIdx;
+        Debug.Log(index + " trashed");
+        currentOrder.ResetStation();
+        DeselectOrder();
+        allOrders[index] = currentOrder;
     }
     
     public void AddOrder(Order order)
