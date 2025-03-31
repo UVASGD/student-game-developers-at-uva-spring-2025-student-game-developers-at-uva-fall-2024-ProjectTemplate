@@ -18,7 +18,9 @@ public class OrderManager : MonoBehaviour
     private Order currentOrder; 
 
     [SerializeField]
-    private List<Order> allOrders = new(); 
+    private List<Order> activeOrders = new();
+
+    [SerializeField] private Dictionary<Order, float> servedOrders = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,8 +63,21 @@ public class OrderManager : MonoBehaviour
     private IEnumerator ExecuteAddProperty(ActionData actionData)
     {
         yield return new WaitForSeconds(actionData.ActionTime);
-
-        currentOrder.Station.ApplyProperty(actionData);
+        
+        // apply property to ingredients in station
+        List<Ingredient> ingredients = currentOrder.Station.ApplyProperty(actionData);
+        
+        // apply property to ingredients in the SelectedIngredients of the current order
+        foreach (Ingredient processedIngredient in ingredients)
+        {
+            foreach (IngredientData orderIngredientData in currentOrder.SelectedIngredients.Keys)
+            {
+                if (processedIngredient.Data.Name.Equals(orderIngredientData.Name))
+                {
+                    currentOrder.SelectedIngredients[orderIngredientData].Add(actionData.Property);// Might be unfinished. look later. 
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -93,28 +108,46 @@ public class OrderManager : MonoBehaviour
         Debug.Log(index + " trashed");
         currentOrder.ResetStation();
         DeselectOrder();
-        allOrders[index] = currentOrder;
+        activeOrders[index] = currentOrder;
     }
     
     public void AddOrder(Order order)
     {
         order.cookingUIEventChannel = cookingUIEventChannel; // pass event channel to order
-        allOrders.Add(order);
+        activeOrders.Add(order);
         cookingUIEventChannel.RaiseOnGenerateOrderButton(order);
     }
 
-    public void SubmitOrder()
+    public void SubmitOrder(Order order)
     {
-        allOrders.Remove(currentOrder);
-        cookingUIEventChannel.RaiseOnRemoveCustomer(currentOrder.Customer.Data.CustomerSpotIdx);
-        if (currentOrder.IsCorrect()){
-            Debug.Log("Order is correct");
-        } else {
-            Debug.Log("Order is incorrect");
+        if (order == null)
+        {
+            SubmitOrder(currentOrder);
         }
-            // other things can happen here like money? etc. like playerMoney += order.Recipe.Price; or something like that
+        else
+        {
+            activeOrders.Remove(order);
+            cookingUIEventChannel.RaiseOnRemoveCustomer(order.Customer.Data.CustomerSpotIdx);
+            float correctness = order.IsCorrect();
+            Debug.Log(correctness);
+            if (correctness == 1.0f)
+            {
+                Debug.Log("Order is correct");
+            }
+            else
+            {
+                Debug.Log("Order is incorrect");
+            }
+            Customer c = order.Customer;
+            servedOrders[order] = correctness * (c.RemainingPatience / c.Data.Patience);
+        }
     }
 
+    public Dictionary<Order, float> GetServedOrders()
+    {
+        return servedOrders;
+    }
+    
     // Pass event channel trigger to order
     public void ChangeNextStation(){
         currentOrder.ChangeStation();
