@@ -8,20 +8,20 @@
             </engine:VisualElement>
             <engine:VisualElement name="Biomes" style="flex-grow: 1; flex-direction: row;">
                 <engine:VisualElement name="Biome1Panel" style="flex-grow: 1; justify-content: space-between; align-items: auto; flex-direction: column; align-self: stretch;">
-                    <engine:VisualElement name="ImagePanel" class="ImagePanel" />
-                    <engine:VisualElement name="ButtonPanel" class="ButtonPanel">
+                    <engine:VisualElement name="Biome1ImagePanel" class="ImagePanel" />
+                    <engine:VisualElement name="Biome1ButtonPanel" class="ButtonPanel">
                         <engine:Button text="Select!" class="Select-button" style="translate: 0 0; max-height: 100%;" />
                     </engine:VisualElement>
                 </engine:VisualElement>
                 <engine:VisualElement name="Biome2Panel" style="flex-grow: 1; justify-content: flex-end; align-items: center;">
-                    <engine:VisualElement name="ImagePanel" class="ImagePanel" style="flex-grow: 1;" />
-                    <engine:VisualElement name="ButtonPanel" class="ButtonPanel" style="flex-grow: 1;">
+                    <engine:VisualElement name="Biome2ImagePanel" class="ImagePanel" style="flex-grow: 1;" />
+                    <engine:VisualElement name="Biome2ButtonPanel" class="ButtonPanel" style="flex-grow: 1;">
                         <engine:Button text="Select!" class="Select-button" />
                     </engine:VisualElement>
                 </engine:VisualElement>
                 <engine:VisualElement name="Biome3Panel" style="flex-grow: 1; justify-content: flex-end; align-items: center;">
-                    <engine:VisualElement name="ImagePanel" class="ImagePanel" style="flex-grow: 1;" />
-                    <engine:VisualElement name="ButtonPanel" class="ButtonPanel" style="flex-grow: 1;">
+                    <engine:VisualElement name="Biome3ImagePanel" class="ImagePanel" style="flex-grow: 1;" />
+                    <engine:VisualElement name="Biome3ButtonPanel" class="ButtonPanel" style="flex-grow: 1;">
                         <engine:Button text="Select!" class="Select-button" />
                     </engine:VisualElement>
                 </engine:VisualElement>
