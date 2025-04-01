@@ -1,0 +1,12 @@
+.category-button {
+    width: 400px;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-right-width: 0;
+    background-color: rgb(188, 188, 188);
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}

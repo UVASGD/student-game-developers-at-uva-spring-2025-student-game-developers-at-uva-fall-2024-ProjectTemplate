@@ -1,0 +1,23 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/TastyTavern/UIMenus/ShopMenu.uss?fileID=7433441132597879392&amp;guid=e15d36d4b2b5a4cc4902fa29f9bfbeb8&amp;type=3#ShopMenu" />
+    <engine:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row;">
+        <engine:VisualElement name="ShopOwnerIrene" style="flex-grow: 1; flex-direction: column; width: 20%; max-width: 28%;">
+            <engine:VisualElement name="Avatar" style="flex-grow: 1; width: 540px;" />
+            <engine:VisualElement name="Back" style="flex-grow: 1; max-height: 15%;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="Shop" style="flex-grow: 1; width: 0; max-width: 100%;">
+            <engine:VisualElement name="Banner" style="flex-grow: 1; max-height: 21%; flex-direction: row;">
+                <engine:VisualElement name="Board" style="flex-grow: 1; max-width: 100%; min-width: 0;" />
+                <engine:VisualElement name="Coins" style="flex-grow: 1; max-width: 20%;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="InventoryPanel" style="flex-grow: 1;">
+                <engine:VisualElement name="Buttons" style="flex-grow: 1; max-height: 12%; flex-direction: row; border-top-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-width: 0; margin-top: 35px; margin-left: 86px;">
+                    <engine:Button text="Button" name="Ingredients" class="category-button" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                    <engine:Button text="Button" name="Equipment" class="category-button" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                    <engine:Button text="Button" name="Biome" class="category-button" style="-unity-slice-scale: 1px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                </engine:VisualElement>
+                <engine:VisualElement name="Items" style="flex-grow: 1;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
