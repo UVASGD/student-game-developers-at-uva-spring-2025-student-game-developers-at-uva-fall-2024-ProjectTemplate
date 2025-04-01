@@ -522,7 +522,6 @@ MonoBehaviour:
   prototypeSlowPrefab: {fileID: 2223320114088956761, guid: 543b5fb073cc7464c83331125e2872b0, type: 3}
   prototypePoisonPrefab: {fileID: 2223320114088956761, guid: 27df90ec62c4670498e3da5778d40d54, type: 3}
   prototypeBeguilePrefab: {fileID: 2223320114088956761, guid: 239331d466fd046b886b5413f6d141c0, type: 3}
-  orientation: {fileID: 914348493}
 --- !u!1 &33825772
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,7 +3861,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 1
+  m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
