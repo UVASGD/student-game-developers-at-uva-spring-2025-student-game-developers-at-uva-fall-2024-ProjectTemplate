@@ -43,7 +43,7 @@ public class StationWorkspace : MonoBehaviour
     }
 
     private void AddToStationWorkspace(Ingredient ingredient){
-
+        // only add to active station type
 
         // Add ingredient to workspace
         // GameObject ingredientObject = new GameObject(ingredient.ToString());
