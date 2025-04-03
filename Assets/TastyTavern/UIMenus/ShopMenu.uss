@@ -17,12 +17,22 @@
 .shop-item {
     flex-grow: 1;
     height: 270px;
-    width: 420px;
-    margin-top: 38px;
+    width: 50%;
+    margin-top: 35px;
     padding-top: 0;
     padding-bottom: 0;
-    margin-bottom: 38px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-bottom: 35px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: rgba(28, 69, 241, 0.69);
+    max-width: 30%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.unity-scroll-view__content-container {
+    flex-direction: row;
+    flex-wrap: wrap;
 }
