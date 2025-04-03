@@ -18,7 +18,7 @@
                             <engine:Label text="Stirfry" class="order-label" />
                             <engine:VisualElement class="order-icon" />
                         </engine:VisualElement>
-                        <engine:ProgressBar value="22" title="my-progress" name="ProgressBar" />
+                        <ProgressBar style="width: 80px; height: 20px;" />
                     </engine:Button>
                 </engine:VisualElement>
                 <engine:VisualElement name="OrderSlot2" style="flex-grow: 1; max-width: 33.33%; justify-content: center; align-self: flex-start; align-items: center;">
@@ -27,7 +27,7 @@
                             <engine:Label text="Stirfry" class="order-label" />
                             <engine:VisualElement class="order-icon" />
                         </engine:VisualElement>
-                        <engine:ProgressBar value="22" title="my-progress" name="ProgressBar" />
+                        <ProgressBar style="width: 80px; height: 20px;" />
                     </engine:Button>
                 </engine:VisualElement>
             </engine:VisualElement>
