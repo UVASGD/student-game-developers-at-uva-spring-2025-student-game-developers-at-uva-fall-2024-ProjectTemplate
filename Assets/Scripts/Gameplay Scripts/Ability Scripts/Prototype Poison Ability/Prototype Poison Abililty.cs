@@ -6,8 +6,8 @@ public class PrototypePoisonAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypePoisonAbility(GameObject prefab) 
-        : base("Prototype Poison Ability", KeyCode.T, 2f)
+    public PrototypePoisonAbility(GameObject prefab)
+        : base("Prototype Poison Ability", KeyCode.T, 2f, AbilityFireType.TAP)
     {
         projectilePrefab = prefab;
     }
@@ -37,5 +37,14 @@ public class PrototypePoisonAbility : AbilityBase
         ProtopyePoisonProjectile poisonProjectile = projectilePrefab.GetComponent<ProtopyePoisonProjectile>();
         poisonProjectile.PoisonTime = poisonProjectile.PoisonTime * 1.1f;
         poisonProjectile.PoisonWeakness = poisonProjectile.PoisonWeakness * .9f;
+    }
+
+
+
+
+
+    protected override void HoldExecute(float holdTime, Vector3 targetPos)
+    {
+        throw new System.NotImplementedException();
     }
 }

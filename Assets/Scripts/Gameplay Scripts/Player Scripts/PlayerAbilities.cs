@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public GameObject prototypeSlowPrefab;
     public GameObject prototypePoisonPrefab;
     public GameObject prototypeBeguilePrefab;
+    public GameObject prototypeMeteorPrefab;
 
     private int wisdomPoints = 2;
     //private static bool abilitiesRegistered = false;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         abilityManager.AddAbility(new PrototypeSlowAbility(prototypeSlowPrefab));
         abilityManager.AddAbility(new PrototypePoisonAbility(prototypePoisonPrefab));
         abilityManager.AddAbility(new PrototypeBeguileAbility(prototypeBeguilePrefab));
+        abilityManager.AddAbility(new PrototypeMeteorAbility(prototypeMeteorPrefab));
     }
 
     public void AwardWisdomPoints(int points)

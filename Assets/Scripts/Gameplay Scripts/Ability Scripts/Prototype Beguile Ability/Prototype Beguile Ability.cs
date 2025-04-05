@@ -6,8 +6,8 @@ public class PrototypeBeguileAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypeBeguileAbility(GameObject prefab) 
-        : base("Prototype Beguile Ability", KeyCode.B, 2f)
+    public PrototypeBeguileAbility(GameObject prefab)
+        : base("Prototype Beguile Ability", KeyCode.B, 2f, AbilityFireType.TAP)
     {
         projectilePrefab = prefab;
     }
@@ -33,5 +33,14 @@ public class PrototypeBeguileAbility : AbilityBase
     public override void UpgradeAbility()
     {
 
+    }
+
+
+
+
+
+    protected override void HoldExecute(float holdTime, Vector3 targetPos)
+    {
+        throw new System.NotImplementedException();
     }
 }

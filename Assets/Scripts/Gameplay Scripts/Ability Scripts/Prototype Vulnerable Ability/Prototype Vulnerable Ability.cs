@@ -6,8 +6,8 @@ public class PrototypeVulnerableAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypeVulnerableAbility(GameObject prefab) 
-        : base("Prototype Vulnerable Ability", KeyCode.H, 2f)
+    public PrototypeVulnerableAbility(GameObject prefab)
+        : base("Prototype Vulnerable Ability", KeyCode.H, 2f, AbilityFireType.TAP)
     {
         projectilePrefab = prefab;
     }
@@ -36,5 +36,14 @@ public class PrototypeVulnerableAbility : AbilityBase
     {
         ProtopyeVulnerableProjectile vulnerableProjectile = projectilePrefab.GetComponent<ProtopyeVulnerableProjectile>();
         vulnerableProjectile.Duration = vulnerableProjectile.Duration * 1.1f;
+    }
+
+
+
+
+
+    protected override void HoldExecute(float holdTime, Vector3 targetPos)
+    {
+        throw new System.NotImplementedException();
     }
 }
