@@ -1,22 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(TeleportingIllusionBase))]
-public class PaintingTeleportInteractable : Interactable
+public class PaintingTeleportInteractable : GameplayUIInteractable
 {
-    [SerializeField] private GameplayUI paintingGameplayUI;
     private TeleportingIllusionBase teleportingIllusion;
-    private GameObject player;
     public override void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player"); //must be a better way to get player
-        if (player != null)
-        {
-            paintingGameplayUI.setPlayer(player);
-        }
-        else
-        {
-            Debug.LogWarning("Painting teleport interactable could not find player");
-        }
+        base.Start();
         teleportingIllusion = GetComponent<TeleportingIllusionBase>();
     }
     public override void Interact()
@@ -26,10 +16,8 @@ public class PaintingTeleportInteractable : Interactable
 
     private void usePainting()
     {
-        paintingGameplayUI.activate();
+        gameplayUI.activate();
 
         teleportingIllusion.teleportObject(player); //if there is interacting animation, this should be delayed
-        
-
     }
 }
