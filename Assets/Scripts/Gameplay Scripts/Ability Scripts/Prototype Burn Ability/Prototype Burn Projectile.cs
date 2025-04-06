@@ -31,9 +31,10 @@ public class ProtopyeBurnProjectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }*/
-
+        string tag = other.gameObject.tag;
+    
         //AOE
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Ground" || other.gameObject.tag == "Lighthouse")
+        if (EnemyTags.IsEnemyTag(tag) || tag == "Ground" || tag == "Lighthouse")
         {
             Vector3 pos = transform.position;
             Destroy(this.gameObject);
