@@ -6,8 +6,8 @@ public class PrototypeSlowAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypeSlowAbility(GameObject prefab) 
-        : base("Prototype Slow Ability", KeyCode.U, 2f)
+    public PrototypeSlowAbility(GameObject prefab)
+        : base("Prototype Slow Ability", KeyCode.U, 2f, AbilityFireType.TAP)
     {
         projectilePrefab = prefab;
     }
@@ -37,5 +37,14 @@ public class PrototypeSlowAbility : AbilityBase
         ProtopyeSlowProjectile slowProjectile = projectilePrefab.GetComponent<ProtopyeSlowProjectile>();
         slowProjectile.setSlowTime(slowProjectile.getSlowTime() * 1.1f);
         slowProjectile.SlowMagnitude *= .90f; //10 percent slower
+    }
+
+
+
+
+
+    protected override void HoldExecute(float holdTime, Vector3 targetPos)
+    {
+        throw new System.NotImplementedException();
     }
 }

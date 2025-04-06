@@ -9,7 +9,7 @@ public class Protopye2Projectile : MonoBehaviour
 
     public float FreezeTime { get => freezeTime; set => freezeTime = value; }
 
-    public void Start() 
+    public void Start()
     {
         Destroy(this.gameObject, selfDestructTime);
     }
@@ -23,14 +23,14 @@ public class Protopye2Projectile : MonoBehaviour
     {
         this.freezeTime = freezeTime;
     }
-    private void OnCollisionEnter(Collision other) 
+    private void OnCollisionEnter(Collision other)
     {
         if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             Destroy(this.gameObject);
             other.gameObject.GetComponent<Enemy>().ApplyFreeze(freezeTime);
-            
-        } else if (other.gameObject.tag == "Ground" ||
+        }
+        else if (other.gameObject.tag == "Ground" ||
                    other.gameObject.tag == "Lighthouse")
         {
             Destroy(this.gameObject);

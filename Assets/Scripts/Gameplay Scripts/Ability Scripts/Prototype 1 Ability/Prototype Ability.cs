@@ -6,8 +6,8 @@ public class PrototypeAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypeAbility(GameObject prefab) 
-        : base("Prototype Ability", KeyCode.E, 3f)
+    public PrototypeAbility(GameObject prefab)
+        : base("Prototype Ability", KeyCode.E, 3f, AbilityFireType.TAP)
     {
         projectilePrefab = prefab;
     }
@@ -36,5 +36,13 @@ public class PrototypeAbility : AbilityBase
         Debug.Log("Ability upgraded to level " + this.level);
         ProtopyeProjectile projectile = projectilePrefab.GetComponent<ProtopyeProjectile>();
         projectile.setDamage(projectile.getDamage() * 1.1f);
+    }
+
+
+
+
+    protected override void HoldExecute(float holdTime, Vector3 targetPos)
+    {
+        throw new System.NotImplementedException();
     }
 }
