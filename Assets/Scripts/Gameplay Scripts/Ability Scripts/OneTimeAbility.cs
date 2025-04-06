@@ -5,7 +5,7 @@ public abstract class OneTimeAbility : AbilityBase
     public int charges { get; protected set; }
     
     public OneTimeAbility(string name, KeyCode key, float cTime, int initialCharges = 1) 
-        : base(name, key, cTime)
+        : base(name, key, cTime, AbilityFireType.HOLD)
     {
         charges = initialCharges;
     }
