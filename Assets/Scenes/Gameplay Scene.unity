@@ -7999,7 +7999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20961e7f7b43234e82bede5eaf6378c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6983215521479146805, guid: f7f01ff1656a85f40bd2b11413e2eb1a, type: 3}
+  enemyPrefab: {fileID: 142777281206660113, guid: f54f190bfa28f024ca7a3ddd4f95cf73, type: 3}
   spawnDiameter: 50
   enemiesMultiplier: 1.5
   enemiesPerRound: 5
