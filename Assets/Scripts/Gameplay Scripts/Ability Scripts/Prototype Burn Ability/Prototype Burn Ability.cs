@@ -6,8 +6,8 @@ public class PrototypeBurnAbility : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public PrototypeBurnAbility(GameObject prefab) 
-        : base("Prototype Burn Ability", KeyCode.G, 2f)
+    public PrototypeBurnAbility(GameObject prefab)
+        : base("Prototype Burn Ability", KeyCode.G, 2f, AbilityFireType.TAP)
     {
         projectilePrefab = prefab;
     }
@@ -39,5 +39,14 @@ public class PrototypeBurnAbility : AbilityBase
         burnProjectile.BurnDamage = burnProjectile.BurnDamage * 1.1f;
         burnProjectile.NumTicks = burnProjectile.NumTicks + 1;
 
+    }
+
+
+
+
+
+    protected override void HoldExecute(float holdTime, Vector3 targetPos)
+    {
+        throw new System.NotImplementedException();
     }
 }

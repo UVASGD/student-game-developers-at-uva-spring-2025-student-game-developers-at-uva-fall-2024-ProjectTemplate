@@ -6,8 +6,8 @@ public class Prototype2Ability : AbilityBase
     private Transform orientationTransform;  // Reference to the player's orientation
 
     // Constructor
-    public Prototype2Ability(GameObject prefab) 
-        : base("Prototype 2 Ability", KeyCode.F, 2f)
+    public Prototype2Ability(GameObject prefab)
+        : base("Prototype 2 Ability", KeyCode.F, 2f, AbilityFireType.TAP)
     {
         projectilePrefab = prefab;
     }
@@ -36,5 +36,14 @@ public class Prototype2Ability : AbilityBase
     {
         Protopye2Projectile freezeProjectile = projectilePrefab.GetComponent<Protopye2Projectile>();
         freezeProjectile.FreezeTime = freezeProjectile.FreezeTime * 1.1f;
+    }
+
+
+
+
+
+    protected override void HoldExecute(float holdTime, Vector3 targetPos)
+    {
+        throw new System.NotImplementedException();
     }
 }
