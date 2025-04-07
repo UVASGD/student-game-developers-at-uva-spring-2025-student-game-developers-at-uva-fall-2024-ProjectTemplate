@@ -522,7 +522,6 @@ MonoBehaviour:
   prototypeSlowPrefab: {fileID: 2223320114088956761, guid: 543b5fb073cc7464c83331125e2872b0, type: 3}
   prototypePoisonPrefab: {fileID: 2223320114088956761, guid: 27df90ec62c4670498e3da5778d40d54, type: 3}
   prototypeBeguilePrefab: {fileID: 2223320114088956761, guid: 239331d466fd046b886b5413f6d141c0, type: 3}
-  orientation: {fileID: 914348493}
 --- !u!1 &33825772
 GameObject:
   m_ObjectHideFlags: 0
@@ -7890,7 +7889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20961e7f7b43234e82bede5eaf6378c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6983215521479146805, guid: f7f01ff1656a85f40bd2b11413e2eb1a, type: 3}
+  enemyPrefab: {fileID: 142777281206660113, guid: f54f190bfa28f024ca7a3ddd4f95cf73, type: 3}
   spawnDiameter: 50
   enemiesMultiplier: 1.5
   enemiesPerRound: 5
