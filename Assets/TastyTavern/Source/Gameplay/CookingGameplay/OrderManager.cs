@@ -62,6 +62,7 @@ public class OrderManager : MonoBehaviour
 
     private IEnumerator ExecuteAddProperty(ActionData actionData)
     {
+        progressBar.StartProgress(actionData.ActionTime);
         yield return new WaitForSeconds(actionData.ActionTime);
         
         // apply property to ingredients in station
@@ -70,11 +71,11 @@ public class OrderManager : MonoBehaviour
         // apply property to ingredients in the SelectedIngredients of the current order
         foreach (Ingredient processedIngredient in ingredients)
         {
-            foreach (IngredientData orderIngredientData in currentOrder.SelectedIngredients.Keys)
+            foreach (IngredientData orderIngredientData in currentOrder.CurrentIngredients.Keys)
             {
                 if (processedIngredient.Data.Name.Equals(orderIngredientData.Name))
                 {
-                    currentOrder.SelectedIngredients[orderIngredientData].Add(actionData.Property);// Might be unfinished. look later. 
+                    currentOrder.CurrentIngredients[orderIngredientData].Add(actionData.Property);// Might be unfinished. look later. 
                 }
             }
         }
@@ -105,7 +106,7 @@ public class OrderManager : MonoBehaviour
     private void OnTrashCurrentOrderFood()
     {
         int index = currentOrder.StationIdx;
-        Debug.Log(index + " trashed");
+        Debug.Log(activeOrders.IndexOf(currentOrder) + " order's " + index + " station trashed");
         currentOrder.ResetStation();
         DeselectOrder();
         activeOrders[index] = currentOrder;
