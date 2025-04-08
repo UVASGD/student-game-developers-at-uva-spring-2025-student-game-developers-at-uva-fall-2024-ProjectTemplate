@@ -42,6 +42,9 @@ public class Enemy : MonoBehaviour
 
     private EnemySpawnManager enemySpawnManager;
 
+    private Animator enemyAnimator;
+    private bool isAttacking = false;
+
     private NavMeshAgent agent;
 
     private void Start()
@@ -56,21 +59,39 @@ public class Enemy : MonoBehaviour
         agent.acceleration = 8f; // Optional, tweak as needed
         agent.angularSpeed = 120f;
         agent.destination = target.position;
+        enemyAnimator = GetComponent<Animator>();
         //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
     }
 
     private void Update()
     {
+
         // If the enemy is beguiled, BeguileTimer() will run MoveTo()
         if (!isBeguiled)
         {
             Move();
         }
+
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                isAttacking = true;
+                enemyAnimator.SetBool("isMoving", false);
+                enemyAnimator.SetBool("isAttacking", true);
+            }
+
+        } else {
+
+            isAttacking = false;
+            enemyAnimator.SetBool("isMoving", true);
+            enemyAnimator.SetBool("isAttacking", false);
+        }
     }
 
     private void LateUpdate()
     {
-        healthBarTransform.LookAt(Camera.main.transform);
+        //healthBarTransform.LookAt(Camera.main.transform);
     }
 
     // Basic movement logic shared by all enemies
@@ -383,6 +404,7 @@ public class Enemy : MonoBehaviour
         }
 
         enemySpawnManager.RemoveEnemyFromList(this);
+        enemyAnimator.SetBool("Die", true);
         Debug.Log($"{name} has died!");
         Destroy(gameObject);
     }
