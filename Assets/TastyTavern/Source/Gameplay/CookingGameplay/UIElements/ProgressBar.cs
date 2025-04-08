@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public partial class ProgressBar : VisualElement{
 
     [SerializeField, DontCreateProperty]
-    float m_Progress;
+    private float m_Progress;
 
     [UxmlAttribute, CreateProperty]
     public float progress{
@@ -17,6 +17,11 @@ public partial class ProgressBar : VisualElement{
         }
     }
 
+    private bool isRunning = false;
+    private float duration = 0f;
+    private float startTime;
+
+    public System.Action OnProgressComplete;
     public ProgressBar()
     {
         generateVisualContent += GenerateVisualContent;
@@ -47,4 +52,35 @@ public partial class ProgressBar : VisualElement{
         painter.Fill(FillRule.NonZero);
         painter.Stroke();
     }
+    public void StartProgress(float time)
+    {
+        
+        if (time <= 0) return;
+
+        duration = time;
+        startTime = Time.time;
+        isRunning = true;
+        
+
+        this.schedule.Execute(UpdateProgress).Every(16); 
+    }
+
+    private void UpdateProgress()
+    {
+        if (!isRunning) return;
+
+        float elapsed = Time.time - startTime;
+        progress = (elapsed / duration) * 100f;
+        MarkDirtyRepaint();
+
+        if (progress >= 100f)
+        {
+            progress = 100f;
+            isRunning = false;
+            OnProgressComplete?.Invoke();
+        }
+    }
+    
+
+
 }

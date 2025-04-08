@@ -9,6 +9,8 @@ using UnityEngine.UIElements;
 
 public class StationView : MonoBehaviour {
 
+    [SerializeField] private ProgressBar progressBar;
+    private VisualElement progressBarContainer;
     [SerializeField] string PanelName { get; set; }
 
     [SerializeField]
@@ -57,9 +59,33 @@ public class StationView : MonoBehaviour {
         cookingUIEventChannel.OnDeleteOrderButton -= DeleteOrderButton;
     }
 
+    public System.Action OnProgressComplete;
     private void Awake(){
         document = GetComponent<UIDocument>();
+        var root = document.rootVisualElement;
+
+        progressBarContainer = root.Q<VisualElement>("ProgressBarContainer");
+        if (progressBarContainer == null)
+        {
+            progressBarContainer = new VisualElement();
+            progressBarContainer.name = "ProgressBarContainer";
+            root.Add(progressBarContainer);
+        }
+
+        progressBar = new ProgressBar();
+        progressBarContainer.Add(progressBar);
+
+        document = GetComponent<UIDocument>();
         root = document.rootVisualElement;
+
+        progressBar = root.Q<ProgressBar>("ProgressBar");
+
+        if (progressBar != null)
+        {
+            Debug.Log("ProgressBar found in UI!");
+            progressBar.progress = 0f; // Ensure it starts at 0%
+        }
+
         Debug.Log("root is" + root);
         ingredientSlotContainer = root.Q<VisualElement>("IngredientSlotContainer"); //already style?
         actionSlotContainer = root.Q<VisualElement>("ActionSlotContainer");
@@ -104,6 +130,7 @@ public class StationView : MonoBehaviour {
         } else {
             GenerateNextStationButton();
             GenerateActionButton(station.Data.ActionData); 
+            StartProgress(station.Data.ProcessingTime);
         }
         GenerateIngredientButtons(station.StockIngredients);
         GenerateStationBackground(station);
@@ -143,6 +170,17 @@ public class StationView : MonoBehaviour {
         nextButton.text = "Next Station";
         nextStationContainer.Add(nextButton);
         nextButton.clicked += OnNextStation;
+    }
+
+    private void StartProgress(float processingTime)
+    {
+        if (progressBar == null)
+        {
+            Debug.LogWarning("ProgressBar is not assigned!");
+            return;
+        }
+
+        progressBar.StartProgress(processingTime);
     }
 
     
