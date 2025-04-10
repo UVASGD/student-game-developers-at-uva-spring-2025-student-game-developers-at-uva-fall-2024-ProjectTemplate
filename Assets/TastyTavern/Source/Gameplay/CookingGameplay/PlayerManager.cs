@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -45,6 +46,16 @@ public class PlayerManager : MonoBehaviour
         {
             BiomeUnlocked.Add(allBiome[i], false);
         }
+    }
+    [System.Serializable]
+    private class PlayerData
+    {
+        // TODO: Everything
+        PlayerData()
+        {
+            
+        }
+
     }
 
     private void OnEnable()

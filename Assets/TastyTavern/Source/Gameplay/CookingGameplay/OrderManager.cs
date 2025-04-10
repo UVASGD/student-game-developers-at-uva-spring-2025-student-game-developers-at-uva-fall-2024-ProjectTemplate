@@ -62,7 +62,7 @@ public class OrderManager : MonoBehaviour
 
     private IEnumerator ExecuteAddProperty(ActionData actionData)
     {
-        progressBar.StartProgress(actionData.ActionTime);
+        //progressBar.StartProgress(actionData.ActionTime);
         yield return new WaitForSeconds(actionData.ActionTime);
         
         // apply property to ingredients in station

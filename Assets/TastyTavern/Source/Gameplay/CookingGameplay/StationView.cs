@@ -127,10 +127,10 @@ public class StationView : MonoBehaviour {
         trashButtonContainer.Clear();
         if (station.Data.StationType == StationType.Serving){
             GenerateServeButton(); // last station only generates serve button
-        } else {
+        } else { 
             GenerateNextStationButton();
             GenerateActionButton(station.Data.ActionData); 
-            StartProgress(station.Data.ProcessingTime);
+            // StartProgress(station.Data.ProcessingTime);
         }
         GenerateIngredientButtons(station.StockIngredients);
         GenerateStationBackground(station);
