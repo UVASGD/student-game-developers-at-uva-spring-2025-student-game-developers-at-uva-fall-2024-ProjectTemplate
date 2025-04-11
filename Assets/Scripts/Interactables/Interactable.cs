@@ -13,6 +13,10 @@ public class Interactable : MonoBehaviour {
         canInteract = true;
     }
     public virtual void Update() {}
-    public virtual void Interact() {}
+    public virtual void Interact() 
+    {
+        // IInteractable interactable = GetComponent<IInteractable>();
+        // interactable.Interact();
+    }
     public virtual void SetText() {}
 }

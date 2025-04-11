@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 91819517c31bec94eb8d5bf362a838c6
+  - enabled: 1
+    path: Assets/Scenes/PaintingsLevel.unity
+    guid: 32cdb18722077684cb3b510ffaa1e7d8
   - enabled: 1
     path: Assets/Scenes/WeepingAngel.unity
     guid: d2b7ab2fde1afe841bd9b34fde0f4614
