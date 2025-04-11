@@ -6,8 +6,8 @@ using Unity.VisualScripting;
 public class QuantumGroupBase : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private List<QuantumGroupObject> objects = new List<QuantumGroupObject>();
-    private int curActiveIndex;
+    protected List<QuantumGroupObject> objects = new List<QuantumGroupObject>();
+    protected int curActiveIndex;
     void Start()
     {
         InitializeQuantumObjects();
@@ -36,17 +36,18 @@ public class QuantumGroupBase : MonoBehaviour
         
     }
 
-    public void switchObject()
+    public virtual void switchObject()
     {
 
     }
     public bool trySwitchObject(int newIndex)
     {
+        Debug.Log(newIndex);
         QuantumGroupObject newActive = objects[newIndex];
         QuantumGroupObject curActive = objects[curActiveIndex];
 
         if (newActive.isVisible() || curActive.isVisible())
-        {   
+        {
             return false;
         }
         else

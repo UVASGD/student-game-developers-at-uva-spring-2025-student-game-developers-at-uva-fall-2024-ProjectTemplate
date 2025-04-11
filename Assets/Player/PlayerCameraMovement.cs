@@ -7,7 +7,7 @@ public class PlayerCameraMovement : MonoBehaviour
     [SerializeField] private GameObject head;
     [SerializeField] private InputAction mouseX;
     [SerializeField] private InputAction mouseY;
-    [SerializeField] private float mouseSense;
+    [SerializeField] public float mouseSense;
     public bool canPan = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,5 +35,15 @@ public class PlayerCameraMovement : MonoBehaviour
                 head.transform.localRotation = Quaternion.Euler(head.transform.localEulerAngles.x, 0, 0);
             }
         }
+    }
+
+    public void lockPan()
+    {
+        canPan = false;
+    }
+
+    public void unlockPan()
+    {
+        canPan = true;
     }
 }

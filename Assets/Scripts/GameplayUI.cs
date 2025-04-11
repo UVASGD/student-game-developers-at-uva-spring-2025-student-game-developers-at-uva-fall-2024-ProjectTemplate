@@ -26,10 +26,11 @@ public class GameplayUI : MonoBehaviour
         panel.SetActive(true);
         if (player != null)
         {
-            player.GetComponent<PlayerMovement>().canMove = false;
-            player.GetComponent<PlayerCameraMovement>().canPan = false;
+            player.GetComponent<PlayerMovement>().lockMovement();
+            player.GetComponent<PlayerCameraMovement>().lockPan();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Debug.Log("hello?");
         }
     }
     public void deactivate()
@@ -37,8 +38,8 @@ public class GameplayUI : MonoBehaviour
         panel.SetActive(false);
         if (player != null)
         {
-            player.GetComponent<PlayerMovement>().canMove = true;
-            player.GetComponent<PlayerCameraMovement>().canPan = true;
+            player.GetComponent<PlayerMovement>().unlockMovement();
+            player.GetComponent<PlayerCameraMovement>().unlockPan();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

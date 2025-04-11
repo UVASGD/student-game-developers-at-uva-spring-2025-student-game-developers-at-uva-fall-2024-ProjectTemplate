@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private InputAction move;
     private Rigidbody rb;
-    public bool canMove = true;
+    private bool canMove = true;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,5 +26,15 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = transform.rotation * new Vector3(inputVec.x, 0, inputVec.y) * speed;
             }
         }
+    }
+
+    public void lockMovement()
+    {
+        canMove = false;
+    }
+
+    public void unlockMovement()
+    {
+        canMove = true;
     }
 }
