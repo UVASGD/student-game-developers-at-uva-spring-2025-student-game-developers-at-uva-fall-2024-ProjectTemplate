@@ -50,9 +50,9 @@ public class AbilityManagerUI : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Creating UI for {abilityManager.GetAbilities().Count} abilities");
+        Debug.Log($"Creating UI for {abilityManager.GetOwnedAbilities().Count} abilities");
 
-        foreach (AbilityBase ability in abilityManager.GetAbilities())
+        foreach (AbilityBase ability in abilityManager.GetOwnedAbilities())
         {
             GameObject abilityUI = Instantiate(abilityUIPrefab, transform);
             abilityUI.GetComponent<AbilityUI>().Initialize(ability);

@@ -1,48 +1,65 @@
 using UnityEngine;
 
+// Assumes ProtopyeProjectile exists and has a method like setDamage(float damage)
+// or a public property 'Damage', or an Initialize(float damage) method.
+
 public class PrototypeAbility : AbilityBase
 {
-    private GameObject projectilePrefab; // Reference to the prefab for the projectile
-    private Transform orientationTransform;  // Reference to the player's orientation
+    private GameObject projectilePrefab;
 
-    // Constructor
-    public PrototypeAbility(GameObject prefab)
-        : base("Prototype Ability", KeyCode.E, 3f, AbilityFireType.TAP)
+    public PrototypeAbility(ShopAbilitySO shopData, GameObject prefab)
+        : base(shopData, KeyCode.E, 3f, AbilityFireType.TAP) // Pass SO, Key, Cooldown, Type
     {
-        projectilePrefab = prefab;
+        if (prefab == null) { Debug.LogError($"Prefab is null for ability {shopData?.abilityName ?? "Ability"}!"); }
+        this.projectilePrefab = prefab;
     }
 
     protected override void Execute()
     {
-        Debug.Log($"{abilityName} activated!");
+        if (projectilePrefab == null) {
+            Debug.LogError($"{abilityName}: projectilePrefab is null!");
+            return;
+        }
+
+        Debug.Log($"{abilityName} activated! Level: {CurrentLevel}"); // Optional debug
 
         Transform cameraTransform = Camera.main.transform;
-        // Instantiate the projectile
         GameObject projectile = GameObject.Instantiate(
             projectilePrefab,
-            cameraTransform.position + cameraTransform.forward, // Spawn in front of player
-            Quaternion.LookRotation(cameraTransform.forward)    // Orient forward
+            cameraTransform.position + cameraTransform.forward,
+            Quaternion.LookRotation(cameraTransform.forward)
         );
 
-        // Add velocity to the projectile
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.linearVelocity = cameraTransform.forward * 10f;
+        if (rb != null) {
+            rb.useGravity = false;
+            rb.linearVelocity = cameraTransform.forward * 10f; // Fixed speed
+        }
+
+        // Apply level-scaled damage stats to the instance
+        ProtopyeProjectile projectileComponent = projectile.GetComponent<ProtopyeProjectile>();
+        if (projectileComponent != null)
+        {
+            // --- Define Base Values and Scaling ---
+            float baseDamage = 10.0f;    // Level 1 damage
+            float damageMultiplierPerLevel = 1.1f; // 10% damage increase per level
+
+            // --- Calculate current stats based on level ---
+            float currentDamage = baseDamage * Mathf.Pow(damageMultiplierPerLevel, CurrentLevel - 1);
+
+            projectileComponent.setDamage(currentDamage);
+        }
     }
 
-    public override void UpgradeAbility()
+    protected override void ApplyLevelBasedStats()
     {
-        this.level++;
-        Debug.Log("Ability upgraded to level " + this.level);
-        ProtopyeProjectile projectile = projectilePrefab.GetComponent<ProtopyeProjectile>();
-        projectile.setDamage(projectile.getDamage() * 1.1f);
+        // Intentionally left empty unless ability-instance stats need changes on level up.
     }
-
-
-
 
     protected override void HoldExecute(float holdTime, Vector3 targetPos)
     {
         throw new System.NotImplementedException();
     }
+
+    // --- REMOVED UpgradeAbility() METHOD ---
 }

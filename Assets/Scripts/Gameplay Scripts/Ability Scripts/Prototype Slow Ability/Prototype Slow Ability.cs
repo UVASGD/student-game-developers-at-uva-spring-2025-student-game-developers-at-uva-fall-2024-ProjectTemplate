@@ -1,47 +1,59 @@
 using UnityEngine;
 
+// Assumes ProtopyeSlowProjectile exists and has Initialize(float time, float magnitude) or setters
+
 public class PrototypeSlowAbility : AbilityBase
 {
-    private GameObject projectilePrefab; // Reference to the prefab for the projectile
-    private Transform orientationTransform;  // Reference to the player's orientation
+    private GameObject projectilePrefab;
 
-    // Constructor
-    public PrototypeSlowAbility(GameObject prefab)
-        : base("Prototype Slow Ability", KeyCode.U, 2f, AbilityFireType.TAP)
+    public PrototypeSlowAbility(ShopAbilitySO shopData, GameObject prefab)
+        : base(shopData, KeyCode.U, 2f, AbilityFireType.TAP) // Pass SO, Key, Cooldown, Type
     {
-        projectilePrefab = prefab;
+        if (prefab == null) { Debug.LogError($"Prefab is null for ability {shopData?.abilityName ?? "Ability"}!"); }
+        this.projectilePrefab = prefab;
     }
 
     protected override void Execute()
     {
-        Debug.Log($"{abilityName} activated!");
-
+        if (projectilePrefab == null) {
+            Debug.LogError($"{abilityName}: projectilePrefab is null!");
+            return;
+        }
 
         Transform cameraTransform = Camera.main.transform;
-        // Instantiate the projectile
         GameObject projectile = GameObject.Instantiate(
             projectilePrefab,
-            cameraTransform.position + cameraTransform.forward, // Spawn in front of player
-            Quaternion.LookRotation(cameraTransform.forward)    // Orient forward
+            cameraTransform.position + cameraTransform.forward,
+            Quaternion.LookRotation(cameraTransform.forward)
         );
 
-        // Add velocity to the projectile
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.linearVelocity = cameraTransform.forward * 10f;
+        if (rb != null) {
+            rb.useGravity = false;
+            rb.linearVelocity = cameraTransform.forward * 10f;
+        }
 
+        ProtopyeSlowProjectile projectileComponent = projectile.GetComponent<ProtopyeSlowProjectile>();
+        if (projectileComponent != null)
+        {
+            float baseSlowTime = 4.0f;
+            float timeMultiplierPerLevel = 1.1f;
+            float baseSlowMagnitude = 0.7f;
+            float magnitudeMultiplierPerLevel = 0.95f;
+
+            float currentSlowTime = baseSlowTime * Mathf.Pow(timeMultiplierPerLevel, CurrentLevel - 1);
+            float currentSlowMagnitude = baseSlowMagnitude * Mathf.Pow(magnitudeMultiplierPerLevel, CurrentLevel - 1);
+            currentSlowMagnitude = Mathf.Max(currentSlowMagnitude, 0.1f); // Prevent excessive slow
+
+            projectileComponent.SlowTime = currentSlowTime;
+            projectileComponent.SlowMagnitude = currentSlowMagnitude;
+        }
     }
 
-    public override void UpgradeAbility()
+    protected override void ApplyLevelBasedStats()
     {
-        ProtopyeSlowProjectile slowProjectile = projectilePrefab.GetComponent<ProtopyeSlowProjectile>();
-        slowProjectile.setSlowTime(slowProjectile.getSlowTime() * 1.1f);
-        slowProjectile.SlowMagnitude *= .90f; //10 percent slower
+        // Intentionally left empty unless ability-instance stats need changes on level up.
     }
-
-
-
-
 
     protected override void HoldExecute(float holdTime, Vector3 targetPos)
     {

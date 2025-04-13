@@ -5,9 +5,8 @@ public class Prototype2Ability : AbilityBase
     private GameObject projectilePrefab; // Reference to the prefab for the projectile
     private Transform orientationTransform;  // Reference to the player's orientation
 
-    // Constructor
-    public Prototype2Ability(GameObject prefab)
-        : base("Prototype 2 Ability", KeyCode.F, 2f, AbilityFireType.TAP)
+    public Prototype2Ability(ShopAbilitySO shopData, GameObject prefab) // Added shopData param
+        : base(shopData, KeyCode.F, 2f, AbilityFireType.TAP) // Pass shopData to base, provide specific Key/Cool/Type
     {
         projectilePrefab = prefab;
     }
@@ -30,18 +29,26 @@ public class Prototype2Ability : AbilityBase
         rb.useGravity = false;
         rb.linearVelocity = cameraTransform.forward * 10f;
 
+        Protopye2Projectile projectileComponent = projectile.GetComponent<Protopye2Projectile>();
+        if (projectileComponent != null)
+        {
+            float baseFreezeTime = 5f;
+            float currentFreezeTime = baseFreezeTime * (1 + (CurrentLevel - 1) * 0.1f);
+
+            // Use the setter method if it exists on Protopye2Projectile
+            projectileComponent.setFreezeTime(currentFreezeTime); // Assumes this method exists
+        }
+        else
+        {
+            Debug.LogWarning($"{abilityName}: Instantiated projectile '{projectile.name}' missing Protopye2Projectile script!");
+        }
+
     }
 
-    public override void UpgradeAbility()
+    protected override void ApplyLevelBasedStats()
     {
-        Protopye2Projectile freezeProjectile = projectilePrefab.GetComponent<Protopye2Projectile>();
-        freezeProjectile.FreezeTime = freezeProjectile.FreezeTime * 1.1f;
+        Debug.Log($"{abilityName} ApplyLevelBasedStats called for Level {CurrentLevel}.");
     }
-
-
-
-
-
     protected override void HoldExecute(float holdTime, Vector3 targetPos)
     {
         throw new System.NotImplementedException();

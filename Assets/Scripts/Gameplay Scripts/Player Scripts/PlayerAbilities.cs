@@ -2,41 +2,72 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private AbilityManager abilityManager;
+    public AbilityManager abilityManager { get; private set; }
 
-    public GameObject prototype1Prefab;
-    public GameObject prototype2Prefab;
-    public GameObject prototypeBurnPrefab;
-    public GameObject prototypeVulnerablePrefab;
-    public GameObject prototypeSlowPrefab;
-    public GameObject prototypePoisonPrefab;
-    public GameObject prototypeBeguilePrefab;
-    public GameObject prototypeMeteorPrefab;
-
-    private int wisdomPoints = 2;
-    //private static bool abilitiesRegistered = false;
+    [SerializeField] private int wisdomPoints = 10;
 
     void Awake()
     {
-        abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
-        abilityManager.AddAbility(new PrototypeAbility(prototype1Prefab));
-        abilityManager.AddAbility(new Prototype2Ability(prototype2Prefab));
-        abilityManager.AddAbility(new PrototypeBurnAbility(prototypeBurnPrefab));
-        abilityManager.AddAbility(new PrototypeVulnerableAbility(prototypeVulnerablePrefab));
-        abilityManager.AddAbility(new PrototypeSlowAbility(prototypeSlowPrefab));
-        abilityManager.AddAbility(new PrototypePoisonAbility(prototypePoisonPrefab));
-        abilityManager.AddAbility(new PrototypeBeguileAbility(prototypeBeguilePrefab));
-        abilityManager.AddAbility(new PrototypeMeteorAbility(prototypeMeteorPrefab));
+        // Find the AbilityManager if not assigned
+        if (abilityManager == null)
+        {
+            abilityManager = FindFirstObjectByType<AbilityManager>();
+             if (abilityManager == null)
+             {
+                 Debug.LogError("Player could not find AbilityManager!");
+             }
+        }
     }
 
     public void AwardWisdomPoints(int points)
     {
-        wisdomPoints += points;
+        if (points > 0)
+        {
+            wisdomPoints += points;
+            Debug.Log($"Awarded {points} WP. Total: {wisdomPoints}");
+             FindFirstObjectByType<ShopManager>()?.RefreshShopItemStates();
+             FindFirstObjectByType<LibraryUI>()?.UpdateWisdomPointsDisplay();
+        }
+    }
+
+    public bool CanAfford(int cost)
+    {
+        return wisdomPoints >= cost;
+    }
+
+    public bool SpendWisdomPoints(int amount)
+    {
+        if (amount <= 0) return false;
+
+        if (wisdomPoints >= amount)
+        {
+            wisdomPoints -= amount;
+            Debug.Log($"Spent {amount} WP. Remaining: {wisdomPoints}");
+
+             FindFirstObjectByType<ShopManager>()?.RefreshShopItemStates();
+             FindFirstObjectByType<LibraryUI>()?.UpdateWisdomPointsDisplay();
+            return true;
+        }
+        else
+        {
+            Debug.Log($"Cannot spend {amount} WP. Only have {wisdomPoints}");
+            return false;
+        }
+    }
+
+    public void RefundWisdomPoints(int amount)
+    {
+        if (amount > 0)
+        {
+            wisdomPoints += amount;
+            Debug.Log($"Refunded {amount} WP. Total: {wisdomPoints}");
+             FindFirstObjectByType<ShopManager>()?.RefreshShopItemStates();
+             FindFirstObjectByType<LibraryUI>()?.UpdateWisdomPointsDisplay();
+        }
     }
 
     public int GetWisdomPoints()
     {
         return wisdomPoints;
     }
-
 }

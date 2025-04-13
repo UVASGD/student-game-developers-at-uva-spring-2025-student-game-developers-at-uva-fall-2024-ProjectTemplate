@@ -1,200 +1,169 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public enum AbilityFireType
-{
-    TAP,
-    HOLD
-}
-public enum AbilityHoldAction
-{
-    HOLD_START,
-    HOLD_END
-}
+// Assuming these enums exist somewhere
+public enum AbilityFireType { TAP, HOLD }
+public enum AbilityHoldAction { HOLD_START, HOLD_CONTINUE, HOLD_END }
+
+// Abstract base class for all abilities
 public abstract class AbilityBase
 {
-    public string abilityName { get; private set; }
-    public KeyCode activationKey { get; private set; }
-    public float cooldownTime { get; private set; }
-    public int level { get; set; }
-    public Sprite AbilityIcon { get; protected set; }
-    public AbilityFireType abilityFireType { get; private set; }
-    public float lastActivatedTime { get; protected set; }
-    public float holdTime { get; private set; }
+    // --- Core Ability Properties ---
+    public string abilityName { get; protected set; }
+    public KeyCode activationKey { get; protected set; }
+    public float cooldown { get; protected set; }
+    public AbilityFireType abilityFireType { get; protected set; }
+    protected float lastActivationTime = -Mathf.Infinity; // Time since last use
+    protected LineRenderer lineRenderer; // For hold abilities, potentially
 
-    private bool holding = false;
-    private float holdRequirement = 2f;
+    // --- Shop & Progression Properties ---
+    public ShopAbilitySO ShopData { get; private set; } // Reference back to the SO
+    public int CurrentLevel { get; protected set; } = 0; // 0 means not owned/learned yet
+    public int TotalWisdomInvested { get; protected set; } = 0; // Tracks total cost spent
 
-    private Vector3? projectedHitPoint = null;
-
-    protected LineRenderer LineRenderer;
-    protected int LinePoints = 25;
-    protected float TimeBetweenPoints = 0.1f;
-    protected float LaunchForce = 15f;
-    protected float SimulatedMass = 1f;
-    protected LayerMask CollisionMask;
-
-    public AbilityBase(string name, KeyCode key, float cTime, AbilityFireType fireType)
+    // --- Constructor ---
+    // We now also pass the ShopAbilitySO reference
+    protected AbilityBase(ShopAbilitySO shopData, KeyCode key, float cool, AbilityFireType fireType)
     {
-        abilityName = name;
-        activationKey = key;
-        cooldownTime = cTime;
-        level = 1;
-        abilityFireType = fireType;
-
-        for (int i = 0; i < 32; i++)
-        {
-            if (!Physics.GetIgnoreLayerCollision(0, i))
-            {
-                CollisionMask |= 1 << i;
-            }
-        }
+        this.ShopData = shopData; // Store the reference
+        this.abilityName = shopData.abilityName; // Get name from SO
+        this.activationKey = key;
+        this.cooldown = cool;
+        this.abilityFireType = fireType;
+        this.CurrentLevel = 0; // Start at level 0 (not owned)
+        this.TotalWisdomInvested = 0;
     }
 
-    public void SetLineRenderer(LineRenderer renderer)
+    // --- Core Activation Logic ---
+    public virtual bool CanActivate()
     {
-        LineRenderer = renderer;
+        return Time.time >= lastActivationTime + cooldown && CurrentLevel > 0; // Must be owned
     }
 
-    public void Activate()
+    public virtual void Activate()
     {
-
-        // Check if the current game phase allows ability activation
-        if (RoundManager.Instance.GetCurrentRoundPhase() != RoundManager.RoundPhase.EnemiesSpawning &&
-            RoundManager.Instance.GetCurrentRoundPhase() != RoundManager.RoundPhase.EnemiesNoLongerSpawning)
+        if (CanActivate())
         {
-            Debug.Log($"{abilityName} cannot be activated during the {RoundManager.Instance.GetCurrentRoundPhase()} phase.");
-            return;
-        }
-
-
-        if (Time.time >= lastActivatedTime + cooldownTime)
-        {
-            lastActivatedTime = Time.time;
+            lastActivationTime = Time.time;
             Execute();
         }
         else
         {
-            Debug.Log($"{abilityName} is on cooldown.");
+            Debug.Log($"{abilityName} is on cooldown or not learned!");
         }
     }
 
-    public void ToggleHold(AbilityHoldAction holdAction)
-    {
-        if (RoundManager.Instance.GetCurrentRoundPhase() != RoundManager.RoundPhase.EnemiesSpawning &&
-            RoundManager.Instance.GetCurrentRoundPhase() != RoundManager.RoundPhase.EnemiesNoLongerSpawning)
-        {
-            Debug.Log($"{abilityName} cannot be activated during the {RoundManager.Instance.GetCurrentRoundPhase()} phase.");
-            return;
-        }
-
-        if (Time.time >= lastActivatedTime + cooldownTime)
-        {
-
-            if (holdAction == AbilityHoldAction.HOLD_START && !holding)
-            {
-                holdTime = Time.time;
-                holding = true;
-                EnableTrajectoryLine();
-            }
-            else if (holdAction == AbilityHoldAction.HOLD_END)
-            {
-                lastActivatedTime = Time.time;
-                holding = false;
-                DisableTrajectoryLine();
-
-                if (Time.time >= holdTime + holdRequirement && LineRenderer != null && projectedHitPoint.HasValue)
-                {
-                    float timeHeld = Time.time - holdTime;
-                    HoldExecute(timeHeld, projectedHitPoint.Value);
-                }
-                else
-                {
-                    Debug.LogWarning($"[Ability: {abilityName}] Called off because:");
-
-                    if (Time.time < holdTime + holdRequirement)
-                        Debug.LogWarning("- Not held long enough");
-
-                    if (LineRenderer == null)
-                        Debug.LogWarning("- LineRenderer is NULL");
-
-                    if (!projectedHitPoint.HasValue)
-                        Debug.LogWarning("- No valid projected hit point");
-
-                    lastActivatedTime = 0;
-                }
-
-                holdTime = 0;
-            }
-            else if (holding)
-            {
-                UpdateTrajectory();
-            }
-        }
-        else
-        {
-            Debug.Log($"{abilityName} is on cooldown.");
-        }
-    }
-
-    public void UpdateTrajectory()
-    {
-        if (holding && LineRenderer != null)
-        {
-            DrawTrajectory();
-        }
-    }
-
-    private void DrawTrajectory()
-    {
-        LineRenderer.enabled = true;
-        LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
-
-        Vector3 startPosition = GameObject.FindFirstObjectByType<Player>().transform.position + Vector3.up * 1f;
-        Vector3 startVelocity = LaunchForce * Camera.main.transform.forward / SimulatedMass;
-
-        int i = 0;
-        LineRenderer.SetPosition(i, startPosition);
-        projectedHitPoint = null;
-
-        for (float time = 0; time < LinePoints; time += TimeBetweenPoints)
-        {
-            i++;
-            Vector3 point = startPosition + time * startVelocity;
-            point.y = startPosition.y + startVelocity.y * time + (Physics.gravity.y / 2f * time * time);
-            LineRenderer.SetPosition(i, point);
-
-            Vector3 lastPosition = LineRenderer.GetPosition(i - 1);
-            if (Physics.Raycast(lastPosition, (point - lastPosition).normalized,
-                                out RaycastHit hit,
-                                (point - lastPosition).magnitude,
-                                CollisionMask))
-            {
-                LineRenderer.SetPosition(i, hit.point);
-                LineRenderer.positionCount = i + 1;
-                projectedHitPoint = hit.point;
-                return;
-            }
-        }
-    }
-
-    private void EnableTrajectoryLine()
-    {
-        if (LineRenderer != null)
-        {
-            LineRenderer.enabled = true;
-        }
-    }
-
-    private void DisableTrajectoryLine()
-    {
-        if (LineRenderer != null)
-        {
-            LineRenderer.enabled = false;
-        }
-    }
-
+    // Method to be implemented by specific abilities for TAP activation
     protected abstract void Execute();
-    public abstract void UpgradeAbility();
-    protected abstract void HoldExecute(float timeHeld, Vector3 targetPos);
+
+    // Method to be implemented by specific abilities for HOLD activation
+    protected abstract void HoldExecute(float holdTime, Vector3 targetPos);
+
+    // Method to handle HOLD input state changes (called by AbilityManager)
+    public virtual void ToggleHold(AbilityHoldAction action)
+    {
+        // Basic implementation idea - needs more logic for tracking hold time etc.
+        if (abilityFireType != AbilityFireType.HOLD || !CanActivate()) return;
+
+        if (action == AbilityHoldAction.HOLD_START)
+        {
+            Debug.Log($"Started Holding {abilityName}");
+            // Start visualizing, maybe charge up?
+        }
+        else if (action == AbilityHoldAction.HOLD_END)
+        {
+             if (CanActivate()) // Check cooldown again on release
+             {
+                lastActivationTime = Time.time;
+                Debug.Log($"Released {abilityName} - Executing");
+                // Execute the hold ability, potentially based on charge time
+                // HoldExecute(calculatedHoldTime, calculatedTargetPosition);
+             }
+        }
+    }
+
+    // --- Shop & Upgrade Logic ---
+
+    // Call this when the ability is first purchased
+    public virtual void Purchase(int cost)
+    {
+        if(CurrentLevel == 0)
+        {
+            CurrentLevel = 1;
+            TotalWisdomInvested = cost;
+            Debug.Log($"{abilityName} purchased for {cost} Wisdom. Current Level: {CurrentLevel}");
+            // Apply any base stats for level 1 if needed
+            ApplyLevelBasedStats();
+        }
+    }
+
+    // Call this to attempt an upgrade
+    public virtual bool TryUpgrade(int cost)
+    {
+        if (ShopData == null)
+        {
+            Debug.LogError($"{abilityName} is missing ShopData reference!");
+            return false;
+        }
+
+        if (CurrentLevel > 0 && CurrentLevel < ShopData.maxLevel)
+        {
+            CurrentLevel++;
+            TotalWisdomInvested += cost;
+            Debug.Log($"{abilityName} upgraded to Level {CurrentLevel} for {cost} Wisdom. Total Invested: {TotalWisdomInvested}");
+            // Apply the stat changes for the new level
+            ApplyLevelBasedStats();
+            return true;
+        }
+        else if (CurrentLevel >= ShopData.maxLevel)
+        {
+             Debug.Log($"{abilityName} is already at max level ({CurrentLevel}).");
+             return false;
+        }
+         else // CurrentLevel is 0
+        {
+            Debug.LogError($"Cannot upgrade {abilityName} before purchasing it.");
+            return false;
+        }
+    }
+
+    // Method to be overridden by derived classes to apply stats based on CurrentLevel
+    // This is where you'd modify projectile damage, duration, cooldown, etc.
+    protected virtual void ApplyLevelBasedStats()
+    {
+        Debug.Log($"Applying stats for {abilityName} Level {CurrentLevel}. Base implementation does nothing.");
+        // Example: Maybe reduce cooldown slightly per level
+        // float baseCooldown = 2.0f; // Store base cooldown elsewhere if needed
+        // cooldown = baseCooldown - (0.1f * (CurrentLevel - 1));
+    }
+
+    // Called when the ability is sold
+    public virtual void Sell()
+    {
+        // Resetting level but keeping track of investment is handled by AbilityManager refunding.
+        // We just reset the level here. AbilityManager removes it from the list.
+        Debug.Log($"Sold {abilityName}. Level reset.");
+        CurrentLevel = 0;
+        // TotalWisdomInvested is used by AbilityManager *before* calling Sell, then the object is removed.
+    }
+
+
+    // --- Utility ---
+    public virtual void SetLineRenderer(LineRenderer lr)
+    {
+        lineRenderer = lr;
+    }
+
+    // Helper to calculate the cost required to reach the *next* level
+    public int GetNextUpgradeCost()
+    {
+        if (ShopData == null || CurrentLevel <= 0 || CurrentLevel >= ShopData.maxLevel)
+        {
+            return -1; // Indicates not upgradeable or not owned
+        }
+        // Cost to reach the *next* level (CurrentLevel + 1)
+        return ShopData.GetCostForLevel(CurrentLevel + 1);
+    }
+        public float LastActivationTime { // Use PascalCase for public properties
+        get { return lastActivationTime; }
+    }
 }

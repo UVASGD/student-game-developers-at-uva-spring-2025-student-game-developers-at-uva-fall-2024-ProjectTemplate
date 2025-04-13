@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ProtopyeBeguileProjectile : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class ProtopyeBeguileProjectile : MonoBehaviour
 
         this.beguileTime = beguileTime;
     }
+
+    public void setBeguileDamge(float beguileDamge)
+    {
+        this.beguileDamage = beguileDamge;
+    }
+    
     private void OnCollisionEnter(Collision other) 
     {
         if (EnemyTags.IsEnemyTag(other.gameObject.tag))
