@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     private const float HEALTH_WEAKNESS = 0.8f;
 
     private GameObject townHall;
-    private Lighthouse lighthouse;
+    protected Lighthouse lighthouse;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Image sliderBar;
     [SerializeField] private Transform healthBarTransform;
@@ -44,10 +44,9 @@ public class Enemy : MonoBehaviour
 
     private Animator enemyAnimator;
     private bool isAttacking = false;
-
     private NavMeshAgent agent;
 
-    private void Start()
+    protected virtual void Start()
     {
         townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
@@ -267,7 +266,7 @@ public class Enemy : MonoBehaviour
         lighthouse.AddToEnemiesList(this);
     }
 
-    private void SetSpeed(float speed)
+    protected void SetSpeed(float speed)
     {
         if (speed < 0f)
         {
@@ -382,7 +381,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void SetDoingDamage(bool doingDamage)
+    public virtual void SetDoingDamage(bool doingDamage)
     {
         isDoingDamage = doingDamage;
     }
@@ -416,4 +415,15 @@ public class Enemy : MonoBehaviour
     }
 
     public float GetDamage() => damage;
+
+    protected void setMaxHealth(int h)
+    {
+        maxHealth = h;
+        health = h;
+    }
+
+    protected void setDamage(float f)
+    {
+        damage = f;
+    }
 }
