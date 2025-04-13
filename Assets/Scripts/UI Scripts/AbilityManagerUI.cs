@@ -59,7 +59,7 @@ public class AbilityManagerUI : MonoBehaviour
         }
     }
 
-    void RefreshUI()
+    public void RefreshUI()
     {
         foreach (Transform child in transform)
         {

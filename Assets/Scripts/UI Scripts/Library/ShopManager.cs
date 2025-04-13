@@ -15,6 +15,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private GameObject shopPanel;
 
+    [SerializeField] private AbilityManagerUI abilityManagerUI;
+
     private List<ShopItemUI> spawnedUIItems = new List<ShopItemUI>();
 
     void Start()
@@ -22,17 +24,19 @@ public class ShopManager : MonoBehaviour
         // Ensure references are set
         if (!abilityManager)
         {
-             // --- UPDATED API CALL ---
-             // abilityManager = FindObjectOfType<AbilityManager>(); // Obsolete
              abilityManager = FindFirstObjectByType<AbilityManager>(); // Use the new API
              if (!abilityManager) Debug.LogError("ShopManager could not find AbilityManager!");
         }
         if (!player)
         {
-            // --- UPDATED API CALL ---
-            // player = FindObjectOfType<Player>(); // Obsolete
             player = FindFirstObjectByType<Player>(); // Use the new API
             if (!player) Debug.LogError("ShopManager could not find Player!");
+        }
+        if (!abilityManagerUI)
+        {
+            abilityManagerUI = FindFirstObjectByType<AbilityManagerUI>();
+            if (!abilityManagerUI) Debug.LogError("ShopManager could not find Ability Manager UI!");
+
         }
 
         PopulateShop();
@@ -81,6 +85,7 @@ public void PopulateShop()
      public void RefreshShopItemStates()
      {
           foreach(ShopItemUI itemUI in spawnedUIItems) itemUI.UpdateUI();
+        abilityManagerUI.RefreshUI();
      }
 
     public void TryBuyAbility(ShopAbilitySO abilitySO, ShopItemUI requestingUI)
@@ -167,8 +172,6 @@ public void PopulateShop()
 
          requestingUI.SetOwnedAbilityInstance(null);
          RefreshShopItemStates();
-          // --- UPDATED API CALL ---
-          // FindObjectOfType<LibraryUI>()?.UpdateWisdomPointsDisplay(); // Obsolete
           FindFirstObjectByType<LibraryUI>()?.UpdateWisdomPointsDisplay(); // Use new API
     }
 
