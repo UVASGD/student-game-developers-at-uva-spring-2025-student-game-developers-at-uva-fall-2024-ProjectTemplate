@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce83bf8d4e2e0947b8da6cf6353bb14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customersToPass: 5
+  customersToPass: 1
   eventChannel: {fileID: 11400000, guid: 98faadf6e98d87049badef501f757299, type: 2}
   currentBiome: {fileID: 0}
 --- !u!4 &1009893093

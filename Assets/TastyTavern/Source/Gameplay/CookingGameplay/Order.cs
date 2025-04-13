@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Order
@@ -16,7 +17,7 @@ public class Order
     [field: SerializeField]
     public RecipeData Recipe { get; set; }
 
-    // The exact ingredients of the order
+    // The exact ingredients of the order with no properties. Properties list inside it will be updated as the order progresses. 
     [field: SerializeField]
     public Dictionary<IngredientData, List<Property>> CurrentIngredients { get; set; } = new(); 
 
@@ -49,8 +50,11 @@ public class Order
             .Create(Recipe.InitialStockSequence[StationIdx].InitialStock, cookingUIEventChannel);
         var correctIngredients = Recipe.CorrectStockSequence[^1].CorrectIngredients;
         CurrentIngredients.Clear();
-        
-        
+        // resetting currentingredients to have blank, unprocessed ingredients
+        foreach (var ingredientdata in correctIngredients)
+        {
+            CurrentIngredients.Add(ingredientdata, new List<Property>());
+        }
         
     }
 
@@ -79,52 +83,60 @@ public class Order
     /// True if the order is correct and meets the recipe's final requirements, including correct ingredients
     /// and their properties; otherwise, false.
     /// </returns>
-    public float IsCorrect()
+    public int IsCorrect()
     {
-        // TODO: Hopefully this works.
-        if (CurrentIngredients.Count != Recipe.CorrectStockSequence[StationIdx].CorrectIngredients.Count)
+        int totalPenalty = 0;
+        var expectedIngredients = Recipe.CorrectStockSequence[StationIdx].CorrectIngredients;
+        var expectedPropertiesPerIngredient = Recipe.CorrectStockSequence[StationIdx].CorrectPropertiesPerIngredient;
+
+        // Check ingredient count differences
+        var missingIngredientsCount = expectedIngredients.Count - CurrentIngredients.Count;
+        if (missingIngredientsCount > 0)
         {
-            return 0.0f;
+            // High penalty for missing ingredients
+            totalPenalty += missingIngredientsCount * 10;
         }
-        
-        for (int i = 0; i < CurrentIngredients.Count; i++)
+        else if (missingIngredientsCount < 0)
         {
-            IngredientData userProcessedIngredients = Recipe.CorrectStockSequence[StationIdx].CorrectIngredients[i];
-            List<Property> idealProperties =
-                Recipe.CorrectStockSequence[StationIdx].CorrectPropertiesPerIngredient[i].Properties;
-            foreach (var p in CurrentIngredients[userProcessedIngredients])
+            // Lower penalty for extra ingredients
+            totalPenalty += Math.Abs(missingIngredientsCount) * 5;
+        }
+
+        // Iterate over each expected ingredient
+        for (int i = 0; i < expectedIngredients.Count; i++)
+        {
+            IngredientData expectedIngredient = expectedIngredients[i];
+            List<Property> idealProperties = expectedPropertiesPerIngredient[i].Properties;
+
+            // Ensure that the current ingredients dictionary has this ingredient.
+            // If not, add full penalty for missing properties.
+            if (!CurrentIngredients.TryGetValue(expectedIngredient, out List<Property> currentProperties))
             {
-                Debug.Log(p);
+                // Penalize for missing the entire ingredient's properties.
+                totalPenalty += idealProperties.Count * 2; // or another weight as appropriate
+                continue;
             }
 
-            foreach (var p in idealProperties)
-            {
-                Debug.Log(p);
-            }
+            // Compare the ideal vs. current properties using a set based approach
+            var idealSet = new HashSet<Property>(idealProperties);
+            var currentSet = new HashSet<Property>(currentProperties);
 
-            if (!AreListsEqual(CurrentIngredients[Recipe.CorrectStockSequence[StationIdx].CorrectIngredients[i]],
-                    Recipe.CorrectStockSequence[StationIdx].CorrectPropertiesPerIngredient[i].Properties))
-                    return 0.0f;
-            
+            // Count missing properties (expected but not present)
+            int missingProperties = idealSet.Except(currentSet).Count();
+            // Count extra properties (present but not expected)
+            int extraProperties = currentSet.Except(idealSet).Count();
+
+            // Assign penalties (these weights can be tuned based on domain requirements)
+            totalPenalty += (missingProperties * 2) + (extraProperties * 1);
+
+            // Optional: For properties that exist in both sets, you may want additional logic,
+            // for example, if there are modifications or levels of processing required.
         }
 
-        return 1.0f;
+        // Here, a zero score means everything is correct.
+        return totalPenalty;
     }
 
-    bool AreListsEqual(List<Property> list1, List<Property> list2)
-    {
-        if (list1.Count != list2.Count)
-            return false;
-
-        list1.Sort();
-        list2.Sort();
-
-        for (int i = 0; i < list1.Count; i++)
-        {
-            if (list1[i] != list2[i])
-                return false;
-        }
-
-        return true;
-    }
+    
+    
 }

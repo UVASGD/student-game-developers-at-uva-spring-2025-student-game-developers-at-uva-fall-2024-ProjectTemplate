@@ -73,7 +73,7 @@ public class StationView : MonoBehaviour {
         }
 
         progressBar = new ProgressBar();
-        progressBarContainer.Add(progressBar);
+        //progressBarContainer.Add(progressBar);
 
         document = GetComponent<UIDocument>();
         root = document.rootVisualElement;

@@ -15,7 +15,7 @@ public class OrderManager : MonoBehaviour
     private CustomerController customerController;
 
     [SerializeField]
-    private Order currentOrder; 
+    public Order currentOrder; 
 
     [SerializeField]
     private List<Order> activeOrders = new();
@@ -129,9 +129,9 @@ public class OrderManager : MonoBehaviour
         {
             activeOrders.Remove(order);
             cookingUIEventChannel.RaiseOnRemoveCustomer(order.Customer.Data.CustomerSpotIdx);
-            float correctness = order.IsCorrect();
-            Debug.Log(correctness);
-            if (correctness == 1.0f)
+            float incorrectness = order.IsCorrect();
+            Debug.Log(incorrectness);
+            if (incorrectness == 0)
             {
                 Debug.Log("Order is correct");
             }
@@ -140,7 +140,7 @@ public class OrderManager : MonoBehaviour
                 Debug.Log("Order is incorrect");
             }
             Customer c = order.Customer;
-            servedOrders[order] = correctness * (c.RemainingPatience / c.Data.Patience);
+            servedOrders[order] = incorrectness * (c.RemainingPatience / c.Data.Patience);
         }
     }
 
