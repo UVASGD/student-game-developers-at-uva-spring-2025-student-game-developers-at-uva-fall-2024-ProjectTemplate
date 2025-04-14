@@ -19,6 +19,8 @@ public class DoorTeleportIllusion : Door {
         // player.transform.rotation = destination.rotation * Quaternion.Inverse(transform.rotation) * player.transform.rotation;
         player.transform.rotation = player.transform.rotation * Quaternion.Euler(0, 90, 0); // kinda jank, lazy hard-coded solution for my specific one case in which I use this class
         test = player.transform.position;
+        EndlessRoomManager.Instance.mazeGenerator.CreateMaze();
+        EndlessRoomManager.Instance.ActivateMazeBoard();
         // This is weird bug, I have to call Test() in next frame to get correct position otherwise I clip out of plane somehow??
         Invoke("DelayedMove", 0.00001f);
     }
@@ -29,11 +31,11 @@ public class DoorTeleportIllusion : Door {
         if (destination.GetComponent<Door>() != null){
             Door illusionDoor = destination.GetComponent<Door>();
             illusionDoor.doorOpenSFX.Play();
-            Debug.Log(illusionDoor._startYRotationLeft);
+            illusionDoor.canInteract = false;
             illusionDoor.doorLeftRotatorTransform.rotation = Quaternion.Euler(0, illusionDoor._startYRotationLeft, 0);
             illusionDoor.doorRightRotatorTransform.rotation = Quaternion.Euler(0, illusionDoor._startYRotationRight, 0);
-            illusionDoor.doorLeftRotatorTransform.DORotate(new Vector3(0, 90, 0), 1f);
-            illusionDoor.doorRightRotatorTransform.DORotate(new Vector3(0, -90, 0), 1f);
+            illusionDoor.doorLeftRotatorTransform.DORotate(new Vector3(0, -90, 0), 1f);
+            illusionDoor.doorRightRotatorTransform.DORotate(new Vector3(0, 90, 0), 1f);
         }
         Debug.Log(player.transform.position);
     }

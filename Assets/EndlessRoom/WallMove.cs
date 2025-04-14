@@ -36,6 +36,7 @@ public class WallMove : MonoBehaviour {
     }
 
     void PlayerRespawn(){
+        EndlessRoomManager.Instance.wallMovingSFX.Stop();
         EndlessRoomManager.Instance.numWallsHittingEndSegment = 0;
         GameObject player = EndlessRoomManager.Instance.player;
         player.GetComponent<PlayerMovement>().enabled = false;
@@ -53,6 +54,8 @@ public class WallMove : MonoBehaviour {
             player.transform.rotation = playerRespawnPoint.rotation;
             EndlessRoomManager.Instance.doorTriggerMovingWalls.gameObject.SetActive(true);
             EndlessRoomManager.Instance.doorTriggerMovingWalls.canInteract = true;
+            EndlessRoomManager.Instance.doorTriggerMovingWalls.doorLeftRotatorTransform.rotation = Quaternion.Euler(0, EndlessRoomManager.Instance.doorTriggerMovingWalls._startYRotationLeft, 0);
+            EndlessRoomManager.Instance.doorTriggerMovingWalls.doorRightRotatorTransform.rotation = Quaternion.Euler(0, EndlessRoomManager.Instance.doorTriggerMovingWalls._startYRotationRight, 0);
             fader.gameObject.SetActive(false);
             player.GetComponent<PlayerMovement>().enabled = true;
             player.GetComponent<PlayerCameraMovement>().enabled = true;

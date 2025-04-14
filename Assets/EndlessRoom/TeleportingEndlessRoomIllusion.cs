@@ -28,9 +28,5 @@ public class TeleportingEndlessRoomIllusion : TeleportingIllusion {
         go.transform.rotation = go.transform.rotation * rotationOffset;
         if (portalNumber == PortalNumber.A2) EndlessRoomManager.Instance.numA3Triggered = 0;
         if (portalNumber == PortalNumber.A3) EndlessRoomManager.Instance.A3Triggered();
-        if (portalNumber == PortalNumber.A6) {
-            EndlessRoomManager.Instance.mazeGenerator.CreateMaze();
-            EndlessRoomManager.Instance.ActivateMazeBoard();
-        }
     }
 }
