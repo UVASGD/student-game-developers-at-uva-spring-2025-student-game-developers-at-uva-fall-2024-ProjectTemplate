@@ -12,6 +12,10 @@ public class StationData : ScriptableObject
     public Sprite Background { get; set; }
 
     [field: SerializeField]
+
+    public float ProcessingTime { get; set; }
+
+    [field: SerializeField]
     public ActionData ActionData { get; set; } // Make Action into Scriptable object too?
 
     // Factory method to make instance of Station

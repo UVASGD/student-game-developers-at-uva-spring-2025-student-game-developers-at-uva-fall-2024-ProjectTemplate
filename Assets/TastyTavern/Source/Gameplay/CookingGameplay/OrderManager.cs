@@ -12,6 +12,10 @@ public class OrderManager : MonoBehaviour
     private CookingUIEventChannel cookingUIEventChannel;
 
     [SerializeField]
+    private ProgressBar progressBar;  // Reference to ProgressBar
+
+
+    [SerializeField]
     private CustomerController customerController;
 
     [SerializeField]

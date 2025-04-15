@@ -125,13 +125,32 @@ public class StationView : MonoBehaviour {
         nextStationContainer.Clear();
         storeButtonContainer.Clear();
         trashButtonContainer.Clear();
-        if (station.Data.StationType == StationType.Serving){
+        if (station.Data != null)
+    {
+        if (station.Data.StationType == StationType.Serving)
+        {
             GenerateServeButton(); // last station only generates serve button
+<<<<<<< Updated upstream
         } else { 
             GenerateNextStationButton();
             GenerateActionButton(station.Data.ActionData); 
             // StartProgress(station.Data.ProcessingTime);
+=======
+>>>>>>> Stashed changes
         }
+        else
+        {
+            GenerateNextStationButton();
+            GenerateActionButton(station.Data.ActionData);
+
+            // Make sure ProcessingTime is cast to a float (if it's not already a float)
+            StartProgress((float)station.Data.ProcessingTime); 
+        }
+    }
+    else
+    {
+        Debug.LogError("Station data is null!");
+    }
         GenerateIngredientButtons(station.StockIngredients);
         GenerateStationBackground(station);
         GenerateOrderInstructions(station.StockIngredients);
@@ -172,15 +191,25 @@ public class StationView : MonoBehaviour {
         nextButton.clicked += OnNextStation;
     }
 
-    private void StartProgress(float processingTime)
+    public void StartProgress(float duration)
     {
-        if (progressBar == null)
-        {
-            Debug.LogWarning("ProgressBar is not assigned!");
-            return;
-        }
 
-        progressBar.StartProgress(processingTime);
+
+        StartCoroutine(UpdateProgressBar(duration));
+    }
+
+    private IEnumerator UpdateProgressBar(float duration){
+        float elapsed = 0f;
+
+        while (elapsed < duration){
+            elapsed += Time.deltaTime;
+            float percentage = Mathf.Clamp01(elapsed / duration) * 100f;
+            progressBar.progress = percentage;
+            yield return null;
+        }
+        progressBar.progress = 100f;
+
+        progressBar.OnProgressComplete?.Invoke();
     }
 
     

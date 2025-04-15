@@ -3,15 +3,17 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [UxmlElement]
-public partial class ProgressBar : VisualElement{
-
+public partial class ProgressBar : VisualElement
+{
     [SerializeField, DontCreateProperty]
     private float m_Progress;
 
     [UxmlAttribute, CreateProperty]
-    public float progress{
+    public float progress
+    {
         get => m_Progress;
-        set{
+        set
+        {
             m_Progress = Mathf.Clamp(value, 0.01f, 100f);
             MarkDirtyRepaint();
         }
@@ -22,65 +24,59 @@ public partial class ProgressBar : VisualElement{
     private float startTime;
 
     public System.Action OnProgressComplete;
+
     public ProgressBar()
     {
         generateVisualContent += GenerateVisualContent;
+        RegisterCallback<AttachToPanelEvent>(evt => RegisterUpdate());
     }
 
-    private void GenerateVisualContent(MeshGenerationContext context){
+    private void RegisterUpdate()
+    {
+        // Hook into Unity’s update loop for custom elements
+        UnityEditor.EditorApplication.update += Tick;
+    }
+
+    private void Tick()
+    {
+        if (!isRunning) return;
+
+        float elapsed = Time.time - startTime;
+        progress = Mathf.Clamp01(elapsed / duration) * 100f;
+
+        if (elapsed >= duration)
+        {
+            isRunning = false;
+            progress = 100f;
+            OnProgressComplete?.Invoke();
+        }
+    }
+
+    public void StartProgress(float actionDuration)
+    {
+        duration = actionDuration;
+        startTime = Time.time;
+        isRunning = true;
+    }
+
+    private void GenerateVisualContent(MeshGenerationContext context)
+    {
         float width = contentRect.width;
         float height = contentRect.height;
 
         var painter = context.painter2D;
         painter.BeginPath();
         painter.lineWidth = 10f;
+
+        // Draw background arc
         painter.Arc(new Vector2(width * 0.5f, height), width * 0.5f, 180f, 0f);
-        painter.ClosePath();
-        painter.fillColor = Color.white;
-        painter.Fill(FillRule.NonZero);
+        painter.strokeColor = Color.gray;
         painter.Stroke();
 
+        // Draw progress arc
         painter.BeginPath();
-        painter.LineTo(new Vector2(width * 0.5f, height));
-        painter.lineWidth = 10f;
-
-        float amount = 180f * ((100f-progress) / 100f);
-
-        painter.Arc(new Vector2(width * 0.5f, height), width * 0.5f, 180f, 0f - amount);
-        painter.ClosePath();
-        painter.fillColor = Color.green;
-        painter.Fill(FillRule.NonZero);
+        painter.Arc(new Vector2(width * 0.5f, height), width * 0.5f, 180f * (progress / 100f), 0f);
+        painter.strokeColor = Color.green;
         painter.Stroke();
     }
-    public void StartProgress(float time)
-    {
-        
-        if (time <= 0) return;
-
-        duration = time;
-        startTime = Time.time;
-        isRunning = true;
-        
-
-        this.schedule.Execute(UpdateProgress).Every(16); 
-    }
-
-    private void UpdateProgress()
-    {
-        if (!isRunning) return;
-
-        float elapsed = Time.time - startTime;
-        progress = (elapsed / duration) * 100f;
-        MarkDirtyRepaint();
-
-        if (progress >= 100f)
-        {
-            progress = 100f;
-            isRunning = false;
-            OnProgressComplete?.Invoke();
-        }
-    }
-    
-
-
 }
