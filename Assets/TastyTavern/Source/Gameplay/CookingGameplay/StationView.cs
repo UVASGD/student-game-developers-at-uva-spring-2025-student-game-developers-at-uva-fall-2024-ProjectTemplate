@@ -130,13 +130,6 @@ public class StationView : MonoBehaviour {
         if (station.Data.StationType == StationType.Serving)
         {
             GenerateServeButton(); // last station only generates serve button
-<<<<<<< Updated upstream
-        } else { 
-            GenerateNextStationButton();
-            GenerateActionButton(station.Data.ActionData); 
-            // StartProgress(station.Data.ProcessingTime);
-=======
->>>>>>> Stashed changes
         }
         else
         {
