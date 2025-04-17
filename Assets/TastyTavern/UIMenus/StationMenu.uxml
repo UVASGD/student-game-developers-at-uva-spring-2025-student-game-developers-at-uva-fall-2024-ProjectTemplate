@@ -5,29 +5,35 @@
             <engine:VisualElement name="TopContainer" style="flex-grow: 1; height: 10%; background-color: rgba(255, 255, 255, 0.14); max-height: 13%; flex-direction: row;">
                 <engine:VisualElement name="OrderSlot0" style="flex-grow: 1; max-width: 33.33%; justify-content: center; align-self: flex-start; align-items: center;">
                     <engine:Button name="OrderButton" class="order-button button">
-                        <engine:VisualElement style="flex-grow: 1; flex-direction: row; max-height: 90%; justify-content: center;">
+                        <engine:VisualElement name="OrderLabel" style="flex-grow: 1; flex-direction: row; max-height: 90%; justify-content: center;">
                             <engine:Label text="Stirfry" class="order-label" />
                             <engine:VisualElement class="order-icon" />
                         </engine:VisualElement>
-                        <ProgressBar style="width: 80px; height: 20px;" />
+                        <engine:VisualElement name="ProgressBarContainer1" style="flex-grow: 1;">
+                            <ProgressBar name="ProgressBar1" style="width: 80px; height: 20px;" />
+                        </engine:VisualElement>
                     </engine:Button>
                 </engine:VisualElement>
                 <engine:VisualElement name="OrderSlot1" style="flex-grow: 1; max-width: 33.33%; justify-content: center; align-self: flex-start; align-items: center;">
                     <engine:Button name="OrderButton" class="order-button button">
-                        <engine:VisualElement style="flex-grow: 1; flex-direction: row; max-height: 90%; justify-content: center;">
+                        <engine:VisualElement name="OrderLabel" style="flex-grow: 1; flex-direction: row; max-height: 90%; justify-content: center;">
                             <engine:Label text="Stirfry" class="order-label" />
                             <engine:VisualElement class="order-icon" />
                         </engine:VisualElement>
-                        <ProgressBar style="width: 80px; height: 20px;" />
+                        <engine:VisualElement name="ProgressBarContainer2" style="flex-grow: 1;">
+                            <ProgressBar name="ProgressBar2" style="width: 80px; height: 20px;" />
+                        </engine:VisualElement>
                     </engine:Button>
                 </engine:VisualElement>
                 <engine:VisualElement name="OrderSlot2" style="flex-grow: 1; max-width: 33.33%; justify-content: center; align-self: flex-start; align-items: center;">
                     <engine:Button name="OrderButton" class="order-button button">
-                        <engine:VisualElement style="flex-grow: 1; flex-direction: row; max-height: 90%; justify-content: center;">
+                        <engine:VisualElement name="OrderLabel" style="flex-grow: 1; flex-direction: row; max-height: 90%; justify-content: center;">
                             <engine:Label text="Stirfry" class="order-label" />
                             <engine:VisualElement class="order-icon" />
                         </engine:VisualElement>
-                        <ProgressBar style="width: 80px; height: 20px;" />
+                        <engine:VisualElement name="ProgressBarContainer3" tabindex="0" style="flex-grow: 1;">
+                            <ProgressBar name="ProgressBar3" progress="0" style="width: 80px; height: 20px;" />
+                        </engine:VisualElement>
                     </engine:Button>
                 </engine:VisualElement>
             </engine:VisualElement>

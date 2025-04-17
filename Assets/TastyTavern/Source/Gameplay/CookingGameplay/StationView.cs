@@ -10,7 +10,10 @@ using UnityEngine.UIElements;
 public class StationView : MonoBehaviour {
 
     [SerializeField] private ProgressBar progressBar;
-    private VisualElement progressBarContainer;
+    private VisualElement progressBarContainer1;
+    private VisualElement progressBarContainer2;
+    private VisualElement progressBarContainer3;
+
     [SerializeField] string PanelName { get; set; }
 
     [SerializeField]
@@ -62,31 +65,10 @@ public class StationView : MonoBehaviour {
     public System.Action OnProgressComplete;
     private void Awake(){
         document = GetComponent<UIDocument>();
-        var root = document.rootVisualElement;
-
-        progressBarContainer = root.Q<VisualElement>("ProgressBarContainer");
-        if (progressBarContainer == null)
-        {
-            progressBarContainer = new VisualElement();
-            progressBarContainer.name = "ProgressBarContainer";
-            root.Add(progressBarContainer);
-        }
-
-        progressBar = new ProgressBar();
-        //progressBarContainer.Add(progressBar);
-
-        document = GetComponent<UIDocument>();
         root = document.rootVisualElement;
 
-        progressBar = root.Q<ProgressBar>("ProgressBar");
-
-        if (progressBar != null)
-        {
-            Debug.Log("ProgressBar found in UI!");
-            progressBar.progress = 0f; // Ensure it starts at 0%
-        }
-
         Debug.Log("root is" + root);
+        
         ingredientSlotContainer = root.Q<VisualElement>("IngredientSlotContainer"); //already style?
         actionSlotContainer = root.Q<VisualElement>("ActionSlotContainer");
         stationWorkspaceContainer = root.Q<VisualElement>("StationWorkspaceContainer");
@@ -95,6 +77,9 @@ public class StationView : MonoBehaviour {
         orderSlot0 = root.Q<VisualElement>("OrderSlot0");
         orderSlot1 = root.Q<VisualElement>("OrderSlot1");
         orderSlot2 = root.Q<VisualElement>("OrderSlot2");
+        progressBarContainer1 = root.Q<VisualElement>("ProgressBarContainer1");
+        progressBarContainer2 = root.Q<VisualElement>("ProgressBarContainer2");
+        progressBarContainer3 = root.Q<VisualElement>("ProgressBarContainer3");
         barAndStationContainer = root.Q<VisualElement>("BarAndStation");
         sidePanelContainer = root.Q<VisualElement>("SidePanel");
         RecipeContainer = root.Q<VisualElement>("RecipePanel");
@@ -109,6 +94,7 @@ public class StationView : MonoBehaviour {
         orderSlot0.Clear(); // Probably just want slots, not order container
         orderSlot1.Clear();
         orderSlot2.Clear();
+
         sidePanelContainer.visible = false;
         barAndStationContainer.visible = false;
     }
@@ -226,15 +212,20 @@ public class StationView : MonoBehaviour {
     // ONLY happens when new order is added to order manager
     private void GenerateOrderButton(Order order){
         Debug.Log("Generating order button");
-        OrderButton orderButton = new(order);
         if (order.Customer.Data.CustomerSpotIdx == 0){
+            OrderButton orderButton = new(order, progressBarContainer1);
             orderSlot0.Add(orderButton);
+            orderButton.OnClickButton += OnSelectOrder;
         } else if (order.Customer.Data.CustomerSpotIdx == 1){
+            OrderButton orderButton = new(order, progressBarContainer2);
             orderSlot1.Add(orderButton);
+            orderButton.OnClickButton += OnSelectOrder;
         } else {
+            OrderButton orderButton = new(order, progressBarContainer3);
             orderSlot2.Add(orderButton);
+            orderButton.OnClickButton += OnSelectOrder;
         }
-        orderButton.OnClickButton += OnSelectOrder;
+        
     }
 
     private void GenerateIngredientButtons(List<Ingredient> ingredients){

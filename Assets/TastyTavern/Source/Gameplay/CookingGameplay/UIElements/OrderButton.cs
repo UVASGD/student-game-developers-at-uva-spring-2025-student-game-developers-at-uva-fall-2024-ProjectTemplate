@@ -5,13 +5,16 @@ using UnityEngine.UIElements;
 public class OrderButton : DataButton {
 
     public Order Order { get; private set; }
-
+    public ProgressBar ProgressBar { get; private set; }
+    private VisualElement progressBarContainer {get; set;}
     public event Action<OrderButton> OnClickButton = delegate { };
 
-    public OrderButton(Order order) 
+    public OrderButton(Order order, VisualElement progressBarContainer) 
     {
         Order = order ?? throw new ArgumentNullException(nameof(order));
         Label.text = Order.Recipe.Name;
+        ProgressBar = progressBarContainer.Q<ProgressBar>("ProgressBar");
+        
         /*
 
          if (Order.Sprite != null)
@@ -26,6 +29,8 @@ public class OrderButton : DataButton {
         AddStyles();
         // AttachIcon(); for now
         AttachLabel();
+        progressBarContainer.Add(ProgressBar);
+        this.Add(progressBarContainer);
     }
 
     protected override void OnClick(){
