@@ -12,6 +12,8 @@
     font-size: 50px;
     -unity-text-align: middle-center;
     -unity-font-style: normal;
+    background-image: url("project://database/Assets/TastyTavern/Art/Textures/wood.jpg?fileID=2800000&guid=baf77fa8c37c693448880d4b747bc54d&type=3#wood");
+    background-size: 100% 800%;
 }
 
 .shop-item {
@@ -22,14 +24,22 @@
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 35px;
-    margin-left: 20px;
-    margin-right: 20px;
-    background-color: rgba(28, 69, 241, 0.69);
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: rgb(247, 225, 189);
     max-width: 30%;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 50px;
+    border-top-width: -43px;
+    border-right-width: -43px;
+    border-bottom-width: -43px;
+    border-left-width: -43px;
+    border-left-color: rgb(90, 46, 8);
+    border-right-color: rgb(90, 46, 8);
+    border-top-color: rgb(90, 46, 8);
+    border-bottom-color: rgb(90, 46, 8);
 }
 
 .unity-scroll-view__content-container {
