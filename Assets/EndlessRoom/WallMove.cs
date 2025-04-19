@@ -37,6 +37,8 @@ public class WallMove : MonoBehaviour {
 
     void PlayerRespawn(){
         EndlessRoomManager.Instance.wallMovingSFX.Stop();
+        EndlessRoomManager.Instance.psychLoopNoBassSFX.Play();
+        EndlessRoomManager.Instance.psychLoopBassSFX.Stop();
         EndlessRoomManager.Instance.numWallsHittingEndSegment = 0;
         GameObject player = EndlessRoomManager.Instance.player;
         player.GetComponent<PlayerMovement>().enabled = false;

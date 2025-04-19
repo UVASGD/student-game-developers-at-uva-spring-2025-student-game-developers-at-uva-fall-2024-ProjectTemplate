@@ -20,11 +20,14 @@ public class EndlessRoomManager : MonoBehaviour {
     public Image fader;
     public Transform spawnTransformSection2;
     public AudioSource wallMovingSFX;
+    public AudioSource psychLoopNoBassSFX;
+    public AudioSource psychLoopBassSFX;
     private Light[] _lights;
 
     void Awake() {
         if (Instance == null) {
             Instance = this;
+            psychLoopNoBassSFX.Play();
         } else {
             Destroy(gameObject);
         }
@@ -41,8 +44,7 @@ public class EndlessRoomManager : MonoBehaviour {
 
     IEnumerator StartFlickering()
     {
-        while (true)
-        {
+        while (true){
             foreach (Light light in _lights)
             {
                 light.transform.parent.gameObject.SetActive(!light.transform.parent.gameObject.activeSelf);
