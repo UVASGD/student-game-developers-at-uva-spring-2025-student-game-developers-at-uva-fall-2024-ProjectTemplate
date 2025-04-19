@@ -17,4 +17,4 @@ MonoBehaviour:
     LanguageGenericType: Partner
   - languageEnum: 1
     LanguageGenericType: 
-  textColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  textColor: {r: 0, g: 0.33595228, b: 1, a: 1}
