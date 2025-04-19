@@ -48,10 +48,7 @@ namespace MEET_AND_TALK
                 {
                     if (Time.time - lastTypingTime > 1.0f / typingSpeed)
                     {
-                        if (DialogueManager.Instance.isSkippingDialogue) {
-                            DialogueManager.Instance.audioSource.Stop();
-                        }
-                        else DialogueManager.Instance.audioSource.Play();
+                        DialogueManager.Instance.audioSource.Play();
                         currentText += fullText[characterIndex];
                         textBox.text = currentText;
 
@@ -59,12 +56,7 @@ namespace MEET_AND_TALK
 
                         lastTypingTime = Time.time;
                     }
-                }
-                else
-                {
-                    if (DialogueManager.Instance.isSkippingDialogue) {
-                        DialogueManager.Instance.audioSource.Stop();
-                    }
+                } else {
                     textBox.text = prefixText+fullText;
                 }
             }

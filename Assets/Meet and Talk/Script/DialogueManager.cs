@@ -25,8 +25,6 @@ namespace MEET_AND_TALK
         private DialogueChoiceNodeData _nodeChoiceInvoke;
 
         float Timer;
-        [Header("My Code")]
-        public bool isSkippingDialogue = false;
 
         private void Awake()
         {
@@ -41,21 +39,6 @@ namespace MEET_AND_TALK
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.S) && dialogueUIManager.dialogueCanvas.activeSelf){
-                isSkippingDialogue = true;
-            }
-
-            if (isSkippingDialogue){
-                //if (Time.timeScale != 100f) MMTimeManager.Current.SetTimeScaleTo(100f);
-                Timer -= Time.deltaTime * 100f;
-            } else if (CutsceneUtil.Instance.isSpedUp){
-                //if (Time.timeScale != CutsceneUtil.Instance.speedMultiplier) MMTimeManager.Current.SetTimeScaleTo(CutsceneUtil.Instance.speedMultiplier);
-                Timer -= Time.deltaTime * CutsceneUtil.Instance.speedMultiplier;
-            } else {
-                //if (Time.timeScale != 1f) MMTimeManager.Current.SetTimeScaleTo(1f);
-                Timer -= Time.deltaTime;
-            }
-
             if (Timer > 0) dialogueUIManager.TimerSlider.value = Timer;
             else {
                 switch (currentDialogueNodeData)
@@ -225,7 +208,6 @@ namespace MEET_AND_TALK
             {
                 case EndNodeType.End:
                     dialogueUIManager.dialogueCanvas.SetActive(false);
-                    isSkippingDialogue = false;
                     EndDialogueEvent.Invoke();
                     break;
                 case EndNodeType.Repeat:
