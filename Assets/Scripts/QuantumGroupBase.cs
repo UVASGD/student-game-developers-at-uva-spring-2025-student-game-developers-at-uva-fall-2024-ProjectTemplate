@@ -8,6 +8,7 @@ public class QuantumGroupBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected List<QuantumGroupObject> objects = new List<QuantumGroupObject>();
     protected int curActiveIndex;
+    [SerializeField] private bool considerLit;
     void Start()
     {
         InitializeQuantumObjects();
@@ -32,6 +33,8 @@ public class QuantumGroupBase : MonoBehaviour
         foreach (Transform child in transform)
         {
             objects.Add(child.AddComponent<QuantumGroupObject>());
+            if(considerLit)
+                child.GetComponent<QuantumObjectBase>().considerLit = true;
         }
     }
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class QuantumGroupBase : MonoBehaviour
     }
     public bool trySwitchObject(int newIndex)
     {
-        Debug.Log(newIndex);
+        // Debug.Log(newIndex);
         QuantumGroupObject newActive = objects[newIndex];
         QuantumGroupObject curActive = objects[curActiveIndex];
 

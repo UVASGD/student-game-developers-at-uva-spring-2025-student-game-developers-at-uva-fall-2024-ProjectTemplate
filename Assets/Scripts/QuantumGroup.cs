@@ -30,7 +30,7 @@ public class QuantumGroup : QuantumGroupBase
 
         for (int i = 0; i < n - 1; i++)
         {
-            Debug.Log("tryswitchobject to " + indicies[i]);
+            // Debug.Log("tryswitchobject to " + indicies[i]);
             if (trySwitchObject(indicies[i])) break;
         }
     }
