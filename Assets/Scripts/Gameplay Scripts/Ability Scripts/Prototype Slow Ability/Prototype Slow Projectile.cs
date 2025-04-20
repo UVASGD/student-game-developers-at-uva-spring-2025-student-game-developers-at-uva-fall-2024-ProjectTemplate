@@ -30,7 +30,7 @@ public class ProtopyeSlowProjectile : MonoBehaviour
         if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             Destroy(this.gameObject);
-            other.gameObject.GetComponent<Enemy>().ApplySlow(slowTime, slowMagnitude);
+            other.gameObject.GetComponentInChildren<Enemy>().ApplySlow(slowTime, slowMagnitude);
         } else if (other.gameObject.tag == "Ground" ||
                    other.gameObject.tag == "Lighthouse")
         {

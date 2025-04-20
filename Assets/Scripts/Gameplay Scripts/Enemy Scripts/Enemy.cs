@@ -97,9 +97,8 @@ public class Enemy : MonoBehaviour
     // Basic movement logic shared by all enemies
     protected virtual void Move()
     {
-        if (target == null)
+        if (target == null || isFrozen || isBeguiled)
         {
-            Debug.LogWarning("Target not set for " + name);
             return;
         }
 
@@ -213,6 +212,7 @@ public class Enemy : MonoBehaviour
             if (beguileTimer > beguileTime)
             {
                 isBeguiled = false;
+                agent.SetDestination(target.position);
 
             }
             yield return null;
@@ -246,10 +246,9 @@ public class Enemy : MonoBehaviour
 
     public void ApplyFreeze(float freezeTime)
     {
-        if (!isFrozen)
-        {
-            StartCoroutine(HandleFreeze(freezeTime));
-        }
+
+        StartCoroutine(HandleFreeze(freezeTime));
+
     }
 
     private IEnumerator HandleFreeze(float freezeTime)
@@ -257,14 +256,17 @@ public class Enemy : MonoBehaviour
         isFrozen = true;
         isDoingDamage = false;
         agent.speed = 0f;
-        //SetSpeed(0f);
         lighthouse.RemoveFromEnemiesList(this);
 
         yield return new WaitForSeconds(freezeTime);
+
+        Debug.Log($"{name} unfreezing now");
         isFrozen = false;
         isDoingDamage = true;
         ResetSpeed();
-        lighthouse.AddToEnemiesList(this);
+
+        agent.speed = DEFAULT_SPEED;
+        agent.SetDestination(target.position);
     }
 
     protected void SetSpeed(float speed)
@@ -397,15 +399,25 @@ public class Enemy : MonoBehaviour
     // Death logic
     protected virtual void Die()
     {
-        // Ensures out of townhall range do not effect enemiesInRange set
         if (isDoingDamage)
         {
             lighthouse.RemoveFromEnemiesList(this);
         }
 
         enemySpawnManager.RemoveEnemyFromList(this);
+        StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
         enemyAnimator.SetBool("Die", true);
         Debug.Log($"{name} has died!");
+        agent.isStopped = true;
+        agent.enabled = false;
+
+        float animDuration = enemyAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animDuration);
+
         Destroy(gameObject);
     }
 

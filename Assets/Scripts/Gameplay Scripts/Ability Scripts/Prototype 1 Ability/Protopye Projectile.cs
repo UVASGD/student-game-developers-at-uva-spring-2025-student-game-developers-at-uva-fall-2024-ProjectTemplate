@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProtopyeProjectile : MonoBehaviour
 {
 
-    private float damage = 5f;
+    private float damage = 100f;
 
     public float selfDestructTime = 4f;
 
@@ -28,7 +28,8 @@ public class ProtopyeProjectile : MonoBehaviour
         if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             Destroy(this.gameObject);
-            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            Enemy enemy = other.gameObject.GetComponentInChildren<Enemy>();
+            enemy.TakeDamage(damage);
             
         } else if (other.gameObject.tag == "Ground" ||
                    other.gameObject.tag == "Lighthouse")

@@ -25,10 +25,12 @@ public class Protopye2Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
+
+
         if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             Destroy(this.gameObject);
-            other.gameObject.GetComponent<Enemy>().ApplyFreeze(freezeTime);
+            other.gameObject.GetComponentInChildren<Enemy>().ApplyFreeze(freezeTime);
         }
         else if (other.gameObject.tag == "Ground" ||
                    other.gameObject.tag == "Lighthouse")

@@ -43,7 +43,7 @@ public class ProtopyeBurnProjectile : MonoBehaviour
             foreach (var hitCollider in hitColliders)
             {
                 if(EnemyTags.IsEnemyTag(other.gameObject.tag)){
-                    hitCollider.gameObject.GetComponent<Enemy>().ApplyBurn(tickDuration, burnDamage, numTicks);
+                    hitCollider.gameObject.GetComponentInChildren<Enemy>().ApplyBurn(tickDuration, burnDamage, numTicks);
                 }
             }
         }

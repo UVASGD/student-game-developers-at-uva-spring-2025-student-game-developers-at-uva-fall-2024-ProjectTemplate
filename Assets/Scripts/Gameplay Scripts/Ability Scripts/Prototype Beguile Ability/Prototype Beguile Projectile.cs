@@ -40,7 +40,7 @@ public class ProtopyeBeguileProjectile : MonoBehaviour
     {
         if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
-            other.gameObject.GetComponent<Enemy>().ApplyBeguile(beguileTime, beguileDamage);
+            other.gameObject.GetComponentInChildren<Enemy>().ApplyBeguile(beguileTime, beguileDamage);
             Destroy(this.gameObject);
         }
         else if (other.gameObject.tag == "Ground" ||

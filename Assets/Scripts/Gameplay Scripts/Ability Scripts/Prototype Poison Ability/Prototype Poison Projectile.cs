@@ -21,7 +21,7 @@ public class ProtopyePoisonProjectile : MonoBehaviour
         if (EnemyTags.IsEnemyTag(other.gameObject.tag))
         {
             Destroy(this.gameObject);
-            other.gameObject.GetComponent<Enemy>().ApplyPoison(PoisonTime, poisonWeakness);
+            other.gameObject.GetComponentInChildren<Enemy>().ApplyPoison(PoisonTime, poisonWeakness);
         }
         else if (other.gameObject.tag == "Ground" ||
                    other.gameObject.tag == "Lighthouse")

@@ -25,7 +25,7 @@ public class ProtopyeMeteorProjectile : MonoBehaviour
             {
                 if (hitCollider.gameObject.tag == "Enemy")
                 {
-                    hitCollider.gameObject.GetComponent<Enemy>()?.TakeDamage(damage);
+                    hitCollider.gameObject.GetComponentInChildren<Enemy>().TakeDamage(damage);
                 }
             }
         }
