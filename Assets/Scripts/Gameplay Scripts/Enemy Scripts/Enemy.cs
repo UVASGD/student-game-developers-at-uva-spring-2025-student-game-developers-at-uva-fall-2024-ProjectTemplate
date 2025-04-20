@@ -52,13 +52,14 @@ public class Enemy : MonoBehaviour
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
         lighthouse = townHall.GetComponent<Lighthouse>();
         target = lighthouse.transform;
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponentInParent<NavMeshAgent>();
         SetRoundDamage();
         agent.speed = speed;
         agent.acceleration = 8f; // Optional, tweak as needed
         agent.angularSpeed = 120f;
         agent.destination = target.position;
         enemyAnimator = GetComponent<Animator>();
+        agent.updateRotation = true;
         //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
     }
 
