@@ -71,6 +71,7 @@ public class Lighthouse : MonoBehaviour
 
         if (enemy != null)
         {
+            Debug.Log("Enemy entered lighthouse");
             enemy.SetDoingDamage(true);
             AddToEnemiesList(enemy);
         }

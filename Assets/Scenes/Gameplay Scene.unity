@@ -8169,7 +8169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20961e7f7b43234e82bede5eaf6378c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7374775516531353348, guid: e70c0b4755c178148bbc15eb973170d7, type: 3}
+  enemyPrefab: {fileID: 3023320164636877601, guid: 2edd0c02387b05e4ea2880f6df6dba07, type: 3}
   spawnDiameter: 50
   enemiesMultiplier: 1.5
   enemiesPerRound: 5
@@ -16238,8 +16238,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -67}
-  m_SizeDelta: {x: 780, y: 250}
+  m_AnchoredPosition: {x: 0, y: -57}
+  m_SizeDelta: {x: 780, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2117849203
 MonoBehaviour:
