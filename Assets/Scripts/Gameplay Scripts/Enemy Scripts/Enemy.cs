@@ -46,18 +46,26 @@ public class Enemy : MonoBehaviour
     private bool isAttacking = false;
     private NavMeshAgent agent;
 
+    private MeshCollider lighthouseBaseCollider;
+    [SerializeField] private float edgeSearchRadius = 2f;
+
+    private bool hasStartedMoving = false;
+
     protected virtual void Start()
     {
+        lighthouseBaseCollider = GameObject.Find("TowerMain").GetComponent<MeshCollider>();
         townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
         lighthouse = townHall.GetComponent<Lighthouse>();
         target = lighthouse.transform;
         agent = GetComponentInParent<NavMeshAgent>();
         SetRoundDamage();
+
+
         agent.speed = speed;
         agent.acceleration = 8f; // Optional, tweak as needed
         agent.angularSpeed = 120f;
-        agent.destination = target.position;
+        agent.SetDestination(target.position);
         enemyAnimator = GetComponent<Animator>();
         agent.updateRotation = true;
         //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
@@ -65,24 +73,31 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-
-        // If the enemy is beguiled, BeguileTimer() will run MoveTo()
         if (!isBeguiled)
         {
             Move();
         }
 
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        // If agent is moving
+        if (!agent.pathPending && agent.velocity.sqrMagnitude > 0.1f)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-            {
-                isAttacking = true;
-                enemyAnimator.SetBool("isMoving", false);
-                enemyAnimator.SetBool("isAttacking", true);
-            }
+            hasStartedMoving = true;
+        }
 
-        } else {
-
+        // If agent is close enough to attack and has moved at least once
+        if (
+            hasStartedMoving &&
+            !agent.pathPending &&
+            agent.remainingDistance <= agent.stoppingDistance &&
+            (!agent.hasPath || agent.velocity.sqrMagnitude < 0.1f)
+        )
+        {
+            isAttacking = true;
+            enemyAnimator.SetBool("isMoving", false);
+            enemyAnimator.SetBool("isAttacking", true);
+        }
+        else
+        {
             isAttacking = false;
             enemyAnimator.SetBool("isMoving", true);
             enemyAnimator.SetBool("isAttacking", false);
@@ -257,6 +272,7 @@ public class Enemy : MonoBehaviour
         isDoingDamage = false;
         agent.speed = 0f;
         lighthouse.RemoveFromEnemiesList(this);
+        enemyAnimator.speed = 0f;
 
         yield return new WaitForSeconds(freezeTime);
 
@@ -267,6 +283,7 @@ public class Enemy : MonoBehaviour
 
         agent.speed = DEFAULT_SPEED;
         agent.SetDestination(target.position);
+        enemyAnimator.speed = 1f;
     }
 
     protected void SetSpeed(float speed)
@@ -439,4 +456,6 @@ public class Enemy : MonoBehaviour
     {
         damage = f;
     }
+
+    
 }
