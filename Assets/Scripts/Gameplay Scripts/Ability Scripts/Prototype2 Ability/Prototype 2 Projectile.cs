@@ -1,0 +1,41 @@
+using UnityEngine;
+
+public class Protopye2Projectile : MonoBehaviour
+{
+
+    private float freezeTime = 5f;
+
+    public float selfDestructTime = 4f;
+
+    public float FreezeTime { get => freezeTime; set => freezeTime = value; }
+
+    public void Start()
+    {
+        Destroy(this.gameObject, selfDestructTime);
+    }
+
+    public float getFreezeTime()
+    {
+        return freezeTime;
+    }
+
+    public void setFreezeTime(float freezeTime)
+    {
+        this.freezeTime = freezeTime;
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+
+
+        if (EnemyTags.IsEnemyTag(other.gameObject.tag))
+        {
+            Destroy(this.gameObject);
+            other.gameObject.GetComponentInChildren<Enemy>().ApplyFreeze(freezeTime);
+        }
+        else if (other.gameObject.tag == "Ground" ||
+                   other.gameObject.tag == "Lighthouse")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}

@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class ProtopyeVulnerableProjectile : MonoBehaviour
+{
+
+    private float duration = 5f;
+    private float reductionPercentage = 0.1f;
+
+    public float selfDestructTime = 4f;
+
+    public float Duration { get => duration; set => duration = value; }
+
+    public void Start() 
+    {
+        Destroy(this.gameObject, selfDestructTime);
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if (EnemyTags.IsEnemyTag(other.gameObject.tag))
+        {
+            Destroy(this.gameObject);
+            other.gameObject.GetComponentInChildren<Enemy>().ApplyVulnerable(duration, reductionPercentage);
+        } else if (other.gameObject.tag == "Ground" ||
+                   other.gameObject.tag == "Lighthouse")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}
