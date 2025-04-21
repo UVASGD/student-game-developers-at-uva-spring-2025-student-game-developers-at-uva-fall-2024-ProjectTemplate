@@ -979,6 +979,7 @@ MonoBehaviour:
   interactUI_GO: {fileID: 122004837}
   interactUI_Text: {fileID: 1066584975}
   interactDistance: 5
+  sphereCastRadius: 0.5
   scaleTime: 0.25
 --- !u!1 &678424816
 GameObject:
@@ -1362,7 +1363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1037690105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c36cf3218d950d4785dcccc68f9eb4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cfd34347c160844598c8029633bee8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 1
@@ -2195,7 +2196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 150053273390805843, guid: ec6520d321c438f479858f3c6fde1919, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 883638448231479903, guid: ec6520d321c438f479858f3c6fde1919, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
