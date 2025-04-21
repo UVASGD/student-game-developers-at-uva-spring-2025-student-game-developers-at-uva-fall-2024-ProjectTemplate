@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Townhall
   - Lighthouse
+  - EnemyAIPoint
   layers:
   - Default
   - TransparentFX

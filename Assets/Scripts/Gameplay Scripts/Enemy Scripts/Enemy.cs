@@ -46,14 +46,12 @@ public class Enemy : MonoBehaviour
     private bool isAttacking = false;
     private NavMeshAgent agent;
 
-    private MeshCollider lighthouseBaseCollider;
-    [SerializeField] private float edgeSearchRadius = 2f;
 
-    private bool hasStartedMoving = false;
+    Transform closestPoint;
+
 
     protected virtual void Start()
     {
-        lighthouseBaseCollider = GameObject.Find("TowerMain").GetComponent<MeshCollider>();
         townHall = GameObject.Find("Lighthouse");
         enemySpawnManager = GameObject.Find("Enemy Spawn Manager").GetComponent<EnemySpawnManager>();
         lighthouse = townHall.GetComponent<Lighthouse>();
@@ -62,10 +60,11 @@ public class Enemy : MonoBehaviour
         SetRoundDamage();
 
 
+        closestPoint = GetClosestTaggedEdgePoint();
         agent.speed = speed;
         agent.acceleration = 8f; // Optional, tweak as needed
         agent.angularSpeed = 120f;
-        agent.SetDestination(target.position);
+        agent.SetDestination(closestPoint.position);
         enemyAnimator = GetComponent<Animator>();
         agent.updateRotation = true;
         //healthText.text = health.ToString("#.0") + " / " + maxHealth.ToString("#.0");
@@ -78,15 +77,9 @@ public class Enemy : MonoBehaviour
             Move();
         }
 
-        // If agent is moving
-        if (!agent.pathPending && agent.velocity.sqrMagnitude > 0.1f)
-        {
-            hasStartedMoving = true;
-        }
 
         // If agent is close enough to attack and has moved at least once
         if (
-            hasStartedMoving &&
             !agent.pathPending &&
             agent.remainingDistance <= agent.stoppingDistance &&
             (!agent.hasPath || agent.velocity.sqrMagnitude < 0.1f)
@@ -107,6 +100,34 @@ public class Enemy : MonoBehaviour
     private void LateUpdate()
     {
         //healthBarTransform.LookAt(Camera.main.transform);
+    }
+
+    private Transform GetClosestTaggedEdgePoint()
+    {
+        GameObject[] edgePoints = GameObject.FindGameObjectsWithTag("EnemyAIPoint");
+
+        Debug.Log("Found " + edgePoints.Length + " tagged objects");
+
+        if (edgePoints.Length == 0)
+        {
+            Debug.LogWarning("No LighthouseEdgePoint tagged objects found!");
+        }
+
+        Transform closest = null;
+        float closestDistance = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (GameObject obj in edgePoints)
+        {
+            float distance = Vector3.Distance(currentPosition, obj.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = obj.transform;
+            }
+        }
+
+        return closest;
     }
 
     // Basic movement logic shared by all enemies
@@ -227,7 +248,7 @@ public class Enemy : MonoBehaviour
             if (beguileTimer > beguileTime)
             {
                 isBeguiled = false;
-                agent.SetDestination(target.position);
+                agent.SetDestination(closestPoint.position);
 
             }
             yield return null;
