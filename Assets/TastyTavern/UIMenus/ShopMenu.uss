@@ -1,5 +1,5 @@
 .category-button {
-    width: 31%;
+    width: 24%;
     border-top-left-radius: 45px;
     border-top-right-radius: 45px;
     border-bottom-right-radius: 0;
@@ -56,10 +56,13 @@
 .category-button:hover {
     background-color: rgba(255, 255, 255, 0);
     -unity-background-image-tint-color: rgb(201, 161, 91);
+    transition-timing-function: ease-in-out-circ;
+    transition-duration: 0.1s;
+    transition-delay: 0s;
 }
 
 .category-button-focus {
-    width: 31%;
+    width: 24%;
     border-top-left-radius: 45px;
     border-top-right-radius: 45px;
     border-bottom-right-radius: 0;
@@ -76,6 +79,53 @@
     background-size: 100% 800%;
     -unity-background-image-tint-color: rgb(255, 255, 255);
     -unity-font-definition: url("project://database/Assets/TastyTavern/Art/Fonts/GorckHelozatTrialRegular-dr876.ttf?fileID=12800000&guid=c974ae8a27d6bdd429cfc670e17d0cce&type=3#GorckHelozatTrialRegular-dr876");
-    color: rgb(47, 26, 7);
-    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(51, 7, 7);
+    word-spacing: 0;
+}
+
+.back-button {
+    height: 110px;
+    width: 279px;
+    margin-bottom: 5px;
+    margin-top: 16px;
+    margin-left: 60px;
+    font-size: 59px;
+    white-space: normal;
+    background-image: url("project://database/Assets/TastyTavern/Art/Textures/woodarrow.png?fileID=2800000&guid=33a89e67b6eb3874dad6a5cd8121471f&type=3#woodarrow");
+    align-self: auto;
+    justify-content: flex-start;
+    padding-left: 46px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    background-color: rgba(188, 188, 188, 0);
+    -unity-font-definition: url("project://database/Assets/TastyTavern/Art/Fonts/GorckHelozatTrialRegular-dr876.ttf?fileID=12800000&guid=c974ae8a27d6bdd429cfc670e17d0cce&type=3#GorckHelozatTrialRegular-dr876");
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 30%;
+    min-height: 70%;
+}
+
+.back-button:hover {
+    -unity-background-image-tint-color: rgb(228, 193, 127);
+    transition-timing-function: ease-in-out-circ;
+    transition-duration: 0.2s;
+    transition-delay: 0s;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
 }
