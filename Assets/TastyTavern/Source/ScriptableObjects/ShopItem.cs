@@ -21,15 +21,15 @@ public class ShopItem : ScriptableObject
 
     [field: SerializeField]
     public bool Purchased { get; set; } = false; //default false?
-
-    public enum ItemType
-    {
-        Ingredient,
-        Recipe,
-        Equipment,
-        Biome
-    } 
     
     [field: SerializeField]
     public ItemType Type { get; set; }
 }
+
+public enum ItemType
+{
+    Ingredient,
+    Recipe,
+    Equipment,
+    Biome
+} 

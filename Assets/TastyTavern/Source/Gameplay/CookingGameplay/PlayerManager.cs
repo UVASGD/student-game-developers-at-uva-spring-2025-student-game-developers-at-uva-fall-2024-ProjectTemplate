@@ -1,13 +1,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
     public float money;
+    
+    [SerializeField]
+    public BiomeData currentBiome;
 
 
     [SerializeField]
@@ -32,27 +37,24 @@ public class PlayerManager : MonoBehaviour
         {
             IngredientUnlocked.Add(allIngredient[i], false);
         }
+
         //Enter the Equipment/Actions
         for (int i = 0; i < allEquipment.Count; i++)
         {
             ActionUnlocked.Add(allEquipment[i], false);
         }
+
         //Enter the Recipes
         for (int i = 0; i < allRecipe.Count; i++)
         {
             RecipeUnlocked.Add(allRecipe[i], false);
         }
+
         //Enter the Biomes
         for (int i = 0; i < allBiome.Count; i++)
         {
             BiomeUnlocked.Add(allBiome[i], false);
         }
-    }
-    [System.Serializable]
-    private class PlayerData
-    {
-        private int curr_biome;
-        private int money;
     }
 
     private void OnEnable()
@@ -77,36 +79,192 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void AddItemToInventory(ShopItem item) {
-        if (item.Type == ShopItem.ItemType.Ingredient) {
-            for (int i = 0; i < allIngredient.Count; i++) {
-                if (allIngredient[i].Name == item.Name) {
-                    IngredientUnlocked[allIngredient[i]] = true;
-                    break;
-                }
+    public void AddItemToInventory(ShopItem item)
+    {
+        switch (item.Type)
+        {
+            case ItemType.Ingredient:
+                foreach (var i in allIngredient)
+                    if (i.Name == item.Name) { IngredientUnlocked[i] = true; break; }
+                break;
+
+            case ItemType.Equipment:
+                foreach (var e in allEquipment)
+                    if (e.Name == item.Name) { ActionUnlocked[e] = true; break; }
+                break;
+
+            case ItemType.Recipe:
+                foreach (var r in allRecipe)
+                    if (r.Name == item.Name) { RecipeUnlocked[r] = true; break; }
+                break;
+
+            case ItemType.Biome:
+                foreach (var b in allBiome)
+                    if (b.Name == item.Name) { BiomeUnlocked[b] = true; break; }
+                break;
+        }
+    }
+
+    
+    [Serializable]
+    private class PlayerData : ISerializationCallbackReceiver
+    {
+        public float money;
+        public BiomeData currBiomeName;
+
+        [NonSerialized] public Dictionary<IngredientData, bool> IngredientUnlocked = new();
+        [NonSerialized] public Dictionary<ActionData, bool> ActionUnlocked = new();
+        [NonSerialized] public Dictionary<RecipeData, bool> RecipeUnlocked = new();
+        [NonSerialized] public Dictionary<BiomeData, bool> BiomeUnlocked = new();
+
+        [SerializeField] private List<IngredientData> ingredientKeys = new();
+        [SerializeField] private List<bool> ingredientValues = new();
+
+        [SerializeField] private List<ActionData> actionKeys = new();
+        [SerializeField] private List<bool> actionValues = new();
+
+        [SerializeField] private List<RecipeData> recipeKeys = new();
+        [SerializeField] private List<bool> recipeValues = new();
+
+        [SerializeField] private List<BiomeData> biomeKeys = new();
+        [SerializeField] private List<bool> biomeValues = new();
+
+        public void OnBeforeSerialize()
+        {
+            ingredientKeys.Clear(); ingredientValues.Clear();
+            foreach (var kv in IngredientUnlocked)
+            {
+                ingredientKeys.Add(kv.Key);
+                ingredientValues.Add(kv.Value);
             }
-        } else if (item.Type == ShopItem.ItemType.Equipment) {
-            for (int i = 0; i < allEquipment.Count; i++) {
-                if (allEquipment[i].Name == item.Name) {
-                    ActionUnlocked[allEquipment[i]] = true;
-                    break;
-                }
+
+            actionKeys.Clear(); actionValues.Clear();
+            foreach (var kv in ActionUnlocked)
+            {
+                actionKeys.Add(kv.Key);
+                actionValues.Add(kv.Value);
             }
-        } else if (item.Type == ShopItem.ItemType.Recipe) {
-            for (int i = 0; i < allRecipe.Count; i++) {
-                if (allRecipe[i].Name == item.Name) {
-                    RecipeUnlocked[allRecipe[i]] = true;
-                    break;
-                }
+
+            recipeKeys.Clear(); recipeValues.Clear();
+            foreach (var kv in RecipeUnlocked)
+            {
+                recipeKeys.Add(kv.Key);
+                recipeValues.Add(kv.Value);
             }
-        } else if (item.Type == ShopItem.ItemType.Biome) {
-            for (int i = 0; i < allBiome.Count; i++) {
-                if (allBiome[i].Name == item.Name) {
-                    BiomeUnlocked[allBiome[i]] = true;
-                    break;
-                }
+
+            biomeKeys.Clear(); biomeValues.Clear();
+            foreach (var kv in BiomeUnlocked)
+            {
+                biomeKeys.Add(kv.Key);
+                biomeValues.Add(kv.Value);
             }
         }
 
+        public void OnAfterDeserialize()
+        {
+            IngredientUnlocked = new();
+            for (int i = 0; i < Math.Min(ingredientKeys.Count, ingredientValues.Count); i++)
+                IngredientUnlocked[ingredientKeys[i]] = ingredientValues[i];
+
+            ActionUnlocked = new();
+            for (int i = 0; i < Math.Min(actionKeys.Count, actionValues.Count); i++)
+                ActionUnlocked[actionKeys[i]] = actionValues[i];
+
+            RecipeUnlocked = new();
+            for (int i = 0; i < Math.Min(recipeKeys.Count, recipeValues.Count); i++)
+                RecipeUnlocked[recipeKeys[i]] = recipeValues[i];
+
+            BiomeUnlocked = new();
+            for (int i = 0; i < Math.Min(biomeKeys.Count, biomeValues.Count); i++)
+                BiomeUnlocked[biomeKeys[i]] = biomeValues[i];
+        }
+    }
+    
+    private PlayerData CreatePlayerDataFromManager()
+    {
+        var data = new PlayerData
+        {
+            money = this.money,
+            currBiomeName = this.currentBiome,
+        };
+
+        foreach (var kv in IngredientUnlocked)
+            data.IngredientUnlocked[kv.Key] = kv.Value;
+
+        foreach (var kv in ActionUnlocked)
+            data.ActionUnlocked[kv.Key] = kv.Value;
+
+        foreach (var kv in RecipeUnlocked)
+            data.RecipeUnlocked[kv.Key] = kv.Value;
+
+        foreach (var kv in BiomeUnlocked)
+            data.BiomeUnlocked[kv.Key] = kv.Value;
+
+        return data;
+    }
+
+    private void ApplyPlayerDataToManager(PlayerData data)
+    {
+        money = data.money;
+
+        foreach (var ingredient in allIngredient)
+            IngredientUnlocked[ingredient] = false;
+        foreach (var equipment in allEquipment)
+            ActionUnlocked[equipment] = false;
+        foreach (var recipe in allRecipe)
+            RecipeUnlocked[recipe] = false;
+        foreach (var biome in allBiome)
+            BiomeUnlocked[biome] = false;
+
+        foreach (var ingredientData in data.IngredientUnlocked.Keys)
+        {
+            var obj = allIngredient.Find(i => i == ingredientData);
+            if (obj != null)
+                IngredientUnlocked[obj] = data.IngredientUnlocked[ingredientData];
+        }
+
+        foreach (var actionData in data.ActionUnlocked.Keys)
+        {
+            var obj = allEquipment.Find(e => e == actionData);
+            if (obj != null)
+                ActionUnlocked[obj] = data.ActionUnlocked[actionData];
+        }
+
+        foreach (var recipeData in data.RecipeUnlocked.Keys)
+        {
+            var obj = allRecipe.Find(r => r == recipeData);
+            if (obj != null)
+                RecipeUnlocked[obj] = data.RecipeUnlocked[recipeData];
+        }
+
+        foreach (var biomeData in data.BiomeUnlocked.Keys)
+        {
+            var obj = allBiome.Find(b => b == biomeData);
+            if (obj != null)
+                BiomeUnlocked[obj] = data.BiomeUnlocked[biomeData];
+        }
+    }
+
+    public void SavePlayer(string filename = "player_save.json")
+    {
+        var data = CreatePlayerDataFromManager();
+        var json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(Path.Combine(Application.persistentDataPath, filename), json);
+        Debug.Log("Player saved to " + Path.Combine(Application.persistentDataPath, filename));
+    }
+
+    public void LoadPlayer(string filename = "player_save.json")
+    {
+        string path = Path.Combine(Application.persistentDataPath, filename);
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning("Save file not found at " + path);
+            return;
+        }
+
+        string json = File.ReadAllText(path);
+        var data = JsonUtility.FromJson<PlayerData>(json);
+        ApplyPlayerDataToManager(data);
+        Debug.Log("Player loaded from " + path);
     }
 }

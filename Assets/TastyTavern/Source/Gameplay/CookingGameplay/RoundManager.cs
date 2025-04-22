@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class RoundManager : MonoBehaviour
@@ -22,8 +23,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private CookingUIEventChannel eventChannel;
     
     [SerializeField] public BiomeData currentBiome;
-
     
+    [SerializeField] private PlayerManager playerManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,6 +68,8 @@ public class RoundManager : MonoBehaviour
     {
         eventChannel.RaiseOnDayFinished(_day);
         Debug.Log("Day Finished");
+        playerManager.SavePlayer();
+        SceneManager.LoadScene("EndOfDayView");
     }
 
     private void ChangeMoney(float deltaMoney)
