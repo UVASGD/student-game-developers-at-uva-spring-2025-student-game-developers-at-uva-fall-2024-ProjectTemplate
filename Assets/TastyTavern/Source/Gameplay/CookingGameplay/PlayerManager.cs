@@ -15,13 +15,13 @@ public class PlayerManager : MonoBehaviour
 
     //All Ingredients, Equipment, Recipes, and Biome scriptable objects get placed in their respective lists
     public List<IngredientData> allIngredient = new List<IngredientData>();
-    public List<ActionData> allEquipment = new List<ActionData>();
+    public List<StationData> allEquipment = new List<StationData>();
     public List<RecipeData> allRecipe = new List<RecipeData>();
     public List<BiomeData> allBiome = new List<BiomeData>();
 
     //All the scriptable objects get placed into their correct dictionaries, all bools are initially set to false
     public Dictionary<IngredientData, bool> IngredientUnlocked = new Dictionary<IngredientData, bool>();
-    public Dictionary<ActionData, bool> ActionUnlocked = new Dictionary<ActionData, bool>();
+    public Dictionary<StationData, bool> StationUnlocked = new Dictionary<StationData, bool>();
     public Dictionary<RecipeData, bool> RecipeUnlocked = new Dictionary<RecipeData, bool>();
     public Dictionary<BiomeData, bool> BiomeUnlocked = new Dictionary<BiomeData, bool>();
 
@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         //Enter the Equipment/Actions
         for (int i = 0; i < allEquipment.Count; i++)
         {
-            ActionUnlocked.Add(allEquipment[i], false);
+            StationUnlocked.Add(allEquipment[i], false);
         }
         //Enter the Recipes
         for (int i = 0; i < allRecipe.Count; i++)
@@ -82,30 +82,30 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void AddItemToInventory(ShopItem item) {
-        if (item.Type == ShopItem.ItemType.Ingredient) {
+        if (item.Type == ItemType.Ingredient) {
             for (int i = 0; i < allIngredient.Count; i++) {
-                if (allIngredient[i].Name == item.Name) {
+                if (allIngredient[i].Name == item.Data.Name) {
                     IngredientUnlocked[allIngredient[i]] = true;
                     break;
                 }
             }
-        } else if (item.Type == ShopItem.ItemType.Equipment) {
+        } else if (item.Type == ItemType.Equipment) {
             for (int i = 0; i < allEquipment.Count; i++) {
-                if (allEquipment[i].Name == item.Name) {
-                    ActionUnlocked[allEquipment[i]] = true;
+                if (allEquipment[i].Name == item.Data.Name) {
+                    StationUnlocked[allEquipment[i]] = true;
                     break;
                 }
             }
-        } else if (item.Type == ShopItem.ItemType.Recipe) {
+        } else if (item.Type == ItemType.Recipe) {
             for (int i = 0; i < allRecipe.Count; i++) {
-                if (allRecipe[i].Name == item.Name) {
+                if (allRecipe[i].Name == item.Data.Name) {
                     RecipeUnlocked[allRecipe[i]] = true;
                     break;
                 }
             }
-        } else if (item.Type == ShopItem.ItemType.Biome) {
+        } else if (item.Type == ItemType.Biome) {
             for (int i = 0; i < allBiome.Count; i++) {
-                if (allBiome[i].Name == item.Name) {
+                if (allBiome[i].Name == item.Data.Name) {
                     BiomeUnlocked[allBiome[i]] = true;
                     break;
                 }

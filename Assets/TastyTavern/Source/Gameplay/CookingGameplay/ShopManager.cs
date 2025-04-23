@@ -40,14 +40,28 @@ public class ShopManager : MonoBehaviour
     {
         if (playerManager.money >= item.Price)
         {
-            if (item.Purchased == true)
+            if (item.Type == ItemType.Recipe && playerManager.RecipeUnlocked[(RecipeData)item.Data] == true)
+            {
+                Debug.Log("You already bought that item!");
+                return false;
+            }
+            else if (item.Type == ItemType.Ingredient && playerManager.IngredientUnlocked[(IngredientData)item.Data] == true)
+            {
+                Debug.Log("You already bought that item!");
+                return false;
+            }
+            else if (item.Type == ItemType.Equipment && playerManager.StationUnlocked[(StationData)item.Data] == true)
+            {
+                Debug.Log("You already bought that item!");
+                return false;
+            }
+            else if (item.Type == ItemType.Biome && playerManager.BiomeUnlocked[(BiomeData)item.Data] == true)
             {
                 Debug.Log("You already bought that item!");
                 return false;
             } else {
                 playerManager.money -= item.Price;
-                item.Purchased = true;
-                Debug.Log($"You bought {item.Name} for {item.Price} gold!");
+                Debug.Log($"You bought {item.Data.Name} for {item.Price} gold!");
                 playerManager.AddItemToInventory(item);
                 return true;
             }
