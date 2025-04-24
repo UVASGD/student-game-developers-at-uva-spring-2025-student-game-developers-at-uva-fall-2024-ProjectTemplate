@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/TastyTavern/UIMenus/MainMenu.uss?fileID=7433441132597879392&amp;guid=5934f4de4984fe5488c6f73f09fa28d0&amp;type=3#MainMenu" />
+    <engine:VisualElement name="Root" style="flex-grow: 1;">
+        <engine:VisualElement name="Text" class="panel" style="flex-grow: 1; justify-content: center; align-items: stretch; align-self: center;" />
+    </engine:VisualElement>
+</engine:UXML>
