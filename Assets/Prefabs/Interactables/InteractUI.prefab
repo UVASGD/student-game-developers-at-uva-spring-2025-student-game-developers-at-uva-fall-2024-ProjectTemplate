@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactUI_GO: {fileID: 2297216459122082077}
   interactUI_Text: {fileID: 0}
-  interactDistance: 500000
+  interactDistance: 5
+  sphereCastRadius: 0.5
   scaleTime: 0.25
