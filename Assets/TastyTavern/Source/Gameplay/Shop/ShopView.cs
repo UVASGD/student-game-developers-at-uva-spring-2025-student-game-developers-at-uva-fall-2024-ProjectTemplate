@@ -35,6 +35,7 @@ public class ShopView : MonoBehaviour
 
     void Awake()
     {
+        ////////////// Assigning major UI document elements //////////////
         root = document.rootVisualElement;
 
         // Retrieve all category buttons and pages from the UI
@@ -52,7 +53,7 @@ public class ShopView : MonoBehaviour
         backButton = root.Q<VisualElement>("BackButton");
         shopPageContainer = root.Q<VisualElement>("ShopPageContainer");
 
-        // Set default page
+        // Setting default page
         currentPage = ingredientsPage;
         currentButton = ingredientsBtn;
 
@@ -127,10 +128,10 @@ public class ShopView : MonoBehaviour
 
     void OnBuyButtonClicked(ClickEvent evt, Button itemBtn)
     {
-        ShopItem shopItem = (ShopItem)(itemBtn.dataSource);
+        ShopItem shopItem = itemBtn.GetHierarchicalDataSourceContext().dataSource as ShopItem;
 
         Debug.Log(shopItem);
-        Debug.Log("Item clicked of price: " + shopItem.Price);
-        Debug.Log("Item clicked of type: " + shopItem.Type);
+        // Debug.Log("Item clicked of price: " + shopItem.Price);
+        // Debug.Log("Item clicked of type: " + shopItem.Type);
     }
 }
