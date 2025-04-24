@@ -31,6 +31,8 @@ public class RoundManager : MonoBehaviour
     {
         _day = 0;
         _customersServed = 0;
+        
+        currentBiome = playerManager.currentBiome;
     }
 
     // Update is called once per frame
