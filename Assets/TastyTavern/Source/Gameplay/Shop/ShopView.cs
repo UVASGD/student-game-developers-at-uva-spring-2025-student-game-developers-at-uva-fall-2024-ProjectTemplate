@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,10 +21,13 @@ public class ShopView : MonoBehaviour
 
     private VisualElement playerMoneyText;
     private VisualElement backButton;
+    private VisualElement shopPageContainer;
 
     // Tracking current visuals
     private Button currentButton;
     private VisualElement currentPage;
+
+    private List<Button> itemButtons;
 
     // Action for when a page is clicked, in <newly selected page, old page> format
     // public Action<VisualElement,VisualElement> OnPageClicked;
@@ -46,10 +50,15 @@ public class ShopView : MonoBehaviour
         // Retrieving other UI (player money and back button)
         playerMoneyText = root.Q<VisualElement>("PlayerMoney");
         backButton = root.Q<VisualElement>("BackButton");
+        shopPageContainer = root.Q<VisualElement>("ShopPageContainer");
 
         // Set default page
         currentPage = ingredientsPage;
         currentButton = ingredientsBtn;
+
+        // for TESTINg i will make just ingredients page
+        itemButtons = ingredientsPage.Query<Button>().ToList();
+
     }
 
     void OnEnable()
@@ -58,6 +67,12 @@ public class ShopView : MonoBehaviour
         recipesBtn.RegisterCallback<ClickEvent, string>(OnPageClicked, "Recipes");
         equipmentBtn.RegisterCallback<ClickEvent, string>(OnPageClicked, "Equipment");
         biomesBtn.RegisterCallback<ClickEvent, string>(OnPageClicked, "Biomes");
+
+        // Subscribe all shop items
+        foreach (Button itemBtn in itemButtons)
+        {
+            itemBtn.RegisterCallback<ClickEvent, Button>(OnBuyButtonClicked, itemBtn);   
+        }
     }
 
     void OnDisable()
@@ -66,6 +81,11 @@ public class ShopView : MonoBehaviour
         recipesBtn.UnregisterCallback<ClickEvent, string>(OnPageClicked);
         equipmentBtn.UnregisterCallback<ClickEvent, string>(OnPageClicked);
         biomesBtn.UnregisterCallback<ClickEvent, string>(OnPageClicked);
+
+        foreach (Button itemBtn in itemButtons)
+        {
+            itemBtn.UnregisterCallback<ClickEvent, Button>(OnBuyButtonClicked);   
+        }
     }
     
     // Handles page switching
@@ -103,5 +123,14 @@ public class ShopView : MonoBehaviour
         currentButton.AddToClassList("page-btn-selected");
         currentPage.style.display = DisplayStyle.Flex;
 
+    }
+
+    void OnBuyButtonClicked(ClickEvent evt, Button itemBtn)
+    {
+        ShopItem shopItem = (ShopItem)(itemBtn.dataSource);
+
+        Debug.Log(shopItem);
+        Debug.Log("Item clicked of price: " + shopItem.Price);
+        Debug.Log("Item clicked of type: " + shopItem.Type);
     }
 }
