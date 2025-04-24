@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 262151
   packageName: Keypad FREE
   packageVersion: 1.0.1
-  assetPath: Assets/Keypad/Animations/DoorSlide.controller
+  assetPath: Assets/Objects/FlashlightLevel/Keypad/Animations/DoorSlide.controller
   uploadId: 657263
