@@ -1,4 +1,4 @@
-.category-button {
+.page-btn {
     width: 24%;
     border-top-left-radius: 45px;
     border-top-right-radius: 45px;
@@ -53,7 +53,7 @@
     flex-wrap: wrap;
 }
 
-.category-button:hover {
+.page-btn:hover {
     background-color: rgba(255, 255, 255, 0);
     -unity-background-image-tint-color: rgb(201, 161, 91);
     transition-timing-function: ease-in-out-circ;
@@ -61,7 +61,7 @@
     transition-delay: 0s;
 }
 
-.category-button-focus {
+.page-btn-selected {
     width: 24%;
     border-top-left-radius: 45px;
     border-top-right-radius: 45px;
@@ -83,7 +83,7 @@
     word-spacing: 0;
 }
 
-.back-button {
+.back-btn {
     height: 110px;
     width: 279px;
     margin-bottom: 5px;
@@ -115,7 +115,7 @@
     min-height: 70%;
 }
 
-.back-button:hover {
+.back-btn:hover {
     -unity-background-image-tint-color: rgb(228, 193, 127);
     transition-timing-function: ease-in-out-circ;
     transition-duration: 0.1s;
@@ -130,7 +130,7 @@
     border-bottom-color: rgba(255, 255, 255, 0);
 }
 
-.item-buy {
+.buy-btn {
     max-width: 40%;
     width: 155px;
     height: 68px;
@@ -152,7 +152,7 @@
     border-bottom-color: rgb(168, 112, 48);
 }
 
-.item-buy:hover {
+.buy-btn:hover {
     transition-timing-function: ease-in-out-circ;
     transition-duration: 0.2s;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
