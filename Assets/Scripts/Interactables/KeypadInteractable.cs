@@ -1,11 +1,22 @@
 using UnityEngine;
 
-public class KeypadInteractable : GameplayUIInteractable
+public class KeyPadInteractable : Interactable
 {
+
 
     public override void Interact()
     {
-        gameplayUI.activate();
+
     }
 
+    public override void SetText()
+    {
+        base.SetText();
+        InteractableUI.Instance.interactUI_Text.text = "Interact";
+    }
+
+    private void OnApplicationQuit()
+    {
+        // reset keypad
+    }
 }
