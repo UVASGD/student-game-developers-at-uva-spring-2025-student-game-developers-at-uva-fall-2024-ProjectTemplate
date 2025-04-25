@@ -19,6 +19,7 @@ public class EndlessRoomManager : MonoBehaviour {
     public Image scaryFace;
     public Image fader;
     public Transform spawnTransformSection2;
+    public AudioSource wallMovingSFX;
     private Light[] _lights;
 
     void Awake() {

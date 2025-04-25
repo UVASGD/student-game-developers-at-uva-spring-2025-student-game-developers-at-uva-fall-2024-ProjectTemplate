@@ -1,13 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Door : Interactable {    
+    public Transform doorLeftRotatorTransform;
+    public Transform doorRightRotatorTransform;
+    [HideInInspector] public float _startYRotationLeft;
+    [HideInInspector] public float _startYRotationRight;
+    public AudioSource doorOpenSFX;
+
+    public override void Start()
+    {
+        base.Start();
+        _startYRotationLeft = doorLeftRotatorTransform.rotation.eulerAngles.y;
+        _startYRotationRight = doorRightRotatorTransform.rotation.eulerAngles.y;
+    }
+
     public override void Interact() {
         base.Interact();
-        gameObject.SetActive(false);
         canInteract = false;
-        Debug.Log("Replace with door animation later.");
+        doorOpenSFX.Play();
+        Debug.Log("Test");
+        doorLeftRotatorTransform.DORotate(new Vector3(0, _startYRotationLeft + 90, 0), 1f);
+        doorRightRotatorTransform.DORotate(new Vector3(0, _startYRotationRight - 90, 0), 1f);
     }
 
     public override void SetText()
