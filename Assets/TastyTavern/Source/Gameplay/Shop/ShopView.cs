@@ -54,12 +54,6 @@ public class ShopView : MonoBehaviour
         backButton = root.Q<VisualElement>("BackButton");
         shopPageContainer = root.Q<VisualElement>("ShopPageContainer");
 
-        // Instantiate all shop items based on the current biome
-        GenerateShopItems(ingredientsPage, shopManager.CurrentShopData.IngredientItems);
-        // GenerateShopItems(recipesPage, shopManager.CurrentShopData.RecipeItems);
-        // GenerateShopItems(equipmentPage, shopManager.CurrentShopData.EquipmentItems);
-        // GenerateShopItems(biomesPage, shopManager.CurrentShopData.BiomeItems);
-
         // Setting default page
         currentPage = ingredientsPage;
         currentButton = ingredientsBtn;
@@ -67,6 +61,15 @@ public class ShopView : MonoBehaviour
         // FOR TESTING I WILL ONLY SET UP INGREDIENTS BUTTONS FOR SUBSCRIPTION
         allItemButtons = ingredientsPage.Query<Button>().ToList();
 
+    }
+
+    void Start()
+    {
+        // Instantiate all shop items based on the current biome
+        GenerateShopItems(ingredientsPage, shopManager.CurrentShopData.IngredientItems);
+        // GenerateShopItems(recipesPage, shopManager.CurrentShopData.RecipeItems);
+        // GenerateShopItems(equipmentPage, shopManager.CurrentShopData.EquipmentItems);
+        // GenerateShopItems(biomesPage, shopManager.CurrentShopData.BiomeItems);
     }
 
     void OnEnable()

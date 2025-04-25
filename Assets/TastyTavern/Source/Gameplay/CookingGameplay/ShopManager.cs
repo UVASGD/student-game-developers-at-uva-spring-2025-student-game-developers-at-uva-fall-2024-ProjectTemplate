@@ -20,22 +20,28 @@ public class ShopManager : MonoBehaviour
 {
 
     [SerializeField]
-    public ShopData CurrentShopData { get; set; } // RECIEVED IN GAMEPLAY
+    public ShopData CurrentShopData { get; set; } // DETERMINED IN GAMEPLAY
 
-    private PlayerManager playerManager;
+    // Shops, set in the editor: (Forest, Ocean, Caves)
+    [SerializeField]
+    private List<ShopData> allShops;
 
     [SerializeField]
-    public BiomeData currentBiome; // TESTING ONLY
+    private PlayerManager playerManager; // NEED TO CONNECT
+
+    public BiomeData currentBiome; // TESTING ONLY, actually take playerManager.currentBiome
 
     void Awake()
     {
-        // if (currentBiome.Name == "Forest"){
-        //     CurrentShopData = Resources.Load<ShopData>("ScriptableObjects/Shop/PlainsShop");
-        //     Debug.Log("No biome found!");
-        // } else {
-        //     Debug.Log("Biome not found!");
-        // }
-    
+        if (currentBiome.Name == "Forest"){
+            CurrentShopData = allShops[0];
+        } else if (currentBiome.Name == "Ocean"){
+            CurrentShopData = allShops[1];
+        } else if (currentBiome.Name == "Caves"){
+            CurrentShopData = allShops[2];
+        } else {
+            Debug.Log("Biome not found!");
+        }
     }
 
 
