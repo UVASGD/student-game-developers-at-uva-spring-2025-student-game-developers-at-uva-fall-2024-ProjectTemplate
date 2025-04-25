@@ -16,9 +16,6 @@ public class ShopItem : ScriptableObject
     public string Description { get; set; }
 
     [field: SerializeField]
-    public int Price { get; set; }
-
-    [field: SerializeField]
     public Sprite Icon { get; set; }
 
     [field: SerializeField]
