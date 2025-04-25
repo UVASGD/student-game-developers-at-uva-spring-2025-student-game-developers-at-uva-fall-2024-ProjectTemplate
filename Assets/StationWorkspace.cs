@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StationWorkspace : MonoBehaviour
+public class StationWorkspaceController : MonoBehaviour
 {
     //TODO: Add specific station tops: Burner, Grill, Fryer, etc.
 
