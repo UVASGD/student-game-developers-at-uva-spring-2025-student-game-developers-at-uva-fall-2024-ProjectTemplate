@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b5076c2de39c649b5915b54d56c2f6, type: 3}
+  m_Name: GoldenMushroom
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Golden Mushroom
+  <Description>k__BackingField: 
+  <Sprites>k__BackingField:
+  - {fileID: 21300000, guid: 62c76adf3224d174a94475997571184a, type: 3}
+  - {fileID: 21300000, guid: 18e7f0a52cb610644a967c645226f990, type: 3}
+  - {fileID: 21300000, guid: b8fc447e88bcc234cb94d32bbc0a08ec, type: 3}
+  - {fileID: 21300000, guid: bd5d5448386d1894aa46cba9c0c441f2, type: 3}
+  <Price>k__BackingField: 0
