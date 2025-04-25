@@ -30,7 +30,7 @@ public class ShopView : MonoBehaviour
     private Button currentButton;
     private VisualElement currentPage;
 
-    private List<Button> itemButtons;
+    private List<Button> allItemButtons;
 
     // Action for when a page is clicked, in <newly selected page, old page> format
 
@@ -55,7 +55,7 @@ public class ShopView : MonoBehaviour
         shopPageContainer = root.Q<VisualElement>("ShopPageContainer");
 
         // Instantiate all shop items based on the current biome
-        // GenerateShopItems(ingredientsPage, shopManager.CurrentShopData.IngredientItems);
+        GenerateShopItems(ingredientsPage, shopManager.CurrentShopData.IngredientItems);
         // GenerateShopItems(recipesPage, shopManager.CurrentShopData.RecipeItems);
         // GenerateShopItems(equipmentPage, shopManager.CurrentShopData.EquipmentItems);
         // GenerateShopItems(biomesPage, shopManager.CurrentShopData.BiomeItems);
@@ -65,19 +65,20 @@ public class ShopView : MonoBehaviour
         currentButton = ingredientsBtn;
 
         // FOR TESTING I WILL ONLY SET UP INGREDIENTS BUTTONS FOR SUBSCRIPTION
-        itemButtons = ingredientsPage.Query<Button>().ToList();
+        allItemButtons = ingredientsPage.Query<Button>().ToList();
 
     }
 
     void OnEnable()
     {
+        // Subscribe to page button clicks
         ingredientsBtn.RegisterCallback<ClickEvent, string>(OnPageClicked, "Ingredients");
         recipesBtn.RegisterCallback<ClickEvent, string>(OnPageClicked, "Recipes");
         equipmentBtn.RegisterCallback<ClickEvent, string>(OnPageClicked, "Equipment");
         biomesBtn.RegisterCallback<ClickEvent, string>(OnPageClicked, "Biomes");
 
         // Subscribe all shop items
-        foreach (Button itemBtn in itemButtons)
+        foreach (Button itemBtn in allItemButtons)
         {
             itemBtn.RegisterCallback<ClickEvent, Button>(OnBuyButtonClicked, itemBtn);   
         }
@@ -90,7 +91,7 @@ public class ShopView : MonoBehaviour
         equipmentBtn.UnregisterCallback<ClickEvent, string>(OnPageClicked);
         biomesBtn.UnregisterCallback<ClickEvent, string>(OnPageClicked);
 
-        foreach (Button itemBtn in itemButtons)
+        foreach (Button itemBtn in allItemButtons)
         {
             itemBtn.UnregisterCallback<ClickEvent, Button>(OnBuyButtonClicked);   
         }
