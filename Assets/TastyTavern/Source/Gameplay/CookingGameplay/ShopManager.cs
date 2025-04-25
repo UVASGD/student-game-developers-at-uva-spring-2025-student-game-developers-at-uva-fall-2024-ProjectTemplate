@@ -18,15 +18,26 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    private List<ShopItem> inventory;
-    private ShopData shopData;
-    private PlayerManager playerManager;
-    public List<ShopItem> ShopItems { get; } = new List<ShopItem>();
 
-    void Start()
+    [SerializeField]
+    public ShopData CurrentShopData { get; set; } // RECIEVED IN GAMEPLAY
+
+    private PlayerManager playerManager;
+
+    [SerializeField]
+    public BiomeData currentBiome; // TESTING ONLY
+
+    void Awake()
     {
-        inventory = shopData.ShopItems;
+        if (currentBiome.Name == "Plains"){
+            CurrentShopData = Resources.Load<ShopData>("ScriptableObjects/Shop/PlainsShop");
+            Debug.Log("No biome found!");
+        } else {
+            Debug.Log("Biome not found!");
+        }
+    
     }
+
 
     /* Player can buy an item under the following conditions
         1. They have enough gold

@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     public float money;
 
-
     [SerializeField]
     private CookingUIEventChannel cookingUIEventChannel;
 

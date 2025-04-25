@@ -9,6 +9,9 @@ public class ShopView : MonoBehaviour
     [SerializeField]
     private UIDocument document;
 
+    [SerializeField]
+    private ShopManager shopManager;
+
     private VisualElement root;
     private Button ingredientsBtn;
     private Button recipesBtn;
@@ -30,8 +33,6 @@ public class ShopView : MonoBehaviour
     private List<Button> itemButtons;
 
     // Action for when a page is clicked, in <newly selected page, old page> format
-    // public Action<VisualElement,VisualElement> OnPageClicked;
-
 
     void Awake()
     {
@@ -53,11 +54,17 @@ public class ShopView : MonoBehaviour
         backButton = root.Q<VisualElement>("BackButton");
         shopPageContainer = root.Q<VisualElement>("ShopPageContainer");
 
+        // Instantiate all shop items based on the current biome
+        GenerateShopItems(ingredientsPage, shopManager.CurrentShopData.IngredientItems);
+        GenerateShopItems(recipesPage, shopManager.CurrentShopData.RecipeItems);
+        GenerateShopItems(equipmentPage, shopManager.CurrentShopData.EquipmentItems);
+        GenerateShopItems(biomesPage, shopManager.CurrentShopData.BiomeItems);
+
         // Setting default page
         currentPage = ingredientsPage;
         currentButton = ingredientsBtn;
 
-        // for TESTINg i will make just ingredients page
+        // FOR TESTING I WILL ONLY SET UP INGREDIENTS BUTTONS FOR SUBSCRIPTION
         itemButtons = ingredientsPage.Query<Button>().ToList();
 
     }
@@ -86,6 +93,23 @@ public class ShopView : MonoBehaviour
         foreach (Button itemBtn in itemButtons)
         {
             itemBtn.UnregisterCallback<ClickEvent, Button>(OnBuyButtonClicked);   
+        }
+    }
+
+    // Generates shop items based on the current biome in the page (a ScrollView element)
+    void GenerateShopItems(VisualElement page, List<ShopItem> shopItems)
+    {
+        // Clear existing items in the page
+        page.Clear();
+
+        // Create a cell for each item and add it to the page
+        foreach (ShopItem item in shopItems)
+        {
+            VisualElement shopItemCell = new VisualElement();
+            // Set data source for the button
+            //itemButton.SetHierarchicalDataSourceContext(new HierarchicalDataSourceContext(item));
+
+            page.Add(shopItemCell);
         }
     }
     
