@@ -1,5 +1,5 @@
-.category-button {
-    width: 400px;
+.page-btn {
+    width: 24%;
     border-top-left-radius: 45px;
     border-top-right-radius: 45px;
     border-bottom-right-radius: 0;
@@ -9,30 +9,196 @@
     border-top-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-    font-size: 50px;
+    font-size: 56px;
     -unity-text-align: middle-center;
     -unity-font-style: normal;
+    background-image: url("project://database/Assets/TastyTavern/Art/Textures/wood.jpg?fileID=2800000&guid=baf77fa8c37c693448880d4b747bc54d&type=3#wood");
+    background-size: 100% 800%;
+    -unity-background-image-tint-color: rgb(161, 135, 91);
+    -unity-font-definition: url("project://database/Assets/TastyTavern/Art/Fonts/GorckHelozatTrialRegular-dr876.ttf?fileID=12800000&guid=c974ae8a27d6bdd429cfc670e17d0cce&type=3#GorckHelozatTrialRegular-dr876");
+    color: rgb(255, 255, 255);
+    word-spacing: 0;
 }
 
 .shop-item {
     flex-grow: 1;
-    height: 270px;
-    width: 50%;
-    margin-top: 35px;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 35px;
-    margin-left: 20px;
-    margin-right: 20px;
-    background-color: rgba(28, 69, 241, 0.69);
-    max-width: 30%;
+    height: 400px;
+    width: 45%;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+    background-color: rgb(247, 225, 189);
+    max-width: 48.5%;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 50px;
+    border-top-width: -43px;
+    border-right-width: -43px;
+    border-bottom-width: -43px;
+    border-left-width: -43px;
+    border-left-color: rgb(90, 46, 8);
+    border-right-color: rgb(90, 46, 8);
+    border-top-color: rgb(90, 46, 8);
+    border-bottom-color: rgb(90, 46, 8);
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .unity-scroll-view__content-container {
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.page-btn:hover {
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-image-tint-color: rgb(201, 161, 91);
+    transition-timing-function: ease-in-out-circ;
+    transition-duration: 0.1s;
+    transition-delay: 0s;
+}
+
+.page-btn-selected {
+    width: 24%;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-right-width: 0;
+    background-color: rgb(188, 188, 188);
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    font-size: 56px;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    background-image: url("project://database/Assets/TastyTavern/Art/Textures/wood.jpg?fileID=2800000&guid=baf77fa8c37c693448880d4b747bc54d&type=3#wood");
+    background-size: 100% 800%;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/TastyTavern/Art/Fonts/GorckHelozatTrialRegular-dr876.ttf?fileID=12800000&guid=c974ae8a27d6bdd429cfc670e17d0cce&type=3#GorckHelozatTrialRegular-dr876");
+    color: rgb(51, 7, 7);
+    word-spacing: 0;
+}
+
+.back-btn {
+    height: 110px;
+    width: 279px;
+    margin-bottom: 5px;
+    margin-top: 16px;
+    margin-left: 60px;
+    font-size: 59px;
+    white-space: normal;
+    background-image: url("project://database/Assets/TastyTavern/Art/Textures/woodarrow.png?fileID=2800000&guid=33a89e67b6eb3874dad6a5cd8121471f&type=3#woodarrow");
+    align-self: auto;
+    justify-content: flex-start;
+    padding-left: 46px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    background-color: rgba(188, 188, 188, 0);
+    -unity-font-definition: url("project://database/Assets/TastyTavern/Art/Fonts/GorckHelozatTrialRegular-dr876.ttf?fileID=12800000&guid=c974ae8a27d6bdd429cfc670e17d0cce&type=3#GorckHelozatTrialRegular-dr876");
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 30%;
+    min-height: 70%;
+}
+
+.back-btn:hover {
+    -unity-background-image-tint-color: rgb(228, 193, 127);
+    transition-timing-function: ease-in-out-circ;
+    transition-duration: 0.1s;
+    transition-delay: 0s;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+}
+
+.buy-btn {
+    max-width: 40%;
+    width: 155px;
+    height: 68px;
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
+    border-bottom-right-radius: 23px;
+    border-bottom-left-radius: 23px;
+    font-size: 43px;
+    -unity-font-definition: url("project://database/Assets/TastyTavern/Art/Fonts/Chalkboard-Regular.ttf?fileID=12800000&guid=43cb84234405f2042bb3a98a53562dc8&type=3#Chalkboard-Regular");
+    background-color: rgb(224, 179, 3);
+    color: rgb(0, 0, 0);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-left-color: rgb(168, 112, 48);
+    border-right-color: rgb(168, 112, 48);
+    border-top-color: rgb(168, 112, 48);
+    border-bottom-color: rgb(168, 112, 48);
+}
+
+.buy-btn:hover {
+    transition-timing-function: ease-in-out-circ;
+    transition-duration: 0.2s;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    background-color: rgb(222, 153, 58);
+}
+
+.ingredient-icon {
+    flex-grow: 1;
+    width: auto;
+    height: 80%;
+    background-image: url("project://database/Assets/TastyTavern/Art/Food/Ingredients/whole%20tomato.png?fileID=2800000&guid=e2984f7453ff3e44f94d62eaef932fa1&type=3#whole tomato");
+    background-size: 200% 130%;
+    background-color: rgb(209, 182, 143);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    max-width: 30%;
+    max-height: 80%;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: auto;
+    align-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-position-y: center 0;
+}
+
+.recipe-icon {
+    flex-grow: 1;
+    width: auto;
+    height: 80%;
+    background-image: url("project://database/Assets/TastyTavern/Art/Food/Final%20Dishes/seaweedsalad.png?fileID=2800000&guid=d6200465a12dabc47b6637fccdfe8a8b&type=3#seaweedsalad");
+    background-size: 100% 70%;
+    background-color: rgb(209, 182, 143);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    max-width: 30%;
+    max-height: 80%;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: auto;
+    align-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-position-y: bottom 30px;
 }

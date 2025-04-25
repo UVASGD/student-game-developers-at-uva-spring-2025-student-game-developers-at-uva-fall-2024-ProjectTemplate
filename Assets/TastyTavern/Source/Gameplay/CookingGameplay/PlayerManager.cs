@@ -14,19 +14,18 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     public BiomeData currentBiome;
 
-
     [SerializeField]
     private CookingUIEventChannel cookingUIEventChannel;
 
     //All Ingredients, Equipment, Recipes, and Biome scriptable objects get placed in their respective lists
     public List<IngredientData> allIngredient = new List<IngredientData>();
-    public List<ActionData> allEquipment = new List<ActionData>();
+    public List<StationData> allEquipment = new List<StationData>();
     public List<RecipeData> allRecipe = new List<RecipeData>();
     public List<BiomeData> allBiome = new List<BiomeData>();
 
     //All the scriptable objects get placed into their correct dictionaries, all bools are initially set to false
     public Dictionary<IngredientData, bool> IngredientUnlocked = new Dictionary<IngredientData, bool>();
-    public Dictionary<ActionData, bool> ActionUnlocked = new Dictionary<ActionData, bool>();
+    public Dictionary<StationData, bool> StationUnlocked = new Dictionary<StationData, bool>();
     public Dictionary<RecipeData, bool> RecipeUnlocked = new Dictionary<RecipeData, bool>();
     public Dictionary<BiomeData, bool> BiomeUnlocked = new Dictionary<BiomeData, bool>();
 
@@ -41,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         //Enter the Equipment/Actions
         for (int i = 0; i < allEquipment.Count; i++)
         {
-            ActionUnlocked.Add(allEquipment[i], false);
+            StationUnlocked.Add(allEquipment[i], false);
         }
 
         //Enter the Recipes
@@ -78,7 +77,6 @@ public class PlayerManager : MonoBehaviour
             money += deltaMoney;
         }
     }
-
     public void AddItemToInventory(ShopItem item)
     {
         switch (item.Type)

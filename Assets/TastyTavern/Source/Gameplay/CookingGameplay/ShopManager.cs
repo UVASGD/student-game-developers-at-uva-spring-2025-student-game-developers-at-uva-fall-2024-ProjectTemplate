@@ -18,15 +18,26 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    private List<ShopItem> inventory;
-    private ShopData shopData;
-    private PlayerManager playerManager;
-    public List<ShopItem> ShopItems { get; } = new List<ShopItem>();
 
-    void Start()
+    [SerializeField]
+    public ShopData CurrentShopData { get; set; } // RECIEVED IN GAMEPLAY
+
+    private PlayerManager playerManager;
+
+    [SerializeField]
+    public BiomeData currentBiome; // TESTING ONLY
+
+    void Awake()
     {
-        inventory = shopData.ShopItems;
+        if (currentBiome.Name == "Plains"){
+            CurrentShopData = Resources.Load<ShopData>("ScriptableObjects/Shop/PlainsShop");
+            Debug.Log("No biome found!");
+        } else {
+            Debug.Log("Biome not found!");
+        }
+    
     }
+
 
     /* Player can buy an item under the following conditions
         1. They have enough gold
@@ -40,14 +51,28 @@ public class ShopManager : MonoBehaviour
     {
         if (playerManager.money >= item.Price)
         {
-            if (item.Purchased == true)
+            if (item.Type == ItemType.Recipe && playerManager.RecipeUnlocked[(RecipeData)item.Data] == true)
+            {
+                Debug.Log("You already bought that item!");
+                return false;
+            }
+            else if (item.Type == ItemType.Ingredient && playerManager.IngredientUnlocked[(IngredientData)item.Data] == true)
+            {
+                Debug.Log("You already bought that item!");
+                return false;
+            }
+            else if (item.Type == ItemType.Equipment && playerManager.StationUnlocked[(StationData)item.Data] == true)
+            {
+                Debug.Log("You already bought that item!");
+                return false;
+            }
+            else if (item.Type == ItemType.Biome && playerManager.BiomeUnlocked[(BiomeData)item.Data] == true)
             {
                 Debug.Log("You already bought that item!");
                 return false;
             } else {
                 playerManager.money -= item.Price;
-                item.Purchased = true;
-                Debug.Log($"You bought {item.Name} for {item.Price} gold!");
+                Debug.Log($"You bought {item.Data.Name} for {item.Price} gold!");
                 playerManager.AddItemToInventory(item);
                 return true;
             }

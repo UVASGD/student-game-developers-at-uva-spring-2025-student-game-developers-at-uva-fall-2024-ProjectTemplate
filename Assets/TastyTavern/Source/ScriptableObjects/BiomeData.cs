@@ -3,19 +3,8 @@ using System.Collections;
 
 [CreateAssetMenu(fileName = "BiomeData", menuName = "ScriptableObjects/BiomeData")]
 
-public class BiomeData : ScriptableObject
+public class BiomeData : BuyableData
 {
-    // Name of biome to be displayed in the shop, etc.
-    [field: SerializeField]
-    public string Name { get; set; }
-
-    // Description of biome to be displayed in the shop, etc.
-    [field: SerializeField]
-    public string Description { get; set; }
-
-    // How much the spell to get to this biome will cost in the shop
-    [field:SerializeField]
-    public int Price { get; set; }
 
     // The number of the biome within the order that it appears. E.g. starting biome = 1, next biome = 2, etc.
     [field: SerializeField]

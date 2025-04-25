@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RecipeData", menuName = "ScriptableObjects/RecipeData")]
-public class RecipeData : ScriptableObject 
+public class RecipeData : BuyableData
 {
     /// <summary>
     /// Represents the name of a recipe.
@@ -35,7 +35,7 @@ public class RecipeData : ScriptableObject
     /// </summary>
     [field: SerializeField]
     public Sprite WrongIcon { get; set; }
-
+    
     /// <summary>
     /// Defines the sequence of stations that are required to complete a recipe.
     /// </summary>

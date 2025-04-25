@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StationData", menuName = "ScriptableObjects/StationData", order = 0)]
-public class StationData : ScriptableObject 
+public class StationData : BuyableData 
 {
 
+    // Gameplay information
     [field: SerializeField]
     public StationType StationType { get; set; }
 
@@ -12,7 +13,6 @@ public class StationData : ScriptableObject
     public Sprite Background { get; set; }
 
     [field: SerializeField]
-
     public float ProcessingTime { get; set; }
 
     [field: SerializeField]
