@@ -16,6 +16,9 @@ public class Customer : MonoBehaviour
     public MenuManager MenuManager { get; set; }
     
     [field: SerializeField]
+    public OrderManager OrderManager { get; set; }
+    
+    [field: SerializeField]
     public float RemainingPatience { get; set; }
 
 
@@ -34,6 +37,7 @@ public class Customer : MonoBehaviour
         if (RemainingPatience <= 0)
         {
             cookingUIEventChannel.RaiseOnSubmitOrder(Data.Order);
+            cookingUIEventChannel.OnDeselectOrder();
         }
         
         if (Data.Order != null)

@@ -22,6 +22,8 @@ public class UIMenusProcesses : MonoBehaviour
     public Button SelectOceanButton;
     public Button ExitBiomeMenuButton;
 
+    [SerializeField] private PlayerManager playerManager;
+
 
     void Awake()
     {
@@ -52,6 +54,12 @@ public class UIMenusProcesses : MonoBehaviour
 
         ExitBiomeMenuButton.clicked += SwitchToPostGameMenu;
     }
+
+    void Start()
+    {
+        playerManager.LoadPlayer();
+    }
+    
     private void SwitchToPostGameMenu()
     {
         postGameUIroot.visible = true;
@@ -91,7 +99,7 @@ public class UIMenusProcesses : MonoBehaviour
         {
             case 1:
                 // TODO: Save biome switching info to a JSON file
-
+                
                 break;
             case 2:
                 // TODO: Save biome switching info to a JSON file
@@ -105,6 +113,7 @@ public class UIMenusProcesses : MonoBehaviour
                 break;
             
         }
+        playerManager.SavePlayer();// PLEASE SET BIOME TO SWITCH TO :)
         SceneManager.LoadScene("TestScene A 2");
     }
 }

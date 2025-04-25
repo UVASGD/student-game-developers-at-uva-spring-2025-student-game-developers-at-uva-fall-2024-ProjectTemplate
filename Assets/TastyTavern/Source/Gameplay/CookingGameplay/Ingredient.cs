@@ -21,6 +21,15 @@ public class Ingredient {
         toString += Data.Name; 
         return toString;
     }
+
+    // Return the current sprite to be used in the workspace depending on the property
+    public Sprite GetCurrentSprite(){
+        if (Properties.Contains(Property.Cut)){
+            return Data.Sprites[2]; //TODO: add icons
+        } else {
+            return Data.Sprites[1];
+        }
+    }
 }
 
 public enum Property{
@@ -29,4 +38,9 @@ public enum Property{
     Stewed,
     Salted,
     Peppered,
+    Boiled,
+    DeepFried,
+    Mixed,
+    Grilled,
+    Baked,
 }

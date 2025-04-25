@@ -13,6 +13,17 @@ public class ShopItem : ScriptableObject
     public ItemType Type { get; set; }
 
     // This can be IngredientData, RecipeData, StationData, or BiomeData
+    public string Description { get; set; }
+
+    [field: SerializeField]
+    public int Price { get; set; }
+
+    [field: SerializeField]
+    public Sprite Icon { get; set; }
+
+    [field: SerializeField]
+    public bool Purchased { get; set; } = false; //default false?
+    
     [field: SerializeField]
     public BuyableData Data { get; set; } 
 }
