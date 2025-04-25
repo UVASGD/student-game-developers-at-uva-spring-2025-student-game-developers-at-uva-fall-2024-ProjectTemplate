@@ -7,6 +7,15 @@ public class ShopData : ScriptableObject
 {
 
     [field: SerializeField]
-    public List<ShopItem> ShopItems { get; } = new List<ShopItem>();
+    public List<ShopItem> IngredientItems { get; } = new List<ShopItem>();
+
+    [field: SerializeField]
+    public List<ShopItem> RecipeItems { get; } = new List<ShopItem>();
+
+    [field: SerializeField]
+    public List<ShopItem> EquipmentItems { get; } = new List<ShopItem>();
+
+    [field: SerializeField]
+    public List<ShopItem> BiomeItems { get; } = new List<ShopItem>();
     
 }

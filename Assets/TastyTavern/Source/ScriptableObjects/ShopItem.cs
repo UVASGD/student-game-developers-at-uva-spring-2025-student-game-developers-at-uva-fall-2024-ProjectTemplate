@@ -5,12 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ShopItem", menuName = "ScriptableObjects/ShopItem")]
 public class ShopItem : ScriptableObject 
 {
-    //public GameObject entityToSpawn;
 
     [field: SerializeField]
-    public string Name { get; set; }
+    public int Price { get; set; } 
 
     [field: SerializeField]
+    public ItemType Type { get; set; }
+
+    // This can be IngredientData, RecipeData, StationData, or BiomeData
     public string Description { get; set; }
 
     [field: SerializeField]
@@ -23,7 +25,7 @@ public class ShopItem : ScriptableObject
     public bool Purchased { get; set; } = false; //default false?
     
     [field: SerializeField]
-    public ItemType Type { get; set; }
+    public BuyableData Data { get; set; } 
 }
 
 public enum ItemType
