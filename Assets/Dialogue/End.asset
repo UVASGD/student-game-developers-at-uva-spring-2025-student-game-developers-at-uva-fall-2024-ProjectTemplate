@@ -31,6 +31,8 @@ MonoBehaviour:
     TargetNodeGuid: c137ac4b-52ce-4a1f-8dd1-b5949df425d1
   - BaseNodeGuid: 9b77ff63-c82d-4a64-a016-364fd4cb7643
     TargetNodeGuid: bd21a6b0-901e-4b90-ba4f-8f573d521697
+  - BaseNodeGuid: 495449f5-7368-4f12-9ccf-59f3edda7e02
+    TargetNodeGuid: 297e537c-d4a3-4bb6-9c23-00e1f4527e49
   - BaseNodeGuid: 297e537c-d4a3-4bb6-9c23-00e1f4527e49
     TargetNodeGuid: c7d9816c-cffb-4160-964b-5a97c9b059f9
   - BaseNodeGuid: 5b77cd0d-4a12-470f-b008-b7d019dab6d2
@@ -55,8 +57,6 @@ MonoBehaviour:
     TargetNodeGuid: a100237e-9e02-45fb-ab66-f95ecd057cfb
   - BaseNodeGuid: d9d3ab93-ae14-457e-9e9a-d49867329441
     TargetNodeGuid: 36fbcbf1-4e45-45a0-a360-fa73de1dc5bd
-  - BaseNodeGuid: 495449f5-7368-4f12-9ccf-59f3edda7e02
-    TargetNodeGuid: 297e537c-d4a3-4bb6-9c23-00e1f4527e49
   DialogueChoiceNodeDatas: []
   DialogueNodeDatas:
   - NodeGuid: 495449f5-7368-4f12-9ccf-59f3edda7e02
@@ -73,7 +73,7 @@ MonoBehaviour:
       LanguageGenericType: ... where am I?
     - languageEnum: 1
       LanguageGenericType: 
-    Duration: 4
+    Duration: 2
   - NodeGuid: 297e537c-d4a3-4bb6-9c23-00e1f4527e49
     Position: {x: 435.2, y: 104.799995}
     DialogueNodePorts: []
@@ -88,7 +88,7 @@ MonoBehaviour:
       LanguageGenericType: Is this a dream?
     - languageEnum: 1
       LanguageGenericType: 
-    Duration: 4
+    Duration: 2
   - NodeGuid: 5b77cd0d-4a12-470f-b008-b7d019dab6d2
     Position: {x: 940, y: 101.6}
     DialogueNodePorts: []
@@ -104,22 +104,6 @@ MonoBehaviour:
     - languageEnum: 1
       LanguageGenericType: 
     Duration: 4
-  - NodeGuid: cd8c6f03-6226-42c8-b986-8724cf590d3f
-    Position: {x: 235.2, y: 564}
-    DialogueNodePorts: []
-    AudioClips:
-    - languageEnum: 0
-      LanguageGenericType: {fileID: 0}
-    - languageEnum: 1
-      LanguageGenericType: {fileID: 0}
-    Character: {fileID: 11400000, guid: fdfab15656207da4eaef5aac212f50e4, type: 2}
-    TextType:
-    - languageEnum: 0
-      LanguageGenericType: The hallways and the maze... my whole memory of that seems
-        fuzzy...
-    - languageEnum: 1
-      LanguageGenericType: 
-    Duration: 7
   - NodeGuid: 94f88ddf-a6d1-4bd1-9cbc-7a5e755703c0
     Position: {x: 238.4, y: 797.6}
     DialogueNodePorts: []
@@ -256,7 +240,23 @@ MonoBehaviour:
       LanguageGenericType: Did it really happen...?
     - languageEnum: 1
       LanguageGenericType: 
-    Duration: 4
+    Duration: 2
+  - NodeGuid: cd8c6f03-6226-42c8-b986-8724cf590d3f
+    Position: {x: 235.2, y: 564}
+    DialogueNodePorts: []
+    AudioClips:
+    - languageEnum: 0
+      LanguageGenericType: {fileID: 0}
+    - languageEnum: 1
+      LanguageGenericType: {fileID: 0}
+    Character: {fileID: 11400000, guid: fdfab15656207da4eaef5aac212f50e4, type: 2}
+    TextType:
+    - languageEnum: 0
+      LanguageGenericType: The hallways and the maze... my whole memory of that seems
+        fuzzy...
+    - languageEnum: 1
+      LanguageGenericType: 
+    Duration: 5
   TimerChoiceNodeDatas: []
   EndNodeDatas:
   - NodeGuid: bd21a6b0-901e-4b90-ba4f-8f573d521697
