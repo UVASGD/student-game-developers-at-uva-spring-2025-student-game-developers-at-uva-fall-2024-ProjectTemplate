@@ -19,7 +19,7 @@ public class TeleportingIllusion : TeleportingIllusionBase
         if (other.CompareTag("Player"))
         {
             GameObject player = other.gameObject;
-            Debug.Log(Vector3.Angle(Camera.main.transform.forward, direction));
+            //Debug.Log(Vector3.Angle(Camera.main.transform.forward, direction));
             if (direction == Vector3.zero || Vector3.Angle(Camera.main.transform.forward, direction) < angleTolerance)
             {
                 teleportObject(player);
