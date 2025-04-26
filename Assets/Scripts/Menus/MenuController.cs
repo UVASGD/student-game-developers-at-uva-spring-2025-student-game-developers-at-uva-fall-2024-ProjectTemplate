@@ -8,6 +8,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MenuController: MonoBehaviour
 {
@@ -49,6 +50,9 @@ public class MenuController: MonoBehaviour
     [SerializeField] private GameObject confirmationPrompt = null;
 
 
+    private bool isStartup = true;
+
+
     private void Start()
     {
         // Setup the screen sizes dropdown options
@@ -86,6 +90,53 @@ public class MenuController: MonoBehaviour
         }
 
         resolutionDropdown.RefreshShownValue();
+
+        // Set up defaults
+        // Instead of blindly resetting, check if player has played before
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (PlayerPrefs.HasKey("hasPlayedBefore"))
+            {
+                LoadPlayerSettings();
+            }
+            else
+            {
+                ResetButton();
+                PlayerPrefs.SetInt("hasPlayedBefore", 1); // Mark that player has played
+            }
+        }
+
+        // Meant to help mute initial button sound at start of game bootup
+        isStartup = false;
+    }
+
+    private void LoadPlayerSettings()
+    {
+        _musicVolume = PlayerPrefs.GetFloat("musicVolume", musicVolDefault);
+        SetMusicVolume(_musicVolume);
+        musicVolSlider.value = _musicVolume;
+
+        _sfxVolume = PlayerPrefs.GetFloat("sfxVolume", sfxVolDefault);
+        SetSFXVolume(_sfxVolume);
+        sfxVolSlider.value = _sfxVolume;
+
+        _brightnessLevel = PlayerPrefs.GetFloat("brightness", brightnessDefault);
+        SetBrightness(_brightnessLevel);
+        brightnessSlider.value = _brightnessLevel;
+
+        _qualityLevel = PlayerPrefs.GetInt("quality", qualityDefault);
+        SetQuality(_qualityLevel);
+        qualityDropdown.value = _qualityLevel;
+
+        _resolution = PlayerPrefs.GetInt("resolution", resolutionDefault);
+        SetResolution(_resolution);
+        resolutionDropdown.value = _resolution;
+
+        _isFullscreen = PlayerPrefs.GetInt("isFullscreen", (isFullscreenDefault ? 1 : 0)) == 1;
+        SetFullscreen(_isFullscreen);
+        fullscreenToggle.isOn = _isFullscreen;
+
+        GraphicsApply();
     }
 
     public void PlayButtonSound()
@@ -161,19 +212,19 @@ public class MenuController: MonoBehaviour
 
     public void SetFullscreen(bool isFullScreen)
     {
-        PlayButtonSound();
+        if (!isStartup) PlayButtonSound();
         _isFullscreen = isFullScreen;
     }
 
     public void SetQuality(int qualityIndex)
     {
-        PlayButtonSound();
+        if (!isStartup) PlayButtonSound();
         _qualityLevel = qualityIndex;
     }
 
     public void SetResolution(int resolutionIndex)
     {
-        PlayButtonSound();
+        if (!isStartup) PlayButtonSound();
         _resolution = resolutionIndex;
     }
 
@@ -243,14 +294,6 @@ public class MenuController: MonoBehaviour
 
     public void ResetButton()
     {
-        SetMusicVolume(musicVolDefault);
-        musicVolSlider.value = musicVolDefault;
-        MusicVolumeApply();
-
-        SetSFXVolume(sfxVolDefault);
-        sfxVolSlider.value = sfxVolDefault;
-        SFXVolumeApply();
-
         /*
         SetMouseSensitivity(mouseSensDefault);
         mouseSensSlider.value = mouseSensDefault;
@@ -271,6 +314,14 @@ public class MenuController: MonoBehaviour
         fullscreenToggle.isOn = isFullscreenDefault;
 
         GraphicsApply();
+
+        SetMusicVolume(musicVolDefault);
+        musicVolSlider.value = musicVolDefault;
+        MusicVolumeApply();
+
+        SetSFXVolume(sfxVolDefault);
+        sfxVolSlider.value = sfxVolDefault;
+        SFXVolumeApply();
     }
 
     /*

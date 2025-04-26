@@ -40,7 +40,7 @@ public class InteractableUI : MonoBehaviour {
                 if (interactable != null && interactable.canInteract){
                     interactUI_GO.transform.DOScale(Vector3.one, scaleTime);
                     interactable.SetText();
-                    if (Input.GetKeyDown(KeyCode.I)){
+                    if (Input.GetKeyDown(KeyCode.E)){
                         interactable.Interact();
                         interactUI_GO.transform.DOScale(Vector3.zero, scaleTime);
                     }
