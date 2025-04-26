@@ -14507,20 +14507,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6096395475201579579, guid: a52d3eaf33df93c4fab66b83fc61f0ed, type: 3}
-      propertyPath: m_text
-      value: 'Some infinities are larger than other infinities
-
-
-        (E to exit)'
-      objectReference: {fileID: 0}
     - target: {fileID: 7591448650392688396, guid: a52d3eaf33df93c4fab66b83fc61f0ed, type: 3}
       propertyPath: m_Name
       value: NotepadTransition (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7591448650392688396, guid: a52d3eaf33df93c4fab66b83fc61f0ed, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24660,7 +24649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8557230505178033490, guid: ebb9a0010549b36419e9f61aa06e2a0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
