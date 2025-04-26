@@ -8,7 +8,7 @@ public enum PortalNumber
 public class TeleportingEndlessRoomIllusion : TeleportingIllusion {
     public bool isActive;
     public PortalNumber portalNumber;
-    private Vector3 direction;
+    private Vector3 direction;  
 
     public override void OnTriggerStay(Collider other)
     {
