@@ -24,7 +24,6 @@ public class UIMenusProcesses : MonoBehaviour
 
     [SerializeField] private PlayerManager playerManager;
 
-
     void Awake()
     {
         postGameUIroot = postGameUI.GetComponent<UIDocument>().rootVisualElement;
@@ -58,6 +57,19 @@ public class UIMenusProcesses : MonoBehaviour
     void Start()
     {
         playerManager.LoadPlayer();
+
+        if (!playerManager.BiomeUnlocked[playerManager.allBiome[0]])
+        {
+            SelectForestButton.SetEnabled(false);
+        }
+        if (!playerManager.BiomeUnlocked[playerManager.allBiome[1]])
+        {
+            SelectCavesButton.SetEnabled(false);
+        }
+        if (!playerManager.BiomeUnlocked[playerManager.allBiome[2]])
+        {
+            SelectOceanButton.SetEnabled(false);
+        }
     }
     
     private void SwitchToPostGameMenu()
@@ -98,22 +110,19 @@ public class UIMenusProcesses : MonoBehaviour
         switch(b)
         {
             case 1:
-                // TODO: Save biome switching info to a JSON file
-                
+                playerManager.currentBiome = playerManager.allBiome[0];
                 break;
             case 2:
-                // TODO: Save biome switching info to a JSON file
-
+                playerManager.currentBiome = playerManager.allBiome[1];
                 break;
             case 3:
-                // TODO: Save biome switching info to a JSON file
-
+                playerManager.currentBiome = playerManager.allBiome[2];
                 break;
             default:
                 break;
             
         }
         playerManager.SavePlayer();// PLEASE SET BIOME TO SWITCH TO :)
-        SceneManager.LoadScene("TestScene A 2");
+        SwitchToPostGameMenu();
     }
 }
