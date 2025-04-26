@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 namespace NavKeypad
 {
     public class KeypadButton : MonoBehaviour
@@ -14,7 +16,6 @@ namespace NavKeypad
         [Header("Component References")]
         [SerializeField] private Keypad keypad;
 
-
         public void PressButton()
         {
             if (!moving)
@@ -24,6 +25,11 @@ namespace NavKeypad
             }
         }
         private bool moving;
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            PressButton();
+        }
 
         private IEnumerator MoveSmooth()
         {

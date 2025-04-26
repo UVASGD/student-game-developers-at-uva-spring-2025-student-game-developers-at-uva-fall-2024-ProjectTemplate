@@ -14,5 +14,5 @@ AssetOrigin:
   productId: 262151
   packageName: Keypad FREE
   packageVersion: 1.0.1
-  assetPath: Assets/Keypad/Scripts/Keypad.cs
+  assetPath: Assets/Objects/FlashlightLevel/Keypad/Scripts/Keypad.cs
   uploadId: 657263

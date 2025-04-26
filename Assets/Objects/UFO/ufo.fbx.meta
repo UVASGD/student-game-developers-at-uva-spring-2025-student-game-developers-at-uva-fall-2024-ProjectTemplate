@@ -3,7 +3,12 @@ guid: 166123ca295d8ad4e84d3007928d5c8b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UFO
+    second: {fileID: 2100000, guid: b87be022e123dd14e9a9de11dff2a786, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
