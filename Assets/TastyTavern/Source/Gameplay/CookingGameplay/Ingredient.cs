@@ -35,7 +35,6 @@ public class Ingredient {
 public enum Property{
     Cut,
     Cooked,
-    Stewed,
     Salted,
     Peppered,
     Boiled,

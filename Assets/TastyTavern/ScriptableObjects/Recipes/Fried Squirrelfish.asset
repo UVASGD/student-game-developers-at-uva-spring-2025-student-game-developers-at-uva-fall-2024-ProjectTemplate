@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66598e149b2d230419ad673b6c9c5c91, type: 3}
+  m_Name: Fried Squirrelfish
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Fried Squirrelfish
+  <WrongIcon>k__BackingField: {fileID: 0}
+  <StationSequence>k__BackingField:
+  - {fileID: 11400000, guid: d95849da17b756b42af4f3247cc63cf5, type: 2}
+  - {fileID: 11400000, guid: ca4d34c185d847641be2569a2a92a3df, type: 2}
+  - {fileID: 11400000, guid: 23016281f8a3d6349b20852a1b2f0749, type: 2}
+  - {fileID: 11400000, guid: 82396885afbc98549b5a8aa25647ab74, type: 2}
+  <InitialStockSequence>k__BackingField:
+  - InitialStock:
+    - {fileID: 11400000, guid: 731d9a9c7bf08194fb72d976d55f1e15, type: 2}
+  - InitialStock: []
+  - InitialStock: []
+  - InitialStock: []
+  <CorrectStockSequence>k__BackingField:
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 731d9a9c7bf08194fb72d976d55f1e15, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 00000000
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 731d9a9c7bf08194fb72d976d55f1e15, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 0000000007000000
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 731d9a9c7bf08194fb72d976d55f1e15, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 000000000700000006000000
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 731d9a9c7bf08194fb72d976d55f1e15, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 000000000700000006000000

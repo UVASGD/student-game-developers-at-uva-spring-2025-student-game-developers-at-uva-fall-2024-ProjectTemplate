@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66598e149b2d230419ad673b6c9c5c91, type: 3}
+  m_Name: Basilisk Stirfry
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Basilisk Stir Fry
+  <WrongIcon>k__BackingField: {fileID: 0}
+  <StationSequence>k__BackingField:
+  - {fileID: 11400000, guid: d95849da17b756b42af4f3247cc63cf5, type: 2}
+  - {fileID: 11400000, guid: 865f815cb1e69f146ba2c092346510d0, type: 2}
+  - {fileID: 11400000, guid: 82396885afbc98549b5a8aa25647ab74, type: 2}
+  <InitialStockSequence>k__BackingField:
+  - InitialStock:
+    - {fileID: 11400000, guid: 75c2015274d2dde4f99de4e82a3c641d, type: 2}
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+  - InitialStock: []
+  - InitialStock: []
+  <CorrectStockSequence>k__BackingField:
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 75c2015274d2dde4f99de4e82a3c641d, type: 2}
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 00000000
+    - Properties: 00000000
+    - Properties: 00000000
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 75c2015274d2dde4f99de4e82a3c641d, type: 2}
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 0000000001000000
+    - Properties: 0000000001000000
+    - Properties: 0000000001000000
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 75c2015274d2dde4f99de4e82a3c641d, type: 2}
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 0000000001000000
+    - Properties: 0000000001000000
+    - Properties: 0000000001000000
