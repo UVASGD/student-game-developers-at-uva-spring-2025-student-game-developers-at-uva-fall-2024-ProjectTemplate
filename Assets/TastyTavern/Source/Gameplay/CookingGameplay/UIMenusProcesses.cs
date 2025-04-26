@@ -16,6 +16,7 @@ public class UIMenusProcesses : MonoBehaviour
     public Button NextDayButton;
     public Button ShopButton;
     public Button BiomesButton;
+    public Button ShopBackButton;
 
     public Button SelectForestButton;
     public Button SelectCavesButton;
@@ -30,32 +31,37 @@ public class UIMenusProcesses : MonoBehaviour
         shopMenuUIroot = shopMenuUI.GetComponent<UIDocument>().rootVisualElement;
         biomesMenuUIroot = biomesMenuUI.GetComponent<UIDocument>().rootVisualElement;
 
-        SwitchToPostGameMenu();
-
         NextDayButton = postGameUIroot.Q<Button>("Continue");
         ShopButton = postGameUIroot.Q<Button>("Shop");
         BiomesButton = postGameUIroot.Q<Button>("Biomes");
+        ShopBackButton = shopMenuUIroot.Q<Button>("BackButton");
 
         SelectForestButton = biomesMenuUIroot.Q<Button>("ForestSelect");
         SelectCavesButton = biomesMenuUIroot.Q<Button>("CavesSelect");
         SelectOceanButton = biomesMenuUIroot.Q<Button>("OceanSelect");
         ExitBiomeMenuButton = biomesMenuUIroot.Q<Button>("ExitBiomeMenu");
+        
         // TODO: Add shop menu exit button and subscribe to SwitchToPostGameMenu
 
         // TODO: Read a JSON File that stores which biomes are unlocked and disable those panels
+    }
 
+    void Start()
+    {
         ShopButton.clicked += SwitchToShopMenu;
         BiomesButton.clicked += SwitchToBiomeMenu;
+        NextDayButton.clicked += GoToNextDay;
 
         SelectForestButton.clicked += SelectBiome1;
         SelectCavesButton.clicked += SelectBiome2;
         SelectOceanButton.clicked += SelectBiome3;
 
         ExitBiomeMenuButton.clicked += SwitchToPostGameMenu;
-    }
 
-    void Start()
-    {
+        ShopBackButton.clicked += SwitchToPostGameMenu;
+        
+        SwitchToPostGameMenu();
+        
         playerManager.LoadPlayer();
         if (!playerManager.BiomeUnlocked[playerManager.allBiome[0]])
         {
@@ -74,22 +80,31 @@ public class UIMenusProcesses : MonoBehaviour
     private void SwitchToPostGameMenu()
     {
         postGameUIroot.visible = true;
+        postGameUI.sortingOrder = 1;
         shopMenuUIroot.visible = false;
+        shopMenuUI.sortingOrder = 0;
         biomesMenuUIroot.visible = false;
+        biomesMenuUI.sortingOrder = 0;
     }
 
     private void SwitchToShopMenu()
     {
         postGameUIroot.visible = false;
+        postGameUI.sortingOrder = 0;
         shopMenuUIroot.visible = true;
+        shopMenuUI.sortingOrder = 1;
         biomesMenuUIroot.visible = false;
+        biomesMenuUI.sortingOrder = 0;
     }
 
     private void SwitchToBiomeMenu()
     {
         postGameUIroot.visible = false;
+        postGameUI.sortingOrder = 0;
         shopMenuUIroot.visible = false;
+        shopMenuUI.sortingOrder = 0;
         biomesMenuUIroot.visible = true;
+        biomesMenuUI.sortingOrder = 1;
     }
     private void SelectBiome1()
     {
@@ -123,5 +138,11 @@ public class UIMenusProcesses : MonoBehaviour
         }
         playerManager.SavePlayer();// PLEASE SET BIOME TO SWITCH TO :)
         SwitchToPostGameMenu();
+    }
+
+    private void GoToNextDay()
+    {
+        playerManager.SavePlayer();
+        SceneManager.LoadScene("TestSceneA 2");
     }
 }
