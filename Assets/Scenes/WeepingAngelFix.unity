@@ -272,17 +272,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1608927}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 723721122}
   src: {fileID: 1608924}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 814541069}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1608927
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -679,17 +683,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 9909508}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1040473207}
   src: {fileID: 9909505}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 898641824}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &9909508
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1591,17 +1599,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 49184757}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1258503485}
   src: {fileID: 49184754}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 749421170}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &49184757
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2038,17 +2050,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 80481431}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 2054655165}
   src: {fileID: 80481428}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 142394121}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &80481431
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2365,17 +2381,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 92088679}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 289911486}
   src: {fileID: 92088676}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1695149514}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &92088679
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4759,260 +4779,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 973250742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &210109954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 210109959}
-  - component: {fileID: 210109958}
-  - component: {fileID: 210109957}
-  - component: {fileID: 210109956}
-  - component: {fileID: 210109960}
-  - component: {fileID: 210109961}
-  - component: {fileID: 210109962}
-  m_Layer: 6
-  m_Name: Keypad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &210109956
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210109954}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.01783775, y: 0.021622438, z: 0.005754989}
-  m_Center: {x: -0.000036660433, y: 0.000026302338, z: 0.0004388775}
---- !u!23 &210109957
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210109954}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: d5d26a31876c8b244b1337ec8a560446, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &210109958
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210109954}
-  m_Mesh: {fileID: -4438438701489736479, guid: f6a50b8af342a3343b30013a8e720b1d, type: 3}
---- !u!4 &210109959
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210109954}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 4.12, y: 1, z: -35.351}
-  m_LocalScale: {x: 25, y: 25, z: 25}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &210109960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210109954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e3f100740948f4e812e00db69b7b5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canInteract: 1
-  keypadViewTransform: {fileID: 0}
---- !u!114 &210109961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210109954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f664f9a675c7ff4689df5ab3302c58a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onAccessGranted:
-    m_PersistentCalls:
-      m_Calls: []
-  onAccessDenied:
-    m_PersistentCalls:
-      m_Calls: []
-  keypadCombo: 1234
-  accessGrantedText: Granted
-  accessDeniedText: Denied
-  displayResultTime: 1
-  screenIntensity: 2.3
-  screenNormalColor: {r: 0.98, g: 0.5, b: 0.032, a: 1}
-  screenDeniedColor: {r: 1, g: 0, b: 0, a: 1}
-  screenGrantedColor: {r: 0, g: 0.62, b: 0.07, a: 1}
-  buttonClickedSfx: {fileID: 8300000, guid: 89d62380470be9e47ba7cf3f97105142, type: 3}
-  accessDeniedSfx: {fileID: 8300000, guid: 6badc82930e38c34891f46e1f01f63d3, type: 3}
-  accessGrantedSfx: {fileID: 8300000, guid: 54ccf978c7886364c980d9f84ff32bd3, type: 3}
-  panelMesh: {fileID: 210109957}
-  keypadDisplayText: {fileID: 0}
-  audioSource: {fileID: 210109962}
---- !u!82 &210109962
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210109954}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -1905718726343871640, guid: a341e9beaa5dea546a29264bbe0ecfdc, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &210569481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5070,146 +4836,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e72b34f061eb724183c9a571cf61955, type: 3}
---- !u!1 &211298939
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 211298940}
-  - component: {fileID: 211298943}
-  - component: {fileID: 211298942}
-  - component: {fileID: 211298944}
-  - component: {fileID: 211298945}
-  - component: {fileID: 211298946}
-  m_Layer: 6
-  m_Name: bttn9
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &211298940
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211298939}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0012999894, y: -0.00361, z: -0.00158}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &211298942
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211298939}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 30cf57df1071c9347aff000314ea227d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &211298943
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211298939}
-  m_Mesh: {fileID: -6693658198273996980, guid: f6a50b8af342a3343b30013a8e720b1d, type: 3}
---- !u!114 &211298944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211298939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2ac5d48f7ac3dd4c942c39754704854, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 9
-  bttnspeed: 0.1
-  moveDist: 0.00025
-  buttonPressedTime: 0.1
-  keypad: {fileID: 210109961}
---- !u!65 &211298945
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211298939}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.002335047, y: 0.0023307097, z: 0.0014402595}
-  m_Center: {x: 0.000000016570093, y: 0.000000004172325, z: -0.00016020963}
---- !u!114 &211298946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211298939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2974149c6fb01b409a280581634da96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 1562428625}
 --- !u!1 &213707814
 GameObject:
   m_ObjectHideFlags: 0
@@ -5363,17 +4989,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 213707818}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 660345535}
   src: {fileID: 213707815}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 430083230}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &213707818
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5916,17 +5546,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 255764626}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 894003100}
   src: {fileID: 255764623}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1516643630}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &255764626
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8447,17 +8081,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 322836444}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1981069926}
   src: {fileID: 322836441}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 155193194}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &322836444
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10673,30 +10311,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
-      propertyPath: m_Size.x
-      value: 2.2344477
-      objectReference: {fileID: 0}
-    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
-      propertyPath: m_Size.y
-      value: 1.7059929
-      objectReference: {fileID: 0}
-    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
-      propertyPath: m_Size.z
-      value: 2.3102102
-      objectReference: {fileID: 0}
-    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
-      propertyPath: m_Center.x
-      value: 0.05592668
-      objectReference: {fileID: 0}
-    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
-      propertyPath: m_Center.y
-      value: 0.7961284
-      objectReference: {fileID: 0}
-    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
-      propertyPath: m_Center.z
-      value: 0.09830809
-      objectReference: {fileID: 0}
     - target: {fileID: 6204701307315361727, guid: dff24220ad9fc4f4b8ad046b653a3a37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.38
@@ -10740,6 +10354,30 @@ PrefabInstance:
     - target: {fileID: 6723969195012214021, guid: dff24220ad9fc4f4b8ad046b653a3a37, type: 3}
       propertyPath: m_Name
       value: CUBICLE
+      objectReference: {fileID: 0}
+    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
+      propertyPath: m_Size.x
+      value: 2.2344477
+      objectReference: {fileID: 0}
+    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7059929
+      objectReference: {fileID: 0}
+    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
+      propertyPath: m_Size.z
+      value: 2.3102102
+      objectReference: {fileID: 0}
+    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
+      propertyPath: m_Center.x
+      value: 0.05592668
+      objectReference: {fileID: 0}
+    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
+      propertyPath: m_Center.y
+      value: 0.7961284
+      objectReference: {fileID: 0}
+    - target: {fileID: -2722051773849322002, guid: 6bd714b21a73187419f58a23351b1468, type: 3}
+      propertyPath: m_Center.z
+      value: 0.09830809
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11007,17 +10645,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 402700725}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1973308864}
   src: {fileID: 402700722}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 782501927}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &402700725
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11612,17 +11254,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 423949535}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 2010012639}
   src: {fileID: 423949532}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1071227465}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &423949535
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13751,17 +13397,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 487492727}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1277295166}
   src: {fileID: 487492724}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1053760218}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &487492727
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -15976,17 +15626,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 553905275}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 43499759}
   src: {fileID: 553905272}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1108052851}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &553905275
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -24132,6 +23786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b369db1a8603e4881d6fe41f1d78d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   colors: []
 --- !u!65 &815932120
 BoxCollider:
@@ -26130,17 +25786,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 927131738}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 997146130}
   src: {fileID: 927131735}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1343074152}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &927131738
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -26400,17 +26060,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 931844547}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 310399717}
   src: {fileID: 931844544}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 700994926}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &931844547
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -28667,17 +28331,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1040903664}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 232872381}
   src: {fileID: 1040903661}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1284691101}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1040903664
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -29754,17 +29422,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1090622038}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1016088360}
   src: {fileID: 1090622035}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1358016903}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1090622038
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -31477,17 +31149,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1132787668}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 524331491}
   src: {fileID: 1132787665}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 2035615380}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1132787668
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -33294,17 +32970,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1262549259}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 784105119}
   src: {fileID: 1262549256}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 141919346}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1262549259
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -34667,17 +34347,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1343285279}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1266882329}
   src: {fileID: 1343285276}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 3046582}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1343285279
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -36994,17 +36678,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1426858271}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1836010917}
   src: {fileID: 1426858268}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 973528115}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1426858271
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -37353,17 +37041,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1439951434}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1431833255}
   src: {fileID: 1439951431}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1205571692}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1439951434
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -37680,17 +37372,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1444491970}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1129305914}
   src: {fileID: 1444491967}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1803665988}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1444491970
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -38360,17 +38056,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1448655020}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1952352462}
   src: {fileID: 1448655017}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 159513736}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1448655020
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -39810,17 +39510,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1468659289}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1042710475}
   src: {fileID: 1468659286}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 752352167}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1468659289
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -40474,17 +40178,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1503198015}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 491682029}
   src: {fileID: 1503198012}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 648140298}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1503198015
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -40886,17 +40594,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1508966770}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1389790220}
   src: {fileID: 1508966767}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1756345463}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1508966770
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -41366,17 +41078,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1522943595}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 729356824}
   src: {fileID: 1522943592}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1832292311}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1522943595
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -41636,17 +41352,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1526727741}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1957607566}
   src: {fileID: 1526727738}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 108672808}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1526727741
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -41992,17 +41712,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1546051512}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 187536592}
   src: {fileID: 1546051509}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 976998792}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1546051512
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -42316,7 +42040,7 @@ Transform:
   m_GameObject: {fileID: 1559103153}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.09714781, z: -0, w: -0.99527}
-  m_LocalPosition: {x: -2.02, y: 1.012, z: -13.76}
+  m_LocalPosition: {x: 0.24, y: 1.012, z: -24.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42335,17 +42059,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1559103160}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 2002919049}
   src: {fileID: 1559103162}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 2120763008}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
-  sceneAfterDeath: WeepingAngel
+  sceneAfterDeath: WeepingAngelFix
+  distanceBeforeActivation: 8
 --- !u!195 &1559103160
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -42546,6 +42274,14 @@ PrefabInstance:
     - target: {fileID: 8155628844378172113, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155628844378172113, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275970698561441646, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: acceleration
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43194,17 +42930,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1586619102}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1979119813}
   src: {fileID: 1586619099}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 434431299}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1586619102
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -44447,17 +44187,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1615402971}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 38938274}
   src: {fileID: 1615402968}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 893553382}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1615402971
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -44717,17 +44461,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1617494711}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1797198004}
   src: {fileID: 1617494708}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1445500885}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1617494711
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -44999,146 +44747,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621340858}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1627424339
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1627424340}
-  - component: {fileID: 1627424343}
-  - component: {fileID: 1627424342}
-  - component: {fileID: 1627424344}
-  - component: {fileID: 1627424345}
-  - component: {fileID: 1627424346}
-  m_Layer: 6
-  m_Name: bttn1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1627424340
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627424339}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0060099945, y: 0.00368, z: -0.00158}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1627424342
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627424339}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 30cf57df1071c9347aff000314ea227d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1627424343
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627424339}
-  m_Mesh: {fileID: 2119919574565288636, guid: f6a50b8af342a3343b30013a8e720b1d, type: 3}
---- !u!114 &1627424344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627424339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2ac5d48f7ac3dd4c942c39754704854, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 1
-  bttnspeed: 0.1
-  moveDist: 0.00025
-  buttonPressedTime: 0.1
-  keypad: {fileID: 210109961}
---- !u!65 &1627424345
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627424339}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0023350404, y: 0.0023307097, z: 0.0015311207}
-  m_Center: {x: 0.000000012397766, y: 0.0000000036954881, z: -0.0002056414}
---- !u!114 &1627424346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627424339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2974149c6fb01b409a280581634da96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 1562428625}
 --- !u!1 &1628940608
 GameObject:
   m_ObjectHideFlags: 0
@@ -46737,17 +46345,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1677442418}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1244305897}
   src: {fileID: 1677442415}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 2141489076}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1677442418
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -49664,17 +49276,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1794180904}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1073151761}
   src: {fileID: 1794180901}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1116703239}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1794180904
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -52658,17 +52274,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 1972969451}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 167920489}
   src: {fileID: 1972969448}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1502516317}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &1972969451
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -54077,7 +53697,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002919047}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6bd934b6530a42948a3345b66e8c2e73, type: 2}
   m_CullingMode: 0
@@ -55012,17 +54632,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 2024555498}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 977661079}
   src: {fileID: 2024555495}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 544280813}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &2024555498
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -56120,17 +55744,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007491bd0fd902244b32679c9cd43a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   ai: {fileID: 2061906268}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 1459090606}
   src: {fileID: 2061906265}
   scareSfx: {fileID: 8300000, guid: c14a649f09df8c544be7b97f3e209a54, type: 3}
+  shockSfx: {fileID: 0}
   playerCam: {fileID: 1562428625}
   jumpscareCam: {fileID: 1112406344}
   aiSpeed: 9
   catchDistance: 2
   jumpscareTime: 1
   sceneAfterDeath: WeepingAngel
+  distanceBeforeActivation: 0
 --- !u!195 &2061906268
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -57634,9 +57262,6 @@ SceneRoots:
   - {fileID: 1202845457}
   - {fileID: 1139194875}
   - {fileID: 1782757712}
-  - {fileID: 210109959}
-  - {fileID: 211298940}
-  - {fileID: 1627424340}
   - {fileID: 634238767}
   - {fileID: 421846784}
   - {fileID: 1056841636}

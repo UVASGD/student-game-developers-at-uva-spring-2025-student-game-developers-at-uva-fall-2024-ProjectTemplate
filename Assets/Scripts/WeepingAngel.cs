@@ -1,12 +1,13 @@
 using Unity.VisualScripting;
 using System.Collections;
-using System.Collections.Generic;   
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using System;
+using System.Threading.Tasks;
 
-public class WeepingAngel : MonoBehaviour
+public class WeepingAngel : QuantumObjectBase
 {
 
     public NavMeshAgent ai;
@@ -16,51 +17,82 @@ public class WeepingAngel : MonoBehaviour
 
     public AudioSource src;
     public AudioClip scareSfx; //footsteps later(?)
+    public AudioClip shockSfx;
 
     Vector3 dest;
     public Camera playerCam, jumpscareCam;
     public float aiSpeed, catchDistance, jumpscareTime;
     public string sceneAfterDeath;
 
-    //boolean flag
-    private bool jmpSfxPlayed;
+    public float distanceBeforeActivation;
 
-    private void Update()
+    //boolean flag
+    private bool firstLookedAt = true;
+    private bool jmpSfxPlayed;
+    private bool lookSfxPlayed;
+    private bool isTransitioningScene = false;
+
+
+
+    private async void Update()
     {
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCam);
+        Debug.Log(firstLookedAt);
+        if (isTransitioningScene || player == null)
+            return;
+
+        //Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCam);
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if(GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        if (isVisible())
         {
-            ai.speed = 0;
-            aiAnim.speed = 0;
-            ai.SetDestination(transform.position);
+            aiAnim.SetBool("LookedAt", true);
+            if (!jmpSfxPlayed)
+            {
+                ai.speed = 0;
+                //aiAnim.speed = 0;
+                ai.SetDestination(transform.position);
+            }
+            if (!lookSfxPlayed)
+            {
+                playLookSfx();
+                lookSfxPlayed = true;
+            }
             
+
+
         }
-        else if (!GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        else if (!isVisible() && !firstLookedAt)
         {
             ai.speed = aiSpeed;
-            aiAnim.speed = 1;
+            //aiAnim.speed = 1;
             dest = player.position;
-            ai.destination = dest; 
-            if(distance <= catchDistance)
+            ai.destination = dest;
+            lookSfxPlayed = false;
+            if (distance <= catchDistance)
             {
-                if(!jmpSfxPlayed)
+                jumpscareCam.gameObject.SetActive(true);
+                // Wait for the camera to fully activate
+                await WaitForCameraActivation(jumpscareCam);
+                player.gameObject.SetActive(false);
+
+                if (!jmpSfxPlayed)
                 {
                     playScareSfx();
                     jmpSfxPlayed = true;
+                    aiAnim.SetTrigger("Jumpscare");
                 }
-                player.gameObject.SetActive(false);
-                aiAnim.SetTrigger("Jumpscare");
-                jumpscareCam.gameObject.SetActive(true);
+
                 StartCoroutine(killPlayer());
             }
+            aiAnim.SetBool("LookedAt", false);
         }
     }
 
     IEnumerator killPlayer()
     {
+        isTransitioningScene = true;
         yield return new WaitForSeconds(jumpscareTime);
+
         SceneManager.LoadScene(sceneAfterDeath);
     }
 
@@ -68,6 +100,37 @@ public class WeepingAngel : MonoBehaviour
     {
         src.clip = scareSfx;
         src.Play();
+    }
+
+    private void playLookSfx()
+    {
+        src.clip = shockSfx;
+        src.Play();
+    }
+
+    private async Task WaitForCameraActivation(Camera cam)
+    {
+        // Wait for camera to be fully enabled
+        await Task.Delay(50); // Wait 50ms for the camera to initialize
+
+        // You could also wait for the first frame render
+        await Task.Yield(); // Wait for next frame
+
+        // For more reliability, you could wait a couple of frames
+        for (int i = 0; i < 2; i++)
+        {
+            await Task.Yield();
+        }
+
+        // The camera should now be fully activated
+    }
+
+    public override void onLookAt()
+    {
+        if (firstLookedAt )
+        {
+            firstLookedAt = false;
+        }
     }
 
 }
