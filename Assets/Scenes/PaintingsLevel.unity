@@ -12494,6 +12494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b369db1a8603e4881d6fe41f1d78d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  considerLit: 0
   colors: []
 --- !u!65 &793214959
 BoxCollider:
@@ -13428,7 +13430,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e084911c6e883f44a07c7cca749a6d6, type: 2}
+  - {fileID: 2100000, guid: 73190013b9a8cc749bbd55a45c5b5d2f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15036,7 +15038,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.351, y: 6.5, z: -21.93}
-  m_LocalScale: {x: 2, y: 3.5, z: 0.1}
+  m_LocalScale: {x: 3, y: 1.17, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 860014591}
@@ -23218,6 +23220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f218620bbd6d32e4c88a84085d03204f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  considerLit: 0
 --- !u!1 &1432886117
 GameObject:
   m_ObjectHideFlags: 0
@@ -26962,6 +26965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f218620bbd6d32e4c88a84085d03204f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  considerLit: 0
 --- !u!4 &1630969415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c72d0f71d91bb8478bb47dfb38f69c2, type: 3}
