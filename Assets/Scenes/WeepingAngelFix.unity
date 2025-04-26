@@ -42060,7 +42060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLit: 0
-  considerLit: 0
+  considerLit: 1
   ai: {fileID: 1559103160}
   player: {fileID: 1562428626}
   aiAnim: {fileID: 2002919049}
