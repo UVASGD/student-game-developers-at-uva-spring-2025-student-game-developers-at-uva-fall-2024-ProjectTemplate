@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(TeleportingIllusionBase))]
@@ -11,13 +12,6 @@ public class PaintingTeleportInteractable : GameplayUIInteractable
     }
     public override void Interact()
     {
-        usePainting();
-    }
-
-    private void usePainting()
-    {
-        gameplayUI.activate();
-
-        teleportingIllusion.teleportObject(player); //if there is interacting animation, this should be delayed
+        gameplayUI.activate(() => { teleportingIllusion.teleportObject(player); });
     }
 }
