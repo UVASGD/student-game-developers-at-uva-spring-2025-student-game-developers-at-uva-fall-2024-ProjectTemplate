@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195fa4dc2cc2c724d8eea5ea6dc0fd12, type: 3}
-  m_Name: Mix
+  m_Script: {fileID: 11500000, guid: 66598e149b2d230419ad673b6c9c5c91, type: 3}
+  m_Name: Crystal Tofu
   m_EditorClassIdentifier: 
-  <ActionTime>k__BackingField: 2
-  <Name>k__BackingField: Mix
-  <Sprite>k__BackingField: {fileID: 502819651600600819, guid: c15ad7e88cee06b4b98adbdf4fb1bc77, type: 3}
-  <Property>k__BackingField: 7
+  <Name>k__BackingField: 
+  <WrongIcon>k__BackingField: {fileID: 0}
+  <StationSequence>k__BackingField: []
+  <InitialStockSequence>k__BackingField: []
+  <CorrectStockSequence>k__BackingField: []

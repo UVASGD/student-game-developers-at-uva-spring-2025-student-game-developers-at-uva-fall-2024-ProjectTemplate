@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66598e149b2d230419ad673b6c9c5c91, type: 3}
+  m_Name: Kraken Burger
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Kraken  Burger
+  <WrongIcon>k__BackingField: {fileID: 0}
+  <StationSequence>k__BackingField:
+  - {fileID: 11400000, guid: d95849da17b756b42af4f3247cc63cf5, type: 2}
+  - {fileID: 11400000, guid: 7b894118b6110564faf2b1d0bc24761d, type: 2}
+  - {fileID: 11400000, guid: 82396885afbc98549b5a8aa25647ab74, type: 2}
+  <InitialStockSequence>k__BackingField:
+  - InitialStock:
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+    - {fileID: 11400000, guid: fcb2c09cdc2941a448b851b78c6ecb51, type: 2}
+  - InitialStock:
+    - {fileID: 11400000, guid: c4c163ef018cc564abb576c7c9b11c53, type: 2}
+  - InitialStock: []
+  <CorrectStockSequence>k__BackingField:
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: fcb2c09cdc2941a448b851b78c6ecb51, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 00000000
+    - Properties: 00000000
+    - Properties: 00000000
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: fcb2c09cdc2941a448b851b78c6ecb51, type: 2}
+    - {fileID: 11400000, guid: c4c163ef018cc564abb576c7c9b11c53, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 00000000
+    - Properties: 00000000
+    - Properties: 00000000
+    - Properties: 08000000
+  - CorrectIngredients:
+    - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+    - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
+    - {fileID: 11400000, guid: fcb2c09cdc2941a448b851b78c6ecb51, type: 2}
+    - {fileID: 11400000, guid: c4c163ef018cc564abb576c7c9b11c53, type: 2}
+    CorrectPropertiesPerIngredient:
+    - Properties: 00000000
+    - Properties: 00000000
+    - Properties: 00000000
+    - Properties: 08000000
