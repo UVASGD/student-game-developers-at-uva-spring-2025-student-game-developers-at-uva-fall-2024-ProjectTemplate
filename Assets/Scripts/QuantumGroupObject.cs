@@ -22,6 +22,7 @@ public class QuantumGroupObject : QuantumObjectBase
 
     public override void onLookAway()
     {
+        Debug.Log("looking away");
         group.switchObject();
     }
 

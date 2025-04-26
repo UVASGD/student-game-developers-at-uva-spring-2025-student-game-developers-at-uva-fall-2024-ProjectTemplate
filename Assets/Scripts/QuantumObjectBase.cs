@@ -3,6 +3,8 @@ using UnityEngine;
 public class QuantumObjectBase : MonoBehaviour, IQuantumObject
 {
     protected MeshRenderer mr;
+    [SerializeField] public bool isLit;
+    [SerializeField] public bool considerLit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Awake()
     {
@@ -12,7 +14,10 @@ public class QuantumObjectBase : MonoBehaviour, IQuantumObject
     {
         if (Camera.main != null)
         {
-            return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(Camera.main), mr.bounds);
+            if(considerLit)
+                return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(Camera.main), mr.bounds) && isLit;
+            else
+                return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(Camera.main), mr.bounds);
         }
         return false;
     }
