@@ -4,6 +4,7 @@ public class HiddenDoorEvent : MonoBehaviour
 {
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject painting;
+    [SerializeField] private GameObject note;
 
     public void OpenHiddenDoor()
     {
@@ -15,7 +16,7 @@ public class HiddenDoorEvent : MonoBehaviour
             if (paintingCollider != null)
             {
                 paintingCollider.enabled = false;
-                Debug.Log("Painting collider has been deactivated.");
+                // Debug.Log("Painting collider has been deactivated.");
             }
         }
 
@@ -23,7 +24,15 @@ public class HiddenDoorEvent : MonoBehaviour
         {
             // Deactivate the wall  / remove the wall back to the scene
             wall.SetActive(false);
-            Debug.Log("Wall has been deactivated and removed from the scene.");
+            // Debug.Log("Wall has been deactivated and removed from the scene.");
+        }
+
+
+        if (note != null && !note.activeInHierarchy)
+        {
+            // Activate the note
+            note.SetActive(true);
+            Debug.Log("Note has been activated.");
         }
     }
 }

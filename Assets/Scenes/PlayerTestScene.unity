@@ -1223,6 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febd5c8f2765fab4cb72d909828e7dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraForceDirecrion: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
 --- !u!65 &1832421951
 BoxCollider:
@@ -1451,6 +1452,14 @@ PrefabInstance:
     - target: {fileID: 8155628844378172113, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275970698561441646, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275970698561441646, guid: dcbe914e797114e4c88224cd35854f79, type: 3}
+      propertyPath: acceleration
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
