@@ -6,7 +6,7 @@ public class GameplayUI : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject player;
-    public RectTransform rt;
+    private RectTransform rt;
     public bool active;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
