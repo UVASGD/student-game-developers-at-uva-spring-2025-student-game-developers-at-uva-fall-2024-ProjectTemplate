@@ -8299,6 +8299,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1557937127}
     - target: {fileID: 5461072176901919407, guid: f222b5c80adbdf0489a0b24cba7e75c9, type: 3}
+      propertyPath: sfxVolDefault
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461072176901919407, guid: f222b5c80adbdf0489a0b24cba7e75c9, type: 3}
       propertyPath: musicVolSlider
       value: 
       objectReference: {fileID: 277141693}
@@ -8306,6 +8310,10 @@ PrefabInstance:
       propertyPath: mouseSensSlider
       value: 
       objectReference: {fileID: 40192506}
+    - target: {fileID: 5461072176901919407, guid: f222b5c80adbdf0489a0b24cba7e75c9, type: 3}
+      propertyPath: musicVolDefault
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5461072176901919407, guid: f222b5c80adbdf0489a0b24cba7e75c9, type: 3}
       propertyPath: qualityDropdown
       value: 

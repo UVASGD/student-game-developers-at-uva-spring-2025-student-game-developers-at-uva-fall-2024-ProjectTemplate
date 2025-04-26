@@ -55,27 +55,27 @@ public class ufoAI : MonoBehaviour
         {
             case State.Searching:
                 DoSearching();
-                Debug.Log("Searching");
+                // Debug.Log("Searching");
                 break;
 
             case State.Chasing:
                 DoChasing();
-                Debug.Log("Chasing");
+                // Debug.Log("Chasing");
                 break;
 
             case State.SearchingLostArea:
                 DoSearchLostArea();
-                Debug.Log("Searching lost area");
+                // Debug.Log("Searching lost area");
                 break;
 
             case State.Returning:
                 DoReturning();
-                Debug.Log("Returning");
+                // Debug.Log("Returning");
                 break;
 
             case State.Attacking:
                 DoAttacking();
-                Debug.Log("Attacking");
+                // Debug.Log("Attacking");
                 break;
         }
 
@@ -137,11 +137,11 @@ public class ufoAI : MonoBehaviour
         Vector3 flatTargetPos = new Vector3(lastKnownPlayerPos.x, 0f, lastKnownPlayerPos.z);
         float distanceToTarget = Vector3.Distance(flatUFOPos, flatTargetPos);
 
-        Debug.Log($"[Chasing] Distance to target: {distanceToTarget}");
+        // Debug.Log($"[Chasing] Distance to target: {distanceToTarget}");
 
         if (distanceToTarget < 1f)
         {
-            Debug.Log("[Chasing] Reached last known player position.");
+            // Debug.Log("[Chasing] Reached last known player position.");
 
             Vector3 directionToPlayer = player.position - transform.position;
 
@@ -150,7 +150,7 @@ public class ufoAI : MonoBehaviour
                 Ray ray = new Ray(transform.position, directionToPlayer.normalized);
                 if (Physics.Raycast(ray, out RaycastHit hit, sightRange))
                 {
-                    Debug.Log($"[Chasing] Raycast hit: {hit.transform.name}");
+                    // Debug.Log($"[Chasing] Raycast hit: {hit.transform.name}");
 
                     if (hit.transform == player)
                     {
@@ -160,7 +160,7 @@ public class ufoAI : MonoBehaviour
 
                         if (flatDistanceToPlayer <= attackRange)
                         {
-                            Debug.Log("[Chasing] Player in range. Switching to Attacking.");
+                            // Debug.Log("[Chasing] Player in range. Switching to Attacking.");
                             currentState = State.Attacking;
                         }
 
@@ -169,7 +169,7 @@ public class ufoAI : MonoBehaviour
                 }
             }
 
-            Debug.Log("[Chasing] Player not visible. Switching to SearchingLostArea.");
+            // Debug.Log("[Chasing] Player not visible. Switching to SearchingLostArea.");
             currentState = State.SearchingLostArea;
             searchTimer = searchDuration;
         }
@@ -204,7 +204,7 @@ public class ufoAI : MonoBehaviour
 
             if (flatDistanceToPlayer <= attackRange)
             {
-                Debug.Log("[SearchingLostArea] Player found! Switching to Attacking.");
+                // Debug.Log("[SearchingLostArea] Player found! Switching to Attacking.");
                 canDetectPlayer = true; // Allow detection again
                 currentState = State.Attacking;
                 return;
@@ -213,7 +213,7 @@ public class ufoAI : MonoBehaviour
 
         if (searchTimer <= 0)
         {
-            Debug.Log("[SearchingLostArea] Search timed out. Returning to base.");
+            // Debug.Log("[SearchingLostArea] Search timed out. Returning to base.");
             laserBeam.SetActive(false);
             beamActive = false;
             canDetectPlayer = true; // Allow detection again
@@ -244,13 +244,13 @@ public class ufoAI : MonoBehaviour
         // If player is out of attack range but still visible (in sightRange)
         if (flatDistanceToPlayer > attackRange && flatDistanceToPlayer <= sightRange)
         {
-            Debug.Log("[Attacking] Player moved out of attack range but still visible. Chasing.");
+            // Debug.Log("[Attacking] Player moved out of attack range but still visible. Chasing.");
             currentState = State.Chasing;
         }
         // If player is completely gone (out of sightRange)
         else if (flatDistanceToPlayer > sightRange)
         {
-            Debug.Log("[Attacking] Player lost. Switching to SearchingLostArea.");
+            // Debug.Log("[Attacking] Player lost. Switching to SearchingLostArea.");
             currentState = State.SearchingLostArea;
             searchTimer = searchDuration;
         }
@@ -260,7 +260,7 @@ public class ufoAI : MonoBehaviour
     {
         if (!CanSeePlayer() && beamActive)
         {
-            Debug.Log("[Beam] Lost player completely. Turning off laser.");
+            // Debug.Log("[Beam] Lost player completely. Turning off laser.");
 
             laserBeam.SetActive(false);
             beamActive = false;
@@ -268,7 +268,7 @@ public class ufoAI : MonoBehaviour
             // Also, if still in Attacking, exit to SearchingLostArea
             if (currentState == State.Attacking)
             {
-                Debug.Log("[Beam] Lost player during Attacking. Switching to SearchingLostArea.");
+                // Debug.Log("[Beam] Lost player during Attacking. Switching to SearchingLostArea.");
 
                 currentState = State.SearchingLostArea;
                 searchTimer = searchDuration;
@@ -304,11 +304,11 @@ public class ufoAI : MonoBehaviour
 
         Vector3 direction = (targetFlatPos - currentFlatPos).normalized;
 
-        Debug.Log($"[MoveTowards] Direction: {direction}, Target: {targetFlatPos}");
+        // Debug.Log($"[MoveTowards] Direction: {direction}, Target: {targetFlatPos}");
 
         if (direction.sqrMagnitude < 0.001f)
         {
-            Debug.Log("[MoveTowards] Already at target.");
+            // Debug.Log("[MoveTowards] Already at target.");
             return;
         }
 
@@ -326,7 +326,7 @@ public class ufoAI : MonoBehaviour
 
     void ShootLaser()
     {
-        Debug.Log("pew pew miku miku beammmmmm");
+        // Debug.Log("pew pew miku miku beammmmmm");
 
         if (laserBeam == null) return;
 
@@ -392,7 +392,7 @@ public class ufoAI : MonoBehaviour
 
             if (distanceToLaser <= laserHitRadius)
             {
-                Debug.Log("[Laser] Hit the player!");
+                // Debug.Log("[Laser] Hit the player!");
 
                 if (respawnPoint != null)
                 {
@@ -400,7 +400,7 @@ public class ufoAI : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("[Laser] No respawn point assigned!");
+                    // Debug.LogWarning("[Laser] No respawn point assigned!");
                 }
             }
         }
