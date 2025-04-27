@@ -31,7 +31,6 @@ public class Noteboard : Interactable {
     {
         base.Update();
         _timer += Time.deltaTime;
-        Debug.Log(_timer);
         if (!canInteract && Input.GetKeyDown(KeyCode.E) && _timer > interactBufferTime) {
             _timer = 0f;
             Camera.main.transform.DOLocalMove(Vector3.zero, EndlessRoomManager.Instance.cameraMoveZoomTime);
