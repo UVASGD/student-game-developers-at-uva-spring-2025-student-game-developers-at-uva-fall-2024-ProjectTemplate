@@ -5360,13 +5360,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6888671284565320661, guid: ebb9a0010549b36419e9f61aa06e2a0b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 894737586}
+    - target: {fileID: 6888671284565320661, guid: ebb9a0010549b36419e9f61aa06e2a0b, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 2006737645}
     - target: {fileID: 8557230505178033490, guid: ebb9a0010549b36419e9f61aa06e2a0b, type: 3}
       propertyPath: m_Name
       value: ufo
       objectReference: {fileID: 0}
     - target: {fileID: 8557230505178033490, guid: ebb9a0010549b36419e9f61aa06e2a0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24673,7 +24681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8557230505178033490, guid: ebb9a0010549b36419e9f61aa06e2a0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
