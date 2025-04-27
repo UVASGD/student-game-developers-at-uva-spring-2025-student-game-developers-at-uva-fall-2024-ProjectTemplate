@@ -7,13 +7,12 @@ public class Flashlight : MonoBehaviour
     // texture stolen from: https://www.mediafire.com/view/gchmkenjry6gsyh/FlashlightCookie.tif/file#
     [SerializeField] public GameObject flashlightBeam;
     List<QuantumObjectBase> allObjects = new List<QuantumObjectBase>(); 
-    private bool flashlightActive = false;
+    private bool flashlightActive = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        flashlightActive = false;
         //flashlightBeam.gameObject.SetActive(flashlightActive);
-        flashlightBeam.SetActive(false);
+        flashlightBeam.SetActive(flashlightActive);
     }
 
     // Update is called once per frame

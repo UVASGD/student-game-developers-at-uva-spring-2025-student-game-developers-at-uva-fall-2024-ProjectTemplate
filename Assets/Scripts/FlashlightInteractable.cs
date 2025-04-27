@@ -37,6 +37,7 @@ public class FlashlightInteractable : Interactable
             RenderSettings.ambientIntensity = 0f;
             RenderSettings.ambientLight = Color.black;
             RenderSettings.reflectionIntensity = 0f;
+            Destroy(gameObject);
         }
         else
         {
