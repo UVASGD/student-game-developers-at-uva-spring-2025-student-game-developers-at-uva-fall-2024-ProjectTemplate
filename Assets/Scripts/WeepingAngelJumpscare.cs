@@ -75,7 +75,7 @@ public class WeepingAngelJumpscare : QuantumObjectBase
             StartCoroutine(TriggerJumpscare());
             Debug.Log("THis is HAPPENING");
             aiAnim.SetTrigger("Jumpscare");
-            aiAnim.SetBool("rjumpscare", true);
+            aiAnim.SetBool("jumpscare", true);
 
         }
         if (Input.GetKeyDown(KeyCode.Space))

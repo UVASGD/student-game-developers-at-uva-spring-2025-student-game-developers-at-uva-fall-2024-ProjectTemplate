@@ -34,6 +34,9 @@ public class WeepingAngel : QuantumObjectBase
     private bool lookSfxPlayed;
     private bool isTransitioningScene = false;
 
+    [SerializeField] public Transform playerRespawnPos;
+    [SerializeField] private Transform weepRespawnPos;
+
 
 
     private async void Update()
@@ -96,8 +99,14 @@ public class WeepingAngel : QuantumObjectBase
     {
         isTransitioningScene = true;
         yield return new WaitForSeconds(jumpscareTime);
-
-        SceneManager.LoadScene(sceneAfterDeath);
+        headAnim.enabled = false;
+        player.transform.position = playerRespawnPos.position;
+        mannequin.SetActive(false);
+        isTransitioningScene = false;
+        transform.position = weepRespawnPos.position;
+        firstLookedAt = true;
+        jmpSfxPlayed = false;
+        ai.speed = 0;
     }
 
     private void playScareSfx()

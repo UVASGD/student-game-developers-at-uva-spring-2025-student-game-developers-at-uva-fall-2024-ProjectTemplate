@@ -8,6 +8,9 @@ public class FlashlightInteractable : Interactable
     [SerializeField] private List<GameObject> enable;
     [SerializeField] private List<QuantumObjectBase> quantumConsiderLit;
     [SerializeField] private GameObject flashlightPrefab;
+    [SerializeField] private Transform newRespawnPos;
+    [SerializeField] private WeepingAngel weep;
+    
     private GameObject player;
     public override void Start()
     {
@@ -37,6 +40,10 @@ public class FlashlightInteractable : Interactable
             RenderSettings.ambientIntensity = 0f;
             RenderSettings.ambientLight = Color.black;
             RenderSettings.reflectionIntensity = 0f;
+            if(weep != null)
+            {
+                weep.playerRespawnPos = newRespawnPos;
+            }
             Destroy(gameObject);
         }
         else
