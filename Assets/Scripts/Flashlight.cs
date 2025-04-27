@@ -5,14 +5,15 @@ using System.Collections.Generic;
 public class Flashlight : MonoBehaviour
 {
     // texture stolen from: https://www.mediafire.com/view/gchmkenjry6gsyh/FlashlightCookie.tif/file#
-    [SerializeField] GameObject flashlightBeam;
+    [SerializeField] public GameObject flashlightBeam;
     List<QuantumObjectBase> allObjects = new List<QuantumObjectBase>(); 
     private bool flashlightActive = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         flashlightActive = false;
-        flashlightBeam.gameObject.SetActive(flashlightActive);
+        //flashlightBeam.gameObject.SetActive(flashlightActive);
+        flashlightBeam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,9 +22,10 @@ public class Flashlight : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             flashlightActive = !flashlightActive;
-            // Debug.Log("flashlight triggered: " + flashlightActive);
+            flashlightBeam.SetActive(flashlightActive);
+            Debug.Log("flashlight triggered: " + flashlightActive);
         }
-        flashlightBeam.gameObject.SetActive(flashlightActive);
+        //flashlightBeam.gameObject.SetActive(flashlightActive);
 
         // instantiating lists early because we need to use it in the else statement
         List<QuantumObjectBase> rayList = new List<QuantumObjectBase>();
@@ -35,7 +37,7 @@ public class Flashlight : MonoBehaviour
             int flashlightLayer = LayerMask.GetMask("FlashlightCast");
             RaycastHit[] rayHits = Physics.SphereCastAll(
                 transform.position,
-                1f,
+                2f,
                 transform.TransformDirection(Vector3.forward),
                 8f,
                 flashlightLayer
