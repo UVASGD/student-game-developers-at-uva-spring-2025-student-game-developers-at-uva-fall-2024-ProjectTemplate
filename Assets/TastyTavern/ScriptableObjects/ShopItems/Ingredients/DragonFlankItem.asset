@@ -15,7 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Dragon Flank
   <Type>k__BackingField: 0
   <Price>k__BackingField: 100
-  <Description>k__BackingField: 'A slab of meat cut from the hulking, flying four-legged
+  <Description>k__BackingField: 'A slab of meat cut from the hulking, flying, four-legged
     reptilian creature. '
   <Icon>k__BackingField: {fileID: 21300000, guid: 333d72ac08289364a88cfdce52c691eb, type: 3}
   <Data>k__BackingField: {fileID: 11400000, guid: 727342b249d17bb45b5c77c29e5ff151, type: 2}

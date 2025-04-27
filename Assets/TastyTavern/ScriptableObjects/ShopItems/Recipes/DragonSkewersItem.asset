@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3ee30f39182485c98eaed851fb4963, type: 3}
   m_Name: DragonSkewersItem
   m_EditorClassIdentifier: 
-  <Price>k__BackingField: 0
+  <Name>k__BackingField: Dragon Skewers
   <Type>k__BackingField: 1
-  <Data>k__BackingField: {fileID: 0}
+  <Price>k__BackingField: 0
+  <Description>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 0}
+  <Data>k__BackingField: {fileID: 11400000, guid: 04b89bd6c3d3fed4595e31d42b275635, type: 2}

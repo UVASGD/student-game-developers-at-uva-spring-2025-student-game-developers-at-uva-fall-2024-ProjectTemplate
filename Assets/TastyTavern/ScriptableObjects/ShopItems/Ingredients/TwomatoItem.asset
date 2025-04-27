@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3ee30f39182485c98eaed851fb4963, type: 3}
   m_Name: TwomatoItem
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Glowing Mushroom
+  <Name>k__BackingField: Twomato
   <Type>k__BackingField: 0
   <Price>k__BackingField: 100
-  <Description>k__BackingField: A glowing mushroom
-  <Icon>k__BackingField: {fileID: 21300000, guid: 333d72ac08289364a88cfdce52c691eb, type: 3}
-  <Data>k__BackingField: {fileID: 11400000, guid: 727342b249d17bb45b5c77c29e5ff151, type: 2}
+  <Description>k__BackingField: 'Evolutionarily, the twomato holds twice as many
+    nutrients as a onemato. '
+  <Icon>k__BackingField: {fileID: 21300000, guid: dba2bbd990834f8418fce820587d5ccd, type: 3}
+  <Data>k__BackingField: {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}

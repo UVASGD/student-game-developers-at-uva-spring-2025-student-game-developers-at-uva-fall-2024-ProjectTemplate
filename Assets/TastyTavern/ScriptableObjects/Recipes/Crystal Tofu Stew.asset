@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66598e149b2d230419ad673b6c9c5c91, type: 3}
   m_Name: Crystal Tofu Stew
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Crystal Tofu
+  <Name>k__BackingField: Crystal Tofu Stew
   <WrongIcon>k__BackingField: {fileID: 0}
   <StationSequence>k__BackingField:
   - {fileID: 11400000, guid: d95849da17b756b42af4f3247cc63cf5, type: 2}

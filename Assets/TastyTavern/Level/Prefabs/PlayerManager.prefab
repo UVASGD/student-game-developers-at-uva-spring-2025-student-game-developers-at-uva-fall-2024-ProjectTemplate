@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a286558399d7ca4fa7a1d1e0f27f24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
-  currentBiome: {fileID: 11400000, guid: c756598a859a6384786dfdf618921204, type: 2}
   cookingUIEventChannel: {fileID: 11400000, guid: 98faadf6e98d87049badef501f757299, type: 2}
   allIngredient:
   - {fileID: 11400000, guid: 75c2015274d2dde4f99de4e82a3c641d, type: 2}
@@ -53,7 +51,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 727342b249d17bb45b5c77c29e5ff151, type: 2}
   - {fileID: 11400000, guid: 704826934e76e4049898330448c3ad99, type: 2}
   - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
-  - {fileID: 11400000, guid: 4f504685f198ab34a8eefd094a51abb8, type: 2}
+  - {fileID: 11400000, guid: 13592996cddca194caeb0eb94d999fb3, type: 2}
+  - {fileID: 11400000, guid: 9fe6956d050ae8347962463e437bce94, type: 2}
+  - {fileID: 11400000, guid: 59c93b128a0eb0d4180396b928586752, type: 2}
+  - {fileID: 11400000, guid: 8aa30f602e682544991fdf8b76d75970, type: 2}
+  - {fileID: 11400000, guid: c4c163ef018cc564abb576c7c9b11c53, type: 2}
+  - {fileID: 11400000, guid: 704826934e76e4049898330448c3ad99, type: 2}
+  - {fileID: 11400000, guid: b436cc2456de0f54ca6774697d7ae1ae, type: 2}
+  - {fileID: 11400000, guid: 566d3f0ab3671c7469e4dae0ecc0f256, type: 2}
+  - {fileID: 11400000, guid: fcb2c09cdc2941a448b851b78c6ecb51, type: 2}
+  - {fileID: 11400000, guid: 24b2ebae0971d0b4ba5f6ce59bf80474, type: 2}
+  - {fileID: 11400000, guid: 2ac2ec2c158735347b7427d354746171, type: 2}
+  - {fileID: 11400000, guid: 326df91f0e528bc4b9c0705d7292650e, type: 2}
+  - {fileID: 11400000, guid: 731d9a9c7bf08194fb72d976d55f1e15, type: 2}
+  - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}
+  - {fileID: 11400000, guid: d80a292e412e58948ab96d633abf722a, type: 2}
   allEquipment:
   - {fileID: 11400000, guid: 865f815cb1e69f146ba2c092346510d0, type: 2}
   - {fileID: 11400000, guid: d95849da17b756b42af4f3247cc63cf5, type: 2}
@@ -65,7 +77,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 82396885afbc98549b5a8aa25647ab74, type: 2}
   allRecipe:
   - {fileID: 11400000, guid: b57b1b53da1e4e742b7bf1989a8fac48, type: 2}
+  - {fileID: 11400000, guid: 154412d6c4e3db848b8c2d51c2c1c854, type: 2}
   - {fileID: 11400000, guid: 04b89bd6c3d3fed4595e31d42b275635, type: 2}
+  - {fileID: 11400000, guid: bc8954a08cf9af64191344b9fd147018, type: 2}
+  - {fileID: 11400000, guid: aaf8d737c4018ae43b8120eb262332dd, type: 2}
+  - {fileID: 11400000, guid: dc7c27707abad004db718d8f44f8b477, type: 2}
+  - {fileID: 11400000, guid: 5212139aba6ebfe4c99b38888c700b08, type: 2}
+  - {fileID: 11400000, guid: 9e4d5f660ba8a9a4a97ddea0ef8273d4, type: 2}
+  - {fileID: 11400000, guid: efbfd7c30e59c4248b28417fffc18f41, type: 2}
+  - {fileID: 11400000, guid: 7952fb022b971fe4ba7656fe838549e6, type: 2}
+  - {fileID: 11400000, guid: 6cf7ce4ad35b5ff479a25e58bb8288e2, type: 2}
   allBiome:
   - {fileID: 11400000, guid: c756598a859a6384786dfdf618921204, type: 2}
   - {fileID: 11400000, guid: 985422e741fa8ba4d9966ed77aeb35da, type: 2}
@@ -75,5 +96,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 82396885afbc98549b5a8aa25647ab74, type: 2}
   - {fileID: 11400000, guid: b57b1b53da1e4e742b7bf1989a8fac48, type: 2}
   - {fileID: 11400000, guid: 75c2015274d2dde4f99de4e82a3c641d, type: 2}
-  - {fileID: 11400000, guid: 727342b249d17bb45b5c77c29e5ff151, type: 2}
+  - {fileID: 11400000, guid: bb0e59e5722ad564fa97f77f06198c75, type: 2}
   - {fileID: 11400000, guid: c756598a859a6384786dfdf618921204, type: 2}
+  - {fileID: 11400000, guid: d95849da17b756b42af4f3247cc63cf5, type: 2}
+  - {fileID: 11400000, guid: 405a50833d38f124ea42dac055ce3b53, type: 2}

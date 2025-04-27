@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346930eb7dd92884981a8f163439dbe0, type: 3}
   m_Name: PotStation
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Stewing
   <StationType>k__BackingField: 2
   <Background>k__BackingField: {fileID: -4795573259988461060, guid: d7dd4e5e725f94b4b810fb4cee4561df, type: 3}
   <ProcessingTime>k__BackingField: 0
