@@ -17,12 +17,8 @@ MonoBehaviour:
     TargetNodeGuid: 0c04aa4c-5fcd-47cc-9479-22c97fe928ce
   - BaseNodeGuid: 36fbcbf1-4e45-45a0-a360-fa73de1dc5bd
     TargetNodeGuid: 94f88ddf-a6d1-4bd1-9cbc-7a5e755703c0
-  - BaseNodeGuid: 1fb752fc-06a7-4b09-a679-8cfebf96d797
-    TargetNodeGuid: 5d435d72-cbae-490a-84a0-0d44931917e1
   - BaseNodeGuid: eecdee3d-59a1-4d72-bb67-b69b4ab43e5a
     TargetNodeGuid: c137ac4b-52ce-4a1f-8dd1-b5949df425d1
-  - BaseNodeGuid: 9b77ff63-c82d-4a64-a016-364fd4cb7643
-    TargetNodeGuid: bd21a6b0-901e-4b90-ba4f-8f573d521697
   - BaseNodeGuid: 3854965d-9a96-47e1-bef3-5afc4d49f1b8
     TargetNodeGuid: 30e3ef3a-3711-48bf-8b0d-2c1aed7967e4
   - BaseNodeGuid: c7d9816c-cffb-4160-964b-5a97c9b059f9
@@ -33,10 +29,10 @@ MonoBehaviour:
     TargetNodeGuid: 614fa5b4-32d6-475c-b849-6c04491b1eb2
   - BaseNodeGuid: a100237e-9e02-45fb-ab66-f95ecd057cfb
     TargetNodeGuid: cd8c6f03-6226-42c8-b986-8724cf590d3f
+  - BaseNodeGuid: 1fb752fc-06a7-4b09-a679-8cfebf96d797
+    TargetNodeGuid: 5d435d72-cbae-490a-84a0-0d44931917e1
   - BaseNodeGuid: 94f88ddf-a6d1-4bd1-9cbc-7a5e755703c0
-    TargetNodeGuid: 1fb752fc-06a7-4b09-a679-8cfebf96d797
-  - BaseNodeGuid: 5d435d72-cbae-490a-84a0-0d44931917e1
-    TargetNodeGuid: dd6e3e55-8b3a-4569-9417-cc8a9334a1c0
+    TargetNodeGuid: 54cc8810-4c35-4a21-bf3d-8cea0e89d1f3
   - BaseNodeGuid: dd6e3e55-8b3a-4569-9417-cc8a9334a1c0
     TargetNodeGuid: 3854965d-9a96-47e1-bef3-5afc4d49f1b8
   - BaseNodeGuid: 30e3ef3a-3711-48bf-8b0d-2c1aed7967e4
@@ -65,6 +61,14 @@ MonoBehaviour:
     TargetNodeGuid: a100237e-9e02-45fb-ab66-f95ecd057cfb
   - BaseNodeGuid: a45548d1-3bdd-4dde-816a-ebc93d401815
     TargetNodeGuid: e079735b-0d7c-479f-8365-ada038e8b089
+  - BaseNodeGuid: 54cc8810-4c35-4a21-bf3d-8cea0e89d1f3
+    TargetNodeGuid: 1fb752fc-06a7-4b09-a679-8cfebf96d797
+  - BaseNodeGuid: 5d435d72-cbae-490a-84a0-0d44931917e1
+    TargetNodeGuid: dd6e3e55-8b3a-4569-9417-cc8a9334a1c0
+  - BaseNodeGuid: 9b77ff63-c82d-4a64-a016-364fd4cb7643
+    TargetNodeGuid: 0813cdd2-bcb6-4063-b751-01e863f35e49
+  - BaseNodeGuid: 0813cdd2-bcb6-4063-b751-01e863f35e49
+    TargetNodeGuid: bd21a6b0-901e-4b90-ba4f-8f573d521697
   DialogueChoiceNodeDatas: []
   DialogueNodeDatas:
   - NodeGuid: 94f88ddf-a6d1-4bd1-9cbc-7a5e755703c0
@@ -78,26 +82,10 @@ MonoBehaviour:
     Character: {fileID: 11400000, guid: fdfab15656207da4eaef5aac212f50e4, type: 2}
     TextType:
     - languageEnum: 0
-      LanguageGenericType: I've always wanted to be an artist. But there's no money
-        in it.
+      LanguageGenericType: I've always wanted to be an artist.
     - languageEnum: 1
       LanguageGenericType: 
-    Duration: 6
-  - NodeGuid: 5d435d72-cbae-490a-84a0-0d44931917e1
-    Position: {x: 747.2, y: 796.8}
-    DialogueNodePorts: []
-    AudioClips:
-    - languageEnum: 0
-      LanguageGenericType: {fileID: 0}
-    - languageEnum: 1
-      LanguageGenericType: {fileID: 0}
-    Character: {fileID: 11400000, guid: fdfab15656207da4eaef5aac212f50e4, type: 2}
-    TextType:
-    - languageEnum: 0
-      LanguageGenericType: Ah, the desert. My favorite subject to paint in college.
-    - languageEnum: 1
-      LanguageGenericType: 
-    Duration: 6
+    Duration: 7
   - NodeGuid: dd6e3e55-8b3a-4569-9417-cc8a9334a1c0
     Position: {x: 242.4, y: 1034.4}
     DialogueNodePorts: []
@@ -310,21 +298,46 @@ MonoBehaviour:
     - languageEnum: 1
       LanguageGenericType: 
     Duration: 7
+  - NodeGuid: 54cc8810-4c35-4a21-bf3d-8cea0e89d1f3
+    Position: {x: 443.2, y: 796}
+    DialogueNodePorts: []
+    AudioClips:
+    - languageEnum: 0
+      LanguageGenericType: {fileID: 0}
+    - languageEnum: 1
+      LanguageGenericType: {fileID: 0}
+    Character: {fileID: 11400000, guid: fdfab15656207da4eaef5aac212f50e4, type: 2}
+    TextType:
+    - languageEnum: 0
+      LanguageGenericType: But there's no money in it.
+    - languageEnum: 1
+      LanguageGenericType: 
+    Duration: 7
+  - NodeGuid: 5d435d72-cbae-490a-84a0-0d44931917e1
+    Position: {x: 977.6, y: 793.6}
+    DialogueNodePorts: []
+    AudioClips:
+    - languageEnum: 0
+      LanguageGenericType: {fileID: 0}
+    - languageEnum: 1
+      LanguageGenericType: {fileID: 0}
+    Character: {fileID: 11400000, guid: fdfab15656207da4eaef5aac212f50e4, type: 2}
+    TextType:
+    - languageEnum: 0
+      LanguageGenericType: Ah, the desert. My favorite subject to paint in college.
+    - languageEnum: 1
+      LanguageGenericType: 
+    Duration: 6
   TimerChoiceNodeDatas: []
   EndNodeDatas:
   - NodeGuid: bd21a6b0-901e-4b90-ba4f-8f573d521697
-    Position: {x: 767.2, y: 1544.7999}
+    Position: {x: 1078.4, y: 1540}
     EndNodeType: 0
   EventNodeDatas:
   - NodeGuid: 36fbcbf1-4e45-45a0-a360-fa73de1dc5bd
     Position: {x: 652, y: 561.6}
     EventScriptableObjects:
     - DialogueEventSO: {fileID: 11400000, guid: 6a69482667876184c8fde9bf1e044860, type: 2}
-    Duration: 1
-  - NodeGuid: 1fb752fc-06a7-4b09-a679-8cfebf96d797
-    Position: {x: 442.4, y: 796}
-    EventScriptableObjects:
-    - DialogueEventSO: {fileID: 11400000, guid: 760887c4356896048b3be3300857a1b0, type: 2}
     Duration: 1
   - NodeGuid: eecdee3d-59a1-4d72-bb67-b69b4ab43e5a
     Position: {x: 246.4, y: 1266.4}
@@ -360,6 +373,16 @@ MonoBehaviour:
     Position: {x: 964, y: 333.6}
     EventScriptableObjects:
     - DialogueEventSO: {fileID: 11400000, guid: 4609156bb5fdabb4fb5e863edb29d14e, type: 2}
+    Duration: 1
+  - NodeGuid: 1fb752fc-06a7-4b09-a679-8cfebf96d797
+    Position: {x: 657.6, y: 796}
+    EventScriptableObjects:
+    - DialogueEventSO: {fileID: 11400000, guid: 760887c4356896048b3be3300857a1b0, type: 2}
+    Duration: 1
+  - NodeGuid: 0813cdd2-bcb6-4063-b751-01e863f35e49
+    Position: {x: 772, y: 1541.6}
+    EventScriptableObjects:
+    - DialogueEventSO: {fileID: 11400000, guid: c1146b9190a62d44dab13e2b10bf1d42, type: 2}
     Duration: 1
   StartNodeDatas:
   - NodeGuid: d16c1ecd-d53b-4f45-bece-608400db3111
