@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class DeathZoneDemo : MonoBehaviour {
     public Image fader;
     public Transform destination;
+    public GameObject wallToEnableDuringDeath;
     public GameObject wallToEnable;
     public List<GameObject> deathZonesToDisable;
     public List<GameObject> deathBotsToEnable;
@@ -13,17 +14,20 @@ public class DeathZoneDemo : MonoBehaviour {
     void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == "Player") {
             GameObject player = other.gameObject;
+            
             player.GetComponent<PlayerMovement>().enabled = false;
             player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             player.GetComponent<PlayerCameraMovement>().enabled = false;
+            
 
-            Debug.Log("amazing");
 
             foreach (GameObject deathZone in deathBotsToEnable)
             {
                 deathZone.SetActive(true);
             }
+            wallToEnableDuringDeath.SetActive(true);
+
 
             /*
             fader.gameObject.SetActive(true);
@@ -40,6 +44,14 @@ public class DeathZoneDemo : MonoBehaviour {
                 });
             });
             */
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Jumpscare Trigger Activated");
         }
     }
 }

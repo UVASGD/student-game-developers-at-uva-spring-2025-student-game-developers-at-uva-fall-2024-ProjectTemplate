@@ -23,9 +23,14 @@ public class WeepingAngelJumpscare : QuantumObjectBase
 
     Vector3 dest;
     public Camera playerCam, jumpscareCam;
+    private AudioListener jumpscareListener;
     public float aiSpeed, catchDistance, jumpscareTime;
 
     public float distanceBeforeActivation;
+
+    //fixedJumpscare?
+    public GameObject mannequin;
+    public Animator headAnim;
 
     //boolean flag
     private bool firstLookedAt = true;
@@ -37,8 +42,22 @@ public class WeepingAngelJumpscare : QuantumObjectBase
     public Image fader;
     public Transform destination;
     public GameObject wallToEnable;
+    public GameObject wallToDisable;
     public List<GameObject> deathZonesToDisable;
+    public List<GameObject> deathBotsToEnable;
 
+    private void Start()
+    {
+        if (jumpscareCam != null)
+        {
+            jumpscareCam.enabled = false; // it's active but disabled
+        }
+        if (jumpscareCam != null)
+            jumpscareListener = jumpscareCam.GetComponent<AudioListener>();
+
+        if (jumpscareListener != null)
+            jumpscareListener.enabled = false; // Make sure it's disabled by default
+    }
 
     private void Update()
     {
@@ -49,13 +68,21 @@ public class WeepingAngelJumpscare : QuantumObjectBase
         ai.speed = aiSpeed;
         dest = player.position;
         ai.destination = dest;
-        lookSfxPlayed = false;
 
-        if (distance <= catchDistance && !jumpscareTriggered)
+        if (distance <= catchDistance )//&& !jumpscareTriggered)
         {
             jumpscareTriggered = true;
             StartCoroutine(TriggerJumpscare());
+            Debug.Log("THis is HAPPENING");
+            aiAnim.SetTrigger("Jumpscare");
+            aiAnim.SetBool("rjumpscare", true);
+
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            aiAnim.SetTrigger("Jumpscare"); // Make sure "attack" is the name in your Animator
+        }
+
     }
 
     IEnumerator TriggerJumpscare()
@@ -68,22 +95,13 @@ public class WeepingAngelJumpscare : QuantumObjectBase
             player.GetComponent<PlayerCameraMovement>().enabled = false;
 
         // Activate jumpscare camera
-        jumpscareCam.gameObject.SetActive(true);
+        mannequin.SetActive(true);
+        headAnim.enabled = true;
+        playScareSfx();
 
-        // Wait a couple of frames for camera to initialize
-        yield return null;
-        yield return null;
+        yield return null;  // This fixes the error
 
-        // Deactivate player camera
-        playerCam.gameObject.SetActive(false);
-
-        // Play jumpscare effects
-        if (!jmpSfxPlayed)
-        {
-            playScareSfx();
-            jmpSfxPlayed = true;
-            aiAnim.SetTrigger("Jumpscare");
-        }
+        Debug.Log("Setting trigger on: " + aiAnim.gameObject.name);
 
         // Start the kill sequence
         StartCoroutine(killPlayer());
@@ -97,6 +115,7 @@ public class WeepingAngelJumpscare : QuantumObjectBase
         // Wait for jumpscare animation to play
         yield return new WaitForSeconds(jumpscareTime);
 
+        /*
         // Begin fade transition
         fader.gameObject.SetActive(true);
         fader.DOFade(1f, 1f).OnComplete(() => {
@@ -131,6 +150,32 @@ public class WeepingAngelJumpscare : QuantumObjectBase
                 isTransitioningScene = false;
             });
         });
+        */
+        // Re-enable player controls
+
+        //Teleport player to new position
+        player.transform.position = destination.position;
+
+        // Reset cameras
+        //jumpscareCam.gameObject.SetActive(false);
+        //playerCam.gameObject.SetActive(true);
+        headAnim.enabled = false;
+        mannequin.SetActive(false);
+
+        if (player.GetComponent<PlayerMovement>() != null)
+            player.GetComponent<PlayerMovement>().enabled = true;
+
+        if (player.GetComponent<PlayerCameraMovement>() != null)
+            player.GetComponent<PlayerCameraMovement>().enabled = true;
+
+        // Set up new scene state
+        wallToEnable.SetActive(true);
+        wallToDisable.SetActive(false);
+        foreach (GameObject deathZone in deathZonesToDisable)
+        {
+            deathZone.SetActive(false);
+        }
+
     }
 
     private void playScareSfx()
