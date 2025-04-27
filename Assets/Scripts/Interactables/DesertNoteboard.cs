@@ -4,9 +4,9 @@ using DG.Tweening;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 
-public class KeypadInteractable : Interactable
+public class DesertNoteboard : Interactable
 {
-    public Transform keypadViewTransform;
+    public Transform noteboardViewTransform;
 
     public override void Interact()
     {
@@ -16,11 +16,9 @@ public class KeypadInteractable : Interactable
             // Debug.Log("note");
             CameraZoomManager.Instance.player.GetComponent<PlayerMovement>().enabled = false;
             CameraZoomManager.Instance.player.GetComponent<PlayerCameraMovement>().enabled = false;
-            Camera.main.transform.DOMove(keypadViewTransform.position, CameraZoomManager.Instance.cameraMoveZoomTime);
-            Camera.main.transform.DORotate(keypadViewTransform.rotation.eulerAngles, CameraZoomManager.Instance.cameraMoveZoomTime);
+            Camera.main.transform.DOMove(noteboardViewTransform.position, CameraZoomManager.Instance.cameraMoveZoomTime);
+            Camera.main.transform.DORotate(noteboardViewTransform.rotation.eulerAngles, CameraZoomManager.Instance.cameraMoveZoomTime);
             canInteract = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -43,8 +41,6 @@ public class KeypadInteractable : Interactable
                 }
             );
             canInteract = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

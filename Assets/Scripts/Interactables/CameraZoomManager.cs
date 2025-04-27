@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class FlashlightRoomManager : MonoBehaviour
+public class CameraZoomManager : MonoBehaviour 
 {
-    public static FlashlightRoomManager Instance;
-    public GameObject keypad;
+    public static CameraZoomManager Instance;
+    public GameObject interactable;
     [HideInInspector] public GameObject player;
     public float cameraMoveZoomTime = 1f;
 
@@ -28,6 +28,6 @@ public class FlashlightRoomManager : MonoBehaviour
 
     public void ActivateMazeBoard()
     {
-        keypad.SetActive(true);
+        interactable.SetActive(true);
     }
 }
