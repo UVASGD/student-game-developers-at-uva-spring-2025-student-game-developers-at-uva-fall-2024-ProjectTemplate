@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  acceleration: 0
+  acceleration: 20
   move:
     m_Name: Move
     m_Type: 0
