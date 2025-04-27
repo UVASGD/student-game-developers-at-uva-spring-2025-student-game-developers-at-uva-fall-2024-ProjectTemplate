@@ -69,12 +69,17 @@ public class ShopView : MonoBehaviour
     void Start()
     {
         // Instantiate all shop items based on the current biome
-        Debug.Log("Current biome: " + shopManager.currentShopData);
-        Debug.Log("Current biome: " + shopManager.currentShopData.IngredientItems[0].Name);
-        GenerateShopItems(ingredientsPage, shopManager.currentShopData.IngredientItems);
+        // Debug.Log("Current shop data: " + shopManager.currentShopData);
+        // Debug.Log("Current biome: " + shopManager.currentShopData.IngredientItems[0].Name);
+        //GenerateShopItems(ingredientsPage, shopManager.currentShopData.IngredientItems);
+        
         // GenerateShopItems(recipesPage, shopManager.CurrentShopData.RecipeItems);
         // GenerateShopItems(equipmentPage, shopManager.CurrentShopData.EquipmentItems);
         // GenerateShopItems(biomesPage, shopManager.CurrentShopData.BiomeItems);
+    }
+
+    public void GenerateAllShopItems(){
+        GenerateShopItems(ingredientsPage, shopManager.currentShopData.IngredientItems);
     }
 
     void OnEnable()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForestShop
   m_EditorClassIdentifier: 
   <IngredientItems>k__BackingField:
-  - {fileID: 11400000, guid: 03f4c66f394c9d44f9fbbcd83559f3b7, type: 2}
+  - {fileID: 11400000, guid: 37407c51d2d9eed459361fb97d445ff7, type: 2}
   <RecipeItems>k__BackingField: []
   <EquipmentItems>k__BackingField: []
   <BiomeItems>k__BackingField: []

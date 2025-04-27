@@ -26,6 +26,9 @@ public class ShopManager : MonoBehaviour
     private List<ShopData> allShops;
 
     [SerializeField]
+    private ShopView shopView; // NEED TO CONNECT
+
+    [SerializeField]
     private PlayerManager playerManager; // NEED TO CONNECT
 
     public BiomeData currentBiome; 
@@ -42,6 +45,8 @@ public class ShopManager : MonoBehaviour
         } else {
             Debug.Log("Biome not found!");
         }
+
+        shopView.GenerateAllShopItems();
     }
 
 
