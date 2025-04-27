@@ -8,6 +8,7 @@ public class DeathZoneDemo : MonoBehaviour {
     public Transform destination;
     public GameObject wallToEnable;
     public List<GameObject> deathZonesToDisable;
+    public List<GameObject> deathBotsToEnable;
 
     void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == "Player") {
@@ -16,6 +17,15 @@ public class DeathZoneDemo : MonoBehaviour {
             player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             player.GetComponent<PlayerCameraMovement>().enabled = false;
+
+            Debug.Log("amazing");
+
+            foreach (GameObject deathZone in deathBotsToEnable)
+            {
+                deathZone.SetActive(true);
+            }
+
+            /*
             fader.gameObject.SetActive(true);
             fader.DOFade(1f, 1f).OnComplete(() => {
                 player.transform.position = destination.position;
@@ -29,6 +39,7 @@ public class DeathZoneDemo : MonoBehaviour {
                     }
                 });
             });
+            */
         }
     }
 }

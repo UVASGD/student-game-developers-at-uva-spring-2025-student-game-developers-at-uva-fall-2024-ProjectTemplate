@@ -10,6 +10,7 @@ public class Noteboard : Interactable {
     public override void Interact() {
         // Open up read note UI or just freeze camera towards note
         if (canInteract) {
+            // Debug.Log("note");
             EndlessRoomManager.Instance.player.GetComponent<PlayerMovement>().enabled = false;
             EndlessRoomManager.Instance.player.GetComponent<PlayerCameraMovement>().enabled = false;
             Camera.main.transform.DOMove(noteboardViewTransform.position, EndlessRoomManager.Instance.cameraMoveZoomTime);

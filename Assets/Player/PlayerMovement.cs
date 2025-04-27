@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(transform.rotation * new Vector3(inputVec.x, 0, inputVec.y) * acceleration);
             }
             rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, speed);
-            rb.linearVelocity = 0.95f * rb.linearVelocity;
+            rb.linearVelocity = new Vector3(0.95f * rb.linearVelocity.x, rb.linearVelocity.y, 0.95f * rb.linearVelocity.z);
         }
     }
 
