@@ -42,7 +42,7 @@ public class Flashlight : MonoBehaviour
                 8f,
                 flashlightLayer
             );
-            
+            Debug.Log(rayHits);
             foreach (RaycastHit hit in rayHits)
             {
                 QuantumObjectBase curObj = hit.collider.GetComponent<QuantumObjectBase>();

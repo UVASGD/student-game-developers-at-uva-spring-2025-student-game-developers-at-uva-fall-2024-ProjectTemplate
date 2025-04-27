@@ -36,7 +36,7 @@ public class WeepingAngel : QuantumObjectBase
 
     private async void Update()
     {
-        Debug.Log(firstLookedAt);
+        //Debug.Log(firstLookedAt);
         if (isTransitioningScene || player == null)
             return;
 

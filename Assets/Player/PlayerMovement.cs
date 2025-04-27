@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
                 Vector2 inputVec = move.ReadValue<Vector2>();
                 rb.AddForce(transform.rotation * new Vector3(inputVec.x, 0, inputVec.y) * acceleration);
             }
-            rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, speed);
+            Vector2 horizontalVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(Vector2.ClampMagnitude(horizontalVelocity, speed).x, rb.linearVelocity.y ,Vector2.ClampMagnitude(horizontalVelocity, speed).y);
             rb.linearVelocity = new Vector3(0.95f * rb.linearVelocity.x, rb.linearVelocity.y, 0.95f * rb.linearVelocity.z);
         }
     }

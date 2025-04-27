@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FlashlightInteractable : Interactable
 {
-    [SerializeField] private List<GameObject> lights;
+    [SerializeField] private List<GameObject> disable;
+    [SerializeField] private List<GameObject> enable;
+    [SerializeField] private List<QuantumObjectBase> quantumConsiderLit;
     [SerializeField] private GameObject flashlightPrefab;
     private GameObject player;
     public override void Start()
@@ -20,9 +22,17 @@ public class FlashlightInteractable : Interactable
             
             GameObject flashlightBeam = Instantiate(flashlightPrefab, player.transform.Find("Head"));
             script.flashlightBeam = flashlightBeam;
-            foreach (GameObject go in lights)
+            foreach (GameObject go in disable)
             {
                 go.SetActive(false);
+            }
+            foreach (GameObject go in enable)
+            {
+                go.SetActive(true);
+            }
+            foreach (QuantumObjectBase qob in quantumConsiderLit)
+            {
+                qob.considerLit = true;
             }
             RenderSettings.ambientIntensity = 0f;
             RenderSettings.ambientLight = Color.black;
