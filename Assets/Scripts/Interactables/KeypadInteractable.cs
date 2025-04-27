@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class KeypadInteractable : Interactable
@@ -10,26 +13,21 @@ public class KeypadInteractable : Interactable
         // Open up read note UI or just freeze camera towards note
         if (canInteract)
         {
-            FlashlightRoomManager.Instance.player.GetComponent<PlayerMovement>().enabled = false;
-            FlashlightRoomManager.Instance.player.GetComponent<PlayerCameraMovement>().enabled = false;
-            Camera.main.transform.DOMove(keypadViewTransform.position, FlashlightRoomManager.Instance.cameraMoveZoomTime);
-            Camera.main.transform.DORotate(keypadViewTransform.rotation.eulerAngles, FlashlightRoomManager.Instance.cameraMoveZoomTime);
+            // Debug.Log("note");
+            CameraZoomManager.Instance.player.GetComponent<PlayerMovement>().enabled = false;
+            CameraZoomManager.Instance.player.GetComponent<PlayerCameraMovement>().enabled = false;
+            Camera.main.transform.DOMove(keypadViewTransform.position, CameraZoomManager.Instance.cameraMoveZoomTime);
+            Camera.main.transform.DORotate(keypadViewTransform.rotation.eulerAngles, CameraZoomManager.Instance.cameraMoveZoomTime);
             canInteract = false;
-            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
     public override void SetText()
     {
         base.SetText();
-        InteractableUI.Instance.interactUI_Text.text = "Open Keypad";
-
-        // Move the text UI down to y = -80
-        RectTransform textRect = InteractableUI.Instance.interactUI_Text.GetComponent<RectTransform>();
-        Vector3 newPos = textRect.anchoredPosition;
-        newPos.y = -80f;
-        textRect.anchoredPosition = newPos;
+        InteractableUI.Instance.interactUI_Text.text = "Read";
     }
 
     public override void Update()
@@ -37,16 +35,16 @@ public class KeypadInteractable : Interactable
         base.Update();
         if (!canInteract && Input.GetKeyDown(KeyCode.E))
         {
-            Camera.main.transform.DOMove(FlashlightRoomManager.Instance.player.transform.position, FlashlightRoomManager.Instance.cameraMoveZoomTime);
-            Camera.main.transform.DORotate(FlashlightRoomManager.Instance.player.transform.rotation.eulerAngles, FlashlightRoomManager.Instance.cameraMoveZoomTime).OnComplete(
+            Camera.main.transform.DOMove(CameraZoomManager.Instance.player.transform.position, CameraZoomManager.Instance.cameraMoveZoomTime);
+            Camera.main.transform.DORotate(CameraZoomManager.Instance.player.transform.rotation.eulerAngles, CameraZoomManager.Instance.cameraMoveZoomTime).OnComplete(
                 () => {
-                    FlashlightRoomManager.Instance.player.GetComponent<PlayerMovement>().enabled = true;
-                    FlashlightRoomManager.Instance.player.GetComponent<PlayerCameraMovement>().enabled = true;
+                    CameraZoomManager.Instance.player.GetComponent<PlayerMovement>().enabled = true;
+                    CameraZoomManager.Instance.player.GetComponent<PlayerCameraMovement>().enabled = true;
                 }
             );
             canInteract = true;
-            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
