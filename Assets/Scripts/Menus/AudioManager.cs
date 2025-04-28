@@ -43,6 +43,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip keypadDenied;
     public AudioClip keypadGranted;
     public AudioClip vineboom;
+    public AudioClip footsteps;
 
     [Header("Cutscene")]
     public AudioClip cutsceneBackground;
@@ -56,7 +57,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip pickup;
     public AudioClip openDoor;
     public AudioClip jumpscare;
-    public AudioClip footsteps;
 
     public static AudioManager audioManagerInstance;
 
@@ -122,6 +122,14 @@ public class AudioManager : MonoBehaviour
         if(musicSource != null)
         { 
             musicSource.Stop(); 
+        }
+    }
+
+    public void StopSFX()
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.Stop();
         }
     }
 

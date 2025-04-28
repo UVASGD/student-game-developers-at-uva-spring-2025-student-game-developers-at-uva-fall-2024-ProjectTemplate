@@ -45,16 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ba2be255aba494986d0596fe64855c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newGameLevel: PaintingsLevel
   musicVolSlider: {fileID: 0}
   sfxVolSlider: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: a341e9beaa5dea546a29264bbe0ecfdc, type: 2}
   musicVolDefault: 0.5
-  sfxVolDefault: 0.5
-  mouseSensSlider: {fileID: 0}
-  mouseSensDefault: 0.5
-  mouseHandler: {fileID: 0}
-  mouseSens: 0.5
+  sfxVolDefault: 0.1
   brightnessSlider: {fileID: 0}
   qualityDropdown: {fileID: 0}
   resolutionDropdown: {fileID: 0}

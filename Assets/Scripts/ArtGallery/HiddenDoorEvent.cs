@@ -68,5 +68,7 @@ public class HiddenDoorEvent : MonoBehaviour
             pin.SetActive(true);
             // Debug.Log("Pin has been activated.");
         }
+
+        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.openDoor);
     }
 }
