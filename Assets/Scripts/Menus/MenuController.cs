@@ -150,7 +150,7 @@ public class MenuController: MonoBehaviour
         SceneManager.LoadScene(1);
 
         AudioManager.audioManagerInstance.StopMusic();
-        AudioManager.audioManagerInstance.PlayMusic(AudioManager.audioManagerInstance.inGameBackgroundMusic);
+        AudioManager.audioManagerInstance.PlayMusic(AudioManager.audioManagerInstance.paintingsLevelBackground);
     }
 
     public void QuitButton()

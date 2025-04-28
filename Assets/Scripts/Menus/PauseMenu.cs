@@ -86,6 +86,6 @@ public class PauseMenu : MonoBehaviour
         // mouseHandler.enabled = false;
 
         AudioManager.audioManagerInstance.StopMusic();
-        AudioManager.audioManagerInstance.PlayMusic(AudioManager.audioManagerInstance.menuBackgroundMusic);
+        AudioManager.audioManagerInstance.PlayMusic(AudioManager.audioManagerInstance.menuBackground);
     }
 }
