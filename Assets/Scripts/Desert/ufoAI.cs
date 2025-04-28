@@ -37,6 +37,8 @@ public class ufoAI : MonoBehaviour
     public float laserChargeTime = 0.5f; // Time before laser can damage
     private float laserTimer = 0f;
 
+    private State previousState;
+
     void Start()
     {
         homePosition = transform.position;
@@ -51,6 +53,13 @@ public class ufoAI : MonoBehaviour
 
     void Update()
     {
+        // Detect if the state has just changed
+        if (previousState != currentState)
+        {
+            OnStateChanged(previousState, currentState);
+            previousState = currentState; // Update previous state
+        }
+
         switch (currentState)
         {
             case State.Searching:
@@ -82,6 +91,21 @@ public class ufoAI : MonoBehaviour
         DetectPlayer();
 
         CheckBeamStatus();
+    }
+
+    private void OnStateChanged(State oldState, State newState)
+    {
+        switch (newState)
+        {
+            case State.Chasing:
+                // This audio is too annoying with the in-and-out nature of the states given the current detection code
+                // AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.angryUFO);
+                break;
+
+            case State.Attacking:
+                AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.ufoLaser);
+                break;
+        }
     }
 
     void DetectPlayer()
@@ -393,6 +417,7 @@ public class ufoAI : MonoBehaviour
             if (distanceToLaser <= laserHitRadius)
             {
                 // Debug.Log("[Laser] Hit the player!");
+                AudioManager.audioManagerInstance.StopSFX();
 
                 if (respawnPoint != null)
                 {
