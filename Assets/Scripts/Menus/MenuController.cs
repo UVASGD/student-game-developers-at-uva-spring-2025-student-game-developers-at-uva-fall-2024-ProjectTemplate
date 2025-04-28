@@ -15,7 +15,7 @@ public class MenuController: MonoBehaviour
     [SerializeField] private Slider musicVolSlider = null;
     [SerializeField] private Slider sfxVolSlider = null;
     public AudioMixer audioMixer;
-    [SerializeField] private float musicVolDefault = 0.5f;
+    [SerializeField] private float musicVolDefault = 0.1f;
     [SerializeField] private float sfxVolDefault = 0.5f;
     private float _musicVolume;
     private float _sfxVolume;

@@ -1,10 +1,14 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     [Header("Audio Sources")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
+    public AudioMixer audioMixer;
 
     [Header("Audio Clips")]
     [Header("Menus")]
@@ -71,7 +75,27 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PlayMusic(menuBackground);
+        // Read the initial music volume (saved in PlayerPrefs)
+        originalMusicVolume = PlayerPrefs.GetFloat("musicVolume", 0.5f);
+
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                PlayMusic(menuBackground);
+                break;
+            case 1:
+                PlayMusic(paintingsLevelBackground);
+                break;
+            case 2:
+                PlayMusic(endlessRoomsLevelBackground1);
+                break;
+            case 3:
+                PlayMusic(flashlightLevelBackground1);
+                break;
+            case 4:
+                PlayMusic(cutsceneBackground);
+                break;
+        }
     }
 
     public void PlayMusic(AudioClip musicClip)
@@ -99,5 +123,45 @@ public class AudioManager : MonoBehaviour
         { 
             musicSource.Stop(); 
         }
+    }
+
+    [Range(0f, 1f)] public float loweredMusicVolumeMultiplier = 0.1f; // Multiplier of original
+    public float volumeRestoreDelay = 1.0f; // Seconds to wait after SFX to restore
+    private float originalMusicVolume; // In 0-1 range
+    private Coroutine volumeRestoreCoroutine;
+
+    private void LowerMusicVolumeTemporarily()
+    {
+        // Lower music volume
+        float loweredVolume = originalMusicVolume * loweredMusicVolumeMultiplier;
+        audioMixer.SetFloat("music_volume", SliderToDb(loweredVolume));
+
+        if (volumeRestoreCoroutine != null)
+        {
+            StopCoroutine(volumeRestoreCoroutine);
+        }
+        volumeRestoreCoroutine = StartCoroutine(RestoreMusicVolumeAfterDelay());
+    }
+
+    private IEnumerator RestoreMusicVolumeAfterDelay()
+    {
+        yield return new WaitForSeconds(volumeRestoreDelay);
+
+        // Restore original music volume
+        audioMixer.SetFloat("music_volume", SliderToDb(originalMusicVolume));
+    }
+
+    public void PlaySFXLowerMusic(AudioClip sfxClip)
+    {
+        if (sfxSource != null && sfxClip != null)
+        {
+            LowerMusicVolumeTemporarily();
+            sfxSource.PlayOneShot(sfxClip);
+        }
+    }
+
+    public float SliderToDb(float value)
+    {
+        return Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
     }
 }

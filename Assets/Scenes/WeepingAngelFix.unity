@@ -25542,6 +25542,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 836850155}
     - target: {fileID: 4266067785112943561, guid: 45d37db11a0c13f4bbed7a4c4d97d754, type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: a341e9beaa5dea546a29264bbe0ecfdc, type: 2}
+    - target: {fileID: 4266067785112943561, guid: 45d37db11a0c13f4bbed7a4c4d97d754, type: 3}
       propertyPath: flashlight
       value: 
       objectReference: {fileID: 8300000, guid: 16c8d43c473a94c49a860d5c56bea6fc, type: 3}

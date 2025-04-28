@@ -2,24 +2,19 @@ using UnityEngine;
 
 public class CutsceneAudioEvents : MonoBehaviour
 {
-    public void Start()
-    {
-        AudioManager.audioManagerInstance.StopMusic();
-        PlayCutsceneMusic();
-    }
     public void PlayBossFired()
     {
-        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.bossFired);
+        AudioManager.audioManagerInstance.PlaySFXLowerMusic(AudioManager.audioManagerInstance.bossFired);
     }
 
     public void PlayBossMuffled()
     {
-        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.bossMuffled);
+        AudioManager.audioManagerInstance.PlaySFXLowerMusic(AudioManager.audioManagerInstance.bossMuffled);
     }
 
     public void PlayWakeup()
     {
-        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.wakeup);
+        AudioManager.audioManagerInstance.PlaySFXLowerMusic(AudioManager.audioManagerInstance.wakeup);
     }
 
     public void PlayCreditsMusic()
@@ -35,6 +30,6 @@ public class CutsceneAudioEvents : MonoBehaviour
 
     public void PlayThankYouSFX()
     {
-        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.yippee);
+        AudioManager.audioManagerInstance.PlaySFXLowerMusic(AudioManager.audioManagerInstance.yippee);
     }
 }
