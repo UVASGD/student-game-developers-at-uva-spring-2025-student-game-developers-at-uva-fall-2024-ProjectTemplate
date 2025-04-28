@@ -12,5 +12,7 @@ public class DoorTriggerMovingWalls : Door {
             wall.StartMoving();
         }
         EndlessRoomManager.Instance.wallMovingSFX.Play();
+        EndlessRoomManager.Instance.psychLoopNoBassSFX.Stop();
+        EndlessRoomManager.Instance.psychLoopBassSFX.Play();
     }
 }
