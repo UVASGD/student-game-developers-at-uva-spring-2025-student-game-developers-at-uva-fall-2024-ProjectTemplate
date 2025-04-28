@@ -84,20 +84,33 @@ public class GameplayUI : MonoBehaviour
     {
         active = false;
         panel.SetActive(false);
-        firstNoteboard.canInteract = false;
+        if(firstNoteboard != null)
+        {
+            firstNoteboard.canInteract = false;
+        }
+        
         if (player != null)
         {
-            Camera.main.transform.DOLocalMove(Vector3.zero, EndlessRoomManager.Instance.cameraMoveZoomTime);
-            Camera.main.transform.DORotate(EndlessRoomManager.Instance.player.transform.rotation.eulerAngles, EndlessRoomManager.Instance.cameraMoveZoomTime).OnComplete(
+            if(EndlessRoomManager.Instance != null)
+            {
+                Camera.main.transform.DOLocalMove(Vector3.zero, EndlessRoomManager.Instance.cameraMoveZoomTime);
+                Camera.main.transform.DORotate(EndlessRoomManager.Instance.player.transform.rotation.eulerAngles, EndlessRoomManager.Instance.cameraMoveZoomTime).OnComplete(
                 () => {
-                    player.GetComponent<PlayerMovement>().unlockMovement();
-                    player.GetComponent<PlayerCameraMovement>().unlockPan();
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                    firstNoteboard.canInteract = true;
+                player.GetComponent<PlayerMovement>().unlockMovement();
+                player.GetComponent<PlayerCameraMovement>().unlockPan();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                firstNoteboard.canInteract = true;
                 }
-            );
-            
+                );
+            }
+            else
+            {
+                player.GetComponent<PlayerMovement>().unlockMovement();
+                player.GetComponent<PlayerCameraMovement>().unlockPan();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 }
