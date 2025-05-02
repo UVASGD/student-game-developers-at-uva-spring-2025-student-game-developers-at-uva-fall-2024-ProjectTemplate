@@ -81,6 +81,10 @@ public class PauseMenu : MonoBehaviour
             menuController.PlayButtonSound();
         }
 
+        pause_menu.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+
         SceneManager.LoadScene(0);
 
         // mouseHandler.enabled = false;

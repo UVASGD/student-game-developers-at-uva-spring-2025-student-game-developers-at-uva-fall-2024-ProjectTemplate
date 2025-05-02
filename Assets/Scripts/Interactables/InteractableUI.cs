@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -17,12 +17,18 @@ public class InteractableUI : MonoBehaviour {
     [Tooltip("The time it takes for the interact UI to scale up and down")]
     public float scaleTime = 0.25f;
 
-    void Awake(){
-        if (Instance == null) {
+    void Awake()
+    {
+        if (Instance == null)
+        {
             Instance = this;
             interactUI_GO.transform.localScale = Vector3.zero;
-        } else {
-            Destroy(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(Instance.gameObject); // Clean up old one if scene reloaded
+            Instance = this;
+            interactUI_GO.transform.localScale = Vector3.zero;
         }
     }
 
@@ -42,7 +48,10 @@ public class InteractableUI : MonoBehaviour {
                     interactable.SetText();
                     if (Input.GetKeyDown(KeyCode.E)){
                         interactable.Interact();
-                        interactUI_GO.transform.DOScale(Vector3.zero, scaleTime);
+                        if (interactUI_GO != null && interactUI_GO.transform != null)
+                        {
+                            interactUI_GO.transform.DOScale(Vector3.one, scaleTime);
+                        }
                     }
                 } else {
                     interactUI_GO.transform.DOScale(Vector3.zero, scaleTime);

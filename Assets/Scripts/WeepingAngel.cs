@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using System;
 using System.Threading.Tasks;
+using UnityEngine.Audio;
 
 public class WeepingAngel : QuantumObjectBase
 {
@@ -37,6 +38,8 @@ public class WeepingAngel : QuantumObjectBase
     [SerializeField] public Transform playerRespawnPos;
     [SerializeField] private Transform weepRespawnPos;
 
+    // private int num_lookAt = 0;
+
     private async void Update()
     {
         //Debug.Log(firstLookedAt);
@@ -48,7 +51,10 @@ public class WeepingAngel : QuantumObjectBase
 
         if (isVisible())
         {
+            AudioManager.audioManagerInstance.StopSFX();
+
             aiAnim.SetBool("LookedAt", true);
+
             if (!jmpSfxPlayed)
             {
                 ai.speed = 0;
@@ -57,7 +63,12 @@ public class WeepingAngel : QuantumObjectBase
             }
             if (!lookSfxPlayed)
             {
-                // playLookSfx();
+                /*
+                if (num_lookAt == 0)
+                {
+                    AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.vineboom);
+                    num_lookAt = 1;
+                }*/
                 lookSfxPlayed = true;
             }
             
@@ -66,6 +77,11 @@ public class WeepingAngel : QuantumObjectBase
         }
         else if (!isVisible() && !firstLookedAt)
         {
+            if (!AudioManager.audioManagerInstance.sfxSource.isPlaying)
+            {
+                AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.footsteps);
+            }
+
             ai.speed = aiSpeed;
             //aiAnim.speed = 1;
             dest = player.position;
@@ -79,12 +95,8 @@ public class WeepingAngel : QuantumObjectBase
                 //player.gameObject.SetActive(false);
                 mannequin.SetActive(true);
 
-                AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.footsteps);
-
                 if (!jmpSfxPlayed)
                 {
-                    // Not audible?
-                    // AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.jumpscare);
                     jmpSfxPlayed = true;
                     //aiAnim.SetTrigger("Jumpscare");
                     headAnim.enabled = true;
@@ -118,7 +130,8 @@ public class WeepingAngel : QuantumObjectBase
 
     private void playLookSfx()
     {
-        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.vineboom);
+        src.clip = shockSfx;
+        src.Play();
     }
 
     private async Task WaitForCameraActivation(Camera cam)

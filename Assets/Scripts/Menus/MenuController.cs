@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class MenuController: MonoBehaviour
@@ -107,6 +108,19 @@ public class MenuController: MonoBehaviour
 
         // Meant to help mute initial button sound at start of game bootup
         isStartup = false;
+
+        Time.timeScale = 1f;
+        PauseMenu.GameIsPaused = false;
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private void LoadPlayerSettings()
