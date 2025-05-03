@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class MenuController: MonoBehaviour
@@ -15,8 +16,8 @@ public class MenuController: MonoBehaviour
     [SerializeField] private Slider musicVolSlider = null;
     [SerializeField] private Slider sfxVolSlider = null;
     public AudioMixer audioMixer;
-    [SerializeField] private float musicVolDefault = 0.1f;
-    [SerializeField] private float sfxVolDefault = 0.5f;
+    [SerializeField] private float musicVolDefault = 0.5f;
+    [SerializeField] private float sfxVolDefault = 0.1f;
     private float _musicVolume;
     private float _sfxVolume;
 
@@ -107,6 +108,19 @@ public class MenuController: MonoBehaviour
 
         // Meant to help mute initial button sound at start of game bootup
         isStartup = false;
+
+        Time.timeScale = 1f;
+        PauseMenu.GameIsPaused = false;
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private void LoadPlayerSettings()

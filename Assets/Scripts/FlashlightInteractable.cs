@@ -1,6 +1,8 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class FlashlightInteractable : Interactable
 {
@@ -10,7 +12,8 @@ public class FlashlightInteractable : Interactable
     [SerializeField] private GameObject flashlightPrefab;
     [SerializeField] private Transform newRespawnPos;
     [SerializeField] private WeepingAngel weep;
-    
+    public float delaySeconds = 0.5f;
+
     private GameObject player;
     public override void Start()
     {
@@ -21,6 +24,8 @@ public class FlashlightInteractable : Interactable
     {
         if(player != null)
         {
+            AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.flashlight);
+
             Flashlight script = player.AddComponent<Flashlight>();
             
             GameObject flashlightBeam = Instantiate(flashlightPrefab, player.transform.Find("Head"));
@@ -45,6 +50,10 @@ public class FlashlightInteractable : Interactable
                 weep.playerRespawnPos = newRespawnPos;
             }
             Destroy(gameObject);
+
+            AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.powerDown);
+            AudioManager.audioManagerInstance.StopMusic();
+            AudioManager.audioManagerInstance.PlayMusic(AudioManager.audioManagerInstance.flashlightLevelBackground2);
         }
         else
         {

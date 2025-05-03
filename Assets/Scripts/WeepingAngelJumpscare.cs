@@ -97,7 +97,7 @@ public class WeepingAngelJumpscare : QuantumObjectBase
         // Activate jumpscare camera
         mannequin.SetActive(true);
         headAnim.enabled = true;
-        playScareSfx();
+        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.jumpscare);
 
         yield return null;  // This fixes the error
 

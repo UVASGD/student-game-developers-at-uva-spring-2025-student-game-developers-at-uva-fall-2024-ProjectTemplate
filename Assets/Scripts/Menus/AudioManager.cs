@@ -42,7 +42,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip keypadButton;
     public AudioClip keypadDenied;
     public AudioClip keypadGranted;
-    public AudioClip vineboom;
+    public AudioClip vineboom; 
+    public AudioClip footsteps;
 
     [Header("Cutscene")]
     public AudioClip cutsceneBackground;
@@ -56,7 +57,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip pickup;
     public AudioClip openDoor;
     public AudioClip jumpscare;
-    public AudioClip footsteps;
 
     public static AudioManager audioManagerInstance;
 
@@ -108,6 +108,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlaySFXRepeat(AudioClip sfxClip)
+    {
+        if (sfxSource != null && sfxClip != null)
+        {
+            sfxSource.clip = sfxClip;
+            sfxSource.loop = true;
+            sfxSource.Play();
+        }
+    }
+
     public void PlaySFX(AudioClip sfxClip)
     {
         if (sfxSource != null && sfxClip != null)
@@ -122,6 +132,14 @@ public class AudioManager : MonoBehaviour
         if(musicSource != null)
         { 
             musicSource.Stop(); 
+        }
+    }
+
+    public void StopSFX()
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.Stop();
         }
     }
 

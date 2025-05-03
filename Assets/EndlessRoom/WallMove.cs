@@ -17,7 +17,9 @@ public class WallMove : MonoBehaviour {
 
     public void StartMoving(){
         transform.DOMove(moveToTransform.position, totalMoveTime);
+        AudioManager.audioManagerInstance.PlaySFXRepeat(AudioManager.audioManagerInstance.movingWalls);
     }
+
 
     void OnCollisionEnter(Collision other){
         if (other.gameObject.CompareTag("Player")){

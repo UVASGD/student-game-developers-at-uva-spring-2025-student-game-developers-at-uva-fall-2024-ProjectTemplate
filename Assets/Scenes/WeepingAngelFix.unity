@@ -8660,6 +8660,7 @@ MonoBehaviour:
   flashlightPrefab: {fileID: 8169376491158492898, guid: 45fcceb4da06c6645873f714314f8361, type: 3}
   newRespawnPos: {fileID: 990719311}
   weep: {fileID: 1559103158}
+  delaySeconds: 1
 --- !u!135 &360558245
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -41886,11 +41887,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559103153}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1905718726343871640, guid: a341e9beaa5dea546a29264bbe0ecfdc, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 9fdad7942abc3764d9b08b60ec9a7a49, type: 3}
+  m_Resource: {fileID: 8300000, guid: 9fdad7942abc3764d9b08b60ec9a7a49, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -41901,7 +41902,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

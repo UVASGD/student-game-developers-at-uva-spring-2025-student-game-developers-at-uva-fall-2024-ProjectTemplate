@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using System;
 using System.Threading.Tasks;
+using UnityEngine.Audio;
 
 public class WeepingAngel : QuantumObjectBase
 {
@@ -37,7 +38,7 @@ public class WeepingAngel : QuantumObjectBase
     [SerializeField] public Transform playerRespawnPos;
     [SerializeField] private Transform weepRespawnPos;
 
-
+    // private int num_lookAt = 0;
 
     private async void Update()
     {
@@ -50,7 +51,10 @@ public class WeepingAngel : QuantumObjectBase
 
         if (isVisible())
         {
+            AudioManager.audioManagerInstance.StopSFX();
+
             aiAnim.SetBool("LookedAt", true);
+
             if (!jmpSfxPlayed)
             {
                 ai.speed = 0;
@@ -59,7 +63,12 @@ public class WeepingAngel : QuantumObjectBase
             }
             if (!lookSfxPlayed)
             {
-                playLookSfx();
+                /*
+                if (num_lookAt == 0)
+                {
+                    AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.vineboom);
+                    num_lookAt = 1;
+                }*/
                 lookSfxPlayed = true;
             }
             
@@ -68,6 +77,11 @@ public class WeepingAngel : QuantumObjectBase
         }
         else if (!isVisible() && !firstLookedAt)
         {
+            if (!AudioManager.audioManagerInstance.sfxSource.isPlaying)
+            {
+                AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.footsteps);
+            }
+
             ai.speed = aiSpeed;
             //aiAnim.speed = 1;
             dest = player.position;
@@ -83,7 +97,6 @@ public class WeepingAngel : QuantumObjectBase
 
                 if (!jmpSfxPlayed)
                 {
-                    playScareSfx();
                     jmpSfxPlayed = true;
                     //aiAnim.SetTrigger("Jumpscare");
                     headAnim.enabled = true;

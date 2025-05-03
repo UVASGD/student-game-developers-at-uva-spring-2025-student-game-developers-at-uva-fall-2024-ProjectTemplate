@@ -18,7 +18,7 @@ public class PuzzlePieceInteractable : Interactable
     public override void Interact()
     {
         // Debug.Log("Interacted with Puzzle Piece");
-
+        AudioManager.audioManagerInstance.PlaySFX(AudioManager.audioManagerInstance.pickup);
 
         // Increase the number of puzzle pieces that the player has
         num_pieces++;
