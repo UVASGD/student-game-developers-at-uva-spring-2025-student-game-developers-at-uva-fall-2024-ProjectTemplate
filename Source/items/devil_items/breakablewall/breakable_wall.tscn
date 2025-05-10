@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3i7y52vpqedx"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/breakablewall/breakable_wall.gd" id="1_eucdj"]
+
+[node name="BreakableWall" type="Node3D"]
+script = ExtResource("1_eucdj")

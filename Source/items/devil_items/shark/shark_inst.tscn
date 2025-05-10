@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://hnkgen3m8ruv"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/shark/shark_inst.gd" id="1_nkpwh"]
+[ext_resource type="PackedScene" uid="uid://2ieqip7tjsi5" path="res://Source/items/devil_items/shark/shark_version_2.glb" id="1_rfv48"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aamuj"]
+radius = 12.196
+height = 100.0
+
+[node name="SharkInst" type="CharacterBody3D"]
+script = ExtResource("1_nkpwh")
+
+[node name="shark_version_2" parent="." instance=ExtResource("1_rfv48")]
+transform = Transform3D(0.23, 0, 0, 0, -1.00536e-08, 0.23, 0, -0.23, -1.00536e-08, 0, 0, 5.59733)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.91666, 0)
+shape = SubResource("CapsuleShape3D_aamuj")
+
+[node name="GoUpTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GoDownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="GoUpTimer" to="." method="_on_go_up_timer_timeout"]
+[connection signal="timeout" from="GoDownTimer" to="." method="_on_go_down_timer_timeout"]

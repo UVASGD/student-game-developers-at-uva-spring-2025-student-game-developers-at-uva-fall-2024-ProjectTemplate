@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwtjf2f24u42a"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/UFO/ufo_inst.gd" id="1_ddick"]
+[ext_resource type="PackedScene" uid="uid://blxeuwfjnpyi2" path="res://Source/items/devil_items/UFO/UFO2.glb" id="1_tfyh1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pggfc"]
+height = 0.8
+radius = 9.305
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8x8sw"]
+height = 80.0
+radius = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pd5q2"]
+transparency = 1
+albedo_color = Color(0, 0.642, 0.263, 0.475)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e3m70"]
+material = SubResource("StandardMaterial3D_pd5q2")
+bottom_radius = 8.0
+height = 80.0
+
+[node name="UFO_inst" type="CharacterBody3D"]
+script = ExtResource("1_ddick")
+
+[node name="UFO2" parent="." instance=ExtResource("1_tfyh1")]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, 0.401011, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106818, 0)
+shape = SubResource("CylinderShape3D_pggfc")
+
+[node name="GoUpTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="PullArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PullArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -39.2216, 0)
+shape = SubResource("CylinderShape3D_8x8sw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PullArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40.1398, 0)
+mesh = SubResource("CylinderMesh_e3m70")
+skeleton = NodePath("../..")
+
+[connection signal="timeout" from="GoUpTimer" to="." method="_on_go_up_timer_timeout"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
+[connection signal="body_entered" from="PullArea" to="." method="_on_pull_area_body_entered"]
+[connection signal="body_exited" from="PullArea" to="." method="_on_pull_area_body_exited"]

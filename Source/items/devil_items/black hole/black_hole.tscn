@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ngncb1tp0u7"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/black hole/black_hole.gd" id="1_3jvxy"]
+
+[node name="BlackHole" type="Node3D"]
+script = ExtResource("1_3jvxy")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcd6j1u4xwaau"]
+
+[ext_resource type="Script" path="res://Source/items/driver_items/boost/boost.gd" id="1_mkj3t"]
+[ext_resource type="Shader" uid="uid://e67ccuhnce2t" path="res://Source/Resources/shaders/visual_shader_test.tres" id="2_1k3yo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5watk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c43kn"]
+render_priority = 0
+shader = ExtResource("2_1k3yo")
+shader_parameter/ColorParameter = Color(0.226707, 0.226707, 0.226707, 1)
+shader_parameter/Strength = 2.0
+shader_parameter/LightColor = Color(5, 0.298, 0.236, 1)
+shader_parameter/FloatParameter = 0.375
+
+[node name="boost" type="Node3D"]
+script = ExtResource("1_mkj3t")
+item_name = "boost"
+animation_name = "boost"
+
+[node name="flame_1" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.50643e-08, 4.92657, 0, -0.344631, -2.15347e-07, 0, 0, 0, 0.159162, -4.84113, 0.409893, -0.538346)
+visible = false
+mesh = SubResource("BoxMesh_5watk")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_c43kn")
+
+[node name="flame_2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.50643e-08, 4.92657, 0, -0.344631, -2.15347e-07, 0, 0, 0, 0.159162, -4.84189, 0.409977, 0.538113)
+visible = false
+mesh = SubResource("BoxMesh_5watk")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_c43kn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

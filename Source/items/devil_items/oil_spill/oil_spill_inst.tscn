@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb7bmu0fv40lv"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/oil_spill/oil_spill_inst.gd" id="1_japp8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ke4bc"]
+albedo_color = Color(0.101961, 0.101961, 0.184314, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7foq7"]
+material = SubResource("StandardMaterial3D_ke4bc")
+radius = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tgtp7"]
+radius = 1.0
+
+[node name="OilSpill" type="Area3D"]
+script = ExtResource("1_japp8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25023, 0)
+mesh = SubResource("SphereMesh_7foq7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tgtp7")
+
+[node name="SetupTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SetupTimer" to="." method="_on_setup_timer_timeout"]

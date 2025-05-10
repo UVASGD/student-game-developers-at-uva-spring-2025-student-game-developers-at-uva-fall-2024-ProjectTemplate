@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d207xdy3kwpyn"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/trident/trident.gd" id="1_ac341"]
+
+[node name="Missile" type="Node3D"]
+script = ExtResource("1_ac341")
+num_uses = 1

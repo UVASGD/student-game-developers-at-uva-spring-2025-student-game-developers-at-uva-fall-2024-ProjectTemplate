@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck3cs6fa37s45"]
+
+[ext_resource type="Script" path="res://Source/Menus/main_menu.gd" id="1_3oxnt"]
+[ext_resource type="FontFile" uid="uid://bqwipp1vl7qqn" path="res://Source/Resources/black-mud.regular.ttf" id="2_cw1h7"]
+[ext_resource type="Shader" path="res://Source/Resources/shaders/fire.gdshader" id="2_ilobr"]
+[ext_resource type="Texture2D" uid="uid://bodu58phnr7kb" path="res://Source/Resources/shaders/2767.png" id="3_qdv1m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6dn2v"]
+shader = ExtResource("2_ilobr")
+shader_parameter/bottom_color = Color(0, 0, 0, 1)
+shader_parameter/middle_color = Color(1, 0.5, 0, 1)
+shader_parameter/top_color = Color(0.996078, 0.0235294, 0.254902, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0, 0.09)
+shader_parameter/fire_aperture = 0.416
+shader_parameter/noise_tex = ExtResource("3_qdv1m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m87wf"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_3oxnt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1159.0
+offset_bottom = 655.0
+color = Color(0, 0, 0, 1)
+
+[node name="Control2" type="ColorRect" parent="."]
+clip_children = 2
+material = SubResource("ShaderMaterial_6dn2v")
+offset_top = -44.0
+offset_right = 1153.0
+offset_bottom = 646.0
+
+[node name="Versus" type="Button" parent="."]
+offset_left = 184.0
+offset_top = 500.0
+offset_right = 369.0
+offset_bottom = 600.0
+theme_override_colors/font_color = Color(0.965998, 0, 0.337831, 1)
+theme_override_fonts/font = ExtResource("2_cw1h7")
+theme_override_font_sizes/font_size = 31
+text = "Versus"
+
+[node name="TimeTrials" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 500.0
+offset_right = 568.0
+offset_bottom = 600.0
+theme_override_colors/font_color = Color(0.616435, 0.794752, 0.908539, 1)
+theme_override_fonts/font = ExtResource("2_cw1h7")
+theme_override_font_sizes/font_size = 31
+text = "Time Trials"
+
+[node name="Tutorial" type="Button" parent="."]
+offset_left = 584.0
+offset_top = 500.0
+offset_right = 768.0
+offset_bottom = 600.0
+theme_override_colors/font_color = Color(0.995323, 0.459782, 0.253771, 1)
+theme_override_fonts/font = ExtResource("2_cw1h7")
+theme_override_font_sizes/font_size = 31
+text = "Tutorial"
+
+[node name="Credits" type="Button" parent="."]
+offset_left = 784.0
+offset_top = 500.0
+offset_right = 968.0
+offset_bottom = 600.0
+theme_override_fonts/font = ExtResource("2_cw1h7")
+theme_override_font_sizes/font_size = 31
+text = "Credits"
+
+[node name="LabelShadow" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 0.74902)
+offset_left = 168.0
+offset_top = 6.0
+offset_right = 1007.0
+offset_bottom = 294.0
+theme_override_fonts/normal_font = ExtResource("2_cw1h7")
+theme_override_font_sizes/normal_font_size = 121
+text = "Burnout Blitz"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label" type="RichTextLabel" parent="."]
+modulate = Color(0.996078, 0.0235294, 0.254902, 1)
+material = SubResource("ShaderMaterial_m87wf")
+offset_left = 163.0
+offset_top = 2.0
+offset_right = 1002.0
+offset_bottom = 290.0
+theme_override_fonts/normal_font = ExtResource("2_cw1h7")
+theme_override_font_sizes/normal_font_size = 121
+text = "Burnout Blitz"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="mouse_entered" from="Versus" to="." method="_on_versus_mouse_entered"]
+[connection signal="mouse_exited" from="Versus" to="." method="_on_versus_mouse_exited"]
+[connection signal="pressed" from="Versus" to="." method="_on_versus_pressed"]
+[connection signal="mouse_entered" from="TimeTrials" to="." method="_on_time_trials_mouse_entered"]
+[connection signal="mouse_exited" from="TimeTrials" to="." method="_on_time_trials_mouse_exited"]
+[connection signal="pressed" from="TimeTrials" to="." method="_on_time_trials_pressed"]
+[connection signal="mouse_entered" from="Tutorial" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="mouse_exited" from="Tutorial" to="." method="_on_tutorial_mouse_exited"]
+[connection signal="mouse_entered" from="Credits" to="." method="_on_credits_mouse_entered"]
+[connection signal="mouse_exited" from="Credits" to="." method="_on_credits_mouse_exited"]

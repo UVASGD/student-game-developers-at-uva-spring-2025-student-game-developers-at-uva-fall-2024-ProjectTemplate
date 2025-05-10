@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://p8oj45kl0dq0"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/oil_spill/oil_spill.gd" id="1_thjh1"]
+
+[node name="Oil" type="Node3D"]
+script = ExtResource("1_thjh1")
+item_name = "oil_spill"
+is_top_down = true

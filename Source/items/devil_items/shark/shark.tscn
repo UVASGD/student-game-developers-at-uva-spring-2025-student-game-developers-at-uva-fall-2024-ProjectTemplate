@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ibbbluuvllmu"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/shark/shark.gd" id="1_ubtap"]
+
+[node name="Shark" type="Node3D"]
+script = ExtResource("1_ubtap")

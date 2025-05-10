@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0a1gfnx0hqta"]
+
+[ext_resource type="Script" path="res://Source/Game Container/game_container.gd" id="1_rv2i8"]
+[ext_resource type="AudioStream" uid="uid://kpwlpc84xfds" path="res://Source/Audio/mainMenuTrack.mp3" id="2_l83q8"]
+
+[node name="GameContainer" type="Node3D"]
+script = ExtResource("1_rv2i8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l83q8")

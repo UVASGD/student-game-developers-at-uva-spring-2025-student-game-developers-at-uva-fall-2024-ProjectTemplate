@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf6kr4elwfn3m"]
+
+[ext_resource type="Script" path="res://Source/Menus/map_select_menu.gd" id="1_0leyl"]
+[ext_resource type="Texture2D" uid="uid://bqgdqunh31dfa" path="res://Source/UI/Screenshot 2025-04-07 041052.png" id="2_t4jmy"]
+
+[node name="MapSelectMenu" type="CanvasLayer"]
+script = ExtResource("1_0leyl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 848.0
+offset_bottom = 534.0
+
+[node name="Label" type="Label" parent="Control"]
+modulate = Color(0.996078, 0.0235294, 0.254902, 1)
+layout_mode = 0
+offset_left = 418.0
+offset_top = 54.0
+offset_right = 762.0
+offset_bottom = 188.0
+theme_override_font_sizes/font_size = 56
+text = "Select a map"
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 248.0
+offset_right = 1264.0
+offset_bottom = 909.0
+scale = Vector2(0.29, 0.29)
+icon = ExtResource("2_t4jmy")
+
+[node name="Back" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 20.0
+offset_right = 152.0
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 36
+text = "Back"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 166.0
+offset_top = 440.0
+offset_right = 331.0
+offset_bottom = 550.0
+theme_override_font_sizes/font_size = 46
+text = "Violence"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

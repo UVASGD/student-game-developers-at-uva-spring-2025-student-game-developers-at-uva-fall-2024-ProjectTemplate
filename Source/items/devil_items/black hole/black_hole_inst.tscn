@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://pi15m50x1uc4"]
+
+[ext_resource type="Script" path="res://Source/items/devil_items/black hole/black_hole_inst.gd" id="1_ytk72"]
+[ext_resource type="Shader" uid="uid://e67ccuhnce2t" path="res://Source/Resources/shaders/visual_shader_test.tres" id="2_olswj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84r01"]
+render_priority = 0
+shader = ExtResource("2_olswj")
+shader_parameter/ColorParameter = Color(0.102395, 0.101495, 0.295301, 1)
+shader_parameter/Strength = 2.0
+shader_parameter/LightColor = Color(0.430382, 0.0512409, 0.507018, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_weraa"]
+material = SubResource("ShaderMaterial_84r01")
+radius = 10.0
+height = 20.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_606q4"]
+radius = 10.0
+
+[node name="BlackHoleInst" type="Area3D"]
+script = ExtResource("1_ytk72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_weraa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_606q4")
+
+[node name="SetupTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="DeletionTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="SetupTimer" to="." method="_on_setup_timer_timeout"]
+[connection signal="timeout" from="DeletionTimer" to="." method="_on_deletion_timer_timeout"]

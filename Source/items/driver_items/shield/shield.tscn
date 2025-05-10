@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://to4x7nrxmvuw"]
+
+[ext_resource type="Script" path="res://Source/items/driver_items/shield/shield.gd" id="1_yvnng"]
+[ext_resource type="Shader" uid="uid://e67ccuhnce2t" path="res://Source/Resources/shaders/visual_shader_test.tres" id="2_otjna"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_83nrf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wfhy"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_otjna")
+shader_parameter/ColorParameter = Color(0.421, 0.566, 11, 1)
+shader_parameter/Strength = 2.0
+shader_parameter/LightColor = Color(0.732768, 0.824936, 1, 1)
+shader_parameter/FloatParameter = 1.0
+
+[node name="shield" type="Node3D"]
+script = ExtResource("1_yvnng")
+animation_name = "shield_on"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.56775, 0, 0, 0, 4.47414, 0, 0, 0, 3.35444, 0, 0, 0)
+mesh = SubResource("SphereMesh_83nrf")
+surface_material_override/0 = SubResource("ShaderMaterial_4wfhy")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
